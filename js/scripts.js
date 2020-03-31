@@ -534,11 +534,12 @@ $(document).on("input", function() {
 
   var output_possibilities = "";
   for (let poss of generate_possibilities(sell_prices)) {
-    var out_line = ""
+    var out_line = "<tr><td>" + poss.pattern_description + "</td>"
     for (let day of [...poss.prices].slice(2)) {
-      out_line += day.min + ".." + day.max + " "
+      out_line += "<td>" + day.min + ".." + day.max + "</td>"
     }
-    output_possibilities += poss.pattern_description + ": " + out_line + "<br>"
+    out_line += "</tr>"
+    output_possibilities += out_line
   }
 
   $("#output").html(output_possibilities)
