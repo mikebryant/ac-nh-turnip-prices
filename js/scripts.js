@@ -1,3 +1,194 @@
+function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, high_phase_2_len, dec_phase_2_len, high_phase_3_len) {
+    /*
+      // PATTERN 0: high, decreasing, high, decreasing, high
+      work = 2;
+
+
+      // high phase 1
+      for (int i = 0; i < hiPhaseLen1; i++)
+      {
+        sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+      }
+
+      // decreasing phase 1
+      rate = randfloat(0.8, 0.6);
+      for (int i = 0; i < decPhaseLen1; i++)
+      {
+        sellPrices[work++] = intceil(rate * basePrice);
+        rate -= 0.04;
+        rate -= randfloat(0, 0.06);
+      }
+
+      // high phase 2
+      for (int i = 0; i < (hiPhaseLen2and3 - hiPhaseLen3); i++)
+      {
+        sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+      }
+
+      // decreasing phase 2
+      rate = randfloat(0.8, 0.6);
+      for (int i = 0; i < decPhaseLen2; i++)
+      {
+        sellPrices[work++] = intceil(rate * basePrice);
+        rate -= 0.04;
+        rate -= randfloat(0, 0.06);
+      }
+
+      // high phase 3
+      for (int i = 0; i < hiPhaseLen3; i++)
+      {
+        sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+      }
+  */
+
+  buy_price = given_prices[0];
+  var predicted_prices = [
+    {
+      min: buy_price,
+      max: buy_price,
+    },
+    {
+      min: buy_price,
+      max: buy_price,
+    },
+  ];
+
+  // High Phase 1
+  for (var i = 2; i < 2 + high_phase_1_len; i++) {
+    min_pred = Math.ceil(0.9 * buy_price);
+    max_pred = Math.ceil(1.4 * buy_price);
+    if (!isNaN(given_prices[i])) {
+      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+        // Given price is out of predicted range, so this is the wrong pattern
+        return;
+      }
+      min_pred = given_prices[i];
+      max_pred = given_prices[i];
+    }
+
+    predicted_prices.push({
+      min: min_pred,
+      max: max_pred,
+    });
+  }
+
+  // Dec Phase 1
+  var min_rate = 0.6;
+  var max_rate = 0.8;
+  for (var i = 2 + high_phase_1_len; i < 2 + high_phase_1_len + dec_phase_1_len; i++) {
+    min_pred = Math.ceil(min_rate * buy_price);
+    max_pred = Math.ceil(max_rate * buy_price);
+
+
+    if (!isNaN(given_prices[i])) {
+      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+        // Given price is out of predicted range, so this is the wrong pattern
+        return;
+      }
+      min_pred = given_prices[i];
+      max_pred = given_prices[i];
+      min_rate = given_prices[i] / buy_price;
+      max_rate = given_prices[i] / buy_price;
+    }
+
+    predicted_prices.push({
+      min: min_pred,
+      max: max_pred,
+    });
+
+    min_rate -= 0.1;
+    max_rate -= 0.04;
+  }
+
+  // High Phase 2
+  for (var i = 2 + high_phase_1_len + dec_phase_1_len; i < 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len; i++) {
+    min_pred = Math.ceil(0.9 * buy_price);
+    max_pred = Math.ceil(1.4 * buy_price);
+    if (!isNaN(given_prices[i])) {
+      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+        // Given price is out of predicted range, so this is the wrong pattern
+        return;
+      }
+      min_pred = given_prices[i];
+      max_pred = given_prices[i];
+    }
+
+    predicted_prices.push({
+      min: min_pred,
+      max: max_pred,
+    });
+  }
+
+  // Dec Phase 2
+  var min_rate = 0.6;
+  var max_rate = 0.8;
+  for (var i = 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len; i < 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len; i++) {
+    min_pred = Math.ceil(min_rate * buy_price);
+    max_pred = Math.ceil(max_rate * buy_price);
+
+
+    if (!isNaN(given_prices[i])) {
+      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+        // Given price is out of predicted range, so this is the wrong pattern
+        return;
+      }
+      min_pred = given_prices[i];
+      max_pred = given_prices[i];
+      min_rate = given_prices[i] / buy_price;
+      max_rate = given_prices[i] / buy_price;
+    }
+
+    predicted_prices.push({
+      min: min_pred,
+      max: max_pred,
+    });
+
+    min_rate -= 0.1;
+    max_rate -= 0.04;
+  }
+
+  // High Phase 3
+  if (2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len + high_phase_3_len != 14) {
+    throw new Error("Phase lengths don't add up");
+  }
+  for (var i = 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len; i < 14; i++) {
+    min_pred = Math.ceil(0.9 * buy_price);
+    max_pred = Math.ceil(1.4 * buy_price);
+    if (!isNaN(given_prices[i])) {
+      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+        // Given price is out of predicted range, so this is the wrong pattern
+        return;
+      }
+      min_pred = given_prices[i];
+      max_pred = given_prices[i];
+    }
+
+    predicted_prices.push({
+      min: min_pred,
+      max: max_pred,
+    });
+  }
+  yield predicted_prices
+}
+
+function* generate_pattern_0(given_prices) {
+  /*
+      decPhaseLen1 = randbool() ? 3 : 2;
+      decPhaseLen2 = 5 - decPhaseLen1;
+
+      hiPhaseLen1 = randint(0, 6);
+      hiPhaseLen2and3 = 7 - hiPhaseLen1;
+      hiPhaseLen3 = randint(0, hiPhaseLen2and3 - 1);
+  */
+  for (var dec_phase_1_len = 2; dec_phase_1_len < 4; dec_phase_1_len++) {
+    for (var high_phase_1_len = 0; high_phase_1_len < 7; high_phase_1_len++) {
+      for (var high_phase_3_len = 0; high_phase_3_len < (7 - high_phase_1_len - 1 + 1); high_phase_3_len++) {
+        yield* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, 7 - high_phase_1_len - high_phase_3_len, 5 - dec_phase_1_len, high_phase_3_len);
+      }
+    }
+  }
+}
+
 function* generate_pattern_1_with_peak(given_prices, peak_start) {
   /*
     // PATTERN 1: decreasing middle, high spike, random low
@@ -301,7 +492,7 @@ function* generate_pattern_3(given_prices) {
 
 
 function* generate_possibilities(sell_prices) {
-  //yield* generate_pattern_0(sell_prices);
+  yield* generate_pattern_0(sell_prices);
   yield* generate_pattern_1(sell_prices);
   yield* generate_pattern_2(sell_prices);
   yield* generate_pattern_3(sell_prices);
@@ -309,70 +500,6 @@ function* generate_possibilities(sell_prices) {
 
 $(document).on("input", function() {
   // Update output on any input change
-
-  /*
-  switch (whatPattern)
-  {
-  case 0:
-    // PATTERN 0: high, decreasing, high, decreasing, high
-    work = 2;
-    decPhaseLen1 = randbool() ? 3 : 2;
-    decPhaseLen2 = 5 - decPhaseLen1;
-
-    hiPhaseLen1 = randint(0, 6);
-    hiPhaseLen2and3 = 7 - hiPhaseLen1;
-    hiPhaseLen3 = randint(0, hiPhaseLen2and3 - 1);
-
-    // high phase 1
-    for (int i = 0; i < hiPhaseLen1; i++)
-    {
-      sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-    }
-
-    // decreasing phase 1
-    rate = randfloat(0.8, 0.6);
-    for (int i = 0; i < decPhaseLen1; i++)
-    {
-      sellPrices[work++] = intceil(rate * basePrice);
-      rate -= 0.04;
-      rate -= randfloat(0, 0.06);
-    }
-
-    // high phase 2
-    for (int i = 0; i < (hiPhaseLen2and3 - hiPhaseLen3); i++)
-    {
-      sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-    }
-
-    // decreasing phase 2
-    rate = randfloat(0.8, 0.6);
-    for (int i = 0; i < decPhaseLen2; i++)
-    {
-      sellPrices[work++] = intceil(rate * basePrice);
-      rate -= 0.04;
-      rate -= randfloat(0, 0.06);
-    }
-
-    // high phase 3
-    for (int i = 0; i < hiPhaseLen3; i++)
-    {
-      sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-    }
-    break;
-  case 1:
-
-    break;
-  case 2:
-
-  case 3:
-
-    break;
-  }
-
-  sellPrices[0] = 0;
-  sellPrices[1] = 0;
-}
-*/
 
   var buy_price = parseInt($("#buy").val());
 
