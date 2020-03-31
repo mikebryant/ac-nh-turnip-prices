@@ -68,20 +68,6 @@ $(document).on("input", function() {
   // Update output on any input change
 
   /*
-  void TurnipPrices::calculate()
-
-  whatPattern = nextPattern;
-
-  for (int i = 2; i < 14; i++)
-    sellPrices[i] = 0;
-  sellPrices[0] = basePrice;
-  sellPrices[1] = basePrice;
-
-  int work;
-  int decPhaseLen1, decPhaseLen2, peakStart;
-  int hiPhaseLen1, hiPhaseLen2and3, hiPhaseLen3;
-  float rate;
-
   switch (whatPattern)
   {
   case 0:
