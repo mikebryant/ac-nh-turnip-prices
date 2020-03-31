@@ -1,0 +1,107 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Animal Crossing Turnip Price Forecaster</title>
+  <meta name="description" content="Animal Crossing Turnip Price Forecaster">
+  <meta name="author" content="Mike Bryant">
+
+  <link rel="stylesheet" href="css/styles.css?v=1.0">
+
+</head>
+
+<body>
+  <p>
+    This tool is in early development - it will work best if you have all of the days data, morning and night.
+    Without that it will not work hugely well.
+    At a minimum this needs the buy price!
+  </p>
+  <form>
+    <p>
+      <label>Daisy Mae</label><br>
+      <label>
+        Buy price
+        <input type="number" id="buy">
+      </label>
+    </p>
+    <p>
+      <label>Monday</label><br>
+      <label>
+        AM
+        <input type="number" id="sell_2">
+      </label>
+      <label>
+        PM
+        <input type="number" id="sell_3">
+      </label>
+    </p>
+    <p>
+      <label>Tuesday</label><br>
+      <label>
+        AM
+        <input type="number" id="sell_4">
+      </label>
+      <label>
+        PM
+        <input type="number" id="sell_5">
+      </label>
+    </p>
+    <p>
+      <label>Wednesday</label><br>
+      <label>
+        AM
+        <input type="number" id="sell_6">
+      </label>
+      <label>
+        PM
+        <input type="number" id="sell_7">
+      </label>
+    </p>
+    <p>
+      <label>Thursday</label><br>
+      <label>
+        AM
+        <input type="number" id="sell_8">
+      </label>
+      <label>
+        PM
+        <input type="number" id="sell_9">
+      </label>
+    </p>
+    <p>
+      <label>Friday</label><br>
+      <label>
+        AM
+        <input type="number" id="sell_10">
+      </label>
+      <label>
+        PM
+        <input type="number" id="sell_11">
+      </label>
+    </p>
+    <p>
+      <label>Saturday</label><br>
+      <label>
+        AM
+        <input type="number" id="sell_12">
+      </label>
+      <label>
+        PM
+        <input type="number" id="sell_13">
+      </label>
+    </p>
+  </form>
+
+  <p>
+    Your turnip prices will be one of the following patterns. Each range is the sell price for that day.
+  </p>
+
+  <p id="output">
+  </p>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="js/scripts.js"></script>
+</body>
+</html>
