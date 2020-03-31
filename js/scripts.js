@@ -1,9 +1,9 @@
 function minimum_rate_from_given_and_base(given_price, buy_price) {
-  return (given_price - 0.5) / buy_price;
+  return (given_price - 1) / buy_price;
 }
 
 function maximum_rate_from_given_and_base(given_price, buy_price) {
-  return (given_price + 0.5) / buy_price;
+  return given_price / buy_price;
 }
 
 function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, high_phase_2_len, dec_phase_2_len, high_phase_3_len) {
