@@ -1,3 +1,95 @@
+function* generate_pattern_1_with_peak(given_prices, peak_start) {
+  /*
+    // PATTERN 1: decreasing middle, high spike, random low
+    peakStart = randint(3, 9);
+    rate = randfloat(0.9, 0.85);
+    for (work = 2; work < peakStart; work++)
+    {
+      sellPrices[work] = intceil(rate * basePrice);
+      rate -= 0.03;
+      rate -= randfloat(0, 0.02);
+    }
+    sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+    sellPrices[work++] = intceil(randfloat(1.4, 2.0) * basePrice);
+    sellPrices[work++] = intceil(randfloat(2.0, 6.0) * basePrice);
+    sellPrices[work++] = intceil(randfloat(1.4, 2.0) * basePrice);
+    sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
+    for (; work < 14; work++)
+    {
+      sellPrices[work] = intceil(randfloat(0.4, 0.9) * basePrice);
+    }
+  */
+
+  buy_price = given_prices[0];
+  var predicted_prices = [
+    {
+      min: buy_price,
+      max: buy_price,
+    },
+    {
+      min: buy_price,
+      max: buy_price,
+    },
+  ];
+
+  var min_rate = 0.85;
+  var max_rate = 0.9;
+
+  for (var i = 2; i < peak_start; i++) {
+    min_pred = Math.ceil(min_rate * buy_price);
+    max_pred = Math.ceil(max_rate * buy_price);
+
+
+    if (!isNaN(given_prices[i])) {
+      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+        // Given price is out of predicted range, so this is the wrong pattern
+        return;
+      }
+      min_pred = given_prices[i];
+      max_pred = given_prices[i];
+      min_rate = given_prices[i] / buy_price;
+      max_rate = given_prices[i] / buy_price;
+    }
+
+    predicted_prices.push({
+      min: min_pred,
+      max: max_pred,
+    });
+
+    min_rate -= 0.05;
+    max_rate -= 0.03;
+  }
+
+  // Now each day is independent of next
+  min_randoms = [0.9, 1.4, 2.0, 1.4, 0.9, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4]
+  max_randoms = [1.4, 2.0, 6.0, 2.0, 1.4, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9]
+  for (var i = peak_start; i < 14; i++) {
+    min_pred = Math.ceil(min_randoms[i - peak_start] * buy_price);
+    max_pred = Math.ceil(max_randoms[i - peak_start] * buy_price);
+
+    if (!isNaN(given_prices[i])) {
+      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+        // Given price is out of predicted range, so this is the wrong pattern
+        return;
+      }
+      min_pred = given_prices[i];
+      max_pred = given_prices[i];
+    }
+
+    predicted_prices.push({
+      min: min_pred,
+      max: max_pred,
+    });
+  }
+  yield predicted_prices;
+}
+
+function* generate_pattern_1(given_prices) {
+  for (var peak_start = 3; peak_start < 10; peak_start++) {
+    yield* generate_pattern_1_with_peak(given_prices, peak_start);
+  }
+}
+
 function* generate_pattern_2(given_prices) {
   /*
       // PATTERN 2: consistently decreasing
@@ -210,7 +302,7 @@ function* generate_pattern_3(given_prices) {
 
 function* generate_possibilities(sell_prices) {
   //yield* generate_pattern_0(sell_prices);
-  //yield* generate_pattern_1(sell_prices);
+  yield* generate_pattern_1(sell_prices);
   yield* generate_pattern_2(sell_prices);
   yield* generate_pattern_3(sell_prices);
 }
@@ -268,24 +360,7 @@ $(document).on("input", function() {
     }
     break;
   case 1:
-    // PATTERN 1: decreasing middle, high spike, random low
-    peakStart = randint(3, 9);
-    rate = randfloat(0.9, 0.85);
-    for (work = 2; work < peakStart; work++)
-    {
-      sellPrices[work] = intceil(rate * basePrice);
-      rate -= 0.03;
-      rate -= randfloat(0, 0.02);
-    }
-    sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-    sellPrices[work++] = intceil(randfloat(1.4, 2.0) * basePrice);
-    sellPrices[work++] = intceil(randfloat(2.0, 6.0) * basePrice);
-    sellPrices[work++] = intceil(randfloat(1.4, 2.0) * basePrice);
-    sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
-    for (; work < 14; work++)
-    {
-      sellPrices[work] = intceil(randfloat(0.4, 0.9) * basePrice);
-    }
+
     break;
   case 2:
 
