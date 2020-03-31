@@ -176,7 +176,11 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
       max: max_pred,
     });
   }
-  yield predicted_prices
+  yield {
+    pattern_description: "high, decreasing, high, decreasing, high",
+    pattern_number: 0,
+    prices: predicted_prices
+  };
 }
 
 function* generate_pattern_0(given_prices) {
@@ -280,7 +284,11 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
       max: max_pred,
     });
   }
-  yield predicted_prices;
+  yield {
+    pattern_description: "decreasing, high spike, random lows",
+    pattern_number: 1,
+    prices: predicted_prices
+  };
 }
 
 function* generate_pattern_1(given_prices) {
@@ -342,7 +350,11 @@ function* generate_pattern_2(given_prices) {
     min_rate -= 0.05;
     max_rate -= 0.03;
   }
-  yield predicted_prices;
+  yield {
+    pattern_description: "always decreasing",
+    pattern_number: 2,
+    prices: predicted_prices
+  };
 }
 
 function* generate_pattern_3_with_peak(given_prices, peak_start) {
@@ -489,7 +501,11 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
     }
   }
 
-  yield predicted_prices;
+  yield {
+    pattern_description: "decreasing, spike, decreasing",
+    pattern_number: 3,
+    prices: predicted_prices
+  };
 }
 
 function* generate_pattern_3(given_prices) {
@@ -519,10 +535,10 @@ $(document).on("input", function() {
   var output_possibilities = "";
   for (let poss of generate_possibilities(sell_prices)) {
     var out_line = ""
-    for (let day of [...poss].slice(2)) {
+    for (let day of [...poss.prices].slice(2)) {
       out_line += day.min + ".." + day.max + " "
     }
-    output_possibilities += out_line + "<br>"
+    output_possibilities += poss.pattern_description + ": " + out_line + "<br>"
   }
 
   $("#output").html(output_possibilities)
