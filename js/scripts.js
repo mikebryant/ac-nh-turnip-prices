@@ -522,6 +522,42 @@ function* generate_possibilities(sell_prices) {
   yield* generate_pattern_3(sell_prices);
 }
 
+$(document).ready(function () {
+  // load sell_prices from local storage
+  try {
+    const sell_prices = JSON.parse(localStorage.getItem("sell_prices"));
+
+    if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+      return;
+    }
+
+    sell_prices.forEach((sell_price, index) => {
+      if (!sell_price) {
+        return;
+      }
+
+      if (index === 0) {
+        $("#buy").val(sell_price);
+        return;
+      }
+
+      const element = $("#sell_" + index);
+
+      if (element.length) {
+        element.val(sell_price);
+      }
+    });
+
+    $(document).trigger("input");
+  } catch (e) {
+    console.error(e);
+  }
+
+  $("#reset").on("click", function() {
+    $("input").val(null).trigger("input");
+  })
+});
+
 $(document).on("input", function() {
   // Update output on any input change
 
@@ -530,6 +566,14 @@ $(document).on("input", function() {
   var sell_prices = [buy_price, buy_price];
   for (var i = 2; i < 14; i++) {
     sell_prices.push(parseInt($("#sell_" + i).val()));
+  }
+
+  localStorage.setItem("sell_prices", JSON.stringify(sell_prices));
+
+  const is_empty = sell_prices.every(sell_price => !sell_price);
+  if (is_empty) {
+    $("#output").html("");
+    return;
   }
 
   var output_possibilities = "";
