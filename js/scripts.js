@@ -452,10 +452,15 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
     });
   }
 
-  // TODO this could be made more accurate, I've not bothered with the -1s, or forward/backward calculating of the rate each side of the peak value
+  // TODO this could be made more accurate, I've not bothered with forward/backward calculating of the rate each side of the peak value
   for (var i = peak_start+2; i < peak_start+5; i++) {
-    min_pred = Math.floor(1.4 * buy_price);
-    max_pred = Math.ceil(2.0 * buy_price);
+    if (i == peak_start+3) {
+      min_pred = Math.floor(1.4 * buy_price);
+      max_pred = Math.ceil(2.0 * buy_price);
+    } else {
+      min_pred = Math.floor(1.4 * buy_price) - 1;
+      max_pred = Math.ceil(2.0 * buy_price) - 1;
+    }
     if (!isNaN(given_prices[i])) {
       if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
         // Given price is out of predicted range, so this is the wrong pattern
