@@ -521,10 +521,20 @@ function* generate_pattern_3(given_prices) {
 
 
 function* generate_possibilities(sell_prices) {
-  yield* generate_pattern_0(sell_prices);
-  yield* generate_pattern_1(sell_prices);
-  yield* generate_pattern_2(sell_prices);
-  yield* generate_pattern_3(sell_prices);
+  if (!isNaN(sell_prices[0])) {
+    yield* generate_pattern_0(sell_prices);
+    yield* generate_pattern_1(sell_prices);
+    yield* generate_pattern_2(sell_prices);
+    yield* generate_pattern_3(sell_prices);
+  } else {
+    for (var buy_price = 90; buy_price < 110; buy_price++) {
+      sell_prices[0] = sell_prices[1] = buy_price;
+      yield* generate_pattern_0(sell_prices);
+      yield* generate_pattern_1(sell_prices);
+      yield* generate_pattern_2(sell_prices);
+      yield* generate_pattern_3(sell_prices);
+    }
+  }
 }
 
 $(document).ready(function () {
@@ -584,7 +594,7 @@ $(document).on("input", function() {
   var output_possibilities = "";
   for (let poss of generate_possibilities(sell_prices)) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
-    for (let day of [...poss.prices].slice(2)) {
+    for (let day of [...poss.prices].slice(1)) {
       if (day.min != day.max) {
         out_line += "<td>" + day.min + ".." + day.max + "</td>"
       } else {
