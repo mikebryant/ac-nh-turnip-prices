@@ -1,9 +1,9 @@
 function minimum_rate_from_given_and_base(given_price, buy_price) {
-  return (given_price - 1) / buy_price;
+  return 10000 * (given_price - 1) / buy_price;
 }
 
 function maximum_rate_from_given_and_base(given_price, buy_price) {
-  return given_price / buy_price;
+  return 10000 * given_price / buy_price;
 }
 
 function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, high_phase_2_len, dec_phase_2_len, high_phase_3_len) {
@@ -81,11 +81,11 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
   }
 
   // Dec Phase 1
-  var min_rate = 0.6;
-  var max_rate = 0.8;
+  var min_rate = 6000;
+  var max_rate = 8000;
   for (var i = 2 + high_phase_1_len; i < 2 + high_phase_1_len + dec_phase_1_len; i++) {
-    min_pred = Math.floor(min_rate * buy_price);
-    max_pred = Math.ceil(max_rate * buy_price);
+    min_pred = Math.floor(min_rate * buy_price / 10000);
+    max_pred = Math.ceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -104,8 +104,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
       max: max_pred,
     });
 
-    min_rate -= 0.1;
-    max_rate -= 0.04;
+    min_rate -= 1000;
+    max_rate -= 400;
   }
 
   // High Phase 2
@@ -128,11 +128,11 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
   }
 
   // Dec Phase 2
-  var min_rate = 0.6;
-  var max_rate = 0.8;
+  var min_rate = 6000;
+  var max_rate = 8000;
   for (var i = 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len; i < 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len; i++) {
-    min_pred = Math.floor(min_rate * buy_price);
-    max_pred = Math.ceil(max_rate * buy_price);
+    min_pred = Math.floor(min_rate * buy_price / 10000);
+    max_pred = Math.ceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -151,8 +151,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
       max: max_pred,
     });
 
-    min_rate -= 0.1;
-    max_rate -= 0.04;
+    min_rate -= 1000;
+    max_rate -= 400;
   }
 
   // High Phase 3
@@ -235,12 +235,12 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
     },
   ];
 
-  var min_rate = 0.85;
-  var max_rate = 0.9;
+  var min_rate = 8500;
+  var max_rate = 9000;
 
   for (var i = 2; i < peak_start; i++) {
-    min_pred = Math.floor(min_rate * buy_price);
-    max_pred = Math.ceil(max_rate * buy_price);
+    min_pred = Math.floor(min_rate * buy_price / 10000);
+    max_pred = Math.ceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -259,8 +259,8 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
       max: max_pred,
     });
 
-    min_rate -= 0.05;
-    max_rate -= 0.03;
+    min_rate -= 500;
+    max_rate -= 300;
   }
 
   // Now each day is independent of next
@@ -324,11 +324,11 @@ function* generate_pattern_2(given_prices) {
     },
   ];
 
-  var min_rate = 0.85;
-  var max_rate = 0.9;
+  var min_rate = 8500;
+  var max_rate = 9000;
   for (var i = 2; i < 14; i++) {
-    min_pred = Math.floor(min_rate * buy_price);
-    max_pred = Math.ceil(max_rate * buy_price);
+    min_pred = Math.floor(min_rate * buy_price / 10000);
+    max_pred = Math.ceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -347,8 +347,8 @@ function* generate_pattern_2(given_prices) {
       max: max_pred,
     });
 
-    min_rate -= 0.05;
-    max_rate -= 0.03;
+    min_rate -= 500;
+    max_rate -= 300;
   }
   yield {
     pattern_description: "always decreasing",
@@ -404,12 +404,12 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
     },
   ];
 
-  var min_rate = 0.4;
-  var max_rate = 0.9;
+  var min_rate = 4000;
+  var max_rate = 9000;
 
   for (var i = 2; i < peak_start; i++) {
-    min_pred = Math.floor(min_rate * buy_price);
-    max_pred = Math.ceil(max_rate * buy_price);
+    min_pred = Math.floor(min_rate * buy_price / 10000);
+    max_pred = Math.ceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -428,8 +428,8 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
       max: max_pred,
     });
 
-    min_rate -= 0.05;
-    max_rate -= 0.03;
+    min_rate -= 500;
+    max_rate -= 300;
   }
 
   // The peak
@@ -477,12 +477,12 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   }
 
   if (peak_start+5 < 14) {
-    var min_rate = 0.4;
-    var max_rate = 0.9;
+    var min_rate = 4000;
+    var max_rate = 9000;
 
     for (var i = peak_start+5; i < 14; i++) {
-      min_pred = Math.floor(min_rate * buy_price);
-      max_pred = Math.ceil(max_rate * buy_price);
+      min_pred = Math.floor(min_rate * buy_price / 10000);
+      max_pred = Math.ceil(max_rate * buy_price / 10000);
 
 
       if (!isNaN(given_prices[i])) {
@@ -501,8 +501,8 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
         max: max_pred,
       });
 
-      min_rate -= 0.05;
-      max_rate -= 0.03;
+      min_rate -= 500;
+      max_rate -= 300;
     }
   }
 
