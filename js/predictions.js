@@ -1,3 +1,30 @@
+const probability_matrix = {
+  "random": {
+    "random": 20,
+    "large-spike": 30,
+    "decreasing": 15,
+    "small-spike": 35,
+  },
+  "large-spike": {
+    "random": 50,
+    "large-spike": 5,
+    "decreasing": 20,
+    "small-spike": 25,
+  },
+  "decreasing": {
+    "random": 25,
+    "large-spike": 45,
+    "decreasing": 5,
+    "small-spike": 25,
+  },
+  "small-spike": {
+    "random": 45,
+    "large-spike": 25,
+    "decreasing": 15,
+    "small-spike": 15,
+  },
+};
+
 function minimum_rate_from_given_and_base(given_price, buy_price) {
   return 10000 * (given_price - 1) / buy_price;
 }
@@ -177,7 +204,7 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
     });
   }
   yield {
-    pattern_description: "high, decreasing, high, decreasing, high",
+    pattern_description: "random",
     pattern_number: 0,
     prices: predicted_prices
   };
@@ -285,7 +312,7 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
     });
   }
   yield {
-    pattern_description: "decreasing, high spike, random lows",
+    pattern_description: "high spike",
     pattern_number: 1,
     prices: predicted_prices
   };
@@ -351,7 +378,7 @@ function* generate_pattern_2(given_prices) {
     max_rate -= 300;
   }
   yield {
-    pattern_description: "always decreasing",
+    pattern_description: "decreasing",
     pattern_number: 2,
     prices: predicted_prices
   };
@@ -531,7 +558,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   }
 
   yield {
-    pattern_description: "decreasing, spike, decreasing",
+    pattern_description: "small spike",
     pattern_number: 3,
     prices: predicted_prices
   };
@@ -561,7 +588,7 @@ function* generate_possibilities(sell_prices) {
   }
 }
 
-function analyze_possibilities(sell_prices) {
+function analyze_possibilities(sell_prices, previous_pattern) {
   generated_possibilities = Array.from(generate_possibilities(sell_prices));
 
   global_min_max = [];
@@ -585,6 +612,7 @@ function analyze_possibilities(sell_prices) {
     pattern_description: "predicted min/max across all patterns",
     pattern_number: 4,
     prices: global_min_max,
+    probability: 100,
   });
 
   for (let poss of generated_possibilities) {

@@ -1,4 +1,10 @@
 $(document).ready(function () {
+  try {
+    const previous_pattern = JSON.parse(localStorage.getItem("previous_pattern"));
+    $("#previous_pattern").val(previous_pattern);
+  } catch (e) {
+    console.error(e);
+  }
   // load sell_prices from local storage
   try {
     const sell_prices = JSON.parse(localStorage.getItem("sell_prices"));
@@ -37,6 +43,7 @@ $(document).ready(function () {
 $(document).on("input", function() {
   // Update output on any input change
 
+  let previous_pattern = $("#previous_pattern").val();
   var buy_price = parseInt($("#buy").val());
 
   var sell_prices = [buy_price, buy_price];
@@ -53,7 +60,7 @@ $(document).on("input", function() {
   }
 
   let output_possibilities = "";
-  for (let poss of analyze_possibilities(sell_prices)) {
+  for (let poss of analyze_possibilities(sell_prices, previous_pattern)) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
