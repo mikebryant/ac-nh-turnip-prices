@@ -452,29 +452,53 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
     });
   }
 
-  // TODO this could be made more accurate, I've not bothered with forward/backward calculating of the rate each side of the peak value
-  for (var i = peak_start+2; i < peak_start+5; i++) {
-    if (i == peak_start+3) {
-      min_pred = predicted_prices[peak_start+2].min;
-      max_pred = Math.ceil(2.0 * buy_price);
-    } else {
-      min_pred = Math.floor(1.4 * buy_price) - 1;
-      max_pred = Math.ceil(2.0 * buy_price) - 1;
+  // Main spike 1
+  min_pred = Math.floor(1.4 * buy_price) - 1;
+  max_pred = Math.ceil(2.0 * buy_price) - 1;
+  if (!isNaN(given_prices[peak_start+2])) {
+    if (given_prices[peak_start+2] < min_pred || given_prices[peak_start+2] > max_pred ) {
+      // Given price is out of predicted range, so this is the wrong pattern
+      return;
     }
-    if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
-        // Given price is out of predicted range, so this is the wrong pattern
-        return;
-      }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
-    }
-
-    predicted_prices.push({
-      min: min_pred,
-      max: max_pred,
-    });
+    min_pred = given_prices[peak_start+2];
+    max_pred = given_prices[peak_start+2];
   }
+  predicted_prices.push({
+    min: min_pred,
+    max: max_pred,
+  });
+
+  // Main spike 2
+  min_pred = predicted_prices[peak_start+2].min;
+  max_pred = Math.ceil(2.0 * buy_price);
+  if (!isNaN(given_prices[peak_start+3])) {
+    if (given_prices[peak_start+3] < min_pred || given_prices[peak_start+3] > max_pred ) {
+      // Given price is out of predicted range, so this is the wrong pattern
+      return;
+    }
+    min_pred = given_prices[peak_start+3];
+    max_pred = given_prices[peak_start+3];
+  }
+  predicted_prices.push({
+    min: min_pred,
+    max: max_pred,
+  });
+
+  // Main spike 3
+  min_pred = Math.floor(1.4 * buy_price) - 1;
+  max_pred = predicted_prices[peak_start+3].max - 1;
+  if (!isNaN(given_prices[peak_start+4])) {
+    if (given_prices[peak_start+4] < min_pred || given_prices[peak_start+4] > max_pred ) {
+      // Given price is out of predicted range, so this is the wrong pattern
+      return;
+    }
+    min_pred = given_prices[peak_start+4];
+    max_pred = given_prices[peak_start+4];
+  }
+  predicted_prices.push({
+    min: min_pred,
+    max: max_pred,
+  });
 
   if (peak_start+5 < 14) {
     var min_rate = 4000;
