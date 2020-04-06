@@ -1,3 +1,14 @@
+const debounce = (callback, delay = 250) => {
+  let timeoutId
+  return (...args) => {
+    clearTimeout(timeoutId)
+    timeoutId = setTimeout(() => {
+      timeoutId = null
+      callback(...args)
+    }, delay)
+  }
+}
+
 function minimum_rate_from_given_and_base(given_price, buy_price) {
   return 10000 * (given_price - 1) / buy_price;
 }
@@ -47,19 +58,19 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
       {
         sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
       }
-  */
+      */
 
-  buy_price = given_prices[0];
-  var predicted_prices = [
-    {
-      min: buy_price,
-      max: buy_price,
-    },
-    {
-      min: buy_price,
-      max: buy_price,
-    },
-  ];
+      buy_price = given_prices[0];
+      var predicted_prices = [
+      {
+        min: buy_price,
+        max: buy_price,
+      },
+      {
+        min: buy_price,
+        max: buy_price,
+      },
+      ];
 
   // High Phase 1
   for (var i = 2; i < 2 + high_phase_1_len; i++) {
@@ -191,17 +202,17 @@ function* generate_pattern_0(given_prices) {
       hiPhaseLen1 = randint(0, 6);
       hiPhaseLen2and3 = 7 - hiPhaseLen1;
       hiPhaseLen3 = randint(0, hiPhaseLen2and3 - 1);
-  */
-  for (var dec_phase_1_len = 2; dec_phase_1_len < 4; dec_phase_1_len++) {
-    for (var high_phase_1_len = 0; high_phase_1_len < 7; high_phase_1_len++) {
-      for (var high_phase_3_len = 0; high_phase_3_len < (7 - high_phase_1_len - 1 + 1); high_phase_3_len++) {
-        yield* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, 7 - high_phase_1_len - high_phase_3_len, 5 - dec_phase_1_len, high_phase_3_len);
+      */
+      for (var dec_phase_1_len = 2; dec_phase_1_len < 4; dec_phase_1_len++) {
+        for (var high_phase_1_len = 0; high_phase_1_len < 7; high_phase_1_len++) {
+          for (var high_phase_3_len = 0; high_phase_3_len < (7 - high_phase_1_len - 1 + 1); high_phase_3_len++) {
+            yield* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, 7 - high_phase_1_len - high_phase_3_len, 5 - dec_phase_1_len, high_phase_3_len);
+          }
+        }
       }
     }
-  }
-}
 
-function* generate_pattern_1_with_peak(given_prices, peak_start) {
+    function* generate_pattern_1_with_peak(given_prices, peak_start) {
   /*
     // PATTERN 1: decreasing middle, high spike, random low
     peakStart = randint(3, 9);
@@ -221,10 +232,10 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
     {
       sellPrices[work] = intceil(randfloat(0.4, 0.9) * basePrice);
     }
-  */
+    */
 
-  buy_price = given_prices[0];
-  var predicted_prices = [
+    buy_price = given_prices[0];
+    var predicted_prices = [
     {
       min: buy_price,
       max: buy_price,
@@ -233,18 +244,18 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
       min: buy_price,
       max: buy_price,
     },
-  ];
+    ];
 
-  var min_rate = 8500;
-  var max_rate = 9000;
+    var min_rate = 8500;
+    var max_rate = 9000;
 
-  for (var i = 2; i < peak_start; i++) {
-    min_pred = Math.floor(min_rate * buy_price / 10000);
-    max_pred = Math.ceil(max_rate * buy_price / 10000);
+    for (var i = 2; i < peak_start; i++) {
+      min_pred = Math.floor(min_rate * buy_price / 10000);
+      max_pred = Math.ceil(max_rate * buy_price / 10000);
 
 
-    if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+      if (!isNaN(given_prices[i])) {
+        if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -309,30 +320,30 @@ function* generate_pattern_2(given_prices) {
         rate -= randfloat(0, 0.02);
       }
       break;
-  */
+      */
 
 
-  buy_price = given_prices[0];
-  var predicted_prices = [
-    {
-      min: buy_price,
-      max: buy_price,
-    },
-    {
-      min: buy_price,
-      max: buy_price,
-    },
-  ];
+      buy_price = given_prices[0];
+      var predicted_prices = [
+      {
+        min: buy_price,
+        max: buy_price,
+      },
+      {
+        min: buy_price,
+        max: buy_price,
+      },
+      ];
 
-  var min_rate = 8500;
-  var max_rate = 9000;
-  for (var i = 2; i < 14; i++) {
-    min_pred = Math.floor(min_rate * buy_price / 10000);
-    max_pred = Math.ceil(max_rate * buy_price / 10000);
+      var min_rate = 8500;
+      var max_rate = 9000;
+      for (var i = 2; i < 14; i++) {
+        min_pred = Math.floor(min_rate * buy_price / 10000);
+        max_pred = Math.ceil(max_rate * buy_price / 10000);
 
 
-    if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+        if (!isNaN(given_prices[i])) {
+          if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -390,10 +401,10 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
         rate -= randfloat(0, 0.02);
       }
     }
-  */
+    */
 
-  buy_price = given_prices[0];
-  var predicted_prices = [
+    buy_price = given_prices[0];
+    var predicted_prices = [
     {
       min: buy_price,
       max: buy_price,
@@ -402,18 +413,18 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
       min: buy_price,
       max: buy_price,
     },
-  ];
+    ];
 
-  var min_rate = 4000;
-  var max_rate = 9000;
+    var min_rate = 4000;
+    var max_rate = 9000;
 
-  for (var i = 2; i < peak_start; i++) {
-    min_pred = Math.floor(min_rate * buy_price / 10000);
-    max_pred = Math.ceil(max_rate * buy_price / 10000);
+    for (var i = 2; i < peak_start; i++) {
+      min_pred = Math.floor(min_rate * buy_price / 10000);
+      max_pred = Math.ceil(max_rate * buy_price / 10000);
 
 
-    if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
+      if (!isNaN(given_prices[i])) {
+        if (given_prices[i] < min_pred || given_prices[i] > max_pred ) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -537,6 +548,73 @@ function* generate_possibilities(sell_prices) {
   }
 }
 
+function get_bg_color() {
+  const colors =[
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)'
+            ];
+  return colors[Math.floor(Math.random() * colors.length)];
+}
+
+function get_graph_dataset(data) {
+
+  const dataMin = data.prices.map(a => a.min);
+  const dataMax = data.prices.map(a => a.max);
+  const color = get_bg_color();
+  return [{
+    label: data.pattern_description,
+    data: dataMin,
+    fill: false,
+    borderColor: color,
+  }, {
+    label: '',
+    data:dataMax,
+    fill: '-1',
+     backgroundColor: color, 
+  }];
+
+}
+
+function display_graph(data) {
+  const labels  = [
+    'Monday AM',
+    'Monday PM',
+    'Tuesday AM',
+    'Tuesday PM',
+    'Wednesday AM',
+    'Wednesday PM',
+    'Thursday AM',
+    'Thursday PM',
+    'Friday AM',
+    'Friday PM',
+    'Saturday AM',
+    'Saturday PM',
+  ];
+
+  var ctx = $('#myChart');
+  var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+      labels,
+      datasets: data,
+
+    },
+    options: {
+      scales: {
+        yAxes: [{
+          ticks: {
+            beginAtZero: true
+          }
+        }]
+      }
+    }
+  });
+}
+
 $(document).ready(function () {
   // load sell_prices from local storage
   try {
@@ -565,7 +643,6 @@ $(document).ready(function () {
 
     $(document).trigger("input");
   } catch (e) {
-    console.error(e);
   }
 
   $("#reset").on("click", function() {
@@ -573,7 +650,7 @@ $(document).ready(function () {
   })
 });
 
-$(document).on("input", function() {
+$(document).on("input", debounce(function() {
   // Update output on any input change
 
   var buy_price = parseInt($("#buy").val());
@@ -592,7 +669,9 @@ $(document).on("input", function() {
   }
 
   var output_possibilities = "";
+  let datasets = [];
   for (let poss of generate_possibilities(sell_prices)) {
+    datasets.push(get_graph_dataset(poss));
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
     for (let day of [...poss.prices].slice(1)) {
       if (day.min != day.max) {
@@ -603,7 +682,16 @@ $(document).on("input", function() {
     }
     out_line += "</tr>"
     output_possibilities += out_line
+
+  display_graph(datasets.flat());
   }
 
+
   $("#output").html(output_possibilities)
-})
+
+
+//
+
+
+
+}, 500))
