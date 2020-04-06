@@ -1,0 +1,21 @@
+#turnipTable {
+    border: 1px solid #000000;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+
+#turnipTable th, #turnipTable td {
+    padding: 5px;
+    border: 1px solid #000000;
+    margin: 0;
+    min-width: 50px;
+}
+
+#turnipTable th {
+    text-align: center;
+    vertical-align: top;
+}
+
+#turnipTable td {
+    text-align: right;
+}

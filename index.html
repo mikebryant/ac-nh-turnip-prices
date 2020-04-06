@@ -119,22 +119,22 @@
   </p>
 
   <p>
-    <table>
+    <table id="turnipTable">
       <caption>Your turnip prices will be one of the following patterns. Each cell contains the minimum..maximum price for that half-day. If you don't have a pattern, this likely means that this is the first week that you bought turnips from Daisy in your farm - and this tool won't work for you. Check back next week!</caption>
       <thead>
         <tr>
-          <th>Pattern</th>
-          <th>Sunday</th>
+          <th rowspan="2">Pattern</th>
+          <th rowspan="2">Sunday</th>
           <th colspan="2">Monday</th>
           <th colspan="2">Tuesday</th>
           <th colspan="2">Wednesday</th>
           <th colspan="2">Thursday</th>
           <th colspan="2">Friday</th>
           <th colspan="2">Saturday</th>
+          <th rowspan="2">Week Min</th>
+          <th rowspan="2">Week Max</th>
         </tr>
         <tr>
-          <th></th>
-          <th></th>
           <th>AM</th>
           <th>PM</th>
           <th>AM</th>
@@ -149,9 +149,7 @@
           <th>PM</th>
         </tr>
       </thead>
-      <tbody id="output">
-
-      </tbody>
+      <tbody id="output"></tbody>
     </table>
   </p>
 
