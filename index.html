@@ -1,6 +1,7 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
 
@@ -14,7 +15,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162470902-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
 
     gtag('config', 'UA-162470902-1');
@@ -24,10 +25,13 @@
 
 <body>
   <p>
-    To use, enter as much data as you can from <b>your own island</b>. If you bought from Daisy on your own island <b>for the first time this week</b> leave the buy price blank. The tool will figure out all possible patterns and predict the lowest and highest prices for each day.
+    To use, enter as much data as you can from <b>your own island</b>. If you bought from Daisy on your own island
+    <b>for the first time this week</b> leave the buy price blank. The tool will figure out all possible patterns and
+    predict the lowest and highest prices for each day.
   </p>
   <p>
-    I couldn't have done this without <a href="https://twitter.com/_Ninji/status/1244818665851289602?s=20">Ninji's work extracting the code</a>
+    I couldn't have done this without <a href="https://twitter.com/_Ninji/status/1244818665851289602?s=20">Ninji's work
+      extracting the code</a>
   </p>
   <form>
     <p>
@@ -112,7 +116,9 @@
 
   <p>
     <table id="turnipTable">
-      <caption>Your turnip prices will be one of the following patterns. Each cell contains the minimum..maximum price for that half-day. If you don't have a pattern, something's gone wrong, sorry :(. Check back next week!</caption>
+      <caption>Your turnip prices will be one of the following patterns. Each cell contains the minimum..maximum price
+        for that half-day. If you don't have a pattern, something's gone wrong, sorry :(. Check back next week!
+      </caption>
       <thead>
         <tr>
           <th rowspan="2">Pattern</th>
@@ -146,6 +152,8 @@
   </p>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="js/predictions.js"></script>
   <script src="js/scripts.js"></script>
 </body>
+
 </html>
