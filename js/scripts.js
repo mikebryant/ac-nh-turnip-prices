@@ -70,7 +70,7 @@ $(document).on("input", function() {
       }
     }
     out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td>`;
-    if (poss.probability === 0) {
+    if (poss.probability === 0 || poss.probability === 100) {
       out_line += `<td class="one">N/A</td></tr>`;
     } else {
       out_line += `<td class="one">${poss.probability}</td></tr>`;
