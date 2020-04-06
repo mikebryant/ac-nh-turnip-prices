@@ -563,6 +563,19 @@ function analyze_possibilities(sell_prices) {
     prices: global_min_max,
   });
 
+  for (let poss of generated_possibilities) {
+    var weekMins = [];
+    var weekMaxes = [];
+    for (let day of poss.prices.slice(1)) {
+      weekMins.push(day.min);
+      weekMaxes.push(day.max);
+    }
+    poss.weekMin = Math.min(...weekMins);
+    poss.weekMax = Math.max(...weekMaxes);
+  }
+
+  generated_possibilities.sort((a, b) => a.weekMax < b.weekMax);
+
   return generated_possibilities;
 }
 
@@ -620,19 +633,19 @@ $(document).on("input", function() {
     return;
   }
 
-  var output_possibilities = "";
+  let output_possibilities = "";
   for (let poss of analyze_possibilities(sell_prices)) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
     for (let day of poss.prices.slice(1)) {
-      if (day.min != day.max) {
-        out_line += "<td>" + day.min + ".." + day.max + "</td>"
+      if (day.min !== day.max) {
+        out_line += `<td>${day.min}..${day.max}</td>`;
       } else {
-        out_line += "<td>" + day.min + "</td>"
+        out_line += `<td class="one">${day.min}</td>`;
       }
     }
-    out_line += "</tr>"
+    out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td></tr>`;
     output_possibilities += out_line
   }
 
   $("#output").html(output_possibilities)
-})
+});
