@@ -52,14 +52,59 @@ $(document).on("input", function() {
     return;
   }
 
+  function rangeToGradient({ min, max }, {weekMin, weekMax}) {
+    const bad_color = '#ffafa9';
+    const good_color = '#cef3a3';
+
+    function scale(value) {
+      if (value === buy_price) return 50;
+      if (value < buy_price) {
+        return 50 - (buy_price - value) / (buy_price - weekMin) * 50;
+      }
+      return 50 + (value - buy_price) / (weekMax - buy_price) * 50;
+    }
+
+    // Two scales with buy pct in the middle.
+    const buy_pct = scale(buy_price); // always at 50%
+    const min_pct = scale(min);
+    const max_pct = scale(max);
+
+    if (min_pct > buy_pct) {
+      // okay-ish all the way through.
+      return `background: linear-gradient(\
+        to top, \
+        transparent ${good_color} ${min_pct}%, \
+        ${good_color} ${max_pct}%, transparent ${max_pct}%, \
+        transparent\
+      )`;
+    } else if (max_pct < buy_pct) {
+      // nothing's *great*.
+      return `background: linear-gradient(\
+        to top, \
+        transparent ${min_pct}%, ${bad_color} ${min_pct}%, \
+        ${bad_color} ${max_pct}%, transparent ${max_pct}%, \
+        transparent\
+      )`;
+    }
+
+    return `background: linear-gradient(\
+      to top, \
+      transparent ${min_pct}%, ${bad_color} ${min_pct}%, \
+      ${bad_color} ${buy_pct}%, ${good_color} ${buy_pct}%, \
+      ${good_color} ${max_pct}%, transparent ${max_pct}%, \
+      transparent\
+    )`;
+  }
+
   let output_possibilities = "";
   for (let poss of analyze_possibilities(sell_prices)) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
     for (let day of poss.prices.slice(1)) {
+      const cell_style = rangeToGradient(day, poss);
       if (day.min !== day.max) {
-        out_line += `<td>${day.min}..${day.max}</td>`;
+        out_line += `<td style="${cell_style}">${day.min}..${day.max}</td>`;
       } else {
-        out_line += `<td class="one">${day.min}</td>`;
+        out_line += `<td style="${cell_style}" class="one">${day.min}</td>`;
       }
     }
     out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td></tr>`;
