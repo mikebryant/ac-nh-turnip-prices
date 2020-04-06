@@ -537,6 +537,35 @@ function* generate_possibilities(sell_prices) {
   }
 }
 
+function analyze_possibilities(sell_prices) {
+  generated_possibilities = Array.from(generate_possibilities(sell_prices));
+
+  global_min_max = [];
+  for (var day = 0; day < 14; day++) {
+    prices = {
+      min: 999,
+      max: 0,
+    }
+    for (let poss of generated_possibilities) {
+      if (poss.prices[day].min < prices.min) {
+        prices.min = poss.prices[day].min;
+      }
+      if (poss.prices[day].max > prices.max) {
+        prices.max = poss.prices[day].max;
+      }
+    }
+    global_min_max.push(prices);
+  }
+
+  generated_possibilities.push({
+    pattern_description: "predicted min/max across all patterns",
+    pattern_number: 4,
+    prices: global_min_max,
+  });
+
+  return generated_possibilities;
+}
+
 $(document).ready(function () {
   // load sell_prices from local storage
   try {
@@ -592,9 +621,9 @@ $(document).on("input", function() {
   }
 
   var output_possibilities = "";
-  for (let poss of generate_possibilities(sell_prices)) {
+  for (let poss of analyze_possibilities(sell_prices)) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
-    for (let day of [...poss.prices].slice(1)) {
+    for (let day of poss.prices.slice(1)) {
       if (day.min != day.max) {
         out_line += "<td>" + day.min + ".." + day.max + "</td>"
       } else {
