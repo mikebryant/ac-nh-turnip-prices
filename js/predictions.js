@@ -23,6 +23,12 @@ const probability_matrix = {
     "decreasing": 15,
     "small-spike": 15,
   },
+  "": {
+    "random": 0,
+    "large-spike": 0,
+    "decreasing": 0,
+    "small-spike": 0,
+  },
 };
 
 function minimum_rate_from_given_and_base(given_price, buy_price) {
@@ -33,7 +39,7 @@ function maximum_rate_from_given_and_base(given_price, buy_price) {
   return 10000 * given_price / buy_price;
 }
 
-function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, high_phase_2_len, dec_phase_2_len, high_phase_3_len) {
+function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, high_phase_2_len, dec_phase_2_len, high_phase_3_len, previous_pattern) {
     /*
       // PATTERN 0: high, decreasing, high, decreasing, high
       work = 2;
@@ -206,11 +212,12 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
   yield {
     pattern_description: "random",
     pattern_number: 0,
-    prices: predicted_prices
+    prices: predicted_prices,
+    probability: probability_matrix[previous_pattern]["random"]
   };
 }
 
-function* generate_pattern_0(given_prices) {
+function* generate_pattern_0(given_prices, previous_pattern) {
   /*
       decPhaseLen1 = randbool() ? 3 : 2;
       decPhaseLen2 = 5 - decPhaseLen1;
@@ -222,13 +229,13 @@ function* generate_pattern_0(given_prices) {
   for (var dec_phase_1_len = 2; dec_phase_1_len < 4; dec_phase_1_len++) {
     for (var high_phase_1_len = 0; high_phase_1_len < 7; high_phase_1_len++) {
       for (var high_phase_3_len = 0; high_phase_3_len < (7 - high_phase_1_len - 1 + 1); high_phase_3_len++) {
-        yield* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, 7 - high_phase_1_len - high_phase_3_len, 5 - dec_phase_1_len, high_phase_3_len);
+        yield* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_phase_1_len, 7 - high_phase_1_len - high_phase_3_len, 5 - dec_phase_1_len, high_phase_3_len, previous_pattern);
       }
     }
   }
 }
 
-function* generate_pattern_1_with_peak(given_prices, peak_start) {
+function* generate_pattern_1_with_peak(given_prices, peak_start, previous_pattern) {
   /*
     // PATTERN 1: decreasing middle, high spike, random low
     peakStart = randint(3, 9);
@@ -314,17 +321,18 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
   yield {
     pattern_description: "high spike",
     pattern_number: 1,
-    prices: predicted_prices
+    prices: predicted_prices,
+    probability: probability_matrix[previous_pattern]["high-spike"]
   };
 }
 
-function* generate_pattern_1(given_prices) {
+function* generate_pattern_1(given_prices, previous_pattern) {
   for (var peak_start = 3; peak_start < 10; peak_start++) {
-    yield* generate_pattern_1_with_peak(given_prices, peak_start);
+    yield* generate_pattern_1_with_peak(given_prices, peak_start, previous_pattern);
   }
 }
 
-function* generate_pattern_2(given_prices) {
+function* generate_pattern_2(given_prices, previous_pattern) {
   /*
       // PATTERN 2: consistently decreasing
       rate = 0.9;
@@ -380,11 +388,12 @@ function* generate_pattern_2(given_prices) {
   yield {
     pattern_description: "decreasing",
     pattern_number: 2,
-    prices: predicted_prices
+    prices: predicted_prices,
+    probability: probability_matrix[previous_pattern]["decreasing"]
   };
 }
 
-function* generate_pattern_3_with_peak(given_prices, peak_start) {
+function* generate_pattern_3_with_peak(given_prices, peak_start, previous_pattern) {
 
   /*
     // PATTERN 3: decreasing, spike, decreasing
@@ -560,36 +569,37 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   yield {
     pattern_description: "small spike",
     pattern_number: 3,
-    prices: predicted_prices
+    prices: predicted_prices,
+    probability: probability_matrix[previous_pattern]["small-spike"]
   };
 }
 
-function* generate_pattern_3(given_prices) {
+function* generate_pattern_3(given_prices, previous_pattern) {
   for (var peak_start = 2; peak_start < 10; peak_start++) {
-    yield* generate_pattern_3_with_peak(given_prices, peak_start);
+    yield* generate_pattern_3_with_peak(given_prices, peak_start, previous_pattern);
   }
 }
 
 
-function* generate_possibilities(sell_prices) {
+function* generate_possibilities(sell_prices, previous_pattern) {
   if (!isNaN(sell_prices[0])) {
-    yield* generate_pattern_0(sell_prices);
-    yield* generate_pattern_1(sell_prices);
-    yield* generate_pattern_2(sell_prices);
-    yield* generate_pattern_3(sell_prices);
+    yield* generate_pattern_0(sell_prices, previous_pattern);
+    yield* generate_pattern_1(sell_prices, previous_pattern);
+    yield* generate_pattern_2(sell_prices, previous_pattern);
+    yield* generate_pattern_3(sell_prices, previous_pattern);
   } else {
     for (var buy_price = 90; buy_price < 110; buy_price++) {
       sell_prices[0] = sell_prices[1] = buy_price;
-      yield* generate_pattern_0(sell_prices);
-      yield* generate_pattern_1(sell_prices);
-      yield* generate_pattern_2(sell_prices);
-      yield* generate_pattern_3(sell_prices);
+      yield* generate_pattern_0(sell_prices, previous_pattern);
+      yield* generate_pattern_1(sell_prices, previous_pattern);
+      yield* generate_pattern_2(sell_prices, previous_pattern);
+      yield* generate_pattern_3(sell_prices, previous_pattern);
     }
   }
 }
 
 function analyze_possibilities(sell_prices, previous_pattern) {
-  generated_possibilities = Array.from(generate_possibilities(sell_prices));
+  generated_possibilities = Array.from(generate_possibilities(sell_prices, previous_pattern));
 
   global_min_max = [];
   for (var day = 0; day < 14; day++) {
@@ -626,7 +636,7 @@ function analyze_possibilities(sell_prices, previous_pattern) {
     poss.weekMax = Math.max(...weekMaxes);
   }
 
-  generated_possibilities.sort((a, b) => a.weekMax < b.weekMax);
+  generated_possibilities.sort((a, b) => a.probability < b.probability);
 
   return generated_possibilities;
 }

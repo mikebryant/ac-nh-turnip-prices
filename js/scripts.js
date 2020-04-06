@@ -69,7 +69,12 @@ $(document).on("input", function() {
         out_line += `<td class="one">${day.min}</td>`;
       }
     }
-    out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td></tr>`;
+    out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td>`;
+    if (poss.probability === 0) {
+      out_line += `<td class="one">N/A</td></tr>`;
+    } else {
+      out_line += `<td class="one">${poss.probability}</td></tr>`;
+    }
     output_possibilities += out_line
   }
 
