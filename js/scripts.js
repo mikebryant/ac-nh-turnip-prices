@@ -455,7 +455,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   // TODO this could be made more accurate, I've not bothered with forward/backward calculating of the rate each side of the peak value
   for (var i = peak_start+2; i < peak_start+5; i++) {
     if (i == peak_start+3) {
-      min_pred = Math.floor(1.4 * buy_price);
+      min_pred = predicted_prices[peak_start+2].min;
       max_pred = Math.ceil(2.0 * buy_price);
     } else {
       min_pred = Math.floor(1.4 * buy_price) - 1;
