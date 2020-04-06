@@ -12,15 +12,19 @@ $(document).ready(function () {
         return;
       }
 
+      const buyInput = $("#buy");
       if (index === 0) {
-        $("#buy").val(sell_price);
+        buyInput.focus();
+        buyInput.val(sell_price);
+        buyInput.blur();
         return;
       }
 
       const element = $("#sell_" + index);
-
       if (element.length) {
+        element.focus();
         element.val(sell_price);
+        element.blur();
       }
     });
 

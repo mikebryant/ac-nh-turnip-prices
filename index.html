@@ -9,6 +9,8 @@
   <meta name="author" content="Mike Bryant">
 
   <link rel="stylesheet" href="css/styles.css?v=1.0">
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162470902-1"></script>
@@ -23,133 +25,150 @@
 </head>
 
 <body>
-  <p>
-    To use, enter as much data as you can from <b>your own island</b>. If you bought from Daisy on your own island <b>for the first time this week</b> leave the buy price blank. The tool will figure out all possible patterns and predict the lowest and highest prices for each day.
-  </p>
-  <p>
-    I couldn't have done this without <a href="https://twitter.com/_Ninji/status/1244818665851289602?s=20">Ninji's work extracting the code</a>
-  </p>
-  <p>
-    Support, comments and contributions are available through <a href="https://github.com/mikebryant/ac-nh-turnip-prices/issues">Gitlab</a>
-  </p>
-  <form>
-    <p>
-      <label>Daisy Mae</label><br>
-      <label>
-        Buy price
-        <input type="number" id="buy">
-      </label>
-    </p>
-    <p>
-      <label>Monday</label><br>
-      <label>
-        AM
-        <input type="number" id="sell_2">
-      </label>
-      <label>
-        PM
-        <input type="number" id="sell_3">
-      </label>
-    </p>
-    <p>
-      <label>Tuesday</label><br>
-      <label>
-        AM
-        <input type="number" id="sell_4">
-      </label>
-      <label>
-        PM
-        <input type="number" id="sell_5">
-      </label>
-    </p>
-    <p>
-      <label>Wednesday</label><br>
-      <label>
-        AM
-        <input type="number" id="sell_6">
-      </label>
-      <label>
-        PM
-        <input type="number" id="sell_7">
-      </label>
-    </p>
-    <p>
-      <label>Thursday</label><br>
-      <label>
-        AM
-        <input type="number" id="sell_8">
-      </label>
-      <label>
-        PM
-        <input type="number" id="sell_9">
-      </label>
-    </p>
-    <p>
-      <label>Friday</label><br>
-      <label>
-        AM
-        <input type="number" id="sell_10">
-      </label>
-      <label>
-        PM
-        <input type="number" id="sell_11">
-      </label>
-    </p>
-    <p>
-      <label>Saturday</label><br>
-      <label>
-        AM
-        <input type="number" id="sell_12">
-      </label>
-      <label>
-        PM
-        <input type="number" id="sell_13">
-      </label>
-    </p>
-    <button id="reset">Reset</button>
-  </form>
+  <div class="container">
+    <div class="col s12 m5">
+      <div class="card-panel z-depth-0">
+        <span>
+          To use, enter as much data as you can from <b>your own island</b>. If you bought from Daisy on your own island <b>for the first time this week</b> leave the buy price blank. The tool will figure out all possible patterns and predict the lowest and highest prices for each day.
+          <p />
+          I couldn't have done this without <a href="https://twitter.com/_Ninji/status/1244818665851289602?s=20">Ninji's work extracting the code</a>
+          <p />
+          Support, comments and contributions are available through <a href="https://github.com/mikebryant/ac-nh-turnip-prices/issues">Github</a>
+        </span>
+      </div>
+    </div>
+    <form>
+      <div class="row">
+        <div class="col s2">
+          <h5>Daisy Mae</h5>
+          <div class="input-field">
+            <label for="buy">Buy price</label>
+            <input type="number" id="buy">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s2">
+          <h6>Monday</h6>
+          <div class="input-field col s6">
+            <label for="sell_2">AM</label>
+            <input type="number" id="sell_2">
+          </div>
+          <div class="input-field col s6">
+            <label for="sell_3">PM</label>
+            <input type="number" id="sell_3">
+          </div>
+        </div>
+        <div class="col s2">
+          <h6>Tuesday</h6>
+          <div class="input-field col s6">
+            <label for="sell_4">AM</label>
+            <input type="number" id="sell_4">
+          </div>
+          <div class="input-field col s6">
+            <label for="sell_5">PM</label>
+            <input type="number" id="sell_5">
+          </div>
+        </div>
+        <div class="col s2">
+          <h6>Wednesday</h6>
+          <div class="input-field col s6">
+            <label for="sell_6">AM</label>
+            <input type="number" id="sell_6">
+          </div>
+          <div class="input-field col s6">
+            <label for="sell_7">PM</label>
+            <input type="number" id="sell_7">
+          </div>
+        </div>
+        <div class="col s2">
+          <h6>Thursday</h6>
+          <div class="input-field col s6">
+            <label for="sell_8">AM</label>
+            <input type="number" id="sell_8">
+          </div>
+          <div class="input-field col s6">
+            <label for="sell_9">PM</label>
+            <input type="number" id="sell_9">
+          </div>
+        </div>
+        <div class="col s2">
+          <h6>Friday</h6>
+          <div class="input-field col s6">
+            <label for="sell_10">AM</label>
+            <input type="number" id="sell_10">
+          </div>
+          <div class="input-field col s6">
+            <label for="sell_11">PM</label>
+            <input type="number" id="sell_11">
+          </div>
+        </div>
+        <div class="col s2">
+          <h6>Saturday</h6>
+          <div class="input-field col s6">
+            <label for="sell_12">AM</label>
+            <input type="number" id="sell_12">
+          </div>
+          <div class="input-field col s6">
+            <label for="sell_13">PM</label>
+            <input type="number" id="sell_13">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col s12">
+          <button id="reset" class="btn waves-effect waves-light" type="submit" name="action">
+            Reset
+          </button>
+        </div>
+      </div>
+    </form>
 
-  <p>
+    <div class="divider"></div>
 
-  </p>
+    <div class="card-panel z-depth-0">
+        <span>Your turnip prices will be one of the following patterns. Each cell contains the minimum..maximum price for that half-day. If you don't have a pattern, something's gone wrong, sorry &#128531;. Check back next week!</span>
+    </div>
 
-  <p>
-    <table id="turnipTable">
-      <caption>Your turnip prices will be one of the following patterns. Each cell contains the minimum..maximum price for that half-day. If you don't have a pattern, something's gone wrong, sorry :(. Check back next week!</caption>
-      <thead>
-        <tr>
-          <th rowspan="2">Pattern</th>
-          <th rowspan="2">Sunday</th>
-          <th colspan="2">Monday</th>
-          <th colspan="2">Tuesday</th>
-          <th colspan="2">Wednesday</th>
-          <th colspan="2">Thursday</th>
-          <th colspan="2">Friday</th>
-          <th colspan="2">Saturday</th>
-          <th rowspan="2">Week Min</th>
-          <th rowspan="2">Week Max</th>
-        </tr>
-        <tr>
-          <th>AM</th>
-          <th>PM</th>
-          <th>AM</th>
-          <th>PM</th>
-          <th>AM</th>
-          <th>PM</th>
-          <th>AM</th>
-          <th>PM</th>
-          <th>AM</th>
-          <th>PM</th>
-          <th>AM</th>
-          <th>PM</th>
-        </tr>
-      </thead>
-      <tbody id="output"></tbody>
-    </table>
-  </p>
+    <div class="section">
+      <table id="turnipTable" class="responsive-table highlight">
+        <thead>
+          <tr>
+            <th rowspan="2">Pattern</th>
+            <th rowspan="2">Sunday</th>
+            <th colspan="2">Monday</th>
+            <th colspan="2">Tuesday</th>
+            <th colspan="2">Wednesday</th>
+            <th colspan="2">Thursday</th>
+            <th colspan="2">Friday</th>
+            <th colspan="2">Saturday</th>
+            <th rowspan="2">Week Min</th>
+            <th rowspan="2">Week Max</th>
+          </tr>
+          <tr>
+            <th>AM</th>
+            <th>PM</th>
+            <th>AM</th>
+            <th>PM</th>
+            <th>AM</th>
+            <th>PM</th>
+            <th>AM</th>
+            <th>PM</th>
+            <th>AM</th>
+            <th>PM</th>
+            <th>AM</th>
+            <th>PM</th>
+          </tr>
+        </thead>
+        <tbody id="output"></tbody>
+      </table>
+    </div>
+  </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="js/predictions.js"></script>
   <script src="js/scripts.js"></script>
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
 </html>
