@@ -84,7 +84,7 @@ $(document).on("input", function() {
     if (poss.probability === 0 || poss.probability === 100) {
       out_line += `<td class="one">N/A</td></tr>`;
     } else {
-      out_line += `<td class="one">${(poss.probability/prob_total)*100}</td></tr>`;
+      out_line += `<td class="one">${((poss.probability/prob_total)*100).toFixed(2)}</td></tr>`;
     }
     output_possibilities += out_line
   }
