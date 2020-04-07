@@ -9,10 +9,12 @@ const getSellFields = function () {
 
 const sell_inputs = getSellFields()
 const buy_input = $("#buy")
-
+const first_buy_field = $("#first_buy");
 
 //Functions
-const fillFields = function (prices) {
+const fillFields = function (prices, first_buy) {
+  first_buy_field.prop("checked", first_buy);
+
   buy_input.focus();
   buy_input.val(prices[0] || '')
   buy_input.blur();
@@ -33,11 +35,11 @@ const fillFields = function (prices) {
 const initialize = function () {
   try {
     const prices = getPrices()
-    console.log("Prices from Storage", prices)
+    const first_buy = getFirstBuyState();
     if (prices === null) {
-      return
+      fillFields([], first_buy)
     } else {
-      fillFields(prices)
+      fillFields(prices, first_buy)
     }
     $(document).trigger("input");
   } catch (e) {
@@ -45,14 +47,16 @@ const initialize = function () {
   }
 
   $("#reset").on("click", function () {
+    first_buy_field.prop('checked', false);
     $("input").val(null).trigger("input");
   })
 }
 
-const updateLocalStorage = function (data) {
+const updateLocalStorage = function (prices, first_buy) {
   try {
-    if (data.length !== 14) throw "The data array needs exactly 14 elements to be valid"
-    localStorage.setItem("sell_prices", JSON.stringify(data))
+    if (prices.length !== 14) throw "The data array needs exactly 14 elements to be valid"
+    localStorage.setItem("sell_prices", JSON.stringify(prices))
+    localStorage.setItem("first_buy", JSON.stringify(first_buy));
   } catch (e) {
     console.error(e)
   }
@@ -61,6 +65,10 @@ const updateLocalStorage = function (data) {
 const isEmpty = function (arr) {
   const filtered = arr.filter(value => value !== null && value !== '' && !isNaN(value))
   return filtered.length == 0
+}
+
+const getFirstBuyState = function () {
+  return JSON.parse(localStorage.getItem('first_buy'))
 }
 
 const getPrices = function () {
@@ -79,13 +87,13 @@ const getSellPrices = function () {
   })
 }
 
-const calculateOutput = function (data) {
+const calculateOutput = function (data, first_buy) {
   if (isEmpty(data)) {
     $("#output").html("");
     return;
   }
   let output_possibilities = "";
-  for (let poss of analyze_possibilities(data)) {
+  for (let poss of analyze_possibilities(data, first_buy)) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
@@ -104,9 +112,13 @@ const calculateOutput = function (data) {
 const update = function () {
   const sell_prices = getSellPrices();
   const buy_price = parseInt(buy_input.val());
-  const data = [buy_price, buy_price, ...sell_prices];
-  updateLocalStorage(data);
-  calculateOutput(data);
+  const first_buy = first_buy_field.is(":checked");
+
+  buy_input.prop('disabled', first_buy);
+
+  const prices = [buy_price, buy_price, ...sell_prices];
+  updateLocalStorage(prices, first_buy);
+  calculateOutput(prices, first_buy);
 }
 
 $(document).ready(initialize);
