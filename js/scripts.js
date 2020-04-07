@@ -78,10 +78,9 @@ $(document).on("input", function() {
     sell_prices.push(parseInt($("#sell_" + i).val()));
   }
 
-  localStorage.setItem("sell_prices", JSON.stringify(sell_prices));
-  const params = {"prices": sell_prices.map((x) => isNaN(x) ? "" : x).join(".")};
-  const query_string = `?${new URLSearchParams(params).toString()}`;
-  window.history.replaceState(null, null, query_string);
+  if (!window.price_from_query) {
+    localStorage.setItem("sell_prices", JSON.stringify(sell_prices));
+  }
 
   const is_empty = sell_prices.every(sell_price => !sell_price);
   if (is_empty) {
