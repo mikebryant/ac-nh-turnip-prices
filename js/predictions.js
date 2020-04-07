@@ -590,7 +590,7 @@ function analyze_possibilities(sell_prices) {
   for (let poss of generated_possibilities) {
     var weekMins = [];
     var weekMaxes = [];
-    for (let day of poss.prices.slice(1)) {
+    for (let day of poss.prices.slice(2)) {
       weekMins.push(day.min);
       weekMaxes.push(day.max);
     }
