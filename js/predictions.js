@@ -551,7 +551,7 @@ function* generate_possibilities(sell_prices) {
     yield* generate_pattern_2(sell_prices);
     yield* generate_pattern_3(sell_prices);
   } else {
-    for (var buy_price = 90; buy_price < 110; buy_price++) {
+    for (var buy_price = 90; buy_price <= 110; buy_price++) {
       sell_prices[0] = sell_prices[1] = buy_price;
       yield* generate_pattern_0(sell_prices);
       yield* generate_pattern_1(sell_prices);
