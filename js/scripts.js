@@ -39,8 +39,21 @@ $(document).ready(function () {
 });
 
 $(document).on("input", function() {
-  // Update output on any input change
 
+  const sell_prices = extractAndStoreSellPrices();
+  const is_empty = sell_prices.every(sell_price => !sell_price);
+  const noDataMessage = $('#no-data-message');
+
+  if(is_empty) {
+    noDataMessage.show();
+  } else {
+    noDataMessage.hide();
+    const possibilities = analyze_possibilities(sell_prices);
+    renderTableUpdate(possibilities);
+  }
+});
+
+function extractAndStoreSellPrices() {
   var buy_price = parseInt($("#buy").val());
 
   var sell_prices = [buy_price, buy_price];
@@ -49,16 +62,14 @@ $(document).on("input", function() {
   }
 
   localStorage.setItem("sell_prices", JSON.stringify(sell_prices));
+  return sell_prices;
+}
 
-  const is_empty = sell_prices.every(sell_price => !sell_price);
-  if (is_empty) {
-    $("#output").html("");
-    return;
-  }
+function renderTableUpdate(possibilities) {
 
   let output_possibilities = "";
-  for (let poss of analyze_possibilities(sell_prices)) {
-    var out_line = "<tr><td>" + poss.pattern_description + "</td>"
+  for (let poss of possibilities) {
+    var out_line = `<tr${poss.pattern_number === 4 ? ' class="total-row"' : ''}><td> ${poss.pattern_description} </td>`;
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
         out_line += `<td>${day.min}..${day.max}</td>`;
@@ -70,5 +81,5 @@ $(document).on("input", function() {
     output_possibilities += out_line
   }
 
-  $("#output").html(output_possibilities)
-});
+  $("#table-output").html(output_possibilities)
+}

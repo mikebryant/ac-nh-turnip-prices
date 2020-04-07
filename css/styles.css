@@ -18,3 +18,11 @@
 #turnipTable td {
     text-align: center;
 }
+
+#no-data-message {
+    display: none;
+}
+
+.total-row {
+    border-top: 1px solid #009688;
+}

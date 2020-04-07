@@ -569,7 +569,7 @@ function analyze_possibilities(sell_prices) {
     prices = {
       min: 999,
       max: 0,
-    }
+    };
     for (let poss of generated_possibilities) {
       if (poss.prices[day].min < prices.min) {
         prices.min = poss.prices[day].min;
