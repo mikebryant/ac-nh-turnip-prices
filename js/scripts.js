@@ -59,7 +59,7 @@ const updateLocalStorage = function (data) {
 }
 
 const isEmpty = function (arr) {
-  const filtered = arr.filter(value => value !== null && value !== '')
+  const filtered = arr.filter(value => value !== null && value !== '' && !isNaN(value))
   return filtered.length == 0
 }
 
@@ -75,12 +75,12 @@ const getPrices = function () {
 const getSellPrices = function () {
   //Checks all sell inputs and returns an array with their values
   return res = sell_inputs.map(function (input) {
-    return input.value || ''
+    return parseInt(input.value || '');
   })
 }
 
 const calculateOutput = function (data) {
-  if (isEmpty(data.slice(2))) {
+  if (isEmpty(data)) {
     $("#output").html("");
     return;
   }
@@ -102,11 +102,11 @@ const calculateOutput = function (data) {
 }
 
 const update = function () {
-  const sell_prices = getSellPrices()
-  const buy_price = buy_input.val()
-  const data = [buy_price, buy_price, ...sell_prices]
-  updateLocalStorage(data)
-  calculateOutput(data)
+  const sell_prices = getSellPrices();
+  const buy_price = parseInt(buy_input.val());
+  const data = [buy_price, buy_price, ...sell_prices];
+  updateLocalStorage(data);
+  calculateOutput(data);
 }
 
 $(document).ready(initialize);
