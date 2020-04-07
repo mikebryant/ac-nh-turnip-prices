@@ -1,22 +1,31 @@
 function get_prices_from_localstorage() {
-  const sell_prices = JSON.parse(localStorage.getItem("sell_prices"));
+  try {
+    const sell_prices = JSON.parse(localStorage.getItem("sell_prices"));
 
-  if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+    if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+      return null;
+    }
+
+    return sell_prices;
+  } catch (e) {
     return null;
   }
-
-  return sell_prices;
 }
 
 function get_prices_from_query() {
-  const params = new URLSearchParams(window.location.search.substr(1));
-  const sell_prices = params.get("prices").split(".").map((x) => parseInt(x, 10));
+  try {
+    const params = new URLSearchParams(window.location.search.substr(1));
+    const sell_prices = params.get("prices").split(".").map((x) => parseInt(x, 10));
 
-  if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+    if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+      return null;
+    }
+
+    window.price_from_query = true;
+    return sell_prices;
+  } catch (e) {
     return null;
   }
-
-  return sell_prices;
 }
 
 $(document).ready(function () {
