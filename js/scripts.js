@@ -13,14 +13,19 @@ const buy_input = $("#buy")
 
 //Functions
 const fillFields = function (prices) {
+  buy_input.focus();
   buy_input.val(prices[0] || '')
+  buy_input.blur();
   const sell_prices = prices.slice(2)
 
   sell_prices.forEach((price, index) => {
     if (!price) {
       return
     } else {
-      $("#sell_" + (index + 2)).val(price)
+      const element = $("#sell_" + (index + 2));
+      element.focus();
+      element.val(price);
+      element.blur();
     }
   })
 }
