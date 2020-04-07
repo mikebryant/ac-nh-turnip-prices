@@ -595,6 +595,7 @@ function analyze_possibilities(sell_prices) {
       weekMaxes.push(day.max);
     }
     poss.weekMin = Math.min(...weekMins);
+	poss.weekLeastMax = Math.max(...weekMins);
     poss.weekMax = Math.max(...weekMaxes);
   }
 
