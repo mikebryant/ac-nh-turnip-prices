@@ -1,3 +1,19 @@
+.turnipContainer {
+  overflow-x: scroll;
+  border: 1px solid #aaa;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  -webkit-box-shadow: inset -13px 0px 22px -19px rgba(51,51,51,0.66);
+  -moz-box-shadow: inset -13px 0px 22px -19px rgba(51,51,51,0.66);
+  box-shadow: inset -13px 0px 22px -19px rgba(51,51,51,0.66);
+}
+
+#turnipTable {
+  table-layout: fixed;
+  width: 100rem;
+  margin-bottom: 1rem;
+}
+
 #turnipTable th, #turnipTable td {
     padding: 5px;
 }
@@ -8,6 +24,12 @@
 
 #turnipTable th {
     text-align: center;
+    vertical-align: top;
+    width: 5%;
+}
+
+#turnipTable th:first-child {
+  width: 9%;
 }
 
 #turnipTable td:first-child {
@@ -17,6 +39,14 @@
 
 #turnipTable td {
     text-align: center;
+}
+
+#turnipTable tr.time {
+  font-size: .8rem;
+  font-weight: normal;
+  color: #9e9e9e;
+}
+
 .userPrices h6 {
   text-align: center;
 }

@@ -148,22 +148,23 @@
         <span>Your turnip prices will be one of the following patterns. Each cell contains the minimum..maximum price for that half-day. If you don't have a pattern, something's gone wrong, sorry &#128531;. Check back next week!</span>
     </div>
 
-    <div class="section">
+    <div class="section turnipContainer">
       <table id="turnipTable" class="highlight">
         <thead>
           <tr>
             <th rowspan="2">Pattern</th>
-            <th rowspan="2">Sunday</th>
+            <th colspan="2">Week</th>
+            <th rowspan="2" style="width:2%">Sunday</th>
             <th colspan="2">Monday</th>
             <th colspan="2">Tuesday</th>
             <th colspan="2">Wednesday</th>
             <th colspan="2">Thursday</th>
             <th colspan="2">Friday</th>
             <th colspan="2">Saturday</th>
-            <th rowspan="2">Week Min</th>
-            <th rowspan="2">Week Max</th>
           </tr>
-          <tr>
+          <tr class="time">
+            <th>Min</th>
+            <th>Max</th>
             <th>AM</th>
             <th>PM</th>
             <th>AM</th>

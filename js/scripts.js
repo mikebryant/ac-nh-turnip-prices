@@ -95,14 +95,14 @@ const calculateOutput = function (data, first_buy) {
   let output_possibilities = "";
   for (let poss of analyze_possibilities(data, first_buy)) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
+    out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td>`;
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
         out_line += `<td>${day.min}..${day.max}</td>`;
       } else {
         out_line += `<td class="one">${day.min}</td>`;
       }
-    }
-    out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td></tr>`;
+    };
     output_possibilities += out_line
   }
 
