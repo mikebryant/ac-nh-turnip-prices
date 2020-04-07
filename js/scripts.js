@@ -59,8 +59,19 @@ $(document).on("input", function() {
     return;
   }
 
+  let possibilities = analyze_possibilities(sell_prices, previous_pattern);
   let output_possibilities = "";
-  for (let poss of analyze_possibilities(sell_prices, previous_pattern)) {
+  prob_types = new Map();
+  for (let poss of possibilities) {
+      if (poss.probability !== 100) { // not predicted min/max
+          prob_types.set(poss.pattern_description, poss.probability)
+      }
+  }
+  prob_total = 0;
+  prob_types.forEach(function(v) {
+      prob_total += v
+  })
+  for (let poss of possibilities) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
@@ -73,7 +84,7 @@ $(document).on("input", function() {
     if (poss.probability === 0 || poss.probability === 100) {
       out_line += `<td class="one">N/A</td></tr>`;
     } else {
-      out_line += `<td class="one">${poss.probability}</td></tr>`;
+      out_line += `<td class="one">${(poss.probability/prob_total)*100}</td></tr>`;
     }
     output_possibilities += out_line
   }
