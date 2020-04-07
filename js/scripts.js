@@ -1,63 +1,86 @@
-$(document).ready(function () {
-  // load sell_prices from local storage
-  try {
-    const sell_prices = JSON.parse(localStorage.getItem("sell_prices"));
+//Reusable Fields
+const getSellFields = function () {
+  let fields = []
+  for (var i = 2; i < 14; i++) {
+    fields.push($("#sell_" + i)[0])
+  }
+  return fields
+}
 
-    if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
-      return;
+const sell_inputs = getSellFields()
+const buy_input = $("#buy")
+
+
+//Functions
+const fillFields = function (prices) {
+  buy_input.val(prices[0] || '')
+  const sell_prices = prices.slice(2)
+
+  sell_prices.forEach((price, index) => {
+    if (!price) {
+      return
+    } else {
+      $("#sell_" + (index + 2)).val(price)
     }
+  })
+}
 
-    sell_prices.forEach((sell_price, index) => {
-      if (!sell_price) {
-        return;
-      }
-
-      const buyInput = $("#buy");
-      if (index === 0) {
-        buyInput.focus();
-        buyInput.val(sell_price);
-        buyInput.blur();
-        return;
-      }
-
-      const element = $("#sell_" + index);
-      if (element.length) {
-        element.focus();
-        element.val(sell_price);
-        element.blur();
-      }
-    });
-
+const initialize = function () {
+  try {
+    const prices = getPrices()
+    console.log("Prices from Storage", prices)
+    if (prices === null) {
+      return
+    } else {
+      fillFields(prices)
+    }
     $(document).trigger("input");
   } catch (e) {
     console.error(e);
   }
 
-  $("#reset").on("click", function() {
+  $("#reset").on("click", function () {
     $("input").val(null).trigger("input");
   })
-});
+}
 
-$(document).on("input", function() {
-  // Update output on any input change
-
-  var buy_price = parseInt($("#buy").val());
-
-  var sell_prices = [buy_price, buy_price];
-  for (var i = 2; i < 14; i++) {
-    sell_prices.push(parseInt($("#sell_" + i).val()));
+const updateLocalStorage = function (data) {
+  try {
+    if (data.length !== 14) throw "The data array needs exactly 14 elements to be valid"
+    localStorage.setItem("sell_prices", JSON.stringify(data))
+  } catch (e) {
+    console.error(e)
   }
+}
 
-  localStorage.setItem("sell_prices", JSON.stringify(sell_prices));
+const isEmpty = function (arr) {
+  const filtered = arr.filter(value => value !== null && value !== '')
+  return filtered.length == 0
+}
 
-  const is_empty = sell_prices.every(sell_price => !sell_price);
-  if (is_empty) {
+const getPrices = function () {
+  let prices = JSON.parse(localStorage.getItem("sell_prices"))
+  if (!prices || isEmpty(prices) || prices.length !== 14) {
+    return null
+  } else {
+    return prices
+  }
+}
+
+const getSellPrices = function () {
+  //Checks all sell inputs and returns an array with their values
+  return res = sell_inputs.map(function (input) {
+    return input.value || ''
+  })
+}
+
+const calculateOutput = function (data) {
+  if (isEmpty(data.slice(2))) {
     $("#output").html("");
     return;
   }
-
   let output_possibilities = "";
-  for (let poss of analyze_possibilities(sell_prices)) {
+  for (let poss of analyze_possibilities(data)) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
@@ -71,4 +94,15 @@ $(document).on("input", function() {
   }
 
   $("#output").html(output_possibilities)
-});
+}
+
+const update = function () {
+  const sell_prices = getSellPrices()
+  const buy_price = buy_input.val()
+  const data = [buy_price, buy_price, ...sell_prices]
+  updateLocalStorage(data)
+  calculateOutput(data)
+}
+
+$(document).ready(initialize);
+$(document).on("input", update);
