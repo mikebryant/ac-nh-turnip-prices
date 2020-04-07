@@ -1,9 +1,30 @@
-$(document).ready(function () {
-  // load sell_prices from local storage
-  try {
-    const sell_prices = JSON.parse(localStorage.getItem("sell_prices"));
+function get_prices_from_localstorage() {
+  const sell_prices = JSON.parse(localStorage.getItem("sell_prices"));
 
-    if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+  if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+    return null;
+  }
+
+  return sell_prices;
+}
+
+function get_prices_from_hash() {
+  const params = new URLSearchParams(window.location.hash.substr(1));
+  const sell_prices = params.get("prices").split(".").map((x) => parseInt(x, 10));
+
+  if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+    return null;
+  }
+
+  return sell_prices;
+}
+
+$(document).ready(function () {
+  try {
+    // load sell_prices from URL hash first, then local storage
+    const sell_prices = get_prices_from_hash() || get_prices_from_localstorage();
+
+    if (sell_prices == null) {
       return;
     }
 
@@ -49,6 +70,8 @@ $(document).on("input", function() {
   }
 
   localStorage.setItem("sell_prices", JSON.stringify(sell_prices));
+  const params = {"prices": sell_prices.map((x) => isNaN(x) ? "" : x).join(".")};
+  window.location.hash = (new URLSearchParams(params)).toString();
 
   const is_empty = sell_prices.every(sell_price => !sell_price);
   if (is_empty) {
