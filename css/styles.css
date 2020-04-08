@@ -35,7 +35,6 @@ h2 {
 
 .nook-phone {
   width: 100%;
-  max-width: 1250px;
   box-sizing: border-box;
   margin: 16px auto;
   border-radius: 40px;
@@ -49,6 +48,9 @@ h2 {
 
 .nook-phone-center {
   background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 
@@ -80,7 +82,7 @@ h2 {
 
 .dialog-box i {
   font-style: normal;
-  color: #d1d1d1;
+  color: #aaa;
 }
 
 .dialog-box a:hover {
@@ -155,8 +157,7 @@ h2 {
   text-align: center;
   display: block;
   font-style: normal;
-  color: #d1d1d1;
-  opacity: 0.9;
+  color: #aaa;
   font-size: 0.9rem;
   margin: 8px auto;
 }
@@ -191,7 +192,7 @@ input[type=number]:focus {
   outline: none;
   transform: scale(1.1);
   background: white;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04), 0 3px 6px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.09);
 }
 
 input[type=number]:focus::placeholder {
@@ -225,37 +226,53 @@ input[type=number] {
   transition: 0.2s all;
   position: relative;
   margin: 32px auto;
-  opacity: 0.5;
 }
 
 .reset-button:hover {
   cursor: pointer;
   opacity: 1;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04), 0 3px 6px rgba(0, 0, 0, 0.07);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.09);
 }
 
 
 .table-wrapper {
-  width: 98%;
-  max-height: 50vh;
+  display: inline-block;
+  max-width: 98%;
   padding: 16px;
   margin: 0px auto;
   box-sizing: border-box;
-  overflow-x: scroll;
+  overflow-x: auto;
   border-radius: 2px;
 }
 
+
+.table-wrapper::-webkit-scrollbar {
+  height: 8px;
+  width: 5px;
+}
+
+.table-wrapper::-webkit-scrollbar-track {
+  height: 8px;
+  width: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.table-wrapper::-webkit-scrollbar-thumb {
+  height: 8px;
+  width: 5px;
+  background: rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+.table-wrapper::-webkit-scrollbar-thumb:window-inactive {
+  height: 8px;
+  width: 5px;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+
 #turnipTable {
   border-collapse: collapse;
-}
-
-#turnipTable span {
-  min-width: 80px;
-}
-
-#turnipTable th {
-  min-width: 80px;
-  font-size: 0.8rem;
 }
 
 #turnipTable th div:nth-of-type(1) {
@@ -269,17 +286,15 @@ input[type=number] {
 }
 
 #turnipTable td {
-  min-width: 80px;
-  max-width: 84px;
-  padding: 4px 2px;
+  max-width: 100px;
+  padding: 6px 4px;
   text-align: center;
-  font-size: 0.8rem;
   border-right: 1px solid rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
 }
 
 #turnipTable tbody tr {
-  opacity: 0.6;
+  opacity: 0.8;
 }
 
 #turnipTable tbody tr:hover {
@@ -287,6 +302,9 @@ input[type=number] {
   opacity: 1;
 }
 
+#turnipTable .table-pattern {
+  white-space: normal;
+}
 
 
 
