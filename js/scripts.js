@@ -69,7 +69,7 @@ const isEmpty = function (arr) {
 
 const getFirstBuyState = function () {
   return JSON.parse(localStorage.getItem('first_buy'));
-};
+}
 
 const getPricesFromLocalstorage = function () {
   try {
