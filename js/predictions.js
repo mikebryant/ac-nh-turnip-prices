@@ -660,8 +660,7 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
       weekMins.push(day.min);
       weekMaxes.push(day.max);
     }
-    poss.weekMin = Math.min(...weekMins);
-	poss.weekLeastMax = Math.max(...weekMins);
+  	poss.weekGuaranteedMinimum = Math.max(...weekMins);
     poss.weekMax = Math.max(...weekMaxes);
   }
 
