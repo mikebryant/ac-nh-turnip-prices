@@ -596,7 +596,6 @@ function row_probability(possibility, previous_pattern) {
 }
 
 function get_probabilities(possibilities, previous_pattern) {
-  console.log(previous_pattern)
   if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {
     return possibilities
   }
