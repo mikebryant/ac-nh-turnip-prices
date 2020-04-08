@@ -39,6 +39,33 @@
     </div>
     <div class="row">
       <div class="col s12">
+        <h5>Probability</h5>
+        <div class="row">
+          <div class="col s4">
+            <div class="input-field">
+              <select id="previous_pattern">
+                <option value="-1" selected>(unknown)</option>
+                <!-- Choices are ordered by increasing desirability, not code ID order -->
+                <option value="2">Decreasing</option>
+                <option value="0">Rollercoaster</option>
+                <option value="3">Small spike</option>
+                <option value="1">Large spike</option>
+              </select>
+              <label for="previous_pattern">Last week’s pattern</label>
+            </div>
+          </div>
+          <div class="col s6">
+            <div class="input-field">
+              <span>
+                <b>Last week’s pattern</b> affects the probability of patterns for this week. If you know it, select it to see probabilities for this week. <em>(optional)</em>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
         <h5>Daisy Mae</h5>
         <div class="row">
           <div class="col s2">
@@ -152,6 +179,7 @@
         <thead>
           <tr>
             <th rowspan="2">Pattern</th>
+            <th rowspan="2">% Chance</th>
             <th rowspan="2">Sunday</th>
             <th colspan="2">Monday</th>
             <th colspan="2">Tuesday</th>
