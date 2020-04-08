@@ -71,14 +71,39 @@ const getFirstBuyState = function () {
   return JSON.parse(localStorage.getItem('first_buy'))
 }
 
-const getPrices = function () {
-  let prices = JSON.parse(localStorage.getItem("sell_prices"))
-  if (!prices || isEmpty(prices) || prices.length !== 14) {
-    return null
-  } else {
-    return prices
+const getPricesFromLocalstorage = function () {
+  try {
+    const sell_prices = JSON.parse(localStorage.getItem("sell_prices"));
+
+    if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+      return null;
+    }
+
+    return sell_prices;
+  } catch (e) {
+    return null;
   }
-}
+};
+
+const getPricesFromQuery = function () {
+  try {
+    const params = new URLSearchParams(window.location.search.substr(1));
+    const sell_prices = params.get("prices").split(".").map((x) => parseInt(x, 10));
+
+    if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+      return null;
+    }
+
+    window.price_from_query = true;
+    return sell_prices;
+  } catch (e) {
+    return null;
+  }
+};
+
+const getPrices = function () {
+  return getPricesFromQuery() || getPricesFromLocalstorage();
+};
 
 const getSellPrices = function () {
   //Checks all sell inputs and returns an array with their values
@@ -117,7 +142,9 @@ const update = function () {
   buy_input.prop('disabled', first_buy);
 
   const prices = [buy_price, buy_price, ...sell_prices];
-  updateLocalStorage(prices, first_buy);
+  if (!window.price_from_query) {
+    updateLocalStorage(prices, first_buy);
+  }
   calculateOutput(prices, first_buy);
 }
 
