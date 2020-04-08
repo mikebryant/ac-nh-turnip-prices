@@ -84,9 +84,9 @@ const initialize = function () {
   }
 
   $("#reset").on("click", function () {
-    first_buy_field.prop('checked', false);
-    $("select").val(null);
-    $("input").val(null).trigger("input");
+    sell_inputs.forEach(input => input.value = '')
+    fillFields([], false, 'unknown')
+    update()
   })
 }
 
