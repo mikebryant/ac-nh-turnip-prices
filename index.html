@@ -37,18 +37,35 @@
         </span>
       </div>
     </div>
+
+
     <div class="row">
-      <p>  
-        <label>Previous week's pattern. This is used for probabilities only.
-        <select id="previous_pattern">
-          <option value="">--Please choose your pattern for the previous week--</option>
-          <option value="random">Random</option>
-          <option value="large-spike">Large Spike</option>
-          <option value="decreasing">Decreasing</option>
-          <option value="small-spike">Small Spike</option>
-        </select>
-      </label>
-    </p>
+      <div class="col s12">
+        <h5>Calculate probability of this week's patterns using the previous week's pattern</h5>
+        <div class="row">
+          <div class="col s4">
+            <div class="input-field">
+              <select id="previous_pattern">
+                <option value="" disabled selected>--Select the pattern you had last week--</option>
+                <option value="random">Random</option>
+                <option value="large-spike">Large Spike</option>
+                <option value="decreasing">Decreasing</option>
+                <option value="small-spike">Small Spike</option>
+              </select>
+            </div>
+          </div>
+          <div class="col s6">
+            <div class="input-field">
+              <span>
+                  This is used for generating this week's probabilities only. If you're not sure, leave unchecked and fill it in next week instead.
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
       <div class="col s12">
         <h5>Daisy Mae</h5>
         <div class="row">
