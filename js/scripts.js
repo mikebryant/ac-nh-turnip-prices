@@ -89,7 +89,7 @@ const calculateOutput = function (data) {
     var out_line = "<tr><td>" + poss.pattern_description + "</td>"
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
-        out_line += `<td>${day.min}..${day.max}</td>`;
+        out_line += `<td>${day.min} to ${day.max}</td>`;
       } else {
         out_line += `<td class="one">${day.min}</td>`;
       }

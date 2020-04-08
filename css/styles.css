@@ -1,20 +1,345 @@
-#turnipTable th, #turnipTable td {
-    padding: 5px;
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@800&family=Varela+Round&display=swap');
+
+/* - Global Styles - */
+
+html {
+  font-size: 14px;
+  background: #DEF2D9;
+  background-image:
+    radial-gradient(#fff 20%, transparent 0),
+    radial-gradient(#fff 20%, transparent 0);
+  background-size: 30px 30px;
+  background-position: 0 0, 15px 15px;
+
+  /* background: #FFFAE5; */
 }
 
-#turnipTable thead tr:first-child {
-    border: none;
+body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Varela Round', sans-serif;
+  padding-bottom: 20vh;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.8rem;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.6rem;
+}
+
+.nook-phone {
+  width: 100%;
+  max-width: 1250px;
+  box-sizing: border-box;
+  margin: 16px auto;
+  border-radius: 40px;
+  padding: 16px 0px;
+  padding-bottom: 32px;
+  background: #F5F8FF;
+  color: #686868;
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.nook-phone-center {
+  background: white;
+}
+
+
+.dialog-box {
+  background: #FFFAE5;
+  box-sizing: border-box;
+  padding: 16px 24px;
+  margin: 32px auto;
+  position: relative;
+  border-radius: 40px;
+  max-width: 800px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.08);
+}
+
+.dialog-box p {
+  font-family: 'Raleway', sans-serif;
+  font-weight: 800;
+  font-size: 1.2rem;
+  color: #837865;
+  letter-spacing: 0.2px;
+  line-height: 1.8rem;
+}
+
+.dialog-box b,
+.dialog-box a {
+  color: #0AB5CD;
+  transition: 0.2s all;
+}
+
+.dialog-box i {
+  font-style: normal;
+  color: #d1d1d1;
+}
+
+.dialog-box a:hover {
+  color: #5ECEDB
+}
+
+.dialog-box .dialog-box__name {
+  position: absolute;
+  left: 16px;
+  top: -28px;
+  font-size: 1.1rem;
+  color: #BA3B1F;
+  padding: 4px 24px;
+  background: #FF9A40;
+  border-radius: 40px;
+}
+
+.input__form {
+  background: white;
+  display: flex;
+  flex-direction: column;
+  padding: 32px;
+  align-items: center;
+}
+
+.form__row {
+  max-width: 450px;
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 32px;
+  justify-content: center;
+}
+
+.form__row h6 {
+  width: 100%;
+  display: block;
+  font-weight: 800;
+  font-size: 1.5rem;
+  margin: 16px auto;
+  color: #845E44;
+  text-align: center;
+}
+
+.form__flex-wrap {
+  margin-top: 16px;
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 100%;
+  justify-content: center;
+}
+
+.input__group {
+  display: flex;
+  flex-direction: column;
+}
+
+.input__group label {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+  opacity: 0.7
+}
+
+.form__flex-wrap .input__group label {
+  text-align: center;
+  margin-left: 0px;
+  margin-bottom: 8px;
+  margin-right: 32px;
+}
+
+.input__form i {
+  text-align: center;
+  display: block;
+  font-style: normal;
+  color: #d1d1d1;
+  opacity: 0.9;
+  font-size: 0.9rem;
+  margin: 8px auto;
+}
+
+.input__form>.form__row input {
+  margin: 0px auto;
+}
+
+input {
+  border: 0px solid white;
+  border-radius: 40px;
+  padding: 16px 24px;
+  font-size: 2rem;
+  font-family: inherit;
+  color: inherit;
+  font-weight: bold;
+  transition: 0.2s all;
+  margin: 8px 0px;
+  margin-right: 32px;
+}
+
+input[type=number]:placeholder-shown {
+  background: #f3f3f3;
+}
+
+input[type=number]:not(:placeholder-shown) {
+  background: transparent;
+  color: #0AB5CD;
+}
+
+input[type=number]:focus {
+  outline: none;
+  transform: scale(1.1);
+  background: white;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04), 0 3px 6px rgba(0, 0, 0, 0.07);
+}
+
+input[type=number]:focus::placeholder {
+  opacity: 0;
+}
+
+input[type=number] {
+  width: 60px;
+  text-align: center;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.reset-button {
+  font-family: inherit;
+  font-weight: bold;
+  color: #FFBABA;
+  padding: 8px 16px;
+  border-width: 0px;
+  border-radius: 40px;
+  background: transparent;
+  font-size: 1.2rem;
+  transition: 0.2s all;
+  position: relative;
+  margin: 32px auto;
+  opacity: 0.5;
+}
+
+.reset-button:hover {
+  cursor: pointer;
+  opacity: 1;
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04), 0 3px 6px rgba(0, 0, 0, 0.07);
+}
+
+
+.table-wrapper {
+  width: 98%;
+  max-height: 50vh;
+  padding: 16px;
+  margin: 0px auto;
+  box-sizing: border-box;
+  overflow-x: scroll;
+  border-radius: 2px;
+}
+
+#turnipTable {
+  border-collapse: collapse;
+}
+
+#turnipTable span {
+  min-width: 80px;
 }
 
 #turnipTable th {
-    text-align: center;
+  min-width: 80px;
+  font-size: 0.8rem;
 }
 
-#turnipTable td:first-child {
-    white-space: nowrap;
-    text-align: left;
+#turnipTable th div:nth-of-type(1) {
+  margin-bottom: 2px;
+}
+
+#turnipTable th div:nth-of-type(2) {
+  display: flex;
+  justify-content: space-around;
+  opacity: 0.4;
 }
 
 #turnipTable td {
-    text-align: center;
+  min-width: 80px;
+  max-width: 84px;
+  padding: 4px 2px;
+  text-align: center;
+  font-size: 0.8rem;
+  border-right: 1px solid rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
+}
+
+#turnipTable tbody tr {
+  opacity: 0.6;
+}
+
+#turnipTable tbody tr:hover {
+  cursor: default;
+  opacity: 1;
+}
+
+
+
+
+
+.waves {
+  position: relative;
+  width: 100%;
+  height: 5vh;
+  margin-bottom: -7px;
+  /*Fix for safari gap*/
+  max-height: 150px;
+}
+
+
+/* Animation */
+.parallax>use {
+  animation: move-forever 25s cubic-bezier(.55, .5, .45, .5) infinite;
+}
+
+.parallax>use:nth-child(1) {
+  animation-delay: -2s;
+  animation-duration: 7s;
+}
+
+.parallax>use:nth-child(2) {
+  animation-delay: -3s;
+  animation-duration: 10s;
+}
+
+.parallax>use:nth-child(3) {
+  animation-delay: -4s;
+  animation-duration: 13s;
+}
+
+.parallax>use:nth-child(4) {
+  animation-delay: -5s;
+  animation-duration: 20s;
+}
+
+@keyframes move-forever {
+  0% {
+    transform: translate3d(-90px, 0, 0);
+  }
+
+  100% {
+    transform: translate3d(85px, 0, 0);
+  }
+}
+
+/*Shrinking for mobile*/
+@media (max-width: 768px) {
+  .waves {
+    height: 40px;
+    min-height: 40px;
+  }
 }
