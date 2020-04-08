@@ -86,15 +86,15 @@ const calculateOutput = function (data) {
   }
   let output_possibilities = "";
   for (let poss of analyze_possibilities(data)) {
-    var out_line = "<tr><td>" + poss.pattern_description + "</td>"
+    var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
         out_line += `<td>${day.min} to ${day.max}</td>`;
       } else {
-        out_line += `<td class="one">${day.min}</td>`;
+        out_line += `<td>${day.min}</td>`;
       }
     }
-    out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td></tr>`;
+    out_line += `<td>${poss.weekMin}</td><td>${poss.weekMax}</td></tr>`;
     output_possibilities += out_line
   }
 
