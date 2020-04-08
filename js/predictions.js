@@ -605,24 +605,23 @@ function* generate_possibilities(sell_prices, first_buy) {
   }
 }
 
+function row_probability(possibility, previous_pattern) {
+  return PROBABILITY_MATRIX[previous_pattern][possibility.pattern_number] / PATTERN_COUNTS[possibility.pattern_number];
+}
+
 function get_probabilities(possibilities, previous_pattern) {
   if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {
     return possibilities
   }
 
-  var unique = (value, index, self) => {
-    return self.indexOf(value) === index;
-  }
   var max_percent = possibilities.map(function (poss) {
-    return poss.pattern_number;
-  }).filter(unique).map(function(poss) {
-    return PROBABILITY_MATRIX[previous_pattern][poss];
+    return row_probability(poss, previous_pattern);
   }).reduce(function (prev, current) {
     return prev + current;
   }, 0);
 
   return possibilities.map(function (poss) {
-    poss.probability = PROBABILITY_MATRIX[previous_pattern][poss.pattern_number] / PATTERN_COUNTS[poss.pattern_number] / max_percent;
+    poss.probability = row_probability(poss, previous_pattern) / max_percent;
     return poss;
   });
 }
