@@ -52,6 +52,7 @@ $(document).on("input", function() {
   }
 
   localStorage.setItem("sell_prices", JSON.stringify(sell_prices));
+  localStorage.setItem("previous_pattern", JSON.stringify(previous_pattern));
 
   const is_empty = sell_prices.every(sell_price => !sell_price);
   if (is_empty) {
