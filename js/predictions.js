@@ -1,31 +1,38 @@
 const PATTERN = {
-  ROLLERCOASTER: 0,
+  FLUCTUATING: 0,
   LARGE_SPIKE: 1,
   DECREASING: 2,
   SMALL_SPIKE: 3,
 };
 
+const PATTERN_COUNTS = {
+  [PATTERN.FLUCTUATING]: 56,
+  [PATTERN.LARGE_SPIKE]: 7,
+  [PATTERN.DECREASING]: 1,
+  [PATTERN.SMALL_SPIKE]: 8,
+}
+
 const PROBABILITY_MATRIX = {
-  [PATTERN.ROLLERCOASTER]: {
-    [PATTERN.ROLLERCOASTER]: 0.20,
+  [PATTERN.FLUCTUATING]: {
+    [PATTERN.FLUCTUATING]: 0.20,
     [PATTERN.LARGE_SPIKE]: 0.30,
     [PATTERN.DECREASING]: 0.15,
     [PATTERN.SMALL_SPIKE]: 0.35,
   },
   [PATTERN.LARGE_SPIKE]: {
-    [PATTERN.ROLLERCOASTER]: 0.50,
+    [PATTERN.FLUCTUATING]: 0.50,
     [PATTERN.LARGE_SPIKE]: 0.05,
     [PATTERN.DECREASING]: 0.20,
     [PATTERN.SMALL_SPIKE]: 0.25,
   },
   [PATTERN.DECREASING]: {
-    [PATTERN.ROLLERCOASTER]: 0.25,
+    [PATTERN.FLUCTUATING]: 0.25,
     [PATTERN.LARGE_SPIKE]: 0.45,
     [PATTERN.DECREASING]: 0.05,
     [PATTERN.SMALL_SPIKE]: 0.25,
   },
   [PATTERN.SMALL_SPIKE]: {
-    [PATTERN.ROLLERCOASTER]: 0.45,
+    [PATTERN.FLUCTUATING]: 0.45,
     [PATTERN.LARGE_SPIKE]: 0.25,
     [PATTERN.DECREASING]: 0.15,
     [PATTERN.SMALL_SPIKE]: 0.15,
@@ -211,7 +218,7 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
     });
   }
   yield {
-    pattern_description: "Rollercoaster",
+    pattern_description: "Fluctuating",
     pattern_number: 0,
     prices: predicted_prices
   };
@@ -615,7 +622,7 @@ function get_probabilities(possibilities, previous_pattern) {
   }, 0);
 
   return possibilities.map(function (poss) {
-    poss.probability = PROBABILITY_MATRIX[previous_pattern][poss.pattern_number] / max_percent;
+    poss.probability = PROBABILITY_MATRIX[previous_pattern][poss.pattern_number] / PATTERN_COUNTS[poss.pattern_number] / max_percent;
     return poss;
   });
 }
