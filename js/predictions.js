@@ -1,3 +1,44 @@
+const PATTERN = {
+  FLUCTUATING: 0,
+  LARGE_SPIKE: 1,
+  DECREASING: 2,
+  SMALL_SPIKE: 3,
+};
+
+const PATTERN_COUNTS = {
+  [PATTERN.FLUCTUATING]: 56,
+  [PATTERN.LARGE_SPIKE]: 7,
+  [PATTERN.DECREASING]: 1,
+  [PATTERN.SMALL_SPIKE]: 8,
+}
+
+const PROBABILITY_MATRIX = {
+  [PATTERN.FLUCTUATING]: {
+    [PATTERN.FLUCTUATING]: 0.20,
+    [PATTERN.LARGE_SPIKE]: 0.30,
+    [PATTERN.DECREASING]: 0.15,
+    [PATTERN.SMALL_SPIKE]: 0.35,
+  },
+  [PATTERN.LARGE_SPIKE]: {
+    [PATTERN.FLUCTUATING]: 0.50,
+    [PATTERN.LARGE_SPIKE]: 0.05,
+    [PATTERN.DECREASING]: 0.20,
+    [PATTERN.SMALL_SPIKE]: 0.25,
+  },
+  [PATTERN.DECREASING]: {
+    [PATTERN.FLUCTUATING]: 0.25,
+    [PATTERN.LARGE_SPIKE]: 0.45,
+    [PATTERN.DECREASING]: 0.05,
+    [PATTERN.SMALL_SPIKE]: 0.25,
+  },
+  [PATTERN.SMALL_SPIKE]: {
+    [PATTERN.FLUCTUATING]: 0.45,
+    [PATTERN.LARGE_SPIKE]: 0.25,
+    [PATTERN.DECREASING]: 0.15,
+    [PATTERN.SMALL_SPIKE]: 0.15,
+  },
+};
+
 function minimum_rate_from_given_and_base(given_price, buy_price) {
   return 10000 * (given_price - 1) / buy_price;
 }
@@ -10,14 +51,11 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
   /*
       // PATTERN 0: high, decreasing, high, decreasing, high
       work = 2;
-
-
       // high phase 1
       for (int i = 0; i < hiPhaseLen1; i++)
       {
         sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
       }
-
       // decreasing phase 1
       rate = randfloat(0.8, 0.6);
       for (int i = 0; i < decPhaseLen1; i++)
@@ -26,13 +64,11 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
         rate -= 0.04;
         rate -= randfloat(0, 0.06);
       }
-
       // high phase 2
       for (int i = 0; i < (hiPhaseLen2and3 - hiPhaseLen3); i++)
       {
         sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
       }
-
       // decreasing phase 2
       rate = randfloat(0.8, 0.6);
       for (int i = 0; i < decPhaseLen2; i++)
@@ -41,7 +77,6 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
         rate -= 0.04;
         rate -= randfloat(0, 0.06);
       }
-
       // high phase 3
       for (int i = 0; i < hiPhaseLen3; i++)
       {
@@ -186,7 +221,6 @@ function* generate_pattern_0(given_prices) {
   /*
       decPhaseLen1 = randbool() ? 3 : 2;
       decPhaseLen2 = 5 - decPhaseLen1;
-
       hiPhaseLen1 = randint(0, 6);
       hiPhaseLen2and3 = 7 - hiPhaseLen1;
       hiPhaseLen3 = randint(0, hiPhaseLen2and3 - 1);
@@ -283,7 +317,7 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
     });
   }
   yield {
-    pattern_description: "Large Spike",
+    pattern_description: "Large spike",
     pattern_number: 1,
     prices: predicted_prices
   };
@@ -359,7 +393,6 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   /*
     // PATTERN 3: decreasing, spike, decreasing
     peakStart = randint(2, 9);
-
     // decreasing phase before the peak
     rate = randfloat(0.9, 0.4);
     for (work = 2; work < peakStart; work++)
@@ -368,14 +401,12 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
       rate -= 0.03;
       rate -= randfloat(0, 0.02);
     }
-
     sellPrices[work++] = intceil(randfloat(0.9, 1.4) * (float)basePrice);
     sellPrices[work++] = intceil(randfloat(0.9, 1.4) * basePrice);
     rate = randfloat(1.4, 2.0);
     sellPrices[work++] = intceil(randfloat(1.4, rate) * basePrice) - 1;
     sellPrices[work++] = intceil(rate * basePrice);
     sellPrices[work++] = intceil(randfloat(1.4, rate) * basePrice) - 1;
-
     // decreasing phase after the peak
     if (work < 14)
     {
@@ -527,7 +558,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   }
 
   yield {
-    pattern_description: "Small Spike",
+    pattern_description: "Small spike",
     pattern_number: 3,
     prices: predicted_prices
   };
@@ -539,26 +570,52 @@ function* generate_pattern_3(given_prices) {
   }
 }
 
-
-function* generate_possibilities(sell_prices) {
-  if (!isNaN(sell_prices[0])) {
+function* generate_possibilities(sell_prices, first_buy) {
+  if (first_buy || isNaN(sell_prices[0])) {
+    for (var buy_price = 90; buy_price <= 110; buy_price++) {
+      sell_prices[0] = sell_prices[1] = buy_price;
+      if (first_buy) {
+        yield* generate_pattern_3(sell_prices);
+      } else {
+        yield* generate_pattern_0(sell_prices);
+        yield* generate_pattern_1(sell_prices);
+        yield* generate_pattern_2(sell_prices);
+        yield* generate_pattern_3(sell_prices);
+      }
+    }
+  } else {
     yield* generate_pattern_0(sell_prices);
     yield* generate_pattern_1(sell_prices);
     yield* generate_pattern_2(sell_prices);
     yield* generate_pattern_3(sell_prices);
-  } else {
-    for (var buy_price = 90; buy_price <= 110; buy_price++) {
-      sell_prices[0] = sell_prices[1] = buy_price;
-      yield* generate_pattern_0(sell_prices);
-      yield* generate_pattern_1(sell_prices);
-      yield* generate_pattern_2(sell_prices);
-      yield* generate_pattern_3(sell_prices);
-    }
   }
 }
 
-function analyze_possibilities(sell_prices) {
-  generated_possibilities = Array.from(generate_possibilities(sell_prices));
+function row_probability(possibility, previous_pattern) {
+  return PROBABILITY_MATRIX[previous_pattern][possibility.pattern_number] / PATTERN_COUNTS[possibility.pattern_number];
+}
+
+function get_probabilities(possibilities, previous_pattern) {
+  console.log(previous_pattern)
+  if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {
+    return possibilities
+  }
+
+  var max_percent = possibilities.map(function (poss) {
+    return row_probability(poss, previous_pattern);
+  }).reduce(function (prev, current) {
+    return prev + current;
+  }, 0);
+
+  return possibilities.map(function (poss) {
+    poss.probability = row_probability(poss, previous_pattern) / max_percent;
+    return poss;
+  });
+}
+
+function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
+  generated_possibilities = Array.from(generate_possibilities(sell_prices, first_buy));
+  generated_possibilities = get_probabilities(generated_possibilities, previous_pattern);
 
   global_min_max = [];
   for (var day = 0; day < 14; day++) {
@@ -578,7 +635,7 @@ function analyze_possibilities(sell_prices) {
   }
 
   generated_possibilities.push({
-    pattern_description: "Potential Min / Max Range",
+    pattern_description: "All patterns",
     pattern_number: 4,
     prices: global_min_max,
   });
@@ -590,7 +647,7 @@ function analyze_possibilities(sell_prices) {
       weekMins.push(day.min);
       weekMaxes.push(day.max);
     }
-    poss.weekMin = Math.min(...weekMins);
+    poss.weekGuaranteedMinimum = Math.max(...weekMins);
     poss.weekMax = Math.max(...weekMaxes);
   }
 

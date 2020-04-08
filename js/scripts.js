@@ -147,14 +147,15 @@ const getSellPrices = function () {
   })
 }
 
-const calculateOutput = function (data) {
+const calculateOutput = function (data, first_buy, previous_pattern) {
   if (isEmpty(data)) {
     $("#output").html("");
     return;
   }
   let output_possibilities = "";
-  for (let poss of analyze_possibilities(data)) {
+  for (let poss of analyze_possibilities(data, first_buy, previous_pattern)) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
+    console.log(poss.probability)
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
@@ -163,7 +164,7 @@ const calculateOutput = function (data) {
         out_line += `<td>${day.min}</td>`;
       }
     }
-    out_line += `<td>${poss.weekMin}</td><td>${poss.weekMax}</td></tr>`;
+    out_line += `<td>${poss.weekGuaranteedMinimum}</td><td>${poss.weekMax}</td></tr>`;
     output_possibilities += out_line
   }
 
@@ -187,6 +188,7 @@ const convertPatternToInt = function (pattern) {
   }
 }
 
+
 const update = function () {
   const sell_prices = getSellPrices();
   const buy_price = parseInt(buy_input.val());
@@ -203,7 +205,8 @@ const update = function () {
   if (!window.price_from_query) {
     updateLocalStorage(prices, first_buy, previous_pattern);
   }
-  calculateOutput(prices, first_buy_boolean, convertPatternToInt(previous_pattern));
+
+  calculateOutput(prices, first_buy_boolean, parseInt(convertPatternToInt(previous_pattern)));
 }
 
 $(document).ready(initialize);
