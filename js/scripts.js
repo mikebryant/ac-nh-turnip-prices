@@ -40,9 +40,9 @@ const initialize = function () {
     const previous_pattern = getPreviousPatternState();
     const first_buy = getFirstBuyState();
     if (prices === null) {
-      fillFields([], first_buy)
+      fillFields([], previous_pattern, first_buy)
     } else {
-      fillFields(prices, first_buy)
+      fillFields(prices, previous_pattern, first_buy)
     }
     $(document).trigger("input");
   } catch (e) {
