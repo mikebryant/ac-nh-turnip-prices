@@ -1,3 +1,44 @@
+const PATTERN = {
+  FLUCTUATING: 0,
+  LARGE_SPIKE: 1,
+  DECREASING: 2,
+  SMALL_SPIKE: 3,
+};
+
+const PATTERN_COUNTS = {
+  [PATTERN.FLUCTUATING]: 56,
+  [PATTERN.LARGE_SPIKE]: 7,
+  [PATTERN.DECREASING]: 1,
+  [PATTERN.SMALL_SPIKE]: 8,
+}
+
+const PROBABILITY_MATRIX = {
+  [PATTERN.FLUCTUATING]: {
+    [PATTERN.FLUCTUATING]: 0.20,
+    [PATTERN.LARGE_SPIKE]: 0.30,
+    [PATTERN.DECREASING]: 0.15,
+    [PATTERN.SMALL_SPIKE]: 0.35,
+  },
+  [PATTERN.LARGE_SPIKE]: {
+    [PATTERN.FLUCTUATING]: 0.50,
+    [PATTERN.LARGE_SPIKE]: 0.05,
+    [PATTERN.DECREASING]: 0.20,
+    [PATTERN.SMALL_SPIKE]: 0.25,
+  },
+  [PATTERN.DECREASING]: {
+    [PATTERN.FLUCTUATING]: 0.25,
+    [PATTERN.LARGE_SPIKE]: 0.45,
+    [PATTERN.DECREASING]: 0.05,
+    [PATTERN.SMALL_SPIKE]: 0.25,
+  },
+  [PATTERN.SMALL_SPIKE]: {
+    [PATTERN.FLUCTUATING]: 0.45,
+    [PATTERN.LARGE_SPIKE]: 0.25,
+    [PATTERN.DECREASING]: 0.15,
+    [PATTERN.SMALL_SPIKE]: 0.15,
+  },
+};
+
 function minimum_rate_from_given_and_base(given_price, buy_price) {
   return 10000 * (given_price - 1) / buy_price;
 }
@@ -177,7 +218,7 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
     });
   }
   yield {
-    pattern_description: "high, decreasing, high, decreasing, high",
+    pattern_description: "Fluctuating",
     pattern_number: 0,
     prices: predicted_prices
   };
@@ -285,7 +326,7 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
     });
   }
   yield {
-    pattern_description: "decreasing middle, high spike, random low",
+    pattern_description: "Large spike",
     pattern_number: 1,
     prices: predicted_prices
   };
@@ -351,7 +392,7 @@ function* generate_pattern_2(given_prices) {
     max_rate -= 300;
   }
   yield {
-    pattern_description: "consistently decreasing",
+    pattern_description: "Decreasing",
     pattern_number: 2,
     prices: predicted_prices
   };
@@ -531,7 +572,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   }
 
   yield {
-    pattern_description: "decreasing, spike, decreasing",
+    pattern_description: "Small spike",
     pattern_number: 3,
     prices: predicted_prices
   };
@@ -564,8 +605,30 @@ function* generate_possibilities(sell_prices, first_buy) {
   }
 }
 
-function analyze_possibilities(sell_prices, first_buy) {
+function row_probability(possibility, previous_pattern) {
+  return PROBABILITY_MATRIX[previous_pattern][possibility.pattern_number] / PATTERN_COUNTS[possibility.pattern_number];
+}
+
+function get_probabilities(possibilities, previous_pattern) {
+  if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {
+    return possibilities
+  }
+
+  var max_percent = possibilities.map(function (poss) {
+    return row_probability(poss, previous_pattern);
+  }).reduce(function (prev, current) {
+    return prev + current;
+  }, 0);
+
+  return possibilities.map(function (poss) {
+    poss.probability = row_probability(poss, previous_pattern) / max_percent;
+    return poss;
+  });
+}
+
+function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
   generated_possibilities = Array.from(generate_possibilities(sell_prices, first_buy));
+  generated_possibilities = get_probabilities(generated_possibilities, previous_pattern);
 
   global_min_max = [];
   for (var day = 0; day < 14; day++) {
@@ -585,7 +648,7 @@ function analyze_possibilities(sell_prices, first_buy) {
   }
 
   generated_possibilities.push({
-    pattern_description: "predicted min/max across all patterns",
+    pattern_description: "All patterns",
     pattern_number: 4,
     prices: global_min_max,
   });
