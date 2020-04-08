@@ -319,7 +319,7 @@ function* generate_pattern_1_with_peak(given_prices, peak_start, previous_patter
     });
   }
   yield {
-    pattern_description: "high spike",
+    pattern_description: "large spike",
     pattern_number: 1,
     prices: predicted_prices,
     probability: probability_matrix[previous_pattern]["large-spike"]
