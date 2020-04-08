@@ -75,60 +75,39 @@ const getPrices = function () {
 const getSellPrices = function () {
   //Checks all sell inputs and returns an array with their values
   return res = sell_inputs.map(function (input) {
-    <<
-    << << < HEAD
-    return parseInt(input.value || ''); ===
-    === =
-    return input.value || '' >>>
-      >>> > 3 cad0d4f2a127ba46e946a9b0bebfc1cfb7001f2
+    return parseInt(input.value || '');
   })
 }
 
 const calculateOutput = function (data) {
-    <<
-    << << < HEAD
-    if (isEmpty(data)) {
-      ===
-      === =
-      if (isEmpty(data.slice(2))) {
-        >>>
-        >>> > 3 cad0d4f2a127ba46e946a9b0bebfc1cfb7001f2
-        $("#output").html("");
-        return;
+  if (isEmpty(data)) {
+    $("#output").html("");
+    return;
+  }
+  let output_possibilities = "";
+  for (let poss of analyze_possibilities(data)) {
+    var out_line = "<tr><td>" + poss.pattern_description + "</td>"
+    for (let day of poss.prices.slice(1)) {
+      if (day.min !== day.max) {
+        out_line += `<td>${day.min} to ${day.max}</td>`;
+      } else {
+        out_line += `<td class="one">${day.min}</td>`;
       }
-      let output_possibilities = "";
-      for (let poss of analyze_possibilities(data)) {
-        var out_line = "<tr><td>" + poss.pattern_description + "</td>"
-        for (let day of poss.prices.slice(1)) {
-          if (day.min !== day.max) {
-            out_line += `<td>${day.min} to ${day.max}</td>`;
-          } else {
-            out_line += `<td class="one">${day.min}</td>`;
-          }
-        }
-        out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td></tr>`;
-        output_possibilities += out_line
-      }
-
-      $("#output").html(output_possibilities)
     }
+    out_line += `<td class="one">${poss.weekMin}</td><td class="one">${poss.weekMax}</td></tr>`;
+    output_possibilities += out_line
+  }
 
-    const update = function () {
-      <<
-      << << < HEAD
-      const sell_prices = getSellPrices();
-      const buy_price = parseInt(buy_input.val());
-      const data = [buy_price, buy_price, ...sell_prices];
-      updateLocalStorage(data);
-      calculateOutput(data); ===
-      === =
-      const sell_prices = getSellPrices()
-      const buy_price = buy_input.val()
-      const data = [buy_price, buy_price, ...sell_prices]
-      updateLocalStorage(data)
-      calculateOutput(data) >>>
-        >>> > 3 cad0d4f2a127ba46e946a9b0bebfc1cfb7001f2
-    }
+  $("#output").html(output_possibilities)
+}
 
-    $(document).ready(initialize);
-    $(document).on("input", update);
+const update = function () {
+  const sell_prices = getSellPrices();
+  const buy_price = parseInt(buy_input.val());
+  const data = [buy_price, buy_price, ...sell_prices];
+  updateLocalStorage(data);
+  calculateOutput(data);
+}
+
+$(document).ready(initialize);
+$(document).on("input", update);
