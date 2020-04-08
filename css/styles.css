@@ -264,8 +264,8 @@ input[type=number] {
 }
 
 .input__radio-buttons input[type="radio"]:checked+label {
-  background: transparent;
-  color: #0AB5CD;
+  background: #0AB5CD;
+  color: #FFF;
 }
 
 .reset-button {
