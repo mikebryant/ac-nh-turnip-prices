@@ -50,6 +50,7 @@ const initialize = function () {
   }
 
   $("#reset").on("click", function () {
+    previous_pattern_field.val("");
     first_buy_field.prop('checked', false);
     $("input").val(null).trigger("input");
   })
@@ -74,6 +75,7 @@ const isEmpty = function (arr) {
 const getFirstBuyState = function () {
   return JSON.parse(localStorage.getItem('first_buy'))
 }
+
 const getPreviousPatternState = function () {
   return JSON.parse(localStorage.getItem('previous_pattern'))
 }
