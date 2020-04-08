@@ -151,3 +151,4 @@ const update = function () {
 
 $(document).ready(initialize);
 $(document).on("input", update);
+$("#previous_pattern").change(update);
