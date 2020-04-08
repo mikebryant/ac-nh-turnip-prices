@@ -136,7 +136,7 @@ const calculateOutput = function (data, previous_pattern, first_buy) {
 const update = function () {
   const sell_prices = getSellPrices();
   const buy_price = parseInt(buy_input.val());
-  const previous_pattern = previous_pattern.val();
+  const previous_pattern = previous_pattern_field.val();
   const first_buy = first_buy_field.is(":checked");
 
   buy_input.prop('disabled', first_buy);
