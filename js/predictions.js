@@ -210,7 +210,7 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
     });
   }
   yield {
-    pattern_description: "random",
+    pattern_description: "high, decreasing, high, decreasing, high",
     pattern_number: 0,
     prices: predicted_prices,
     probability: probability_matrix[previous_pattern]["random"]
@@ -319,7 +319,7 @@ function* generate_pattern_1_with_peak(given_prices, peak_start, previous_patter
     });
   }
   yield {
-    pattern_description: "decreasing middle, high spike, random low",
+    pattern_description: "decreasing middle, large spike, random low",
     pattern_number: 1,
     prices: predicted_prices,
     probability: probability_matrix[previous_pattern]["large-spike"]
@@ -567,7 +567,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start, previous_patter
   }
 
   yield {
-    pattern_description: "small spike",
+    pattern_description: "decreasing, small spike, decreasing",
     pattern_number: 3,
     prices: predicted_prices,
     probability: probability_matrix[previous_pattern]["small-spike"]
