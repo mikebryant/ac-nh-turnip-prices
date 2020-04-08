@@ -61,13 +61,13 @@ $(document).on("input", function() {
 
   let possibilities = analyze_possibilities(sell_prices, previous_pattern);
   let output_possibilities = "";
-  prob_types = new Map();
+  let prob_types = new Map();
   for (let poss of possibilities) {
       if (poss.probability !== 100) { // not predicted min/max
           prob_types.set(poss.pattern_description, poss.probability)
       }
   }
-  prob_total = 0;
+  let prob_total = 0;
   prob_types.forEach(function(v) {
       prob_total += v
   })
