@@ -646,12 +646,23 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
   for (let poss of generated_possibilities) {
     var weekMins = [];
     var weekMaxes = [];
+    var futureMins = [];
     for (let day of poss.prices.slice(2)) {
+      //If min == max, the date is in the past
+      if(day.min == day.max) {
+        futureMins = []
+      }
+      else {
+        futureMins.push(day.min);
+      }
       weekMins.push(day.min);
       weekMaxes.push(day.max);
     }
     poss.weekGuaranteedMinimum = Math.max(...weekMins);
     poss.weekMax = Math.max(...weekMaxes);
+	poss.futureMin = Math.max(...futureMins);
+	console.log(poss.futureMins)
+	console.log(poss.futureMin);
   }
 
   generated_possibilities.sort((a, b) => a.weekMax < b.weekMax);

@@ -175,7 +175,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
         out_line += `<td>${day.min}</td>`;
       }
     }
-    out_line += `<td>${poss.weekGuaranteedMinimum}</td><td>${poss.weekMax}</td></tr>`;
+    out_line += `<td>${poss.weekGuaranteedMinimum}</td><td>${poss.futureMin}<td>${poss.weekMax}</td></tr>`;
     output_possibilities += out_line
   }
 
