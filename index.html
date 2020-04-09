@@ -1,22 +1,24 @@
 <!doctype html>
 
 <html lang="en">
+
 <head>
   <meta charset="utf-8">
-
-  <title>Animal Crossing Turnip Price Forecaster</title>
-  <meta name="description" content="Animal Crossing Turnip Price Forecaster">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Animal Crossing - Turnip Prophet</title>
+  <meta name="description" content="Animal Crossing - Turnip Prophet">
   <meta name="author" content="Mike Bryant">
 
-  <link rel="stylesheet" href="css/styles.css?v=1.0">
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="css/styles.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-162470902-1"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
 
     gtag('config', 'UA-162470902-1');
@@ -24,196 +26,268 @@
 
 </head>
 
+
 <body>
-  <div class="container">
-    <div class="col s12 m5">
-      <div class="card-panel z-depth-0">
-        <span>
-          To use, enter as much data as you can from <b>your own island</b>. The tool will figure out all possible patterns and predict the lowest and highest prices for each day.
-          <p />
-          I couldn't have done this without <a href="https://twitter.com/_Ninji/status/1244818665851289602?s=20">Ninji's work extracting the code</a>
-          <p />
-          Support, comments and contributions are available through <a href="https://github.com/mikebryant/ac-nh-turnip-prices/issues">Github</a>
-        </span>
-      </div>
+
+  <div class="dialog-box">
+    <h2 class="dialog-box__name">Daisy Mae</h2>
+    <p>Hello, and welcome to the <b>Turnip Prophet</b> app on your Nook Phone.</p>
+    <p>This app let's you track your island's turnip prices daily, but you'll have to put the prices in yourself!
+    </p>
+    <p>After that, the Turnip Prophet app will <b>magically</b> predict the turnip prices you'll have for the rest of
+      the week.
+    </p>
+  </div>
+
+  <div class="nook-phone">
+    <h1>Turnip Prophet</h1>
+
+    <div>
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.6" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.4)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.2)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
     </div>
-    <div class="row">
-      <div class="col s12">
-        <h5>Probability</h5>
-        <div class="row">
-          <div class="col s4">
-            <div class="input-field">
-              <select id="previous_pattern">
-                <option value="-1" selected>(unknown)</option>
-                <!-- Choices are ordered by increasing desirability, not code ID order -->
-                <option value="2">Decreasing</option>
-                <option value="0">Fluctuating</option>
-                <option value="3">Small spike</option>
-                <option value="1">Large spike</option>
-              </select>
-              <label for="previous_pattern">Last week’s pattern</label>
-            </div>
-          </div>
-          <div class="col s6">
-            <div class="input-field">
-              <span>
-                <b>Last week’s pattern</b> affects the probability of patterns for this week. If you know it, select it to see probabilities for this week. <em>(optional)</em>
-              </span>
+
+    <div class="nook-phone-center">
+
+
+
+      <form class="input__form">
+        <div class="form__row">
+          <h6>First-Time Buyer</h6>
+          <div class="input__group">
+            <label>Is this your first time buying turnips from Daisy Mae on your island?<i>(This affects your
+                pattern)</i></label>
+            <div class="input__radio-buttons">
+              <input type="radio" id="first-time-radio-no" name="first-time" value="false" checked>
+              <label for="first-time-radio-no">No</label>
+              <input type="radio" id="first-time-radio-yes" name="first-time" value="true">
+              <label for="first-time-radio-yes">Yes</label>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <h5>Daisy Mae</h5>
-        <div class="row">
-          <div class="col s2">
-            <div class="input-field">
-              <label for="buy">Buy price</label>
-              <input type="number" id="buy">
-            </div>
-          </div>
-          <div class="col s2">
-            <div class="input-field">
-              <label>
-                <input id="first_buy" type="checkbox" class="filled-in" />
-                <span>First time buyer</span>
-              </label>
-            </div>
-          </div>
-          <div class="col s6">
-            <div class="input-field">
-              <span>
-                Check this box if you bought from Daisy on your own island <b>for the first time ever</b>. If you bought from her on your own island in a previous week, leave this box unchecked.
-              </span>
+
+        <div class="form__row">
+          <h6>Previous Pattern</h6>
+          <div class="input__group">
+            <label for="">What was last week's turnip price pattern?<i>(This affects your pattern)</i></label>
+            <div class="input__radio-buttons">
+              <input type="radio" id="pattern-radio-unknown" name="pattern" value="-1" checked>
+              <label for="pattern-radio-unknown">I don't know</label>
+              <input type="radio" id="pattern-radio-fluctuating" name="pattern" value="0">
+              <label for="pattern-radio-fluctuating">Fluctuating</label>
+              <input type="radio" id="pattern-radio-small-spike" name="pattern" value="3">
+              <label for="pattern-radio-small-spike">Small Spike</label>
+              <input type="radio" id="pattern-radio-large-spike" name="pattern" value="1">
+              <label for="pattern-radio-large-spike">Large Spike</label>
+              <input type="radio" id="pattern-radio-decreasing" name="pattern" value="2">
+              <label for="pattern-radio-decreasing">Decreasing</label>
             </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s2">
-        <h6>Monday</h6>
-        <div class="input-field col s6">
-          <label for="sell_2">AM</label>
-          <input type="number" id="sell_2">
+
+        <div class="form__row">
+          <h6>Sunday</h6>
+          <div class="input__group">
+            <label>What was the price of turnips this week? <i>(If this is your first time buying turnips, this field
+                will be disabled)</i></label>
+            <input type="number" id="buy" placeholder="..." />
+
+          </div>
         </div>
-        <div class="input-field col s6">
-          <label for="sell_3">PM</label>
-          <input type="number" id="sell_3">
+        <i>AM - 8:00 am to 11:59 am</i>
+        <i>PM - 12:00 pm to 10:00 pm</i>
+        <div class="form__flex-wrap">
+          <div class="form__row">
+            <h6>Monday</h6>
+            <div class="input__group">
+              <label for="sell_2">AM</label>
+              <input type="number" id="sell_2" placeholder="..." />
+            </div>
+            <div class="input__group">
+              <label for="sell_3">PM</label>
+              <input type="number" id="sell_3" placeholder="..." />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <h6>Tuesday</h6>
+            <div class="input__group">
+              <label for="sell_4">AM</label>
+              <input type="number" id="sell_4" placeholder="..." />
+            </div>
+            <div class="input__group">
+              <label for="sell_5">PM</label>
+              <input type="number" id="sell_5" placeholder="..." />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <h6>Wednesday</h6>
+            <div class="input__group">
+              <label for="sell_6">AM</label>
+              <input type="number" id="sell_6" placeholder="..." />
+            </div>
+            <div class="input__group">
+              <label for="sell_7">PM</label>
+              <input type="number" id="sell_7" placeholder="..." />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <h6>Thursday</h6>
+            <div class="input__group">
+              <label for="sell_8">AM</label>
+              <input type="number" id="sell_8" placeholder="..." />
+            </div>
+            <div class="input__group">
+              <label for="sell_9">PM</label>
+              <input type="number" id="sell_9" placeholder="..." />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <h6>Friday</h6>
+            <div class="input__group">
+              <label for="sell_10">AM</label>
+              <input type="number" id="sell_10" placeholder="..." />
+            </div>
+            <div class="input__group">
+              <label for="sell_11">PM</label>
+              <input type="number" id="sell_11" placeholder="..." />
+            </div>
+          </div>
+
+          <div class="form__row">
+            <h6>Saturday</h6>
+            <div class="input__group">
+              <label for="sell_12">AM</label>
+              <input type="number" id="sell_12" placeholder="..." />
+            </div>
+            <div class="input__group">
+              <label for="sell_13">PM</label>
+              <input type="number" id="sell_13" placeholder="..." />
+            </div>
+          </div>
         </div>
-      </div>
-      <div class="col s2">
-        <h6>Tuesday</h6>
-        <div class="input-field col s6">
-          <label for="sell_4">AM</label>
-          <input type="number" id="sell_4">
-        </div>
-        <div class="input-field col s6">
-          <label for="sell_5">PM</label>
-          <input type="number" id="sell_5">
-        </div>
-      </div>
-      <div class="col s2">
-        <h6>Wednesday</h6>
-        <div class="input-field col s6">
-          <label for="sell_6">AM</label>
-          <input type="number" id="sell_6">
-        </div>
-        <div class="input-field col s6">
-          <label for="sell_7">PM</label>
-          <input type="number" id="sell_7">
-        </div>
-      </div>
-      <div class="col s2">
-        <h6>Thursday</h6>
-        <div class="input-field col s6">
-          <label for="sell_8">AM</label>
-          <input type="number" id="sell_8">
-        </div>
-        <div class="input-field col s6">
-          <label for="sell_9">PM</label>
-          <input type="number" id="sell_9">
-        </div>
-      </div>
-      <div class="col s2">
-        <h6>Friday</h6>
-        <div class="input-field col s6">
-          <label for="sell_10">AM</label>
-          <input type="number" id="sell_10">
-        </div>
-        <div class="input-field col s6">
-          <label for="sell_11">PM</label>
-          <input type="number" id="sell_11">
-        </div>
-      </div>
-      <div class="col s2">
-        <h6>Saturday</h6>
-        <div class="input-field col s6">
-          <label for="sell_12">AM</label>
-          <input type="number" id="sell_12">
-        </div>
-        <div class="input-field col s6">
-          <label for="sell_13">PM</label>
-          <input type="number" id="sell_13">
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col s12">
-        <button id="reset" class="btn waves-effect waves-light" name="action">
-          Reset
+        <button id="reset" class="reset-button" name="action">
+          Reset Turnip Prophet
         </button>
+      </form>
+
+
+
+      <h2>Output</h2>
+
+      <div class="table-wrapper">
+        <table id="turnipTable">
+          <thead>
+            <tr>
+              <th valign="bottom">Pattern</th>
+              <th valign="bottom">% Chance</th>
+              <th valign="bottom">Sunday</th>
+              <th colspan="2">
+                <div>Monday</div>
+                <div>
+                  <span>AM</span>
+                  <span>PM</span>
+                </div>
+              </th>
+              <th colspan="2">
+                <div>Tuesday</div>
+                <div>
+                  <span>AM</span>
+                  <span>PM</span>
+                </div>
+              </th>
+              <th colspan="2">
+                <div>
+                  <div>Wednesday</div>
+                  <div>
+                    <span>AM</span>
+                    <span>PM</span>
+                  </div>
+                </div>
+              </th>
+              <th colspan="2">
+                <div>Thursday</div>
+                <div>
+                  <span>AM</span>
+                  <span>PM</span>
+                </div>
+              </th>
+              <th colspan="2">
+                <div>Friday</div>
+                <div>
+                  <span>AM</span>
+                  <span>PM</span>
+                </div>
+              </th>
+              <th colspan="2">
+                <div>Saturday</div>
+                <div>
+                  <span>AM</span>
+                  <span>PM</span>
+                </div>
+              </th>
+              <th valign="bottom">Guaranteed Minimum</th>
+              <th valign="bottom">Potential Maximum</th>
+            </tr>
+          </thead>
+          <tbody id="output"></tbody>
+        </table>
       </div>
     </div>
 
-    <div class="divider"></div>
-
-    <div class="card-panel z-depth-0">
-        <span>Your turnip prices will be one of the following patterns. Each cell contains the minimum..maximum price for that half-day. If you don't have a pattern, something's gone wrong, sorry &#128531;. Check back next week!</span>
+    <div style="transform:rotate(180deg)">
+      <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.6" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.4)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.2)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
     </div>
 
-    <div class="section">
-      <table id="turnipTable" class="highlight">
-        <thead>
-          <tr>
-            <th rowspan="2">Pattern</th>
-            <th rowspan="2">% Chance</th>
-            <th rowspan="2">Sunday</th>
-            <th colspan="2">Monday</th>
-            <th colspan="2">Tuesday</th>
-            <th colspan="2">Wednesday</th>
-            <th colspan="2">Thursday</th>
-            <th colspan="2">Friday</th>
-            <th colspan="2">Saturday</th>
-            <th rowspan="2">Guaranteed Minimum</th>
-            <th rowspan="2">Potential Maximum</th>
-          </tr>
-          <tr>
-            <th>AM</th>
-            <th>PM</th>
-            <th>AM</th>
-            <th>PM</th>
-            <th>AM</th>
-            <th>PM</th>
-            <th>AM</th>
-            <th>PM</th>
-            <th>AM</th>
-            <th>PM</th>
-            <th>AM</th>
-            <th>PM</th>
-          </tr>
-        </thead>
-        <tbody id="output"></tbody>
-      </table>
-    </div>
+  </div>
+
+  <div class="dialog-box">
+    <h2 class="dialog-box__name">Daisy Mae</h2>
+    <p>After you've listed some turnip prices, the Turnip Prophet will run some numbers and display the different
+      possible patterns that your island may experience.</p>
+    <p>This app is still in development, but will improve over time!</p>
+  </div>
+
+  <div class="dialog-box">
+    <h2 class="dialog-box__name">Daisy Mae</h2>
+    <p>
+      None of this would have been possible without <a
+        href="https://twitter.com/_Ninji/status/1244818665851289602?s=20">Ninji's work</a> figuring out just how Timmy
+      and Tommy value their turnips.
+    </p>
+    <p>
+      Support, comments and contributions are available through <a
+        href="https://github.com/mikebryant/ac-nh-turnip-prices/issues">Github</a>
+    </p>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="js/predictions.js"></script>
   <script src="js/scripts.js"></script>
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 </body>
+
 </html>
