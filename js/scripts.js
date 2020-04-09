@@ -101,8 +101,17 @@ const getPricesFromQuery = function () {
     const params = new URLSearchParams(window.location.search.substr(1));
     const sell_prices = params.get("prices").split(".").map((x) => parseInt(x, 10));
 
-    if (!Array.isArray(sell_prices) || sell_prices.length !== 14) {
+    if (!Array.isArray(sell_prices)) {
       return null;
+    }
+
+    // Parse the array which is formatted like: [price, M-AM, M-PM, T-AM, T-PM, W-AM, W-PM, Th-AM, Th-PM, F-AM, F-PM, S-AM, S-PM, Su-AM, Su-PM]
+    // due to the format of local storage we need to double up the price at the start of the array.
+    sell_prices.unshift(sell_prices[0]);
+
+    // This allows us to fill out the missing fields at the end of the array
+    for (let i = sell_prices.length; i < 14; i++) {
+      sell_prices.push(0);
     }
 
     window.price_from_query = true;
