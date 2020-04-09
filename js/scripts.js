@@ -33,7 +33,9 @@ const checkRadioByValue = function (radio_array, value) {
     return;
   }
   value = value.toString();
-  radio_array.find(radio => radio.value == value).checked = true;
+
+  if (typeof radio_array.find(radio => radio.value == value) !== 'undefined')
+    radio_array.find(radio => radio.value == value).checked = true;
 }
 
 const sell_inputs = getSellFields()
