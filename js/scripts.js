@@ -80,7 +80,7 @@ const initialize = function () {
 
   $("#reset").on("click", function () {
     sell_inputs.forEach(input => input.value = '')
-    fillFields([], false, 'unknown')
+    fillFields([], false, -1)
     update()
   })
 }
