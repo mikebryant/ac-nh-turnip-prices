@@ -25,12 +25,15 @@ const getPreviousPatternRadios = function () {
 }
 
 const getCheckedRadio = function (radio_array) {
-  return radio_array.find(radio => radio.checked === true).value
+  return radio_array.find(radio => radio.checked === true).value;
 }
 
 const checkRadioByValue = function (radio_array, value) {
-  radio_array.forEach(radio => radio.checked = false)
-  radio_array.find(radio => radio.value == value).checked = true
+  if (value === null) {
+    return;
+  }
+  value = value.toString();
+  radio_array.find(radio => radio.value == value).checked = true;
 }
 
 const sell_inputs = getSellFields()
@@ -40,7 +43,7 @@ const previous_pattern_radios = getPreviousPatternRadios()
 
 //Functions
 const fillFields = function (prices, first_buy, previous_pattern) {
-  first_buy == 'yes' ? checkRadioByValue(first_buy_radios, 'yes') : checkRadioByValue(first_buy_radios, 'no')
+  checkRadioByValue(first_buy_radios, first_buy);
   checkRadioByValue(previous_pattern_radios, previous_pattern);
 
   buy_input.focus();
@@ -80,8 +83,6 @@ const initialize = function () {
     fillFields([], false, 'unknown')
     update()
   })
-
-  $('select').formSelect();
 }
 
 const updateLocalStorage = function (prices, first_buy, previous_pattern) {
@@ -101,11 +102,11 @@ const isEmpty = function (arr) {
 }
 
 const getFirstBuyState = function () {
-  return JSON.parse(localStorage.getItem('first_buy')) || 'no'
+  return JSON.parse(localStorage.getItem('first_buy'))
 }
 
 const getPreviousPatternState = function () {
-  return JSON.parse(localStorage.getItem('previous_pattern')) || 'unknown'
+  return JSON.parse(localStorage.getItem('previous_pattern'))
 }
 
 const getPricesFromLocalstorage = function () {
@@ -157,7 +158,6 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   let output_possibilities = "";
   for (let poss of analyze_possibilities(data, first_buy, previous_pattern)) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
-    console.log(poss.probability)
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
@@ -173,34 +173,14 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   $("#output").html(output_possibilities)
 }
 
-const convertPatternToInt = function (pattern) {
-  switch (pattern) {
-    case 'unknown':
-      return -1;
-    case 'fluctuating':
-      return 0;
-    case 'large-spike':
-      return 1;
-    case 'decreasing':
-      return 2;
-    case 'small-spike':
-      return 3;
-    default:
-      return -1;
-  }
-}
-
-
 const update = function () {
   const sell_prices = getSellPrices();
   const buy_price = parseInt(buy_input.val());
-  const first_buy = getCheckedRadio(first_buy_radios);
-  const first_buy_boolean = first_buy == 'yes'
-  const previous_pattern = getCheckedRadio(previous_pattern_radios);
+  const first_buy = getCheckedRadio(first_buy_radios) == 'true';
+  const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
 
-
-  buy_input[0].disabled = first_buy_boolean;
-  buy_input[0].placeholder = first_buy_boolean ? '—' : '...'
+  buy_input[0].disabled = first_buy;
+  buy_input[0].placeholder = first_buy ? '—' : '...'
 
   const prices = [buy_price, buy_price, ...sell_prices];
 
@@ -208,7 +188,7 @@ const update = function () {
     updateLocalStorage(prices, first_buy, previous_pattern);
   }
 
-  calculateOutput(prices, first_buy_boolean, parseInt(convertPatternToInt(previous_pattern)));
+  calculateOutput(prices, first_buy, previous_pattern);
 }
 
 $(document).ready(initialize);
