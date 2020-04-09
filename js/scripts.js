@@ -7,15 +7,41 @@ const getSellFields = function () {
   return fields
 }
 
+const getFirstBuyRadios = function () {
+  return [
+    $("#first-time-radio-no")[0],
+    $("#first-time-radio-yes")[0]
+  ];
+}
+
+const getPreviousPatternRadios = function () {
+  return [
+    $("#pattern-radio-unknown")[0],
+    $("#pattern-radio-fluctuating")[0],
+    $("#pattern-radio-small-spike")[0],
+    $("#pattern-radio-large-spike")[0],
+    $("#pattern-radio-decreasing")[0]
+  ];
+}
+
+const getCheckedRadio = function (radio_array) {
+  return radio_array.find(radio => radio.checked === true).value
+}
+
+const checkRadioByValue = function (radio_array, value) {
+  radio_array.forEach(radio => radio.checked = false)
+  radio_array.find(radio => radio.value == value).checked = true
+}
+
 const sell_inputs = getSellFields()
 const buy_input = $("#buy")
-const first_buy_field = $("#first_buy");
-const previous_pattern_input = $("#previous_pattern");
+const first_buy_radios = getFirstBuyRadios()
+const previous_pattern_radios = getPreviousPatternRadios()
 
 //Functions
 const fillFields = function (prices, first_buy, previous_pattern) {
-  first_buy_field.prop("checked", first_buy);
-  previous_pattern_input.val(previous_pattern);
+  first_buy == 'yes' ? checkRadioByValue(first_buy_radios, 'yes') : checkRadioByValue(first_buy_radios, 'no')
+  checkRadioByValue(previous_pattern_radios, previous_pattern);
 
   buy_input.focus();
   buy_input.val(prices[0] || '')
@@ -50,9 +76,9 @@ const initialize = function () {
   }
 
   $("#reset").on("click", function () {
-    first_buy_field.prop('checked', false);
-    $("select").val(null);
-    $("input").val(null).trigger("input");
+    sell_inputs.forEach(input => input.value = '')
+    fillFields([], false, 'unknown')
+    update()
   })
 
   $('select').formSelect();
@@ -75,11 +101,11 @@ const isEmpty = function (arr) {
 }
 
 const getFirstBuyState = function () {
-  return JSON.parse(localStorage.getItem('first_buy'))
+  return JSON.parse(localStorage.getItem('first_buy')) || 'no'
 }
 
 const getPreviousPatternState = function () {
-  return JSON.parse(localStorage.getItem('previous_pattern'))
+  return JSON.parse(localStorage.getItem('previous_pattern')) || 'unknown'
 }
 
 const getPricesFromLocalstorage = function () {
@@ -130,37 +156,61 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   }
   let output_possibilities = "";
   for (let poss of analyze_possibilities(data, first_buy, previous_pattern)) {
-    var out_line = "<tr><td>" + poss.pattern_description + "</td>"
+    var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
+    console.log(poss.probability)
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
-        out_line += `<td>${day.min}..${day.max}</td>`;
+        out_line += `<td>${day.min} to ${day.max}</td>`;
       } else {
-        out_line += `<td class="one">${day.min}</td>`;
+        out_line += `<td>${day.min}</td>`;
       }
     }
-    out_line += `<td class="one">${poss.weekGuaranteedMinimum}</td><td class="one">${poss.weekMax}</td></tr>`;
+    out_line += `<td>${poss.weekGuaranteedMinimum}</td><td>${poss.weekMax}</td></tr>`;
     output_possibilities += out_line
   }
 
   $("#output").html(output_possibilities)
 }
 
+const convertPatternToInt = function (pattern) {
+  switch (pattern) {
+    case 'unknown':
+      return -1;
+    case 'fluctuating':
+      return 0;
+    case 'large-spike':
+      return 1;
+    case 'decreasing':
+      return 2;
+    case 'small-spike':
+      return 3;
+    default:
+      return -1;
+  }
+}
+
+
 const update = function () {
   const sell_prices = getSellPrices();
   const buy_price = parseInt(buy_input.val());
-  const first_buy = first_buy_field.is(":checked");
-  const previous_pattern = parseInt(previous_pattern_input.val());
+  const first_buy = getCheckedRadio(first_buy_radios);
+  const first_buy_boolean = first_buy == 'yes'
+  const previous_pattern = getCheckedRadio(previous_pattern_radios);
 
-  buy_input.prop('disabled', first_buy);
+
+  buy_input[0].disabled = first_buy_boolean;
+  buy_input[0].placeholder = first_buy_boolean ? '—' : '...'
 
   const prices = [buy_price, buy_price, ...sell_prices];
+
   if (!window.price_from_query) {
     updateLocalStorage(prices, first_buy, previous_pattern);
   }
-  calculateOutput(prices, first_buy, previous_pattern);
+
+  calculateOutput(prices, first_buy_boolean, parseInt(convertPatternToInt(previous_pattern)));
 }
 
 $(document).ready(initialize);
 $(document).on("input", update);
-$(previous_pattern_input).on("change", update);
+$('input[type = radio]').on("change", update);
