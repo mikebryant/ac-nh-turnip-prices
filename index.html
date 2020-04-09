@@ -9,6 +9,8 @@
   <meta name="description" content="Animal Crossing - Turnip Prophet">
   <meta name="author" content="Mike Bryant">
 
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/img/192.png">
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -293,6 +295,28 @@
   <script src="js/predictions.js"></script>
   <script src="js/scripts.js"></script>
   <script src="js/contributors.js"></script>
+  <script>
+    // Check compatibility for the browser we're running this in
+    if ("serviceWorker" in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log(
+          "[PWA] Service Worker already found, skipping register"
+        );
+      } else {
+        // Register the service worker
+        navigator.serviceWorker
+          .register("/service-worker.js", {
+            scope: "./",
+          })
+          .then(function (reg) {
+            console.log(
+              "[PWA] Service worker has been registered for scope: " +
+                reg.scope
+            );
+          });
+      }
+    }
+  </script>
 </body>
 
 </html>
