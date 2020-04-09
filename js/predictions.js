@@ -660,7 +660,7 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     }
     poss.weekGuaranteedMinimum = Math.max(...weekMins);
     poss.weekMax = Math.max(...weekMaxes);
-	poss.futureMin = Math.max(...futureMins);
+    poss.futureMin = Math.max(...futureMins);
   }
 
   generated_possibilities.sort((a, b) => a.weekMax < b.weekMax);
