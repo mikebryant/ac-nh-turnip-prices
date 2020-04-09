@@ -20,7 +20,6 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Varela Round', sans-serif;
-  padding-bottom: 20vh;
 }
 
 h1 {
@@ -39,7 +38,7 @@ h2 {
   margin: 16px auto;
   border-radius: 40px;
   padding: 16px 0px;
-  padding-bottom: 32px;
+  padding-bottom: 16px;
   background: #F5F8FF;
   color: #686868;
   overflow: hidden;
@@ -68,7 +67,7 @@ h2 {
 .dialog-box p {
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #837865;
   letter-spacing: 0.2px;
   line-height: 1.8rem;
@@ -93,9 +92,9 @@ h2 {
   position: absolute;
   left: 16px;
   top: -28px;
-  font-size: 1.1rem;
+  font-size: 1rem;
   color: #BA3B1F;
-  padding: 4px 24px;
+  padding: 4px 16px;
   background: #FF9A40;
   border-radius: 40px;
 }
@@ -104,14 +103,14 @@ h2 {
   background: white;
   display: flex;
   flex-direction: column;
-  padding: 32px;
+  padding: 16px;
   align-items: center;
 }
 
 .form__row {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 32px;
+  margin-bottom: 16px;
   justify-content: center;
   align-items: center;
 }
@@ -120,17 +119,18 @@ h2 {
   width: 100%;
   display: block;
   font-weight: 800;
-  font-size: 1.5rem;
-  margin: 16px auto;
+  font-size: 1.25rem;
+  margin: 8px auto;
   color: #845E44;
   text-align: center;
 }
 
 .form__flex-wrap {
-  margin-top: 16px;
+  margin-top: 8px;
   display: flex;
   flex-wrap: wrap;
-  max-width: 100%;
+  width: 100%;
+  max-width: 1080px;
   justify-content: center;
 }
 
@@ -142,7 +142,7 @@ h2 {
 }
 
 .input__group label {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
   margin-bottom: 8px;
   opacity: 0.7;
@@ -150,7 +150,6 @@ h2 {
 }
 
 .form__flex-wrap .input__group label {
-
   margin-left: 0px;
   margin-bottom: 8px;
 }
@@ -171,8 +170,8 @@ h2 {
 input {
   border: 0px solid white;
   border-radius: 40px;
-  padding: 16px 24px;
-  font-size: 2rem;
+  padding: 8px 16px;
+  font-size: 1.25rem;
   font-family: inherit;
   color: inherit;
   font-weight: bold;
@@ -235,7 +234,7 @@ input[type=number] {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin-top: 16px;
+  margin-top: 8px;
 }
 
 .input__radio-buttons input[type=radio] {
@@ -247,13 +246,12 @@ input[type=number] {
   border: none;
   border-radius: 40px;
   background: #F3F3F3;
-  padding: 16px 24px;
-  font-size: 1.5rem;
+  padding: 8px 16px;
+  font-size: 1.25rem;
   font-family: inherit;
   font-weight: bold;
   transition: 0.2s all;
   margin: 8px;
-
 }
 
 .input__radio-buttons input[type="radio"]:not(:checked)+label:hover {
@@ -279,7 +277,7 @@ input[type=number] {
   font-size: 1.2rem;
   transition: 0.2s all;
   position: relative;
-  margin: 32px auto;
+  margin: 16px auto;
 }
 
 .reset-button:hover {
