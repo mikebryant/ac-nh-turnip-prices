@@ -661,8 +661,6 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     poss.weekGuaranteedMinimum = Math.max(...weekMins);
     poss.weekMax = Math.max(...weekMaxes);
 	poss.futureMin = Math.max(...futureMins);
-	console.log(poss.futureMins)
-	console.log(poss.futureMin);
   }
 
   generated_possibilities.sort((a, b) => a.weekMax < b.weekMax);
