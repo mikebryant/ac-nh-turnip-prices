@@ -35,6 +35,7 @@ h2 {
 
 .nook-phone {
   width: 100%;
+  max-width: 1400px;
   box-sizing: border-box;
   margin: 16px auto;
   border-radius: 40px;
@@ -300,6 +301,11 @@ input[type=number] {
   border-radius: 2px;
 }
 
+@media only screen and (max-width: 1440px) and (pointer: fine) {
+  .table-wrapper {
+    max-height: calc(75vh - 40px);
+  }
+}
 
 .table-wrapper::-webkit-scrollbar {
   height: 8px;
@@ -343,6 +349,7 @@ input[type=number] {
 }
 
 #turnipTable td {
+  white-space: nowrap;
   max-width: 100px;
   padding: 6px 4px;
   text-align: center;
@@ -360,7 +367,7 @@ input[type=number] {
 }
 
 #turnipTable .table-pattern {
-  white-space: normal;
+  white-space: nowrap;
 }
 
 
