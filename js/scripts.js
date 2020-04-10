@@ -29,7 +29,7 @@ const getCheckedRadio = function (radio_array) {
 }
 
 const checkRadioByValue = function (radio_array, value) {
-  if (value === null) {
+  if (!isNumber(value) && value === null) {
     return;
   }
   value = value.toString();
@@ -102,11 +102,77 @@ const isEmpty = function (arr) {
 }
 
 const getFirstBuyState = function () {
-  return JSON.parse(localStorage.getItem('first_buy'))
+  return getFirstBuyStateFromQuery() || JSON.parse(localStorage.getItem('first_buy'));
+}
+
+const getFirstBuyStateFromQuery = function () {
+  try {
+    const params = new URLSearchParams(window.location.search.substr(1));
+    const first_buy_state = params.get("first_buy");
+
+    if (!(first_buy_state))
+      return false;
+
+    window.has_query = true;
+    return first_buy_state;
+  } catch (e) {
+    return null;
+  }
 }
 
 const getPreviousPatternState = function () {
-  return JSON.parse(localStorage.getItem('previous_pattern'))
+  return getPreviousPatternStateFromQuery() || JSON.parse(localStorage.getItem('previous_pattern'));
+}
+
+const getPreviousPatternStateFromQuery = function () {
+  try {
+    const params = new URLSearchParams(window.location.search.substr(1));
+    const qs_pattern = params.get("pattern");
+    let pattern_result = null;
+
+    console.log(qs_pattern);
+
+    if (isNumber(qs_pattern)) {
+      // its a number which aligns with the localstorage
+      if ((Number(qs_pattern) >= -1) && (Number(qs_pattern) <= 3))
+        pattern_result = Number(qs_pattern);
+      else 
+        return null;
+    } else {
+      // string or something else, helps make the querystring readable
+      switch(qs_pattern) {
+        case 'fluctuating':
+          pattern_result = 0;
+          break;
+        case 'small':
+        case 'smallspike':
+          pattern_result = 3;
+          break;
+        case 'large':
+        case 'largespike':
+          pattern_result = 1;
+          break;
+        case 'decreasing':
+          pattern_result = 2;
+          break;
+        case 'none':
+        case 'dontknow':
+        case 'idontknow':
+          pattern_result = -1;
+          break;
+        default:
+          return null;
+      }
+    }
+    console.log(pattern_result);
+
+    console.log('pattern success', pattern_result);
+
+    window.has_query = true;
+    return pattern_result;
+  } catch (e) {
+    return null;
+  }
 }
 
 const getPricesFromLocalstorage = function () {
@@ -121,7 +187,7 @@ const getPricesFromLocalstorage = function () {
   } catch (e) {
     return null;
   }
-};
+}
 
 const getPricesFromQuery = function () {
   try {
@@ -141,16 +207,16 @@ const getPricesFromQuery = function () {
       sell_prices.push(0);
     }
 
-    window.price_from_query = true;
+    window.has_query = true;
     return sell_prices;
   } catch (e) {
     return null;
   }
-};
+}
 
 const getPrices = function () {
   return getPricesFromQuery() || getPricesFromLocalstorage();
-};
+}
 
 const getSellPrices = function () {
   //Checks all sell inputs and returns an array with their values
@@ -193,11 +259,20 @@ const update = function () {
 
   const prices = [buy_price, buy_price, ...sell_prices];
 
-  if (!window.price_from_query) {
+  if (!window.has_query) {
     updateLocalStorage(prices, first_buy, previous_pattern);
   }
 
   calculateOutput(prices, first_buy, previous_pattern);
+}
+
+const isNumber = function(v) {
+  const value = parseFloat(v);
+
+  if ((typeof value === 'undefined') || (typeof value !== 'number') || (value !== Number(value)) || (Number.isFinite(value) === false))
+    return false;
+
+  return true;
 }
 
 $(document).ready(initialize);
