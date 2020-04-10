@@ -110,7 +110,7 @@ const getFirstBuyStateFromQuery = function () {
     const params = new URLSearchParams(window.location.search.substr(1));
     const first_buy_state = params.get("first_buy");
 
-    if (!(first_buy_state))
+    if (!(first_buy_state) || first_buy_state === 'no')
       return false;
 
     window.has_query = true;
