@@ -67,7 +67,10 @@ const initialize = function () {
   try {
     const prices = getPrices()
     const first_buy = getFirstBuyState();
-    const previous_pattern = getPreviousPatternState();
+    const previous_pattern = getPreviousPatternFromQuery() !== undefined ?
+      getPreviousPatternFromQuery() :
+      getPreviousPatternFromLocalStorage();
+
     if (prices === null) {
       fillFields([], first_buy, previous_pattern)
     } else {
@@ -105,8 +108,32 @@ const getFirstBuyState = function () {
   return JSON.parse(localStorage.getItem('first_buy'))
 }
 
-const getPreviousPatternState = function () {
+const getPreviousPatternFromLocalStorage = function () {
   return JSON.parse(localStorage.getItem('previous_pattern'))
+}
+
+const getPreviousPatternFromQuery = function () {
+  const pattern_dictionary = {
+    "idontknow": -1,
+    "fluctuating": 0,
+    "largespike": 1,
+    "decreasing": 2,
+    "smallspike": 3,
+    "-1": -1,
+    "0": 0,
+    "1": 1,
+    "2": 2,
+    "3": 3,
+  }
+
+  const params = new URLSearchParams(window.location.search);
+  const previous_pattern_param =
+    params.has('previous_pattern')
+    && params.get('previous_pattern').replace(/\s/g, '').toLowerCase();
+
+    return pattern_dictionary[previous_pattern_param] !== undefined ?
+      pattern_dictionary[previous_pattern_param] :
+      -1;
 }
 
 const getPricesFromLocalstorage = function () {
@@ -125,8 +152,8 @@ const getPricesFromLocalstorage = function () {
 
 const getPricesFromQuery = function () {
   try {
-    const params = new URLSearchParams(window.location.search.substr(1));
-    const sell_prices = params.get("prices").split(".").map((x) => parseInt(x, 10));
+    const params = new URLSearchParams(window.location.search);
+    const sell_prices = params.has("prices") && params.get("prices").split(".").map((x) => parseInt(x, 10));
 
     if (!Array.isArray(sell_prices)) {
       return null;
