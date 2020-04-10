@@ -165,7 +165,8 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     return;
   }
   let output_possibilities = "";
-  for (let poss of analyze_possibilities(data, first_buy, previous_pattern)) {
+  let possibilities = analyze_possibilities(data, first_buy, previous_pattern)
+  for (let poss of possibilities) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
@@ -180,6 +181,8 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   }
 
   $("#output").html(output_possibilities)
+
+  updateGraph(data, possibilities);
 }
 
 const update = function () {
@@ -198,6 +201,129 @@ const update = function () {
   }
 
   calculateOutput(prices, first_buy, previous_pattern);
+}
+
+const chartOptions = {
+  maintainAspectRatio: false,
+  showLines: true,
+  tooltips: {
+    intersect: false,
+    mode: "index",
+  },
+  scales: {
+    yAxes: [
+      {
+        gridLines: {
+          display: false,
+        },
+        ticks: {
+          suggestedMin: 0,
+          suggestedMax: 300,
+        },
+      },
+    ],
+  },
+  elements: {
+    line: {
+      cubicInterpolationMode: "monotone",
+    },
+  },
+};
+
+const getLabels = () => {
+  return "Mon Tue Wed Thu Fri Sat"
+      .split(" ")
+      .reduce(
+          (acc, day) => [...acc, `${day} ${"AM"}`, `${day} ${"PM"}`],
+          []
+      );
+};
+
+
+let chart = null
+const updateGraph = function(datas, possibilities) {
+  let all_possibilities = possibilities.slice(-1).pop()
+  let buy_price = datas[0]
+  let inputDatas = datas.slice(2)
+  let prices = all_possibilities.prices.slice(2)
+  let mins = prices.map(value => value.min);
+  let maxs = prices.map(value => value.max);
+
+  let average = Array()
+  for (let i = 0; i <= 11; i++) {
+    average.push(Math.floor((mins[i] + maxs[i]) / 2))
+  }
+
+  let datasets = [
+    {
+      label: "Buy Price",
+      data: new Array(12).fill(buy_price || null),
+      fill: true,
+      backgroundColor: "transparent",
+      borderColor: "#7B6C53",
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      borderDash: [5, 15],
+    },
+    {
+      label: "Guaranteed Min",
+      data: new Array(12).fill(all_possibilities.weekGuaranteedMinimum || null),
+      fill: true,
+      backgroundColor: "transparent",
+      borderColor: "#007D75",
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      borderDash: [3, 6],
+    },
+    {
+      label: "Daily Price",
+      data: inputDatas,
+      fill: false,
+      backgroundColor: "#EF8341",
+      borderColor: "#EF8341",
+    },
+    {
+      label: "Average",
+      data: average,
+      backgroundColor: "#F0E16F",
+      borderColor: "#F0E16F",
+      pointRadius: 0,
+      fill: false,
+    },
+    {
+      label: "Maximum",
+      data: maxs || new Array(12).fill(null),
+      backgroundColor: "#A5D5A5",
+      borderColor: "#A5D5A5",
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      fill: 3,
+    },
+    {
+      label: "Minimum",
+      data: mins || new Array(12).fill(null),
+      backgroundColor: "#88C9A1",
+      borderColor: "#88C9A1",
+      pointRadius: 0,
+      pointHoverRadius: 0,
+      fill: 3,
+    },
+  ];
+
+  const ctx = document.getElementById('chart').getContext("2d");
+  if (!chart) {
+    chart = new Chart(ctx, {
+      type: "line",
+      data: {
+        datasets: datasets,
+        labels: getLabels(),
+      },
+      options: chartOptions,
+    });
+  } else {
+    chart.data.datasets = datasets;
+    chart.update()
+  }
 }
 
 $(document).ready(initialize);

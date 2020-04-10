@@ -105,8 +105,6 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
     }
 
     predicted_prices.push({
@@ -128,8 +126,6 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
       min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
       max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
     }
@@ -152,8 +148,6 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
     }
 
     predicted_prices.push({
@@ -175,8 +169,6 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
       min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
       max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
     }
@@ -202,8 +194,6 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
     }
 
     predicted_prices.push({
@@ -282,8 +272,6 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
       min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
       max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
     }
@@ -309,8 +297,6 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
     }
 
     predicted_prices.push({
@@ -370,8 +356,6 @@ function* generate_pattern_2(given_prices) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
       min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
       max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
     }
@@ -448,8 +432,6 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
       min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
       max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
     }
@@ -473,8 +455,6 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
-      min_pred = given_prices[i];
-      max_pred = given_prices[i];
     }
 
     predicted_prices.push({
@@ -491,8 +471,6 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
       // Given price is out of predicted range, so this is the wrong pattern
       return;
     }
-    min_pred = given_prices[peak_start + 2];
-    max_pred = given_prices[peak_start + 2];
   }
   predicted_prices.push({
     min: min_pred,
@@ -507,8 +485,6 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
       // Given price is out of predicted range, so this is the wrong pattern
       return;
     }
-    min_pred = given_prices[peak_start + 3];
-    max_pred = given_prices[peak_start + 3];
   }
   predicted_prices.push({
     min: min_pred,
@@ -523,8 +499,6 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
       // Given price is out of predicted range, so this is the wrong pattern
       return;
     }
-    min_pred = given_prices[peak_start + 4];
-    max_pred = given_prices[peak_start + 4];
   }
   predicted_prices.push({
     min: min_pred,
@@ -545,8 +519,6 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
           // Given price is out of predicted range, so this is the wrong pattern
           return;
         }
-        min_pred = given_prices[i];
-        max_pred = given_prices[i];
         min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
         max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
       }
