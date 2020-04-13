@@ -63,14 +63,6 @@ const fillFields = function (prices, first_buy, previous_pattern) {
   })
 }
 
-const getFirstBuyState = function () {
-  return JSON.parse(localStorage.getItem('first_buy')) || 'no'
-}
-
-const getPreviousPatternState = function () {
-  return JSON.parse(localStorage.getItem('previous_pattern')) || 'unknown'
-}
-
 const initialize = function () {
   try {
     const prices = getPrices()
@@ -189,24 +181,6 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
 
   $("#output").html(output_possibilities)
 }
-
-const convertPatternToInt = function (pattern) {
-  switch (pattern) {
-    case 'unknown':
-      return -1;
-    case 'fluctuating':
-      return 0;
-    case 'large-spike':
-      return 1;
-    case 'decreasing':
-      return 2;
-    case 'small-spike':
-      return 3;
-    default:
-      return -1;
-  }
-}
-
 
 const update = function () {
   const sell_prices = getSellPrices();

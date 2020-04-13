@@ -85,7 +85,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
   */
 
   buy_price = given_prices[0];
-  var predicted_prices = [{
+  var predicted_prices = [
+    {
       min: buy_price,
       max: buy_price,
     },
@@ -257,7 +258,8 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
   */
 
   buy_price = given_prices[0];
-  var predicted_prices = [{
+  var predicted_prices = [
+    {
       min: buy_price,
       max: buy_price,
     },
@@ -345,7 +347,8 @@ function* generate_pattern_2(given_prices) {
 
 
   buy_price = given_prices[0];
-  var predicted_prices = [{
+  var predicted_prices = [
+    {
       min: buy_price,
       max: buy_price,
     },
@@ -421,7 +424,8 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   */
 
   buy_price = given_prices[0];
-  var predicted_prices = [{
+  var predicted_prices = [
+    {
       min: buy_price,
       max: buy_price,
     },
