@@ -32,7 +32,7 @@
   <div class="dialog-box">
     <h2 class="dialog-box__name">Daisy Mae</h2>
     <p>Hello, and welcome to the <b>Turnip Prophet</b> app on your Nook Phone.</p>
-    <p>This app let's you track your island's turnip prices daily, but you'll have to put the prices in yourself!
+    <p>This app lets you track your island's turnip prices daily, but you'll have to put the prices in yourself!
     </p>
     <p>After that, the Turnip Prophet app will <b>magically</b> predict the turnip prices you'll have for the rest of
       the week.
@@ -68,9 +68,9 @@
             <label>Is this your first time buying turnips from Daisy Mae on your island?<i>(This affects your
                 pattern)</i></label>
             <div class="input__radio-buttons">
-              <input type="radio" id="first-time-radio-no" name="first-time" value="no" checked>
+              <input type="radio" id="first-time-radio-no" name="first-time" value="false" checked>
               <label for="first-time-radio-no">No</label>
-              <input type="radio" id="first-time-radio-yes" name="first-time" value="yes">
+              <input type="radio" id="first-time-radio-yes" name="first-time" value="true">
               <label for="first-time-radio-yes">Yes</label>
             </div>
           </div>
@@ -81,15 +81,15 @@
           <div class="input__group">
             <label for="">What was last week's turnip price pattern?<i>(This affects your pattern)</i></label>
             <div class="input__radio-buttons">
-              <input type="radio" id="pattern-radio-unknown" name="pattern" value="unknown" checked>
+              <input type="radio" id="pattern-radio-unknown" name="pattern" value="-1" checked>
               <label for="pattern-radio-unknown">I don't know</label>
-              <input type="radio" id="pattern-radio-fluctuating" name="pattern" value="fluctuating">
+              <input type="radio" id="pattern-radio-fluctuating" name="pattern" value="0">
               <label for="pattern-radio-fluctuating">Fluctuating</label>
-              <input type="radio" id="pattern-radio-small-spike" name="pattern" value="small-spike">
+              <input type="radio" id="pattern-radio-small-spike" name="pattern" value="3">
               <label for="pattern-radio-small-spike">Small Spike</label>
-              <input type="radio" id="pattern-radio-large-spike" name="pattern" value="large-spike">
+              <input type="radio" id="pattern-radio-large-spike" name="pattern" value="1">
               <label for="pattern-radio-large-spike">Large Spike</label>
-              <input type="radio" id="pattern-radio-decreasing" name="pattern" value="decreasing">
+              <input type="radio" id="pattern-radio-decreasing" name="pattern" value="2">
               <label for="pattern-radio-decreasing">Decreasing</label>
             </div>
           </div>
@@ -104,84 +104,85 @@
 
           </div>
         </div>
-        <i>AM - 8:00 am to 11:59 am</i>
-        <i>PM - 12:00 pm to 10:00 pm</i>
-        <div class="form__flex-wrap">
-          <div class="form__row">
-            <h6>Monday</h6>
-            <div class="input__group">
-              <label for="sell_2">AM</label>
-              <input type="number" id="sell_2" placeholder="..." />
+        <<<<<<< HEAD=======>>>>>>> pr/1
+          <i>AM - 8:00 am to 11:59 am</i>
+          <i>PM - 12:00 pm to 10:00 pm</i>
+          <div class="form__flex-wrap">
+            <div class="form__row">
+              <h6>Monday</h6>
+              <div class="input__group">
+                <label for="sell_2">AM</label>
+                <input type="number" id="sell_2" placeholder="..." />
+              </div>
+              <div class="input__group">
+                <label for="sell_3">PM</label>
+                <input type="number" id="sell_3" placeholder="..." />
+              </div>
             </div>
-            <div class="input__group">
-              <label for="sell_3">PM</label>
-              <input type="number" id="sell_3" placeholder="..." />
-            </div>
-          </div>
 
-          <div class="form__row">
-            <h6>Tuesday</h6>
-            <div class="input__group">
-              <label for="sell_4">AM</label>
-              <input type="number" id="sell_4" placeholder="..." />
+            <div class="form__row">
+              <h6>Tuesday</h6>
+              <div class="input__group">
+                <label for="sell_4">AM</label>
+                <input type="number" id="sell_4" placeholder="..." />
+              </div>
+              <div class="input__group">
+                <label for="sell_5">PM</label>
+                <input type="number" id="sell_5" placeholder="..." />
+              </div>
             </div>
-            <div class="input__group">
-              <label for="sell_5">PM</label>
-              <input type="number" id="sell_5" placeholder="..." />
-            </div>
-          </div>
 
-          <div class="form__row">
-            <h6>Wednesday</h6>
-            <div class="input__group">
-              <label for="sell_6">AM</label>
-              <input type="number" id="sell_6" placeholder="..." />
+            <div class="form__row">
+              <h6>Wednesday</h6>
+              <div class="input__group">
+                <label for="sell_6">AM</label>
+                <input type="number" id="sell_6" placeholder="..." />
+              </div>
+              <div class="input__group">
+                <label for="sell_7">PM</label>
+                <input type="number" id="sell_7" placeholder="..." />
+              </div>
             </div>
-            <div class="input__group">
-              <label for="sell_7">PM</label>
-              <input type="number" id="sell_7" placeholder="..." />
-            </div>
-          </div>
 
-          <div class="form__row">
-            <h6>Thursday</h6>
-            <div class="input__group">
-              <label for="sell_8">AM</label>
-              <input type="number" id="sell_8" placeholder="..." />
+            <div class="form__row">
+              <h6>Thursday</h6>
+              <div class="input__group">
+                <label for="sell_8">AM</label>
+                <input type="number" id="sell_8" placeholder="..." />
+              </div>
+              <div class="input__group">
+                <label for="sell_9">PM</label>
+                <input type="number" id="sell_9" placeholder="..." />
+              </div>
             </div>
-            <div class="input__group">
-              <label for="sell_9">PM</label>
-              <input type="number" id="sell_9" placeholder="..." />
-            </div>
-          </div>
 
-          <div class="form__row">
-            <h6>Friday</h6>
-            <div class="input__group">
-              <label for="sell_10">AM</label>
-              <input type="number" id="sell_10" placeholder="..." />
+            <div class="form__row">
+              <h6>Friday</h6>
+              <div class="input__group">
+                <label for="sell_10">AM</label>
+                <input type="number" id="sell_10" placeholder="..." />
+              </div>
+              <div class="input__group">
+                <label for="sell_11">PM</label>
+                <input type="number" id="sell_11" placeholder="..." />
+              </div>
             </div>
-            <div class="input__group">
-              <label for="sell_11">PM</label>
-              <input type="number" id="sell_11" placeholder="..." />
-            </div>
-          </div>
 
-          <div class="form__row">
-            <h6>Saturday</h6>
-            <div class="input__group">
-              <label for="sell_12">AM</label>
-              <input type="number" id="sell_12" placeholder="..." />
-            </div>
-            <div class="input__group">
-              <label for="sell_13">PM</label>
-              <input type="number" id="sell_13" placeholder="..." />
+            <div class="form__row">
+              <h6>Saturday</h6>
+              <div class="input__group">
+                <label for="sell_12">AM</label>
+                <input type="number" id="sell_12" placeholder="..." />
+              </div>
+              <div class="input__group">
+                <label for="sell_13">PM</label>
+                <input type="number" id="sell_13" placeholder="..." />
+              </div>
             </div>
           </div>
-        </div>
-        <button id="reset" class="reset-button" name="action">
-          Reset Turnip Prophet
-        </button>
+          <button type="button" id="reset" class="reset-button" name="action">
+            Reset Turnip Prophet
+          </button>
       </form>
 
 
