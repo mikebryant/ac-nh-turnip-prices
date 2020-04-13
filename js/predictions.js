@@ -654,8 +654,17 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     poss.weekMax = Math.max(...weekMaxes);
   }
 
-  generated_possibilities.sort((a, b) => 
-    b.pattern_description == "All patterns" ? 1 : b.probability - a.probability
+  generated_possibilities.sort((a, b) => {
+    if (b.pattern_description == "All patterns") {
+      return 1
+    }
+    else if (a.pattern_description == "All patterns") {
+      return -1
+    }
+    else {
+      return b.probability - a.probability
+    }
+  }
   );
 
   return generated_possibilities;
