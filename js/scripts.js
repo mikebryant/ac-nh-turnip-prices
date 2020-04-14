@@ -200,33 +200,26 @@ const getPricesFromQuery = function (param) {
 };
 
 const getPreviousFromQuery = function () {
-  const queries = [
-    ["first", getFirstBuyStateFromQuery],
-    ["pattern", getPreviousPatternStateFromQuery],
-    ["prices", getPricesFromQuery]
+
+  /* Check if valid prices are entered. Exit immediately if not. */
+  prices = getPricesFromQuery("prices");
+  if (prices == null) {
+    return null;
+  }
+
+  console.log("Using data from query.");
+  window.populated_from_query = true;
+  return [
+    getFirstBuyStateFromQuery("first"),
+    getPreviousPatternStateFromQuery("pattern"),
+    prices
   ];
-
-
-  found = null; /* value to save if we found any parameters */
-  ret = [];
-  for (q of queries) {
-    val = q[1](q[0]); /* run the function with the parameter */
-    found = found || val;
-    ret.push(val);
-  }
-
-  if (found != null) { /* if we found any parameter */
-    window.from_query = true;
-    document.getElementById("from_query").style.visibility = "visible";
-    return ret;
-  }
-  return null;
 };
 
 const getPreviousFromLocalstorage = function () {
   return [
     getFirstBuyStateFromLocalstorage(), 
-    getPreviousPatternStateFromQuery(),
+    getPreviousPatternStateFromLocalstorage(),
     getPricesFromLocalstorage()
   ];
 };
@@ -282,7 +275,7 @@ const update = function () {
 
   const prices = [buy_price, buy_price, ...sell_prices];
 
-  if (!window.from_query) {
+  if (!window.populated_from_query) {
     updateLocalStorage(prices, first_buy, previous_pattern);
   }
 
