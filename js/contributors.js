@@ -4,7 +4,6 @@ function getContributors() {
     jQuery.ajax('https://api.github.com/repos/mikebryant/ac-nh-turnip-prices/contributors', {})
       .done(function (data) {
         data.forEach((contributor, idx) => {
-          console.debug('DEBUG:', contributor);
           container.append(`<a href="${contributor.html_url}">${contributor.login}</a>`);
           if (idx < data.length - 1) {
             container.append(', ');
