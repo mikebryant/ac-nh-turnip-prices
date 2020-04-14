@@ -368,8 +368,9 @@ input[type=number] {
   white-space: nowrap;
 }
 
-
-
+#turnipTable .highest-price {
+  background: #f443369c
+}
 
 .waves {
   position: relative;

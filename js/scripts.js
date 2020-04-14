@@ -173,18 +173,14 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     let totalMax = 0
     let totalMin = 0
 
-    datas = datas.map(value => {
-      if (value.max > totalMax) totalMax = value.max
-      if (value.min < totalMin) totalMin = value.min
-      return value
-    })
-
+    for (var data of datas) {
+      if (data.max > totalMax) totalMax = data.max
+      if (data.min < totalMin) totalMin = data.min
+    }
 
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
-        let background = "transparent"
-        if (day.max === totalMax) background = "#f443369c"
-        out_line += `<td style="background: ${background}">${day.min} - ${day.max}</td>`;
+        out_line += `<td class="${day.max === totalMax ? 'highest-price' : ''}">${day.min} - ${day.max}</td>`;
       } else {
         out_line += `<td>${day.min}</td>`;
       }
