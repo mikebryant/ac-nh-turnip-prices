@@ -3,6 +3,7 @@ const PATTERN = {
   LARGE_SPIKE: 1,
   DECREASING: 2,
   SMALL_SPIKE: 3,
+  UNKNOWN: 4,
 };
 
 const PATTERN_COUNTS = {
@@ -10,6 +11,7 @@ const PATTERN_COUNTS = {
   [PATTERN.LARGE_SPIKE]: 7,
   [PATTERN.DECREASING]: 1,
   [PATTERN.SMALL_SPIKE]: 8,
+  [PATTERN.UNKNOWN]: 0,
 }
 
 const PROBABILITY_MATRIX = {
@@ -36,6 +38,13 @@ const PROBABILITY_MATRIX = {
     [PATTERN.LARGE_SPIKE]: 0.25,
     [PATTERN.DECREASING]: 0.15,
     [PATTERN.SMALL_SPIKE]: 0.15,
+  },
+  // Steady state probability, calculation in https://github.com/mikebryant/ac-nh-turnip-prices/issues/68.
+  [PATTERN.UNKNOWN]: {
+    [PATTERN.FLUCTUATING]: 0.346278,
+    [PATTERN.LARGE_SPIKE]: 0.247363,
+    [PATTERN.DECREASING]: 0.147607,
+    [PATTERN.SMALL_SPIKE]: 0.258752,
   },
 };
 
@@ -601,7 +610,7 @@ function row_probability(possibility, previous_pattern) {
 
 function get_probabilities(possibilities, previous_pattern) {
   if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {
-    return possibilities
+    previous_pattern = PATTERN.UNKNOWN;
   }
 
   var max_percent = possibilities.map(function (poss) {
