@@ -12,32 +12,16 @@ const PATTERN_COUNTS = {
   [PATTERN.SMALL_SPIKE]: 8,
 }
 
-const PROBABILITY_MATRIX = {
-  [PATTERN.FLUCTUATING]: {
-    [PATTERN.FLUCTUATING]: 0.20,
-    [PATTERN.LARGE_SPIKE]: 0.30,
-    [PATTERN.DECREASING]: 0.15,
-    [PATTERN.SMALL_SPIKE]: 0.35,
-  },
-  [PATTERN.LARGE_SPIKE]: {
-    [PATTERN.FLUCTUATING]: 0.50,
-    [PATTERN.LARGE_SPIKE]: 0.05,
-    [PATTERN.DECREASING]: 0.20,
-    [PATTERN.SMALL_SPIKE]: 0.25,
-  },
-  [PATTERN.DECREASING]: {
-    [PATTERN.FLUCTUATING]: 0.25,
-    [PATTERN.LARGE_SPIKE]: 0.45,
-    [PATTERN.DECREASING]: 0.05,
-    [PATTERN.SMALL_SPIKE]: 0.25,
-  },
-  [PATTERN.SMALL_SPIKE]: {
-    [PATTERN.FLUCTUATING]: 0.45,
-    [PATTERN.LARGE_SPIKE]: 0.25,
-    [PATTERN.DECREASING]: 0.15,
-    [PATTERN.SMALL_SPIKE]: 0.15,
-  },
-};
+const PROBABILITY_MATRIX = [
+  /* from \ to FLUC  LRG^  DECR  SML^ */
+  /* FLUC */ [ 0.20, 0.30, 0.15, 0.35 ],
+  /* LRG^ */ [ 0.50, 0.05, 0.20, 0.25 ],
+  /* DECR */ [ 0.25, 0.45, 0.05, 0.25 ],
+  /* SML^ */ [ 0.45, 0.25, 0.15, 0.15 ],
+];
+
+// Calculated to ensure value is accurate if base probabilities ever change.
+const STEADY_STATE_PROBABILITY = find_steady_state(PROBABILITY_MATRIX);
 
 function minimum_rate_from_given_and_base(given_price, buy_price) {
   return 10000 * (given_price - 1) / buy_price;
@@ -596,14 +580,13 @@ function* generate_possibilities(sell_prices, first_buy) {
 }
 
 function row_probability(possibility, previous_pattern) {
+  if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {
+    return STEADY_STATE_PROBABILITY[possibility.pattern_number] / PATTERN_COUNTS[possibility.pattern_number];
+  }
   return PROBABILITY_MATRIX[previous_pattern][possibility.pattern_number] / PATTERN_COUNTS[possibility.pattern_number];
 }
 
 function get_probabilities(possibilities, previous_pattern) {
-  if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {
-    return possibilities
-  }
-
   var max_percent = possibilities.map(function (poss) {
     return row_probability(poss, previous_pattern);
   }).reduce(function (prev, current) {
@@ -665,4 +648,80 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
   });
 
   return generated_possibilities;
+}
+
+function find_steady_state(matrix) {
+  var linear_eq = transpose(matrix); // Creates a new obj
+
+  // Create a linear equation from the probabilities.
+  var i = 0;
+  for (; i < linear_eq.length - 1; ++i) {
+    linear_eq[i][i] -= 1;
+    linear_eq[i].push(0);
+  }
+  linear_eq[i].push(1);
+
+  to_reduced_row_echelon(linear_eq);
+  var vector = linear_eq.map( row => row[ row.length - 1 ] );
+  var total = vector.reduce( (total, value) => total + value, 0 );
+  return vector.map( value => value / total );
+}
+
+// Assumes square matrix
+function transpose(matrix) {
+  var transposed = matrix.map( () => [] );
+  for (var i = 0; i < matrix.length; ++i) {
+    for (var j = 0; j < matrix.length; ++j) {
+      transposed[i][j] = matrix[j][i];
+    }
+  }
+  return transposed;
+}
+
+// Algorithm from https://rosettacode.org/wiki/Reduced_row_echelon_form
+function to_reduced_row_echelon(matrix) {
+  var lead = 0;
+  for (var r = 0; r < matrix.length; ++r, ++lead) {
+    if (matrix[r].length <= lead) {
+      return;
+    }
+
+    // Find the first row that has a non-zero value in the "lead" column.
+    // If all rows have zero values, there is nothing to do; go on to the
+    // next column.
+    var i = r;
+    while (matrix[i][lead] == 0) {
+      ++i;
+      if (i == matrix.length) {
+        i = r;
+        ++lead;
+        if (lead == matrix[r].length) {
+          return;
+        }
+      }
+    }
+
+    [ matrix[i], matrix[r] ] = [ matrix[r], matrix[i] ];  // Swap rows
+
+    // Scale the row by a factor so the first non-zero value in the row
+    // is guaranteed to be 1.
+    var leadVal = matrix[r][lead];
+    for (var k = lead; k < matrix[r].length; ++k) {
+      matrix[r][k] /= leadVal;
+    }
+
+    // Make the lead position equal to 0 for every row (other than the
+    // current one) by subtracting the current row from each other row.
+    // Since the lead position of the current row is reduced to one, we
+    // just need to multiply the current row by the value in the other
+    // row's lead position.
+    for (var j = 0; j < matrix.length; ++j) {
+      if (j != r) {
+        var leadVal = matrix[j][lead];
+        for (var k = lead; k < matrix[r].length; ++k) {
+          matrix[j][k] -= matrix[r][k] * leadVal;
+        }
+      }
+    }
+  }
 }
