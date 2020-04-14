@@ -65,9 +65,26 @@ const fillFields = function (prices, first_buy, previous_pattern) {
 
 const initialize = function () {
   try {
-    const prices = getPrices()
-    const first_buy = getFirstBuyState();
-    const previous_pattern = getPreviousPatternState();
+    const params = new URLSearchParams(window.location.search.substr(1));
+    const first_buy_state = params.get("first_buy");
+    const qs_pattern = params.get("pattern");
+    const sell_prices = params.get("prices").split(".").map((x) => parseInt(x, 10));
+
+    let prices, first_buy, previous_pattern;
+
+    if (first_buy_state || qs_pattern || Array.isArray(sell_prices)) {
+      // Use the querystring loading to overwrite localstorage
+      first_buy = getFirstBuyFromQuery(first_buy_state);
+      previous_pattern = getPreviousPatternFromQuery(qs_pattern);
+      prices = getPricesFromQuery(sell_prices);
+
+      window.has_query = true;
+    } else {
+      first_buy = getFirstBuyFromLocalstorage();
+      previous_pattern = getPreviousPatternFromLocalstorage();
+      prices = getPricesFromLocalstorage();
+    }
+
     if (prices === null) {
       fillFields([], first_buy, previous_pattern)
     } else {
@@ -101,43 +118,35 @@ const isEmpty = function (arr) {
   return filtered.length == 0
 }
 
-const getFirstBuyState = function () {
-  return getFirstBuyStateFromQuery() || JSON.parse(localStorage.getItem('first_buy'));
+const getFirstBuyFromLocalstorage = function () {
+  return JSON.parse(localStorage.getItem('first_buy'));
 }
 
-const getFirstBuyStateFromQuery = function () {
+const getFirstBuyFromQuery = function (first_buy_state) {
   try {
-    const params = new URLSearchParams(window.location.search.substr(1));
-    const first_buy_state = params.get("first_buy");
-
     if (!(first_buy_state) || first_buy_state === 'no')
       return false;
 
-    window.has_query = true;
-    return first_buy_state;
+    return true;
   } catch (e) {
     return null;
   }
 }
 
-const getPreviousPatternState = function () {
-  return getPreviousPatternStateFromQuery() || JSON.parse(localStorage.getItem('previous_pattern'));
+const getPreviousPatternFromLocalstorage = function () {
+  return JSON.parse(localStorage.getItem('previous_pattern'));
 }
 
-const getPreviousPatternStateFromQuery = function () {
+const getPreviousPatternFromQuery = function (qs_pattern) {
   try {
-    const params = new URLSearchParams(window.location.search.substr(1));
-    const qs_pattern = params.get("pattern");
     let pattern_result = null;
-
-    console.log(qs_pattern);
 
     if (isNumber(qs_pattern)) {
       // its a number which aligns with the localstorage
       if ((Number(qs_pattern) >= -1) && (Number(qs_pattern) <= 3))
         pattern_result = Number(qs_pattern);
       else 
-        return null;
+        return -1;
     } else {
       // string or something else, helps make the querystring readable
       switch(qs_pattern) {
@@ -158,17 +167,12 @@ const getPreviousPatternStateFromQuery = function () {
         case 'none':
         case 'dontknow':
         case 'idontknow':
+        default:
           pattern_result = -1;
           break;
-        default:
-          return null;
       }
     }
-    console.log(pattern_result);
 
-    console.log('pattern success', pattern_result);
-
-    window.has_query = true;
     return pattern_result;
   } catch (e) {
     return null;
@@ -189,10 +193,9 @@ const getPricesFromLocalstorage = function () {
   }
 }
 
-const getPricesFromQuery = function () {
+const getPricesFromQuery = function (sell_prices) {
   try {
     const params = new URLSearchParams(window.location.search.substr(1));
-    const sell_prices = params.get("prices").split(".").map((x) => parseInt(x, 10));
 
     if (!Array.isArray(sell_prices)) {
       return null;
@@ -207,15 +210,10 @@ const getPricesFromQuery = function () {
       sell_prices.push(0);
     }
 
-    window.has_query = true;
     return sell_prices;
   } catch (e) {
     return null;
   }
-}
-
-const getPrices = function () {
-  return getPricesFromQuery() || getPricesFromLocalstorage();
 }
 
 const getSellPrices = function () {
