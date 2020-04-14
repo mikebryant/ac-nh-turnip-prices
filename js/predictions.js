@@ -39,6 +39,10 @@ const PROBABILITY_MATRIX = {
   },
 };
 
+function intceil(val) {
+  return Math.trunc(val + 0.99999);
+}
+
 function minimum_rate_from_given_and_base(given_price, buy_price) {
   return 10000 * (given_price - 1) / buy_price;
 }
@@ -98,8 +102,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
 
   // High Phase 1
   for (var i = 2; i < 2 + high_phase_1_len; i++) {
-    min_pred = Math.floor(0.9 * buy_price);
-    max_pred = Math.ceil(1.4 * buy_price);
+    min_pred = intceil(0.9 * buy_price);
+    max_pred = intceil(1.4 * buy_price);
     if (!isNaN(given_prices[i])) {
       if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
         // Given price is out of predicted range, so this is the wrong pattern
@@ -119,8 +123,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
   var min_rate = 6000;
   var max_rate = 8000;
   for (var i = 2 + high_phase_1_len; i < 2 + high_phase_1_len + dec_phase_1_len; i++) {
-    min_pred = Math.floor(min_rate * buy_price / 10000);
-    max_pred = Math.ceil(max_rate * buy_price / 10000);
+    min_pred = intceil(min_rate * buy_price / 10000);
+    max_pred = intceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -145,8 +149,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
 
   // High Phase 2
   for (var i = 2 + high_phase_1_len + dec_phase_1_len; i < 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len; i++) {
-    min_pred = Math.floor(0.9 * buy_price);
-    max_pred = Math.ceil(1.4 * buy_price);
+    min_pred = intceil(0.9 * buy_price);
+    max_pred = intceil(1.4 * buy_price);
     if (!isNaN(given_prices[i])) {
       if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
         // Given price is out of predicted range, so this is the wrong pattern
@@ -166,8 +170,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
   var min_rate = 6000;
   var max_rate = 8000;
   for (var i = 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len; i < 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len; i++) {
-    min_pred = Math.floor(min_rate * buy_price / 10000);
-    max_pred = Math.ceil(max_rate * buy_price / 10000);
+    min_pred = intceil(min_rate * buy_price / 10000);
+    max_pred = intceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -195,8 +199,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
     throw new Error("Phase lengths don't add up");
   }
   for (var i = 2 + high_phase_1_len + dec_phase_1_len + high_phase_2_len + dec_phase_2_len; i < 14; i++) {
-    min_pred = Math.floor(0.9 * buy_price);
-    max_pred = Math.ceil(1.4 * buy_price);
+    min_pred = intceil(0.9 * buy_price);
+    max_pred = intceil(1.4 * buy_price);
     if (!isNaN(given_prices[i])) {
       if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
         // Given price is out of predicted range, so this is the wrong pattern
@@ -273,8 +277,8 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
   var max_rate = 9000;
 
   for (var i = 2; i < peak_start; i++) {
-    min_pred = Math.floor(min_rate * buy_price / 10000);
-    max_pred = Math.ceil(max_rate * buy_price / 10000);
+    min_pred = intceil(min_rate * buy_price / 10000);
+    max_pred = intceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -301,8 +305,8 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
   min_randoms = [0.9, 1.4, 2.0, 1.4, 0.9, 0.4, 0.4, 0.4, 0.4, 0.4, 0.4]
   max_randoms = [1.4, 2.0, 6.0, 2.0, 1.4, 0.9, 0.9, 0.9, 0.9, 0.9, 0.9]
   for (var i = peak_start; i < 14; i++) {
-    min_pred = Math.floor(min_randoms[i - peak_start] * buy_price);
-    max_pred = Math.ceil(max_randoms[i - peak_start] * buy_price);
+    min_pred = intceil(min_randoms[i - peak_start] * buy_price);
+    max_pred = intceil(max_randoms[i - peak_start] * buy_price);
 
     if (!isNaN(given_prices[i])) {
       if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
@@ -361,8 +365,8 @@ function* generate_pattern_2(given_prices) {
   var min_rate = 8500;
   var max_rate = 9000;
   for (var i = 2; i < 14; i++) {
-    min_pred = Math.floor(min_rate * buy_price / 10000);
-    max_pred = Math.ceil(max_rate * buy_price / 10000);
+    min_pred = intceil(min_rate * buy_price / 10000);
+    max_pred = intceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -439,8 +443,8 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   var max_rate = 9000;
 
   for (var i = 2; i < peak_start; i++) {
-    min_pred = Math.floor(min_rate * buy_price / 10000);
-    max_pred = Math.ceil(max_rate * buy_price / 10000);
+    min_pred = intceil(min_rate * buy_price / 10000);
+    max_pred = intceil(max_rate * buy_price / 10000);
 
 
     if (!isNaN(given_prices[i])) {
@@ -466,8 +470,8 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   // The peak
 
   for (var i = peak_start; i < peak_start + 2; i++) {
-    min_pred = Math.floor(0.9 * buy_price);
-    max_pred = Math.ceil(1.4 * buy_price);
+    min_pred = intceil(0.9 * buy_price);
+    max_pred = intceil(1.4 * buy_price);
     if (!isNaN(given_prices[i])) {
       if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
         // Given price is out of predicted range, so this is the wrong pattern
@@ -484,8 +488,8 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   }
 
   // Main spike 1
-  min_pred = Math.floor(1.4 * buy_price) - 1;
-  max_pred = Math.ceil(2.0 * buy_price) - 1;
+  min_pred = intceil(1.4 * buy_price) - 1;
+  max_pred = intceil(2.0 * buy_price) - 1;
   if (!isNaN(given_prices[peak_start + 2])) {
     if (given_prices[peak_start + 2] < min_pred || given_prices[peak_start + 2] > max_pred) {
       // Given price is out of predicted range, so this is the wrong pattern
@@ -501,7 +505,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
 
   // Main spike 2
   min_pred = predicted_prices[peak_start + 2].min;
-  max_pred = Math.ceil(2.0 * buy_price);
+  max_pred = intceil(2.0 * buy_price);
   if (!isNaN(given_prices[peak_start + 3])) {
     if (given_prices[peak_start + 3] < min_pred || given_prices[peak_start + 3] > max_pred) {
       // Given price is out of predicted range, so this is the wrong pattern
@@ -516,7 +520,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   });
 
   // Main spike 3
-  min_pred = Math.floor(1.4 * buy_price) - 1;
+  min_pred = intceil(1.4 * buy_price) - 1;
   max_pred = predicted_prices[peak_start + 3].max - 1;
   if (!isNaN(given_prices[peak_start + 4])) {
     if (given_prices[peak_start + 4] < min_pred || given_prices[peak_start + 4] > max_pred) {
@@ -536,8 +540,8 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
     var max_rate = 9000;
 
     for (var i = peak_start + 5; i < 14; i++) {
-      min_pred = Math.floor(min_rate * buy_price / 10000);
-      max_pred = Math.ceil(max_rate * buy_price / 10000);
+      min_pred = intceil(min_rate * buy_price / 10000);
+      max_pred = intceil(max_rate * buy_price / 10000);
 
 
       if (!isNaN(given_prices[i])) {
