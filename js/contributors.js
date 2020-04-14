@@ -5,7 +5,7 @@ function getContributors() {
       .done(function (data) {
         data.forEach((contributor, idx) => {
           console.debug('DEBUG:', contributor);
-          container.append(`<a href="${contributor.url}">${contributor.login}</a>`);
+          container.append(`<a href="${contributor.html_url}">${contributor.login}</a>`);
           if (idx < data.length - 1) {
             container.append(', ');
           }
