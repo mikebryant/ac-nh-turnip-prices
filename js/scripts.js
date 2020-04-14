@@ -168,9 +168,23 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   for (let poss of analyze_possibilities(data, first_buy, previous_pattern)) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
+
+    let datas    = poss.prices.slice(1)
+    let totalMax = 0
+    let totalMin = 0
+
+    datas = datas.map(value => {
+      if (value.max > totalMax) totalMax = value.max
+      if (value.min < totalMin) totalMin = value.min
+      return value
+    })
+
+
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
-        out_line += `<td>${day.min} to ${day.max}</td>`;
+        let background = "transparent"
+        if (day.max === totalMax) background = "#f443369c"
+        out_line += `<td style="background: ${background}">${day.min} - ${day.max}</td>`;
       } else {
         out_line += `<td>${day.min}</td>`;
       }
