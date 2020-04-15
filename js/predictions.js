@@ -381,13 +381,13 @@ function generate_peak_price(
   //
   // => X->U(A,B), Y->U(C,X), Y-C->U(0,X-A), Y-C->U(0,1)*(X-A), Y-C->U(0,1)*U(C-A,B-A),
   // let Z=Y-C,  Z1=C-A, Z2=B-A, Z->U(0,1)*U(Z1,Z2)
-  // Prob(Z>=t) = integral_{x=0}^{1} [min(t/x,Z2)-min(t/x,Z1)]/ (Z2-Z1)
+  // Prob(Z<=t) = integral_{x=0}^{1} [min(t/x,Z2)-min(t/x,Z1)]/ (Z2-Z1)
   // let F(t, ZZ) = integral_{x=0}^{1} min(t/x, ZZ)
   //    1. if ZZ < t, then min(t/x, ZZ) = ZZ -> F(t, ZZ) = ZZ
   //    2. if ZZ >= t, then F(t, ZZ) = integral_{x=0}^{t/ZZ} ZZ + integral_{x=t/ZZ}^{1} t/x
   //                                 = t - t/ZZ log(t/ZZ)
-  // Prob(Z>=t) = (F(t, Z2) - F(t, Z1)) / (Z2 - Z1)
-  // Prob(Y>=t) = Prob(Z>=t-C)
+  // Prob(Z<=t) = (F(t, Z2) - F(t, Z1)) / (Z2 - Z1)
+  // Prob(Y<=t) = Prob(Z>=t-C)
   for (const price of [left_price, right_price]) {
     if (isNaN(price)) {
       continue;
