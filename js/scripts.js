@@ -159,6 +159,16 @@ const getSellPrices = function () {
   })
 }
 
+const getPriceClass = function(max) {
+  const priceBrackets = [500, 190, 137, 91, 60, 0];
+  for(var i=0; i<priceBrackets.length; i++) {
+    if(max >= priceBrackets[i]) {
+      return "range" + i;
+    }
+  }
+  return "";
+}
+
 const calculateOutput = function (data, first_buy, previous_pattern) {
   if (isEmpty(data)) {
     $("#output").html("");
@@ -169,13 +179,16 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
+      var price_class = getPriceClass(day.max);
       if (day.min !== day.max) {
-        out_line += `<td>${day.min} to ${day.max}</td>`;
+        out_line += `<td class='${price_class}'>${day.min} to ${day.max}</td>`;
       } else {
-        out_line += `<td>${day.min}</td>`;
+        out_line += `<td class='${price_class}'>${day.min}</td>`;
       }
     }
-    out_line += `<td>${poss.weekGuaranteedMinimum}</td><td>${poss.weekMax}</td></tr>`;
+
+    var max_class = getPriceClass(poss.weekMax);
+    out_line += `<td>${poss.weekGuaranteedMinimum}</td><td class='${max_class}'>${poss.weekMax}</td></tr>`;
     output_possibilities += out_line
   }
 
