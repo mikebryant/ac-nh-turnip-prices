@@ -666,7 +666,7 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     pattern_description: "All patterns",
     pattern_number: 4,
     prices: global_min_max,
-    weekGuaranteedMinimum: Math.max(...generated_possibilities.map(poss => poss.weekGuaranteedMinimum)),
+    weekGuaranteedMinimum: Math.min(...generated_possibilities.map(poss => poss.weekGuaranteedMinimum)),
     weekMax: Math.max(...generated_possibilities.map(poss => poss.weekMax)),
   });
 
