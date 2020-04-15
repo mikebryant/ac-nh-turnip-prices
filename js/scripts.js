@@ -268,7 +268,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
 }
 
 const update = function () {
-  const sell_prices = getSellPrices()  
+  const sell_prices = getSellPrices();
   const buy_price = parseInt(buy_input.val());
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
   const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
