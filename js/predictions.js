@@ -379,8 +379,8 @@ function generate_peak_price(
   // A = rate_range[0], B = rate_range[1], C = rate_min, X = rate, Y = randfloat(rate_min, rate)
   // rate = randfloat(A, B); sellPrices[work++] = intceil(randfloat(C, rate) * basePrice) - 1;
   //
-  // => X->U(A,B), Y->U(C,X), Y-C->U(0,X-A), Y-C->U(0,1)*(X-A), Y-C->U(0,1)*U(C-A,B-A),
-  // let Z=Y-C,  Z1=C-A, Z2=B-A, Z->U(0,1)*U(Z1,Z2)
+  // => X->U(A,B), Y->U(C,X), Y-C->U(0,X-C), Y-C->U(0,1)*(X-C), Y-C->U(0,1)*U(A-C,B-C),
+  // let Z=Y-C,  Z1=A-C, Z2=B-C, Z->U(0,1)*U(Z1,Z2)
   // Prob(Z<=t) = integral_{x=0}^{1} [min(t/x,Z2)-min(t/x,Z1)]/ (Z2-Z1)
   // let F(t, ZZ) = integral_{x=0}^{1} min(t/x, ZZ)
   //    1. if ZZ < t, then min(t/x, ZZ) = ZZ -> F(t, ZZ) = ZZ
@@ -404,8 +404,8 @@ function generate_peak_price(
       const F = (t, ZZ) => (ZZ < t ? ZZ : t - t / ZZ * Math.log(t / ZZ));
       const [A, B] = rate_range;
       const C = rate_min;
-      const Z1 = C - A;
-      const Z2 = B - A;
+      const Z1 = A - C;
+      const Z2 = B - C;
       const PY = (t) => (F(t - C, Z2) - F(t - C, Z1)) / (Z2 - Z1);
       prob *= PY(rate2_range[1]) - PY(rate2_range[0]);
       if (prob == 0) {
