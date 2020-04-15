@@ -67,6 +67,10 @@ function* multiply_generator_probability(generator, probability) {
   }
 }
 
+function clamp(x, min, max) {
+  return Math.min(Math.max(x, min), max);
+}
+
 function range_length(range) {
   return range[1] - range[0];
 }
@@ -115,13 +119,12 @@ function generate_individual_random_price(
         // Given price is out of predicted range, so this is the wrong pattern
         return 0;
       }
-      if (given_prices[i] >= min_pred && given_prices[i] <= max_pred) {
-        // The value in the FUDGE_FACTOR range is ignored so that it don't give a probability 0.
-        const real_rate_range =
-            rate_range_from_given_and_base(given_prices[i], buy_price);
-        prob *= range_intersect_length(rate_range, real_rate_range) /
-            range_length(rate_range);
-      }
+      // TODO: How to deal with probability when there's fudge factor?
+      // Clamp the value to be in range now so the probability won't be totally biased to fudged values.
+      const real_rate_range =
+        rate_range_from_given_and_base(clamp(given_prices[i], min_pred, max_pred), buy_price);
+      prob *= range_intersect_length(rate_range, real_rate_range) /
+        range_length(rate_range);
       min_pred = given_prices[i];
       max_pred = given_prices[i];
     }
@@ -304,14 +307,13 @@ function generate_decreasing_random_price(
         // Given price is out of predicted range, so this is the wrong pattern
         return 0;
       }
-      if (given_prices[i] >= min_pred && given_prices[i] <= max_pred) {
-        // The value in the FUDGE_FACTOR range is ignored so that it don't give a probability 0.
-        const real_rate_range =
-            rate_range_from_given_and_base(given_prices[i], buy_price);
-        prob *= rate_pdf.range_limit(real_rate_range);
-        if (prob == 0) {
-          return 0;
-        }
+      // TODO: How to deal with probability when there's fudge factor?
+      // Clamp the value to be in range now so the probability won't be totally biased to fudged values.
+      const real_rate_range =
+          rate_range_from_given_and_base(clamp(given_prices[i], min_pred, max_pred), buy_price);
+      prob *= rate_pdf.range_limit(real_rate_range);
+      if (prob == 0) {
+        return 0;
       }
       min_pred = given_prices[i];
       max_pred = given_prices[i];
@@ -358,19 +360,17 @@ function generate_peak_price(
       // Given price is out of predicted range, so this is the wrong pattern
       return 0;
     }
-    if (middle_price >= min_pred && middle_price <= max_pred) {
-      // The value in the FUDGE_FACTOR range is ignored so that it don't give a probability 0.
-      const real_rate_range =
-          rate_range_from_given_and_base(middle_price, buy_price);
-      prob *= range_intersect_length(rate_range, real_rate_range) /
-        range_length(rate_range);
-      if (prob == 0) {
-        return 0;
-      }
-      console.log(prob);
-
-      rate_range = range_intersect(rate_range, real_rate_range);
+    // TODO: How to deal with probability when there's fudge factor?
+    // Clamp the value to be in range now so the probability won't be totally biased to fudged values.
+    const real_rate_range =
+        rate_range_from_given_and_base(clamp(middle_price, min_pred, max_pred), buy_price);
+    prob *= range_intersect_length(rate_range, real_rate_range) /
+      range_length(rate_range);
+    if (prob == 0) {
+      return 0;
     }
+
+    rate_range = range_intersect(rate_range, real_rate_range);
   }
 
   const left_price = given_prices[start];
@@ -399,24 +399,23 @@ function generate_peak_price(
       // Given price is out of predicted range, so this is the wrong pattern
       return 0;
     }
-    if (price >= min_pred && price <= max_pred) {
-      // The value in the FUDGE_FACTOR range is ignored so that it don't give a probability 0.
-      const rate2_range = rate_range_from_given_and_base(price + 1, buy_price);
-      const F = (t, ZZ) => {
-        if (t <= 0) {
-          return 0;
-        }
-        return ZZ < t ? ZZ : t - t * (Math.log(t) - Math.log(ZZ));
-      };
-      const [A, B] = rate_range;
-      const C = rate_min;
-      const Z1 = A - C;
-      const Z2 = B - C;
-      const PY = (t) => (F(t - C, Z2) - F(t - C, Z1)) / (Z2 - Z1);
-      prob *= PY(rate2_range[1]) - PY(rate2_range[0]);
-      if (prob == 0) {
+    // TODO: How to deal with probability when there's fudge factor?
+    // Clamp the value to be in range now so the probability won't be totally biased to fudged values.
+    const rate2_range = rate_range_from_given_and_base(clamp(price, min_pred, max_pred)+ 1, buy_price);
+    const F = (t, ZZ) => {
+      if (t <= 0) {
         return 0;
       }
+      return ZZ < t ? ZZ : t - t * (Math.log(t) - Math.log(ZZ));
+    };
+    const [A, B] = rate_range;
+    const C = rate_min;
+    const Z1 = A - C;
+    const Z2 = B - C;
+    const PY = (t) => (F(t - C, Z2) - F(t - C, Z1)) / (Z2 - Z1);
+    prob *= PY(rate2_range[1]) - PY(rate2_range[0]);
+    if (prob == 0) {
+      return 0;
     }
   }
 
