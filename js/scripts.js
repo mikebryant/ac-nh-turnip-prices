@@ -257,7 +257,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
         .filter(val => val.pattern_description == poss.pattern_description)
         .length
       percentage_display = percent => Number.isFinite(percent) ? ((percent * 100).toPrecision(3) + '%') : '—'
-      out_line += `<td rowspan=${pattern_count}>${percentage_display(poss.category_total_probability)} \n`;
+      out_line += `<td rowspan=${pattern_count}>${percentage_display(poss.category_total_probability)} <br />`;
       out_line += Number.isFinite(poss.probability) ? `(${pattern_count} @ ${percentage_display(poss.probability)})</td>` : "";
     }
     for (let day of poss.prices.slice(1)) {
