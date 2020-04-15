@@ -169,7 +169,7 @@ h2 {
 }
 
 input {
-  border: 0px solid white;
+  border: 4px solid white;
   border-radius: 40px;
   padding: 8px 16px;
   font-size: 1.25rem;
@@ -193,6 +193,14 @@ input[type=number]:placeholder-shown:hover {
   cursor: pointer;
   transform: scale(1.1);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.09);
+  border: 4px solid #d9d9d9;
+  background-image: repeating-linear-gradient(-45deg, #f3f3f3 0 9px, #d9d9d9 9px 20px);
+  background-size: 28px;
+  animation-name: hoverBackground;
+  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-play-state: running;
+  animation-iteration-count: infinite;
 }
 
 input[type=number]:focus {
@@ -246,6 +254,7 @@ input[type=number] {
   opacity: 1;
   border: none;
   border-radius: 40px;
+  border: 4px solid #F3F3F3;
   background: #F3F3F3;
   padding: 8px 16px;
   font-size: 1.25rem;
@@ -255,15 +264,30 @@ input[type=number] {
   margin: 8px;
 }
 
+@keyframes hoverBackground {
+  from { background-position: 0px 0; }
+  to { background-position: 28px 0; }
+}
+
 .input__radio-buttons input[type="radio"]:not(:checked)+label:hover {
   cursor: pointer;
-  background: #F5F8FF;
+  background: #078899;
+  background-image: repeating-linear-gradient(-45deg, #0ab5cd 0 9px, #078899 9px 20px);
+  background-size: 28px;
+  border-color: #078899;
+  color: #fff;
   transform: scale(1.1);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.09);
+  animation-name: hoverBackground;
+  animation-timing-function: linear;
+  animation-duration: 1s;
+  animation-play-state: running;
+  animation-iteration-count: infinite;
 }
 
 .input__radio-buttons input[type="radio"]:checked+label {
   background: #0AB5CD;
+  border-color: #0AB5CD;
   color: #FFF;
 }
 
