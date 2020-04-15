@@ -1,3 +1,7 @@
+// The reverse-engineered code is not perfectly accurate, especially as it's not
+// 32-bit ARM floating point. So, be tolerant of slightly unexpected inputs
+const FUDGE_FACTOR = 5;
+
 const PATTERN = {
   FLUCTUATING: 0,
   LARGE_SPIKE: 1,
@@ -105,7 +109,7 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
     min_pred = intceil(0.9 * buy_price);
     max_pred = intceil(1.4 * buy_price);
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -128,7 +132,7 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
 
 
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -152,7 +156,7 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
     min_pred = intceil(0.9 * buy_price);
     max_pred = intceil(1.4 * buy_price);
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -175,7 +179,7 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
 
 
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -202,7 +206,7 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
     min_pred = intceil(0.9 * buy_price);
     max_pred = intceil(1.4 * buy_price);
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -282,7 +286,7 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
 
 
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -309,7 +313,7 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
     max_pred = intceil(max_randoms[i - peak_start] * buy_price);
 
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -370,7 +374,7 @@ function* generate_pattern_2(given_prices) {
 
 
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -448,7 +452,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
 
 
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -473,7 +477,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
     min_pred = intceil(0.9 * buy_price);
     max_pred = intceil(1.4 * buy_price);
     if (!isNaN(given_prices[i])) {
-      if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+      if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
         // Given price is out of predicted range, so this is the wrong pattern
         return;
       }
@@ -491,7 +495,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   min_pred = intceil(1.4 * buy_price) - 1;
   max_pred = intceil(2.0 * buy_price) - 1;
   if (!isNaN(given_prices[peak_start + 2])) {
-    if (given_prices[peak_start + 2] < min_pred || given_prices[peak_start + 2] > max_pred) {
+    if (given_prices[peak_start + 2] < min_pred - FUDGE_FACTOR || given_prices[peak_start + 2] > max_pred + FUDGE_FACTOR) {
       // Given price is out of predicted range, so this is the wrong pattern
       return;
     }
@@ -507,7 +511,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   min_pred = predicted_prices[peak_start + 2].min;
   max_pred = intceil(2.0 * buy_price);
   if (!isNaN(given_prices[peak_start + 3])) {
-    if (given_prices[peak_start + 3] < min_pred || given_prices[peak_start + 3] > max_pred) {
+    if (given_prices[peak_start + 3] < min_pred - FUDGE_FACTOR || given_prices[peak_start + 3] > max_pred + FUDGE_FACTOR) {
       // Given price is out of predicted range, so this is the wrong pattern
       return;
     }
@@ -523,7 +527,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
   min_pred = intceil(1.4 * buy_price) - 1;
   max_pred = predicted_prices[peak_start + 3].max - 1;
   if (!isNaN(given_prices[peak_start + 4])) {
-    if (given_prices[peak_start + 4] < min_pred || given_prices[peak_start + 4] > max_pred) {
+    if (given_prices[peak_start + 4] < min_pred - FUDGE_FACTOR || given_prices[peak_start + 4] > max_pred + FUDGE_FACTOR) {
       // Given price is out of predicted range, so this is the wrong pattern
       return;
     }
@@ -545,7 +549,7 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
 
 
       if (!isNaN(given_prices[i])) {
-        if (given_prices[i] < min_pred || given_prices[i] > max_pred) {
+        if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
           // Given price is out of predicted range, so this is the wrong pattern
           return;
         }
