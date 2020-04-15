@@ -581,7 +581,8 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     category_totals[i] = generated_possibilities
       .filter(value => value.pattern_description == i)
       .map(value => value.probability)
-      .reduce((previous, current) => previous + current)
+      .reduce((previous, current) => previous + current, 0)
+    console.log(category_totals[i])
   }
 
   for (let pos of generated_possibilities) {
