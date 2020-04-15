@@ -115,7 +115,7 @@ function generate_individual_random_price(
         // Given price is out of predicted range, so this is the wrong pattern
         return 0;
       }
-      if (given_prices[i] >= min_pred || given_prices[i] <= max_pred) {
+      if (given_prices[i] >= min_pred && given_prices[i] <= max_pred) {
         // The value in the FUDGE_FACTOR range is ignored so that it don't give a probability 0.
         const real_rate_range =
             rate_range_from_given_and_base(given_prices[i], buy_price);
@@ -304,7 +304,7 @@ function generate_decreasing_random_price(
         // Given price is out of predicted range, so this is the wrong pattern
         return 0;
       }
-      if (given_prices[i] >= min_pred || given_prices[i] <= max_pred) {
+      if (given_prices[i] >= min_pred && given_prices[i] <= max_pred) {
         // The value in the FUDGE_FACTOR range is ignored so that it don't give a probability 0.
         const real_rate_range =
             rate_range_from_given_and_base(given_prices[i], buy_price);
@@ -358,7 +358,7 @@ function generate_peak_price(
       // Given price is out of predicted range, so this is the wrong pattern
       return 0;
     }
-    if (middle_price >= min_pred || middle_price <= max_pred) {
+    if (middle_price >= min_pred && middle_price <= max_pred) {
       // The value in the FUDGE_FACTOR range is ignored so that it don't give a probability 0.
       const real_rate_range =
           rate_range_from_given_and_base(middle_price, buy_price);
@@ -367,6 +367,7 @@ function generate_peak_price(
       if (prob == 0) {
         return 0;
       }
+      console.log(prob);
 
       rate_range = range_intersect(rate_range, real_rate_range);
     }
@@ -398,10 +399,15 @@ function generate_peak_price(
       // Given price is out of predicted range, so this is the wrong pattern
       return 0;
     }
-    if (price >= min_pred || price <= max_pred) {
+    if (price >= min_pred && price <= max_pred) {
       // The value in the FUDGE_FACTOR range is ignored so that it don't give a probability 0.
       const rate2_range = rate_range_from_given_and_base(price + 1, buy_price);
-      const F = (t, ZZ) => (ZZ < t ? ZZ : t - t / ZZ * Math.log(t / ZZ));
+      const F = (t, ZZ) => {
+        if (t <= 0) {
+          return 0;
+        }
+        return ZZ < t ? ZZ : t - t / ZZ * Math.log(t / ZZ);
+      };
       const [A, B] = rate_range;
       const C = rate_min;
       const Z1 = A - C;
@@ -812,6 +818,7 @@ function* generate_possibilities(sell_prices, first_buy, previous_pattern) {
 
 function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
   const generated_possibilities = Array.from(generate_possibilities(sell_prices, first_buy, previous_pattern));
+  console.log(generated_possibilities);
 
   const total_probability = generated_possibilities.reduce((acc, it) => acc + it.probability, 0);
   for (const it of generated_possibilities) {
