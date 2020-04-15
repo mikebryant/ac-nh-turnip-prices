@@ -173,7 +173,7 @@ function generate_peak_price(
   min_pred = get_price(rate_min, buy_price) - 1;
   max_pred = get_price(rate_max, buy_price) - 1;
   if (!isNaN(given_prices[start])) {
-    if (given_prices[start] < min_pred - FUDGE_FACTOR || given_prices[peak_start + 2] > max_pred + FUDGE_FACTOR) {
+    if (given_prices[start] < min_pred - FUDGE_FACTOR || given_prices[start] > max_pred + FUDGE_FACTOR) {
       // Given price is out of predicted range, so this is the wrong pattern
       return false;
     }
