@@ -134,8 +134,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
       }
       min_pred = given_prices[i];
       max_pred = given_prices[i];
-      min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
-      max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
+      min_rate = Math.max(minimum_rate_from_given_and_base(given_prices[i], buy_price), min_rate);
+      max_rate = Math.min(maximum_rate_from_given_and_base(given_prices[i], buy_price), max_rate);
     }
 
     predicted_prices.push({
@@ -181,8 +181,8 @@ function* generate_pattern_0_with_lengths(given_prices, high_phase_1_len, dec_ph
       }
       min_pred = given_prices[i];
       max_pred = given_prices[i];
-      min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
-      max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
+      min_rate = Math.max(minimum_rate_from_given_and_base(given_prices[i], buy_price), min_rate);
+      max_rate = Math.min(maximum_rate_from_given_and_base(given_prices[i], buy_price), max_rate);
     }
 
     predicted_prices.push({
@@ -288,8 +288,8 @@ function* generate_pattern_1_with_peak(given_prices, peak_start) {
       }
       min_pred = given_prices[i];
       max_pred = given_prices[i];
-      min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
-      max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
+      min_rate = Math.max(minimum_rate_from_given_and_base(given_prices[i], buy_price), min_rate);
+      max_rate = Math.min(maximum_rate_from_given_and_base(given_prices[i], buy_price), max_rate);
     }
 
     predicted_prices.push({
@@ -376,8 +376,8 @@ function* generate_pattern_2(given_prices) {
       }
       min_pred = given_prices[i];
       max_pred = given_prices[i];
-      min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
-      max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
+      min_rate = Math.max(minimum_rate_from_given_and_base(given_prices[i], buy_price), min_rate);
+      max_rate = Math.min(maximum_rate_from_given_and_base(given_prices[i], buy_price), max_rate);
     }
 
     predicted_prices.push({
@@ -454,8 +454,8 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
       }
       min_pred = given_prices[i];
       max_pred = given_prices[i];
-      min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
-      max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
+      min_rate = Math.max(minimum_rate_from_given_and_base(given_prices[i], buy_price), min_rate);
+      max_rate = Math.min(maximum_rate_from_given_and_base(given_prices[i], buy_price), max_rate);
     }
 
     predicted_prices.push({
@@ -551,8 +551,8 @@ function* generate_pattern_3_with_peak(given_prices, peak_start) {
         }
         min_pred = given_prices[i];
         max_pred = given_prices[i];
-        min_rate = minimum_rate_from_given_and_base(given_prices[i], buy_price);
-        max_rate = maximum_rate_from_given_and_base(given_prices[i], buy_price);
+        min_rate = Math.max(minimum_rate_from_given_and_base(given_prices[i], buy_price), min_rate);
+        max_rate = Math.min(maximum_rate_from_given_and_base(given_prices[i], buy_price), max_rate);
       }
 
       predicted_prices.push({
