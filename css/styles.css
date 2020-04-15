@@ -368,7 +368,15 @@ input[type=number] {
   white-space: nowrap;
 }
 
-
+.chart-wrapper {
+  margin-top: 8px;
+  display: flex;
+  flex-wrap: wrap;
+  height: 400px;
+  width: 100%;
+  max-width: 1080px;
+  justify-content: center;
+}
 
 
 .waves {

@@ -218,7 +218,7 @@ const getPreviousFromQuery = function () {
 
 const getPreviousFromLocalstorage = function () {
   return [
-    getFirstBuyStateFromLocalstorage(), 
+    getFirstBuyStateFromLocalstorage(),
     getPreviousPatternStateFromLocalstorage(),
     getPricesFromLocalstorage()
   ];
@@ -247,7 +247,8 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     return;
   }
   let output_possibilities = "";
-  for (let poss of analyze_possibilities(data, first_buy, previous_pattern)) {
+  let analyzed_possibilities = analyze_possibilities(data, first_buy, previous_pattern);
+  for (let poss of analyzed_possibilities) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
@@ -262,6 +263,8 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   }
 
   $("#output").html(output_possibilities)
+
+  update_chart(data, analyzed_possibilities);
 }
 
 const update = function () {
@@ -269,7 +272,7 @@ const update = function () {
   const buy_price = parseInt(buy_input.val());
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
   const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
-  
+
   buy_input[0].disabled = first_buy;
   buy_input[0].placeholder = first_buy ? '—' : '...'
 
