@@ -242,7 +242,7 @@ const getSellPrices = function () {
 }
 
 const getPriceClass = function(max) {
-  const priceBrackets = [500, 190, 137, 91, 60, 0];
+  const priceBrackets = [400, 170, 135, 91, 60, 0];
   for(var i=0; i<priceBrackets.length; i++) {
     if(max >= priceBrackets[i]) {
       return "range" + i;
