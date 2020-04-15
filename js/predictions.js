@@ -386,7 +386,7 @@ function generate_peak_price(
   // let F(t, ZZ) = integral_{x=0}^{1} min(t/x, ZZ)
   //    1. if ZZ < t, then min(t/x, ZZ) = ZZ -> F(t, ZZ) = ZZ
   //    2. if ZZ >= t, then F(t, ZZ) = integral_{x=0}^{t/ZZ} ZZ + integral_{x=t/ZZ}^{1} t/x
-  //                                 = t - t/ZZ log(t/ZZ)
+  //                                 = t - t log(t/ZZ)
   // Prob(Z<=t) = (F(t, Z2) - F(t, Z1)) / (Z2 - Z1)
   // Prob(Y<=t) = Prob(Z>=t-C)
   for (const price of [left_price, right_price]) {
@@ -406,7 +406,7 @@ function generate_peak_price(
         if (t <= 0) {
           return 0;
         }
-        return ZZ < t ? ZZ : t - t / ZZ * Math.log(t / ZZ);
+        return ZZ < t ? ZZ : t - t * (Math.log(t) - Math.log(ZZ));
       };
       const [A, B] = rate_range;
       const C = rate_min;
