@@ -624,29 +624,6 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
   generated_possibilities = Array.from(generate_possibilities(sell_prices, first_buy));
   generated_possibilities = get_probabilities(generated_possibilities, previous_pattern);
 
-  global_min_max = [];
-  for (var day = 0; day < 14; day++) {
-    prices = {
-      min: 999,
-      max: 0,
-    }
-    for (let poss of generated_possibilities) {
-      if (poss.prices[day].min < prices.min) {
-        prices.min = poss.prices[day].min;
-      }
-      if (poss.prices[day].max > prices.max) {
-        prices.max = poss.prices[day].max;
-      }
-    }
-    global_min_max.push(prices);
-  }
-
-  generated_possibilities.push({
-    pattern_description: "All patterns",
-    pattern_number: 4,
-    prices: global_min_max,
-  });
-
   for (let poss of generated_possibilities) {
     var weekMins = [];
     var weekMaxes = [];
@@ -666,6 +643,31 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     } else {
       return 0;
     }
+  });
+
+  global_min_max = [];
+  for (var day = 0; day < 14; day++) {
+    prices = {
+      min: 999,
+      max: 0,
+    }
+    for (let poss of generated_possibilities) {
+      if (poss.prices[day].min < prices.min) {
+        prices.min = poss.prices[day].min;
+      }
+      if (poss.prices[day].max > prices.max) {
+        prices.max = poss.prices[day].max;
+      }
+    }
+    global_min_max.push(prices);
+  }
+
+  generated_possibilities.unshift({
+    pattern_description: "All patterns",
+    pattern_number: 4,
+    prices: global_min_max,
+    weekGuaranteedMinimum: Math.max(...generated_possibilities.map(poss => poss.weekGuaranteedMinimum)),
+    weekMax: Math.max(...generated_possibilities.map(poss => poss.weekMax)),
   });
 
   return generated_possibilities;
