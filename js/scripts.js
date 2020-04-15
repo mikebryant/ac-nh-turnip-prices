@@ -280,7 +280,7 @@ const update = function () {
 
   if (permalink != null) {
 	const container = $('#permalink');
-    container.append(permalink);
+    container.html(permalink);
   }
 
   buy_input[0].disabled = first_buy;
