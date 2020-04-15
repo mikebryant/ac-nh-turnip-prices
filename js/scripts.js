@@ -268,10 +268,20 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
 }
 
 const update = function () {
-  const sell_prices = getSellPrices();
+  const sell_prices = getSellPrices()  
   const buy_price = parseInt(buy_input.val());
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
   const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
+  const sp = sell_prices.toString().replace(/NaN/g,"0").replace(/,/g,".");
+  const url = location.protocol + "//" + location.host + location.pathname + "?" +  sp + "&first=" + first_buy + "&pattern=" + previous_pattern;
+  const permalink_text = "Permalink";
+  const permalink = "<a href='" + url + "'>"+ permalink_text + "</a>" ;
+  //Permalink structure: /?prices=97.86.82.78.75.71.67.108.0.0.0.0.0&first=true&pattern=3
+
+  if (permalink != null) {
+	const container = $('#permalink');
+    container.append(permalink);
+  }
 
   buy_input[0].disabled = first_buy;
   buy_input[0].placeholder = first_buy ? '—' : '...'
