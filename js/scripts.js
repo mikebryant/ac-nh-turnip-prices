@@ -65,9 +65,10 @@ const fillFields = function (prices, first_buy, previous_pattern) {
 
 const initialize = function () {
   try {
-    const prices = getPrices()
-    const first_buy = getFirstBuyState();
-    const previous_pattern = getPreviousPatternState();
+    const previous = getPrevious();
+    const first_buy = previous[0];
+    const previous_pattern = previous[1];
+    const prices = previous[2];
     if (prices === null) {
       fillFields([], first_buy, previous_pattern)
     } else {
@@ -101,12 +102,63 @@ const isEmpty = function (arr) {
   return filtered.length == 0
 }
 
-const getFirstBuyState = function () {
+const getFirstBuyStateFromQuery = function (param) {
+  try {
+    const params = new URLSearchParams(window.location.search.substr(1));
+    const firstbuy_str = params.get(param);
+
+    if (firstbuy_str == null) {
+      return null;
+    }
+
+    firstbuy = null;
+    if (firstbuy_str == "1" || firstbuy_str == "yes" || firstbuy_str == "true") {
+      firstbuy = true;
+    } else if (firstbuy_str == "0" || firstbuy_str == "no" || firstbuy_str == "false") {
+      firstbuy = false;
+    }
+
+    return firstbuy;
+
+  } catch (e) {
+    return null;
+  }
+}
+
+const getFirstBuyStateFromLocalstorage = function () {
   return JSON.parse(localStorage.getItem('first_buy'))
 }
 
-const getPreviousPatternState = function () {
+const getPreviousPatternStateFromLocalstorage = function () {
   return JSON.parse(localStorage.getItem('previous_pattern'))
+}
+
+const getPreviousPatternStateFromQuery = function (param) {
+  try {
+    const params = new URLSearchParams(window.location.search.substr(1));
+    const pattern_str = params.get(param);
+
+    if (pattern_str == null) {
+      return null;
+    }
+
+    if (pattern_str == "0" || pattern_str == "fluctuating") {
+      pattern = 0;
+    } else if (pattern_str == "1" || pattern_str == "large-spike") {
+      pattern = 1;
+    } else if (pattern_str == "2" || pattern_str == "decreasing") {
+      pattern = 2;
+    } else if (pattern_str == "3" || pattern_str == "small-spike") {
+      pattern = 3;
+    } else {
+      pattern = -1;
+    }
+
+    return pattern;
+
+  } catch (e) {
+    return null;
+  }
 }
 
 const getPricesFromLocalstorage = function () {
@@ -123,10 +175,10 @@ const getPricesFromLocalstorage = function () {
   }
 };
 
-const getPricesFromQuery = function () {
+const getPricesFromQuery = function (param) {
   try {
     const params = new URLSearchParams(window.location.search.substr(1));
-    const sell_prices = params.get("prices").split(".").map((x) => parseInt(x, 10));
+    const sell_prices = params.get(param).split(".").map((x) => parseInt(x, 10));
 
     if (!Array.isArray(sell_prices)) {
       return null;
@@ -141,15 +193,45 @@ const getPricesFromQuery = function () {
       sell_prices.push(0);
     }
 
-    window.price_from_query = true;
     return sell_prices;
   } catch (e) {
     return null;
   }
 };
 
-const getPrices = function () {
-  return getPricesFromQuery() || getPricesFromLocalstorage();
+const getPreviousFromQuery = function () {
+
+  /* Check if valid prices are entered. Exit immediately if not. */
+  prices = getPricesFromQuery("prices");
+  if (prices == null) {
+    return null;
+  }
+
+  console.log("Using data from query.");
+  window.populated_from_query = true;
+  return [
+    getFirstBuyStateFromQuery("first"),
+    getPreviousPatternStateFromQuery("pattern"),
+    prices
+  ];
+};
+
+const getPreviousFromLocalstorage = function () {
+  return [
+    getFirstBuyStateFromLocalstorage(), 
+    getPreviousPatternStateFromLocalstorage(),
+    getPricesFromLocalstorage()
+  ];
+};
+
+
+/**
+ * Gets previous values. First tries to parse parameters,
+ * if none of them match then it looks in local storage.
+ * @return {[first time, previous pattern, prices]}
+ */
+const getPrevious = function () {
+  return getPreviousFromQuery() || getPreviousFromLocalstorage();
 };
 
 const getSellPrices = function () {
@@ -187,13 +269,13 @@ const update = function () {
   const buy_price = parseInt(buy_input.val());
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
   const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
-
+  
   buy_input[0].disabled = first_buy;
   buy_input[0].placeholder = first_buy ? '—' : '...'
 
   const prices = [buy_price, buy_price, ...sell_prices];
 
-  if (!window.price_from_query) {
+  if (!window.populated_from_query) {
     updateLocalStorage(prices, first_buy, previous_pattern);
   }
 
