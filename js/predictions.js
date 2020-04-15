@@ -589,13 +589,7 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
   }
 
   generated_possibilities.sort((a, b) => {
-    if (a.weekMax < b.weekMax) {
-      return 1;
-    } else if (a.weekMax > b.weekMax) {
-      return -1;
-    } else {
-      return 0;
-    }
+    return b.category_total_probability - a.category_total_probability
   });
 
   global_min_max = [];
