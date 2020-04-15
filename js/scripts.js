@@ -253,11 +253,13 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
     if (previous_pattern_description != poss.pattern_description) {
       previous_pattern_description = poss.pattern_description
-      out_line += `<td rowspan=${analyzed_possibilities
+      pattern_count = analyzed_possibilities
         .filter(val => val.pattern_description == poss.pattern_description)
-        .length}>${Number.isFinite(poss.category_total_probability) ? ((poss.category_total_probability * 100).toPrecision(3) + '%') : '—'}</td>`;
+        .length
+      percentage_display = percent => Number.isFinite(percent) ? ((percent * 100).toPrecision(3) + '%') : '—'
+      out_line += `<td rowspan=${pattern_count}>${percentage_display(poss.category_total_probability)} \n`;
+      out_line += Number.isFinite(poss.probability) ? `(${pattern_count} @ ${percentage_display(poss.probability)})</td>` : "";
     }
-    out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
         out_line += `<td>${day.min} to ${day.max}</td>`;
