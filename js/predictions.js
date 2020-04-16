@@ -446,117 +446,88 @@ class Predictor {
 
     const buy_price = given_prices[0];
     let prob = 1;
-    let rate_range = [rate_min, rate_max];
+    let peak_range = [rate_min, rate_max];
+    let side_range = [rate_min, rate_max];
+    let min_pred = this.get_price(rate_min, buy_price);
+    let max_pred = this.get_price(rate_max, buy_price);
 
-    // * Calculate the probability first.
-    // Prob(middle_price)
-    const middle_price = given_prices[start + 1];
-    if (!isNaN(middle_price)) {
-      const min_pred = this.get_price(rate_min, buy_price);
-      const max_pred = this.get_price(rate_max, buy_price);
-      if (middle_price < min_pred - this.fudge_factor || middle_price > max_pred + this.fudge_factor) {
+    // First fill the ranges normally
+    for (let i = 0; i < 3; i++) {
+      if (i == 1) {
+        predicted_prices.push({
+          min: min_pred,
+          max: max_pred,
+        });
+      }
+      else {
+        // Side prices are always one less than the peak
+        predicted_prices.push({
+          min: min_pred - 1,
+          max: max_pred - 1,
+        });
+      }
+    }
+
+    // If we have a value for the peak, apply it now and adjust side maximums
+    let given_peak_price = given_prices[start + 1];
+    if (!isNaN(given_peak_price)) {
+      min_pred = predicted_prices[start + 1].min;
+      max_pred = predicted_prices[start + 1].max;
+
+      if (given_peak_price < min_pred - this.fudge_factor || given_peak_price > max_pred + this.fudge_factor) {
         // Given price is out of predicted range, so this is the wrong pattern
         return 0;
       }
+
       // TODO: How to deal with probability when there's fudge factor?
       // Clamp the value to be in range now so the probability won't be totally biased to fudged values.
-      const real_rate_range =
-          this.rate_range_from_given_and_base(clamp(middle_price, min_pred, max_pred), buy_price);
-      prob *= range_intersect_length(rate_range, real_rate_range) /
-        range_length(rate_range);
+      const real_peak_range =
+          this.rate_range_from_given_and_base(clamp(given_peak_price, min_pred, max_pred), buy_price);
+      prob *= range_intersect_length(peak_range, real_peak_range) /
+        range_length(peak_range);
       if (prob == 0) {
         return 0;
       }
 
-      rate_range = range_intersect(rate_range, real_rate_range);
+      predicted_prices[start + 1].min = given_peak_price;
+      predicted_prices[start + 1].max = given_peak_price;
+
+      side_range[1] = real_peak_range[1];
+      predicted_prices[start].max = given_peak_price - 1;
+      predicted_prices[start + 2].max = given_peak_price - 1;
     }
 
-    const left_price = given_prices[start];
-    const right_price = given_prices[start + 2];
-    // Prob(left_price | middle_price), Prob(right_price | middle_price)
-    //
-    // A = rate_range[0], B = rate_range[1], C = rate_min, X = rate, Y = randfloat(rate_min, rate)
-    // rate = randfloat(A, B); sellPrices[work++] = intceil(randfloat(C, rate) * basePrice) - 1;
-    //
-    // => X->U(A,B), Y->U(C,X), Y-C->U(0,X-C), Y-C->U(0,1)*(X-C), Y-C->U(0,1)*U(A-C,B-C),
-    // let Z=Y-C,  Z1=A-C, Z2=B-C, Z->U(0,1)*U(Z1,Z2)
-    // Prob(Z<=t) = integral_{x=0}^{1} [min(t/x,Z2)-min(t/x,Z1)]/ (Z2-Z1)
-    // let F(t, ZZ) = integral_{x=0}^{1} min(t/x, ZZ)
-    //    1. if ZZ < t, then min(t/x, ZZ) = ZZ -> F(t, ZZ) = ZZ
-    //    2. if ZZ >= t, then F(t, ZZ) = integral_{x=0}^{t/ZZ} ZZ + integral_{x=t/ZZ}^{1} t/x
-    //                                 = t - t log(t/ZZ)
-    // Prob(Z<=t) = (F(t, Z2) - F(t, Z1)) / (Z2 - Z1)
-    // Prob(Y<=t) = Prob(Z>=t-C)
-    for (const price of [left_price, right_price]) {
-      if (isNaN(price)) {
-        continue;
-      }
-      const min_pred = this.get_price(rate_min, buy_price) - 1;
-      const max_pred = this.get_price(rate_range[1], buy_price) - 1;
-      if (price < min_pred - this.fudge_factor || price > max_pred + this.fudge_factor) {
-        // Given price is out of predicted range, so this is the wrong pattern
-        return 0;
-      }
-      // TODO: How to deal with probability when there's fudge factor?
-      // Clamp the value to be in range now so the probability won't be totally biased to fudged values.
-      const rate2_range = this.rate_range_from_given_and_base(clamp(price, min_pred, max_pred)+ 1, buy_price);
-      const F = (t, ZZ) => {
-        if (t <= 0) {
+    // If we have values for the sides, apply them now and adjust peak minimum
+    for (let i = 0; i < 3; i += 2) {
+      let given_price = given_prices[start + i];
+      if (!isNaN(given_price)) {
+        min_pred = predicted_prices[start + i].min;
+        max_pred = predicted_prices[start + i].max;
+
+        if (given_price < min_pred - this.fudge_factor || given_price > max_pred + this.fudge_factor ||
+              (!isNaN(given_peak_price) && given_price >= given_peak_price)) {
+          // Given price is out of predicted range, so this is the wrong pattern
           return 0;
         }
-        return ZZ < t ? ZZ : t - t * (Math.log(t) - Math.log(ZZ));
-      };
-      const [A, B] = rate_range;
-      const C = rate_min;
-      const Z1 = A - C;
-      const Z2 = B - C;
-      const PY = (t) => (F(t - C, Z2) - F(t - C, Z1)) / (Z2 - Z1);
-      prob *= PY(rate2_range[1]) - PY(rate2_range[0]);
-      if (prob == 0) {
-        return 0;
+
+        // TODO: How to deal with probability when there's fudge factor?
+        // Clamp the value to be in range now so the probability won't be totally biased to fudged values.
+        const real_side_range =
+            this.rate_range_from_given_and_base(clamp(given_price, min_pred, max_pred), buy_price);
+        prob *= range_intersect_length(side_range, real_side_range) /
+          range_length(side_range);
+        if (prob == 0) {
+          return 0;
+        }
+
+        predicted_prices[start + i].min = given_price;
+        predicted_prices[start + i].max = given_price;
+
+        // Update the minimum value for the peak
+        if (predicted_prices[start + 1].min <= given_price)
+          predicted_prices[start + 1].min = given_price + 1;
       }
     }
-
-    // * Then generate the real predicted range.
-    // We're doing things in different order then how we calculate probability,
-    // since forward prediction is more useful here.
-    //
-    // Main spike 1
-    let min_pred = this.get_price(rate_min, buy_price) - 1;
-    let max_pred = this.get_price(rate_max, buy_price) - 1;
-    if (!isNaN(given_prices[start])) {
-      min_pred = given_prices[start];
-      max_pred = given_prices[start];
-    }
-    predicted_prices.push({
-      min: min_pred,
-      max: max_pred,
-    });
-
-    // Main spike 2
-    min_pred = predicted_prices[start].min;
-    max_pred = this.get_price(rate_max, buy_price);
-    if (!isNaN(given_prices[start + 1])) {
-      min_pred = given_prices[start + 1];
-      max_pred = given_prices[start + 1];
-    }
-    predicted_prices.push({
-      min: min_pred,
-      max: max_pred,
-    });
-
-    // Main spike 3
-    min_pred = this.get_price(rate_min, buy_price) - 1;
-    max_pred = predicted_prices[start + 1].max - 1;
-    if (!isNaN(given_prices[start + 2])) {
-      min_pred = given_prices[start + 2];
-      max_pred = given_prices[start + 2];
-    }
-    predicted_prices.push({
-      min: min_pred,
-      max: max_pred,
-    });
-
     return prob;
   }
 
