@@ -8,7 +8,10 @@
   <title>Animal Crossing - Turnip Prophet</title>
   <meta name="description" content="Animal Crossing - Turnip Prophet">
   <meta name="author" content="Mike Bryant">
+  <meta name="theme-color" content="#def2d9">
 
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/img/192.png">
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -98,13 +101,12 @@
         <div class="form__row">
           <h6>Sunday</h6>
           <div class="input__group">
-            <label>What was the price of turnips this week? <i>(If this is your first time buying turnips, this field
+            <label>What was the price of turnips this week on your island? <i>(If this is your first time buying turnips, this field
                 will be disabled)</i></label>
             <input type="number" id="buy" placeholder="..." />
 
           </div>
         </div>
-
         <i>AM - 8:00 am to 11:59 am</i>
         <i>PM - 12:00 pm to 10:00 pm</i>
         <div class="form__flex-wrap">
@@ -189,6 +191,10 @@
 
       <h2>Output</h2>
 
+      <div class="chart-wrapper">
+        <canvas id="chart" width="100%" height="100"></canvas>
+      </div>
+
       <div class="table-wrapper">
         <table id="turnipTable">
           <thead>
@@ -263,6 +269,7 @@
         </g>
       </svg>
     </div>
+  </div>
 
   </div>
 
@@ -284,13 +291,42 @@
       Support, comments and contributions are available through <a
         href="https://github.com/mikebryant/ac-nh-turnip-prices/issues">Github</a>
     </p>
+    <p>Oh! And let's not forget to thank those who have contributed so far!</p>
+    <p id="contributors">
+      Contributors:
+    </p>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <script src="js/chart.js"></script>
   <script src="js/predictions.js"></script>
   <script src="js/scripts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
   <script> new Darkmode({label: '🌓', buttonColorDark: '#fff00'}).showWidget();</script>
+  <script src="js/contributors.js"></script>
+  <script>
+    // Check compatibility for the browser we're running this in
+    if ("serviceWorker" in navigator) {
+      if (navigator.serviceWorker.controller) {
+        console.log(
+          "[PWA] Service Worker already found, skipping register"
+        );
+      } else {
+        // Register the service worker
+        navigator.serviceWorker
+          .register("/service-worker.js", {
+            scope: "./",
+          })
+          .then(function (reg) {
+            console.log(
+              "[PWA] Service worker has been registered for scope: " +
+                reg.scope
+            );
+          });
+      }
+    }
+  </script>
 </body>
 
 </html>
