@@ -1,5 +1,5 @@
 // PWA Code adapted from https://github.com/pwa-builder/PWABuilder
-const CACHE = "pwa-precache";
+const CACHE = "pwa-precache-v1";
 const precacheFiles = [
 	"/index.html",
 	"/js/predictions.js",
