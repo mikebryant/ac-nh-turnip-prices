@@ -42,6 +42,7 @@ const first_buy_radios = getFirstBuyRadios()
 const previous_pattern_radios = getPreviousPatternRadios()
 const permalink_input = $('#permalink-input')
 const permalink_button = $('#permalink-btn')
+const snackbar = $('#snackbar')
 
 //Functions
 const fillFields = function (prices, first_buy, previous_pattern) {
@@ -305,7 +306,17 @@ const copyPermalink = function () {
   document.execCommand('copy');
   permalink_input.hide();
 
-  alert('Copied!');
+  flashMessage("Permalink copied!");
+}
+
+const flashMessage = function(message) {
+  snackbar.text(message);
+  snackbar.addClass('show');
+
+  setTimeout(function () {
+    snackbar.removeClass('show')
+    snackbar.text('');
+  }, 3000);
 }
 
 const update = function () {
