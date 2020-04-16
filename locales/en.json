@@ -1,0 +1,13 @@
+{
+  "patterns": {
+    "decreasing": "Decreasing",
+    "fluctuating": "Fluctuating",
+    "unknown": "I don't know",
+    "large-spike": "Large Spike",
+    "small-spike": "Small Spike"
+  },
+  "times": {
+    "morning": "AM",
+    "afternoon": "PM"
+  }
+}

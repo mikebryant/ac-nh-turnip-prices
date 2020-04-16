@@ -10,8 +10,20 @@
   <meta name="author" content="Mike Bryant">
   <meta name="theme-color" content="#def2d9">
 
+  <!-- generics -->
+  <link rel="icon" href="img/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="img/favicon-128.png" sizes="128x128">
+  <link rel="icon" href="img/favicon-192.png" sizes="192x192">
+
+  <!-- Android -->
+  <link rel="shortcut icon" href="img/favicon-196.png" sizes="196x196">
+
+  <!-- iOS -->
+  <link rel="apple-touch-icon" href="img/favicon-152.png" sizes="152x152">
+  <link rel="apple-touch-icon" href="img/favicon-167.png" sizes="167x167">
+  <link rel="apple-touch-icon" href="img/favicon-180.png" sizes="180x180">
+
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/img/192.png">
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -85,15 +97,15 @@
             <label for="">What was last week's turnip price pattern?<i>(This affects your pattern)</i></label>
             <div class="input__radio-buttons">
               <input type="radio" id="pattern-radio-unknown" name="pattern" value="-1" checked>
-              <label for="pattern-radio-unknown">I don't know</label>
+              <label data-i18n="patterns.unknown" for="pattern-radio-unknown"></label>
               <input type="radio" id="pattern-radio-fluctuating" name="pattern" value="0">
-              <label for="pattern-radio-fluctuating">Fluctuating</label>
+              <label data-i18n="patterns.fluctuating" for="pattern-radio-fluctuating"></label>
               <input type="radio" id="pattern-radio-small-spike" name="pattern" value="3">
-              <label for="pattern-radio-small-spike">Small Spike</label>
+              <label data-i18n="patterns.small-spike" for="pattern-radio-small-spike"></label>
               <input type="radio" id="pattern-radio-large-spike" name="pattern" value="1">
-              <label for="pattern-radio-large-spike">Large Spike</label>
+              <label data-i18n="patterns.large-spike" for="pattern-radio-large-spike"></label>
               <input type="radio" id="pattern-radio-decreasing" name="pattern" value="2">
-              <label for="pattern-radio-decreasing">Decreasing</label>
+              <label data-i18n="patterns.decreasing" for="pattern-radio-decreasing"></label>
             </div>
           </div>
         </div>
@@ -113,11 +125,11 @@
           <div class="form__row">
             <h6>Monday</h6>
             <div class="input__group">
-              <label for="sell_2">AM</label>
+              <label data-i18n="times.morning" for="sell_2"></label>
               <input type="number" id="sell_2" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_3">PM</label>
+              <label data-i18n="times.afternoon" for="sell_3"></label>
               <input type="number" id="sell_3" placeholder="..." />
             </div>
           </div>
@@ -125,11 +137,11 @@
           <div class="form__row">
             <h6>Tuesday</h6>
             <div class="input__group">
-              <label for="sell_4">AM</label>
+              <label data-i18n="times.morning" for="sell_4"></label>
               <input type="number" id="sell_4" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_5">PM</label>
+              <label data-i18n="times.afternoon" for="sell_5"></label>
               <input type="number" id="sell_5" placeholder="..." />
             </div>
           </div>
@@ -137,11 +149,11 @@
           <div class="form__row">
             <h6>Wednesday</h6>
             <div class="input__group">
-              <label for="sell_6">AM</label>
+              <label data-i18n="times.morning" for="sell_6"></label>
               <input type="number" id="sell_6" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_7">PM</label>
+              <label data-i18n="times.afternoon" for="sell_7"></label>
               <input type="number" id="sell_7" placeholder="..." />
             </div>
           </div>
@@ -149,11 +161,11 @@
           <div class="form__row">
             <h6>Thursday</h6>
             <div class="input__group">
-              <label for="sell_8">AM</label>
+              <label data-i18n="times.morning" for="sell_8"></label>
               <input type="number" id="sell_8" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_9">PM</label>
+              <label data-i18n="times.afternoon" for="sell_9"></label>
               <input type="number" id="sell_9" placeholder="..." />
             </div>
           </div>
@@ -161,11 +173,11 @@
           <div class="form__row">
             <h6>Friday</h6>
             <div class="input__group">
-              <label for="sell_10">AM</label>
+              <label data-i18n="times.morning" for="sell_10"></label>
               <input type="number" id="sell_10" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_11">PM</label>
+              <label data-i18n="times.afternoon" for="sell_11"></label>
               <input type="number" id="sell_11" placeholder="..." />
             </div>
           </div>
@@ -173,16 +185,23 @@
           <div class="form__row">
             <h6>Saturday</h6>
             <div class="input__group">
-              <label for="sell_12">AM</label>
+              <label data-i18n="times.morning" for="sell_12"></label>
               <input type="number" id="sell_12" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_13">PM</label>
+              <label data-i18n="times.afternoon" for="sell_13"></label>
               <input type="number" id="sell_13" placeholder="..." />
             </div>
           </div>
         </div>
-        <button type="button" id="reset" class="reset-button" name="action">
+        <input id="permalink-input" type="text" />
+        <div id="permalink-btn" class="button permalink">
+          <span>Copy permalink</span>
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="copy" class="svg-inline--fa fa-copy fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z"></path>
+          </svg>
+        </div>
+        <button type="button" id="reset" class="button button--reset" name="action">
           Reset Turnip Prophet
         </button>
       </form>
@@ -205,45 +224,45 @@
               <th colspan="2">
                 <div>Monday</div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
               <th colspan="2">
                 <div>Tuesday</div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
               <th colspan="2">
                 <div>
                   <div>Wednesday</div>
                   <div>
-                    <span>AM</span>
-                    <span>PM</span>
+                    <span data-i18n="times.morning"></span>
+                    <span data-i18n="times.afternoon"></span>
                   </div>
                 </div>
               </th>
               <th colspan="2">
                 <div>Thursday</div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
               <th colspan="2">
                 <div>Friday</div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
               <th colspan="2">
                 <div>Saturday</div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
               <th valign="bottom">Guaranteed Minimum</th>
@@ -297,9 +316,16 @@
     </p>
   </div>
 
+  <div id="snackbar">Some text some message...</div>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/19.4.2/i18next.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/3.2.2/i18nextXHRBackend.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/4.0.2/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js"></script>
   <script src="js/chart.js"></script>
+  <script src="js/translations.js"></script>
   <script src="js/predictions.js"></script>
   <script src="js/scripts.js"></script>
   <script src="js/contributors.js"></script>

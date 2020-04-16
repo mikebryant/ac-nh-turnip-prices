@@ -40,6 +40,9 @@ const sell_inputs = getSellFields()
 const buy_input = $("#buy")
 const first_buy_radios = getFirstBuyRadios()
 const previous_pattern_radios = getPreviousPatternRadios()
+const permalink_input = $('#permalink-input')
+const permalink_button = $('#permalink-btn')
+const snackbar = $('#snackbar')
 
 //Functions
 const fillFields = function (prices, first_buy, previous_pattern) {
@@ -79,10 +82,14 @@ const initialize = function () {
     console.error(e);
   }
 
+  $("#permalink-btn").on("click", copyPermalink)
+
   $("#reset").on("click", function () {
-    sell_inputs.forEach(input => input.value = '')
-    fillFields([], false, -1)
-    update()
+    if (window.confirm("Are you sure you want to reset all fields?\n\nThis cannot be undone!")) {
+      sell_inputs.forEach(input => input.value = '')
+      fillFields([], false, -1)
+      update()
+    }
   })
 }
 
@@ -276,6 +283,53 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   update_chart(data, analyzed_possibilities);
 }
 
+const generatePermalink = function (buy_price, sell_prices, first_buy, previous_pattern) {
+  let searchParams = new URLSearchParams();
+  let pricesParam = buy_price ? buy_price.toString() : '';
+
+  if (!isEmpty(sell_prices)) {
+    const filtered = sell_prices.map(price => isNaN(price) ? '' : price).join('.');
+    pricesParam = pricesParam.concat('.', filtered);
+  }
+
+  if (pricesParam) {
+    searchParams.append('prices', pricesParam);
+  }
+
+  if (first_buy) {
+    searchParams.append('first', true);
+  }
+
+  if (previous_pattern !== -1) {
+    searchParams.append('pattern', previous_pattern);
+  }
+
+  return searchParams.toString() && window.location.origin.concat('?', searchParams.toString());
+}
+
+const copyPermalink = function () {
+  let text = permalink_input[0];
+
+  permalink_input.show();
+  text.select();
+  text.setSelectionRange(0, 99999); /* for mobile devices */
+
+  document.execCommand('copy');
+  permalink_input.hide();
+
+  flashMessage("Permalink copied!");
+}
+
+const flashMessage = function(message) {
+  snackbar.text(message);
+  snackbar.addClass('show');
+
+  setTimeout(function () {
+    snackbar.removeClass('show')
+    snackbar.text('');
+  }, 3000);
+}
+
 const update = function () {
   const sell_prices = getSellPrices();
   const buy_price = parseInt(buy_input.val());
@@ -285,6 +339,14 @@ const update = function () {
   buy_input[0].disabled = first_buy;
   buy_input[0].placeholder = first_buy ? '—' : '...'
 
+  const permalink = generatePermalink(buy_price, sell_prices, first_buy, previous_pattern);
+  if (permalink) {
+    permalink_button.show();
+  } else {
+    permalink_button.hide();
+  }
+  permalink_input.val(permalink);
+
   const prices = [buy_price, buy_price, ...sell_prices];
 
   if (!window.populated_from_query) {
@@ -293,7 +355,3 @@ const update = function () {
 
   calculateOutput(prices, first_buy, previous_pattern);
 }
-
-$(document).ready(initialize);
-$(document).on("input", update);
-$('input[type = radio]').on("change", update);
