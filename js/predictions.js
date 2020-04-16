@@ -845,15 +845,21 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     poss.weekGuaranteedMinimum = Math.max(...weekMins);
     poss.weekMax = Math.max(...weekMaxes);
   }
+  category_totals = {}
+  for (let i of ["Fluctuating", "Decreasing", "Small spike", "Large spike"]) {
+    category_totals[i] = generated_possibilities
+      .filter(value => value.pattern_description == i)
+      .map(value => value.probability)
+      .reduce((previous, current) => previous + current, 0)
+    console.log(category_totals[i])
+  }
+
+  for (let pos of generated_possibilities) {
+    pos.category_total_probability = category_totals[pos.pattern_description]
+  }
 
   generated_possibilities.sort((a, b) => {
-    if (a.weekMax < b.weekMax) {
-      return 1;
-    } else if (a.weekMax > b.weekMax) {
-      return -1;
-    } else {
-      return 0;
-    }
+    return b.category_total_probability - a.category_total_probability
   });
 
   global_min_max = [];
