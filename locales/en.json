@@ -1,14 +1,14 @@
 {
   "general": {
     "name": "Turnip Prophet",
-    "daisymae": "Daisy Mae"
+    "daisy-mae": "Daisy Mae"
   },
   "welcome": {
     "salutation": "Hello, and welcome to the <b>Turnip Prophet</b> app on your Nook Phone.",
     "description": "This app lets you track your island's turnip prices daily, but you'll have to put the prices in yourself!",
     "conclusion": "After that, the Turnip Prophet app will <b>magically</b> predict the turnip prices you'll have for the rest of the week."
   },
-  "firsttime": {
+  "first-time": {
     "title": "First-Time Buyer",
     "description": "Is this your first time buying turnips from Daisy Mae on your island?<i>(This affects your pattern)</i>",
     "yes": "Yes",
@@ -62,11 +62,11 @@
     "chance": "% Chance",
     "to": "to",
     "minimum": "Guaranteed Minimum",
-    "maximum": "Guaranteed Maximum",
+    "maximum": "Potential Maximum",
     "chart": {
       "input": "Input Price",
-      "minimum": "Minimum",
-      "maximum": "Maximum"
+      "minimum": "Guaranteed Minimum",
+      "maximum": "Potential Maximum"
     }
   },
   "textbox": {
