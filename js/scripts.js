@@ -85,7 +85,7 @@ const initialize = function () {
   $("#permalink-btn").on("click", copyPermalink)
 
   $("#reset").on("click", function () {
-    if (window.confirm("Are you sure you want to reset all fields?\n\nThis cannot be undone!")) {
+    if (window.confirm(i18next.t("prices.reset-warning"))) {
       sell_inputs.forEach(input => input.value = '')
       fillFields([], false, -1)
       update()
@@ -260,7 +260,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     out_line += `<td>${Number.isFinite(poss.probability) ? ((poss.probability * 100).toPrecision(3) + '%') : '—'}</td>`;
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
-        out_line += `<td>${day.min} to ${day.max}</td>`;
+        out_line += `<td>${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
       } else {
         out_line += `<td>${day.min}</td>`;
       }
@@ -308,7 +308,7 @@ const copyPermalink = function () {
   document.execCommand('copy');
   permalink_input.hide();
 
-  flashMessage("Permalink copied!");
+  flashMessage(i18next.t("prices.permalink-copied"));
 }
 
 const flashMessage = function(message) {
