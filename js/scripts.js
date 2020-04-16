@@ -256,18 +256,18 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   }
   let output_possibilities = "";
   let analyzed_possibilities = analyze_possibilities(data, first_buy, previous_pattern);
-  previous_pattern_description = ""
+  previous_pattern_number = ""
   for (let poss of analyzed_possibilities) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
-    if (previous_pattern_description != poss.pattern_description) {
-      previous_pattern_description = poss.pattern_description
+    if (previous_pattern_number != poss.pattern_number) {
+      previous_pattern_number = poss.pattern_number
       pattern_count = analyzed_possibilities
-        .filter(val => val.pattern_description == poss.pattern_description)
+        .filter(val => val.pattern_number == poss.pattern_number)
         .length
       percentage_display = percent => Number.isFinite(percent) ? ((percent * 100).toPrecision(3) + '%') : '—'
-      out_line += `<td rowspan=${pattern_count}>${percentage_display(poss.category_total_probability)} <br />`;
-      out_line += Number.isFinite(poss.probability) ? `(${pattern_count} @ ${percentage_display(poss.probability)})</td>` : "";
+      out_line += `<td rowspan=${pattern_count}>${percentage_display(poss.category_total_probability)}</td>`;
     }
+    out_line += `<td>${percentage_display(poss.probability)}</td>`;
     for (let day of poss.prices.slice(1)) {
       if (day.min !== day.max) {
         out_line += `<td>${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
