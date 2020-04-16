@@ -447,3 +447,12 @@ body.darkmode--activated{
    margin: 0 0 0 0;
    position: absolute
 }
+
+body.darkmode--activated a, body.darkmode--activated b, body.darkmode--activated input[type=number]:not(:placeholder-shown){
+  color: #b1301d;
+  
+}
+
+ body.darkmode--activated input[type="radio"]:checked+label{
+  background: #565655;
+}
