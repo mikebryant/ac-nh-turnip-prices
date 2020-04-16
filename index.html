@@ -14,10 +14,10 @@
   <link rel="icon" href="img/favicon-32.png" sizes="32x32">
   <link rel="icon" href="img/favicon-128.png" sizes="128x128">
   <link rel="icon" href="img/favicon-192.png" sizes="192x192">
-  
+
   <!-- Android -->
   <link rel="shortcut icon" href="img/favicon-196.png" sizes="196x196">
-  
+
   <!-- iOS -->
   <link rel="apple-touch-icon" href="img/favicon-152.png" sizes="152x152">
   <link rel="apple-touch-icon" href="img/favicon-167.png" sizes="167x167">
@@ -97,15 +97,15 @@
             <label for="">What was last week's turnip price pattern?<i>(This affects your pattern)</i></label>
             <div class="input__radio-buttons">
               <input type="radio" id="pattern-radio-unknown" name="pattern" value="-1" checked>
-              <label for="pattern-radio-unknown">I don't know</label>
+              <label data-i18n="patterns.unknown" for="pattern-radio-unknown"></label>
               <input type="radio" id="pattern-radio-fluctuating" name="pattern" value="0">
-              <label for="pattern-radio-fluctuating">Fluctuating</label>
+              <label data-i18n="patterns.fluctuating" for="pattern-radio-fluctuating"></label>
               <input type="radio" id="pattern-radio-small-spike" name="pattern" value="3">
-              <label for="pattern-radio-small-spike">Small Spike</label>
+              <label data-i18n="patterns.small-spike" for="pattern-radio-small-spike"></label>
               <input type="radio" id="pattern-radio-large-spike" name="pattern" value="1">
-              <label for="pattern-radio-large-spike">Large Spike</label>
+              <label data-i18n="patterns.large-spike" for="pattern-radio-large-spike"></label>
               <input type="radio" id="pattern-radio-decreasing" name="pattern" value="2">
-              <label for="pattern-radio-decreasing">Decreasing</label>
+              <label data-i18n="patterns.decreasing" for="pattern-radio-decreasing"></label>
             </div>
           </div>
         </div>
@@ -319,8 +319,13 @@
   <div id="snackbar">Some text some message...</div>
 
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/19.4.2/i18next.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/3.2.2/i18nextXHRBackend.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/4.0.2/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js"></script>
   <script src="js/chart.js"></script>
+  <script src="js/translations.js"></script>
   <script src="js/predictions.js"></script>
   <script src="js/scripts.js"></script>
   <script src="js/contributors.js"></script>

@@ -346,7 +346,3 @@ const update = function () {
 
   calculateOutput(prices, first_buy, previous_pattern);
 }
-
-$(document).ready(initialize);
-$(document).on("input", update);
-$('input[type = radio]').on("change", update);
