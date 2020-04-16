@@ -423,3 +423,27 @@ input[type=number] {
     min-height: 40px;
   }
 }
+
+/*Darkmodjs*/
+.darkmode-layer, .darkmode-toggle {
+  z-index: 1;
+}
+
+div.darkmode-background{
+  background: #DEF2D9;
+  background-image:
+    radial-gradient(#fff 20%, transparent 0),
+    radial-gradient(#fff 20%, transparent 0);
+  position: inherit;
+}
+
+body.darkmode--activated{
+   display: flex;
+   flex-direction: column;
+   align-items: center;
+   justify-content: center;
+   font-family: 'Varela Round', sans-serif;
+   width: 100%;
+   margin: 0 0 0 0;
+   position: absolute
+}
