@@ -204,8 +204,8 @@ class PDF {
     }
 
     let prob = 0;
-    const start_idx = Math.round(start) - this.value_start; 
-    const end_idx = Math.round(end) - this.value_start; 
+    const start_idx = Math.round(start) - this.value_start;
+    const end_idx = Math.round(end) - this.value_start;
     for (let i = start_idx; i <= end_idx; i++) {
       const bucket_prob = this.prob[i] * range_intersect_length(this.range_of(i), range);
       this.prob[i] = bucket_prob;
@@ -837,6 +837,10 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
         weekMins = [];
         weekMaxes = [];
       }
+    }
+    if (!weekMins.length && !weekMaxes.length) {
+      weekMins.push(poss.prices[poss.prices.length -1].min);
+      weekMaxes.push(poss.prices[poss.prices.length -1].max);
     }
     poss.weekGuaranteedMinimum = Math.max(...weekMins);
     poss.weekMax = Math.max(...weekMaxes);
