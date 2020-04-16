@@ -37,6 +37,7 @@ const checkRadioByValue = function (radio_array, value) {
 }
 
 const sell_inputs = getSellFields()
+const payed_input = $("#payed")
 const buy_input = $("#buy")
 const first_buy_radios = getFirstBuyRadios()
 const previous_pattern_radios = getPreviousPatternRadios()
@@ -45,9 +46,11 @@ const permalink_button = $('#permalink-btn')
 const snackbar = $('#snackbar')
 
 //Functions
-const fillFields = function (prices, first_buy, previous_pattern) {
+const fillFields = function (prices, first_buy, previous_pattern, payed_price) {
   checkRadioByValue(first_buy_radios, first_buy);
   checkRadioByValue(previous_pattern_radios, previous_pattern);
+
+  payed_input.val(payed_price)
 
   buy_input.focus();
   buy_input.val(prices[0] || '')
@@ -72,10 +75,11 @@ const initialize = function () {
     const first_buy = previous[0];
     const previous_pattern = previous[1];
     const prices = previous[2];
+    const payed_price = previous[3];
     if (prices === null) {
-      fillFields([], first_buy, previous_pattern)
+      fillFields([], first_buy, previous_pattern, payed_price)
     } else {
-      fillFields(prices, first_buy, previous_pattern)
+      fillFields(prices, first_buy, previous_pattern, payed_price)
     }
     $(document).trigger("input");
   } catch (e) {
@@ -93,12 +97,13 @@ const initialize = function () {
   })
 }
 
-const updateLocalStorage = function (prices, first_buy, previous_pattern) {
+const updateLocalStorage = function (prices, first_buy, previous_pattern, payed_price) {
   try {
     if (prices.length !== 14) throw "The data array needs exactly 14 elements to be valid"
     localStorage.setItem("sell_prices", JSON.stringify(prices))
     localStorage.setItem("first_buy", JSON.stringify(first_buy));
     localStorage.setItem("previous_pattern", JSON.stringify(previous_pattern));
+    localStorage.setItem("payed_price", JSON.stringify(payed_price));
   } catch (e) {
     console.error(e)
   }
@@ -206,6 +211,23 @@ const getPricesFromQuery = function (param) {
   }
 };
 
+const getPayedPriceFromLocalStorage = function () {
+  return JSON.parse(localStorage.getItem("payed_price"))
+};
+
+const getPayedPriceFromQuery = function (param) {
+  try {
+    const params = new URLSearchParams(window.location.search.substr(1));
+    const payed_price_str = params.get(param);
+    if (payed_price_str == null) {
+      return null;
+    }
+    return parseInt(payed_price_str);
+  } catch (e) {
+    return null;
+  }
+};
+
 const getPreviousFromQuery = function () {
 
   /* Check if valid prices are entered. Exit immediately if not. */
@@ -219,7 +241,8 @@ const getPreviousFromQuery = function () {
   return [
     getFirstBuyStateFromQuery("first"),
     getPreviousPatternStateFromQuery("pattern"),
-    prices
+    prices,
+    getPayedPriceFromQuery("payed_price"),
   ];
 };
 
@@ -227,7 +250,8 @@ const getPreviousFromLocalstorage = function () {
   return [
     getFirstBuyStateFromLocalstorage(),
     getPreviousPatternStateFromLocalstorage(),
-    getPricesFromLocalstorage()
+    getPricesFromLocalstorage(),
+    getPayedPriceFromLocalStorage(),
   ];
 };
 
@@ -248,7 +272,7 @@ const getSellPrices = function () {
   })
 }
 
-const calculateOutput = function (data, first_buy, previous_pattern) {
+const calculateOutput = function (data, first_buy, previous_pattern, payed_price) {
   if (isEmpty(data)) {
     $("#output").html("");
     return;
@@ -271,10 +295,10 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
 
   $("#output").html(output_possibilities)
 
-  update_chart(data, analyzed_possibilities);
+  update_chart(data, payed_price, analyzed_possibilities);
 }
 
-const generatePermalink = function (buy_price, sell_prices, first_buy, previous_pattern) {
+const generatePermalink = function (buy_price, sell_prices, first_buy, previous_pattern, payed_price) {
   let searchParams = new URLSearchParams();
   let pricesParam = buy_price ? buy_price.toString() : '';
 
@@ -293,6 +317,10 @@ const generatePermalink = function (buy_price, sell_prices, first_buy, previous_
 
   if (previous_pattern !== -1) {
     searchParams.append('pattern', previous_pattern);
+  }
+
+  if (!isNaN(payed_price)) {
+    searchParams.append('payed_price', payed_price);
   }
 
   return searchParams.toString() && window.location.origin.concat('?', searchParams.toString());
@@ -323,6 +351,7 @@ const flashMessage = function(message) {
 
 const update = function () {
   const sell_prices = getSellPrices();
+  const payed_price = parseInt(payed_input.val());
   const buy_price = parseInt(buy_input.val());
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
   const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
@@ -330,7 +359,7 @@ const update = function () {
   buy_input[0].disabled = first_buy;
   buy_input[0].placeholder = first_buy ? '—' : '...'
 
-  const permalink = generatePermalink(buy_price, sell_prices, first_buy, previous_pattern);
+  const permalink = generatePermalink(buy_price, sell_prices, first_buy, previous_pattern, payed_price);
   if (permalink) {
     permalink_button.show();
   } else {
@@ -341,8 +370,8 @@ const update = function () {
   const prices = [buy_price, buy_price, ...sell_prices];
 
   if (!window.populated_from_query) {
-    updateLocalStorage(prices, first_buy, previous_pattern);
+    updateLocalStorage(prices, first_buy, previous_pattern, payed_price);
   }
 
-  calculateOutput(prices, first_buy, previous_pattern);
+  calculateOutput(prices, first_buy, previous_pattern, payed_price);
 }

@@ -17,7 +17,7 @@ const chart_options = {
   },
 };
 
-function update_chart(input_data, possibilities) {
+function update_chart(input_data, payed_price, possibilities) {
   var ctx = $("#chart");
 
   datasets = [
@@ -25,6 +25,12 @@ function update_chart(input_data, possibilities) {
       label: "Input Price",
       data: input_data.slice(1),
       fill: false,
+    },
+    {
+      label: "Payed Price",
+      data: Array(input_data.length).fill(payed_price),
+      fill: false,
+      pointRadius: 1,
     },
     {
       label: "Minimum",
