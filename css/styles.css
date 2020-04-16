@@ -267,10 +267,10 @@ input[type=number] {
   color: #FFF;
 }
 
-.reset-button {
+.button {
+  color: #686868;
   font-family: inherit;
   font-weight: bold;
-  color: #FFBABA;
   padding: 8px 16px;
   border-width: 0px;
   border-radius: 40px;
@@ -281,13 +281,16 @@ input[type=number] {
   margin: 16px auto;
 }
 
-.reset-button:hover {
+.button:hover {
   transform: scale(1.1);
   cursor: pointer;
   opacity: 1;
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.09);
 }
 
+.button.button--reset {
+  color: #E45B5B;
+}
 
 .table-wrapper {
   display: inline-block;
@@ -378,7 +381,6 @@ input[type=number] {
   justify-content: center;
 }
 
-
 .waves {
   position: relative;
   width: 100%;
@@ -388,6 +390,24 @@ input[type=number] {
   max-height: 150px;
 }
 
+#permalink-input {
+  display: none;
+  position: fixed;
+}
+
+.permalink {
+  display: none;
+  white-space: nowrap;
+  font-size: 18px;
+  user-select: none;
+  cursor: pointer;
+}
+
+.permalink .fa-copy {
+  margin: 0 8px;
+  height: 20px;
+  color: #0AB5CD;
+}
 
 /* Animation */
 .parallax>use {
