@@ -80,9 +80,11 @@ const initialize = function () {
   }
 
   $("#reset").on("click", function () {
-    sell_inputs.forEach(input => input.value = '')
-    fillFields([], false, -1)
-    update()
+    if (window.confirm("Are you sure you want to reset all fields?\n\nThis cannot be undone!")) {
+      sell_inputs.forEach(input => input.value = '')
+      fillFields([], false, -1)
+      update()
+    }
   })
 }
 
