@@ -45,12 +45,12 @@
     "saturday" : "Saturday",
     "sunday": "Sunday",
     "abr": {
-      "monday": "Mon ",
-      "tuesday": "Tue ",
-      "wednesday": "Wed ",
-      "thursday": "Thu ",
-      "friday": "Fri ",
-      "saturday" : "Sat "
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday" : "Sat"
     }
   },
   "times": {
