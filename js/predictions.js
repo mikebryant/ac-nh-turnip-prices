@@ -828,8 +828,15 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     var weekMins = [];
     var weekMaxes = [];
     for (let day of poss.prices.slice(2)) {
-      weekMins.push(day.min);
-      weekMaxes.push(day.max);
+      // Check for a future date by checking for a range of prices
+      if(day.min !== day.max){
+        weekMins.push(day.min);
+        weekMaxes.push(day.max);
+      } else {
+        // If we find a set price after one or more ranged prices, the user has missed a day. Discard that data and start again.
+        weekMins = [];
+        weekMaxes = [];
+      }
     }
     poss.weekGuaranteedMinimum = Math.max(...weekMins);
     poss.weekMax = Math.max(...weekMaxes);
@@ -867,7 +874,7 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     pattern_number: 4,
     prices: global_min_max,
     weekGuaranteedMinimum: Math.min(...generated_possibilities.map(poss => poss.weekGuaranteedMinimum)),
-    weekMax: Math.max(...generated_possibilities.map(poss => poss.weekMax)),
+    weekMax: Math.max(...generated_possibilities.map(poss => poss.weekMax))
   });
 
   return generated_possibilities;
