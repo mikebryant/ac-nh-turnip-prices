@@ -33,38 +33,23 @@ self.addEventListener("fetch", function (event) {
 	if (event.request.method !== "GET") return;
 
 	event.respondWith(
-		fromCache(event.request).then(
-			(response) => {
-				// The response was found in the cache so we responde with it and update the entry
-
-				// This is where we call the server to get the newest version of the
-				// file to use the next time we show view
-				event.waitUntil(
-					fetch(event.request).then(function (response) {
-						return updateCache(event.request, response);
-					})
-				);
-
-				return response;
-			},
-			() => {
-				// The response was not found in the cache so we look for it on the server
-				return fetch(event.request)
-					.then(function (response) {
-						// If request was success, add or update it in the cache
-						event.waitUntil(
-							updateCache(event.request, response.clone())
-						);
-
-						return response;
-					})
-					.catch(function (error) {
-						console.log(
-							"[PWA] Network request failed and no cache." + error
-						);
-					});
-			}
-		)
+    (async () => {
+      let response;
+      try {
+        // Fetch from network first.
+        response = await fetch(event.request);
+        event.waitUntil(updateCache(event.request, response.clone()));
+      } catch (error) {
+        try {
+          // Try if there's locally cached version.
+          response = await fromCache(event.request);
+        } catch (error) {
+          console.log("[PWA] Network request failed and no cache." + error);
+          throw error;
+        }
+      }
+      return response;
+    })()
 	);
 });
 
