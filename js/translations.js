@@ -1,6 +1,6 @@
 function updateContent() {
   update();
-  $("body").localize();
+  $('body').localize();
 }
 
 i18next
@@ -14,9 +14,9 @@ i18next
   },
 }, (err, t) => {
   const languages = [
-    ["en", "English"],
-    ["zh-CN", "简体中文"],
-    ["zh-TW", "繁體中文"],
+    ['en', 'English'],
+    ['zh-CN', '简体中文'],
+    ['zh-TW', '繁體中文'],
   ],
   languageSelector = $('#language');
   languages.map(([code, name]) => {
@@ -38,6 +38,6 @@ i18next
   });
   // init set content
   $(document).ready(initialize);
-  $(document).on("input", updateContent);
-  $('input[type = radio]').on("change", updateContent);
+  $(document).on('input', updateContent);
+  $('input[type = radio]').on('change', updateContent);
 });
