@@ -10,7 +10,7 @@
   },
   "first-time": {
     "title": "首次購買",
-    "description": "這是您第一次從島上的曹賣購買大頭菜嗎？<i>(這會影響您這次的模型)</i>",
+    "description": "這是您第一次從自己的島上和曹賣購買大頭菜嗎？<i>(這會影響您這次的模型)</i>",
     "yes": "是",
     "no": "否"
   },
@@ -70,10 +70,10 @@
     }
   },
   "textbox": {
-    "description": "在您紀錄了一些大頭菜價格之後，預測程式會運行運算， 並顯示你所在島嶼可能出現的不同模型。",
+    "description": "在您紀錄了一些大頭菜價格之後，預測程式會運行運算，並顯示你所在島嶼可能出現的不同模型。",
     "development": "此程式仍在開發中，但會隨著時間的推移而改善！",
     "thanks": "如果沒有<a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji 的幫忙</a>來弄清楚豆狸和粒狸如何對他們的大頭菜的估價，那麼這一切都是不可能的。",
-    "support": "可透過 <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>獲得支援, 討論及貢獻",
+    "support": "可透過 <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>獲得支援、討論及貢獻",
     "contributors-text": "哦！讓我們不要忘記感謝那些迄今為止作出貢獻的人！",
     "contributors": "貢獻者"
   }
