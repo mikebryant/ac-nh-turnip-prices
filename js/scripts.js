@@ -77,10 +77,11 @@ const initialize = function () {
     } else {
       fillFields(prices, first_buy, previous_pattern)
     }
-    $(document).trigger("input");
   } catch (e) {
     console.error(e);
   }
+
+  $(document).trigger("input");
 
   $("#permalink-btn").on("click", copyPermalink)
 
