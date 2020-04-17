@@ -70,10 +70,10 @@
     }
   },
   "textbox": {
-    "description": "複数のカブ価を入力したら、カブ預言者はデータを計算して、可能な変動モードを表示します。",
-    "development": "このアプリはまだ発展中で、完璧のデータを提供するようにがんばります！",　
+    "description": "複数のカブ価を入力したら、カブ預言者はデータを計算して、可能な変動パターンを表示します。",
+    "development": "このアプリはまだ開発中で、完璧のデータを提供するようにがんばります！",　
     "thanks": "このアプリの作成は、タヌキ商店のカブ定価パターンを解析したNinji様のおかげです。ありがとうございます！<a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji's work</a>",
-    "support": "疑問、コメント、提案などは<a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>にお願い致します。",
+    "support": "疑問·コメント·提案などは<a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>にお願い致します。",
     "contributors-text": "そしてこのアプリの作成をてつだった方々に感謝します！",
     "contributors": "貢献者"
   }
