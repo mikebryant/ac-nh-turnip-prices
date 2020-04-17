@@ -1,22 +1,22 @@
 {
   "general": {
-    "name": "Profeta delle Rape",
+    "name": "Turnip Prophet",
     "daisy-mae": "Brunella"
   },
   "welcome": {
-    "salutation": "Ciao e benvenuto all'app <b>Profeta delle Rape</b> del tuo Nook Phone.",
+    "salutation": "Ciao e benvenuto nell'app <b>Turnip Prophet</b> del tuo Nook Phone.",
     "description": "Questa applicazione ti permetterà di tenere traccia del prezzo giornaliero delle rape. Ma dovrai inserire i prezzi da te!",
-    "conclusion": "Se lo fai il Profeta delle Rape predirrà <b>magicamente</b> i prezzi delle rape che avrai per il resto della settimana."
+    "conclusion": "Se lo fai Turnip Prophet predirrà <b>magicamente</b> i prezzi delle rape che avrai per il resto della settimana."
   },
   "first-time": {
     "title": "Primo Acquisto",
-    "description": "È la prima volta che acquisti rape da Brunella?<i>(influisce sul comportamento dei prezzi)</i>",
+    "description": "È la prima volta che acquisti sulla tua isola le rape da Brunella?<i>(influisce sul comportamento dei prezzi)</i>",
     "yes": "Sì",
     "no": "No"
   },
   "patterns": {
     "title": "Comportamento Precedente",
-    "description": "Qual'è stato il comportamento dei prezzi delle rape nella scorsa settimana?<i>(influisce sul comportamento dei prezzi)</i>",
+    "description": "Qual è stato il comportamento dei prezzi delle rape nella scorsa settimana?<i>(influisce sul comportamento dei prezzi)</i>",
     "pattern": "Comportamento",
     "all": "Tutti i comportamenti",
     "decreasing": "Decrescente",
@@ -26,14 +26,14 @@
     "small-spike": "Piccolo picco"
   },
   "prices": {
-    "description": "Qual'era il prezzo di acquisto delle rape questa settimana? <i>(Se è la prima volta che le compri questo campo è disabilitato)</i>",
+    "description": "Qual era il prezzo di acquisto delle rape sulla tua isola questa settimana? <i>(Se è la prima volta che le compri questo campo è disabilitato)</i>",
     "open": {
       "am": "Mattina - dalle 8:00 alle 11:59",
       "pm": "Pomeriggio - dalle 12:00 alle 22:00"
     },
     "copy-permalink": "Copia permalink",
     "permalink-copied": "Permalink copiato!",
-    "reset": "Resetta il Profeta delle Rape",
+    "reset": "Resetta Turnip Prophet",
     "reset-warning": "Sei sicuro di voler resettare tutti i campi?\n\nNon può essere annullato!"
   },
   "weekdays": {
@@ -70,7 +70,7 @@
     }
   },
   "textbox": {
-    "description": "Dopo aver inserito alcuni prezzi, il Profeta delle Rape calcolerà e mostrerà i possibili comportamenti del prezzo delle rape nella tua isola.",
+    "description": "Dopo aver inserito alcuni prezzi, Turnip Prophet calcolerà e mostrerà i possibili comportamenti del prezzo delle rape nella tua isola.",
     "development": "Quest'applicazione è in ancora in sviluppo ma migliorerà col tempo!",
     "thanks": "Niente di questo sarebbe possibile senza <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">il lavoro di Ninji</a> nello scoprire come Mirko e Marco valutano le rape.",
     "support": "Chiedi supporto o lascia commenti e contributi su <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
