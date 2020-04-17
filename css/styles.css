@@ -483,3 +483,7 @@ body.darkmode--activated input[type=number]:placeholder-shown{
 body.darkmode--activated input[type="radio"]:checked+label{
   background: #7b6955;
 }
+
+body.darkmode--activated i{
+  color: #7b6955;
+}
