@@ -34,7 +34,7 @@
     "copy-permalink": "パーマリンクをコピーする",
     "permalink-copied": "パーマリンクはコピーされました！",
     "reset": "カブ預言者をリセットします",
-    "reset-warning": "本当に全部をリセットしますか？\n\n後戻りはできませんよ！"
+    "reset-warning": "本当に全部をリセットしますか？\n\nリセットしたら後戻りはできませんよ！"
   },
   "weekdays": {
     "monday": "月曜日",
