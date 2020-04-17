@@ -69,7 +69,8 @@ h2 {
   text-align: center;
 }
 
-.dialog-box-lng p,.dialog-box-lng select{
+.dialog-box-lng p,
+.dialog-box-lng select {
   display: inline;
 }
 

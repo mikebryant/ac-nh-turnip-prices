@@ -2,26 +2,29 @@ function updateContent() {
   update();
   $('body').localize();
 }
-
+const defaultLanguage = 'en';
 i18next
 .use(i18nextXHRBackend)
 .use(i18nextBrowserLanguageDetector)
 .init({
-  fallbackLng: 'en',
+  fallbackLng: defaultLanguage,
   debug: true,
   backend: {
     loadPath: 'locales/{{lng}}.json',
   },
 }, (err, t) => {
   const languages = [
+    ['de', 'Deutsch'],
     ['en', 'English'],
     ['zh-CN', '简体中文'],
-    ['zh-TW', '繁體中文'],
+    ['zh-TW', '繁體中文']
   ],
   languageSelector = $('#language');
   languages.map(([code, name]) => {
     languageSelector.append(`<option value="${code}"${code == i18next.language ? ' selected' : ''}>${name}</option>`);
   });
+  if (!languageSelector.find('[selected]').length)
+    languageSelector.val(defaultLanguage);
   languageSelector.on('change', function () {
     if (this.value == i18next.language)
       return;
@@ -30,7 +33,7 @@ i18next
   jqueryI18next.init(i18next, $);
   i18next.on('languageChanged', lng => {
     if (!languageSelector.find(`[value=${lng}]`).length) {
-      i18next.changeLanguage('en');
+      i18next.changeLanguage(defaultLanguage);
       return;
     }
     languageSelector.val(lng);
