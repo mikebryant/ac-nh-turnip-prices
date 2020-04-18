@@ -22,8 +22,8 @@
     "decreasing": "遞減型",
     "fluctuating": "波動型",
     "unknown": "不知道",
-    "large-spike": "三期型（上漲三次）",
-    "small-spike": "四期型（上漲四次）"
+    "large-spike": "大幅上漲三次",
+    "small-spike": "小幅上漲四次"
   },
   "prices": {
     "description": "本週大頭菜的購買價格是多少？<i>(如果這是您第一次購買大頭菜，則此欄位會被停用)</i>",
