@@ -846,14 +846,20 @@ function analyze_possibilities(sell_prices, first_buy, previous_pattern) {
     poss.weekMax = Math.max(...weekMaxes);
   }
 
+  category_totals = {}
+  for (let i of [0, 1, 2, 3]) {
+    category_totals[i] = generated_possibilities
+      .filter(value => value.pattern_number == i)
+      .map(value => value.probability)
+      .reduce((previous, current) => previous + current, 0);
+  }
+
+  for (let pos of generated_possibilities) {
+    pos.category_total_probability = category_totals[pos.pattern_number];
+  }
+
   generated_possibilities.sort((a, b) => {
-    if (a.weekMax < b.weekMax) {
-      return 1;
-    } else if (a.weekMax > b.weekMax) {
-      return -1;
-    } else {
-      return 0;
-    }
+    return b.category_total_probability - a.category_total_probability || b.probability - a.probability;
   });
 
   global_min_max = [];
