@@ -74,6 +74,27 @@ h2 {
   display: inline;
 }
 
+.dialog-box-lng select {
+  font-size: 1rem;
+  padding: 4px;
+  font-weight: bold;
+  border-radius: 4px;
+  border-color: #DEF2D9;
+  color: #837865;
+  cursor: pointer;
+  transition: 0.2s all;
+}
+
+.dialog-box-lng select:hover {
+  background-color: #EBFEFD;
+  border-color: #5ECEDB;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.16);
+}
+
+.dialog-box-lng select:focus {
+  outline: none;
+}
+
 .dialog-box p {
   font-family: 'Raleway', sans-serif;
   font-weight: 800;
