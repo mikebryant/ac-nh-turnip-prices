@@ -16,6 +16,7 @@ i18next
   const languages = [
     ['de', 'Deutsch'],
     ['en', 'English'],
+    ['fr', 'Français'],
     ['it', 'Italiano'],
     ['ja', '日本語'],
     ['pt-BR', 'Português'],
