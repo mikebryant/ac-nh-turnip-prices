@@ -273,7 +273,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
         var dayContainsWeekMax = day.max === poss.weekMax || day.min === poss.weekMax;
 
         var minClass = dayContainsLowestGuaranteed ? `class="lowest" ` : null;
-        var maxClass = dayContainsWeekMax ? `clasws="highest" ` : null;
+        var maxClass = dayContainsWeekMax ? `class="highest" ` : null;
         var rangeClass = maxClass ? maxClass : (minClass ? minClass : null);
       if (day.min !== day.max) {
         out_line += `<td ${!!rangeClass ? rangeClass : ''}data-min="${day.min}" data-max="${day.max}">${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
