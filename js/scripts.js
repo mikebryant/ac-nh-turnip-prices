@@ -269,16 +269,17 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     }
     out_line += `<td>${percentage_display(poss.probability)}</td>`;
     for (let day of poss.prices.slice(1)) {
-        var dayContainsLowestGuaranteed = day.min === poss.weekGuaranteedMinimum;
-        var dayContainsWeekMax = day.max === poss.weekMax || day.min === poss.weekMax;
+      var dayContainsLowestGuaranteed = day.min === poss.weekGuaranteedMinimum;
+      var dayContainsWeekMax = day.max === poss.weekMax || day.min === poss.weekMax;
 
-        var minClass = dayContainsLowestGuaranteed ? `class="lowest" ` : null;
-        var maxClass = dayContainsWeekMax ? `class="highest" ` : null;
-        var rangeClass = maxClass ? maxClass : (minClass ? minClass : null);
+      var minClass = dayContainsLowestGuaranteed ? `class="lowest" ` : '';
+      var maxClass = dayContainsWeekMax ? `class="highest" ` : '';
+      var tdClass = maxClass ? maxClass : (minClass ? minClass : '');
+
       if (day.min !== day.max) {
-        out_line += `<td ${!!rangeClass ? rangeClass : ''}data-min="${day.min}" data-max="${day.max}">${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
+        out_line += `<td ${tdClass}data-min="${day.min}" data-max="${day.max}">${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
       } else {
-        out_line += `<td ${!!maxClass ? maxClass : ''}data-min="${day.min}" data-max="${day.min}">${day.min}</td>`;
+        out_line += `<td ${tdClass}data-min="${day.min}" data-max="${day.min}">${day.min}</td>`;
       }
     }
     out_line += `<td class="week-min">${poss.weekGuaranteedMinimum}</td><td class="week-max">${poss.weekMax}</td></tr>`;
