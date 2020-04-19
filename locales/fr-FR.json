@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "Porcelette"
+  },
+  "welcome": {
+    "salutation": "Bonjour, et bienvenue sur l'application <b>Turnip Prophet</b> sur ton Nook Phone.",
+    "description": "Cette application te permets de suivre le prix des navets sur ton île au fil des jours, mais tu devras les renseigner toi même !",
+    "conclusion": "Avec ces informations, l'application Turnip Prophet sera en mesure de prédire <b>magiquement</b> le prix des navets pour le reste de la semaine."
+  },
+  "first-time": {
+    "title": "Premier achat ?",
+    "description": "Est-ce la première fois que tu achètes des navets à Porcelette sur ton île ? <i>(Cela détermine la tendance)</i>",
+    "yes": "Oui",
+    "no": "Non"
+  },
+  "patterns": {
+    "title": "Tendance précédente",
+    "description": "Quelle était la tendance du prix des navets la semaine dernière ?<i>(Cela détermine la tendance)</i>",
+    "pattern": "Tendance",
+    "all": "Toutes",
+    "decreasing": "Baisse",
+    "fluctuating": "Fluctuation",
+    "unknown": "Je ne sais pas",
+    "large-spike": "Grosse augmentation",
+    "small-spike": "Petite augmentation"
+  },
+  "prices": {
+    "description": "Quel était le prix des navets sur ton île cette semaine ?<i>(Si c'est la première fois que tu achètes des navets sur ton île, ce champ sera désactivé.)</i>",
+    "open": {
+      "am": "Matin : 8h à 11h59",
+      "pm": "Après-midi : 12h à 22h"
+    },
+    "copy-permalink": "Copier le lien",
+    "permalink-copied": "Lien copié !",
+    "reset": "Remettre à zéro l'application",
+    "reset-warning": "Es-tu vraiment sûr de vouloir réinitialiser tous les champs ?\n\nC'est irréversible !"
+  },
+  "weekdays": {
+    "monday": "Lundi",
+    "tuesday": "Mardi",
+    "wednesday": "Mercredi",
+    "thursday": "Jeudi",
+    "friday": "Vendredi",
+    "saturday" : "Samedi",
+    "sunday": "Dimanche",
+    "abr": {
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mer",
+      "thursday": "Jeu",
+      "friday": "Ven",
+      "saturday" : "Sam"
+    }
+  },
+  "times": {
+    "morning": "Matin",
+    "afternoon": "Après-midi"
+  },
+  "output": {
+    "title": "Probabilitée",
+    "chance": "% de chance",
+    "to": "à",
+    "minimum": "Minimum garanti",
+    "maximum": "Maximum possible",
+    "chart": {
+      "input": "Prix renseigné",
+      "minimum": "Minimum garanti",
+      "maximum": "Maximum possible"
+    }
+  },
+  "textbox": {
+    "description": "Après avoir saisi quelques prix pour les navets, l'application Turnip Prophet calculera les tendances qui pourrait apparaitre sur ton île.",
+    "development": "Cette application est encore en développement, mais s'améliorera avec le temps !",
+    "thanks": "Rien de tout cela n'aurait été possible sans le travail de <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a>, qui a découvert comment Timmy et Tommy calcul leurs prix.",
+    "support": "Support, commentaires et contributions sont disponible sur <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+    "contributors-text": "Oh ! Et 'noublions pas de remercier ceux qui ont contribué !",
+    "contributors": "Contributeurs",
+    "language": "Langue"
+  }
+}
