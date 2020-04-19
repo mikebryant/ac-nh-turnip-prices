@@ -9,15 +9,15 @@
   },
   "first-time": {
     "title": "Comprador(a) primerizo(a)",
-    "description": "¿Es esta la primera vez que has comprado nabos?<i>(Esta información afectará a tu patrón)</i>",
+    "description": "¿Ha sido esta la primera vez que compras nabos?<i>(Esta información afectará a tu patrón)</i>",
     "yes": "Sí",
     "no": "No"
   },
   "patterns": {
     "title": "Patrón anterior",
     "description": "¿Qué patrón describió el precio de los nabos la semana pasada?<i>(Esta información afectará a tu patrón)</i>",
-    "pattern": "Pattern",
-    "all": "All patterns",
+    "pattern": "Patrón",
+    "all": "Todos los patrones",
     "decreasing": "Decreciente",
     "fluctuating": "Fluctuante",
     "unknown": "No lo sé",
@@ -25,7 +25,7 @@
     "small-spike": "Pico moderado"
   },
   "prices": {
-    "description": "¿Cuál fue el precio más alto que alcanzaron los nabos en tu isla durante la semana? <i>(Si esta es tu primera vez comprando nabos, este campo se desactivará)</i>",
+    "description": "¿Cuál fue el precio más alto que alcanzaron los nabos en tu isla durante la semana? <i>(Si esta ha sido tu primera vez comprando nabos, este campo se desactivará)</i>",
     "open": {
       "am": "AM - De 8:00 a 11:59",
       "pm": "PM - De 12:00 a 10:00"
@@ -75,6 +75,6 @@
     "support": "Para asistencia, comentarios y contribuciones, no dudes en pasarte por <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>.",
     "contributors-text": "¡Ah! ¡Y no nos olvidemos de todos los que han puesto su granito de arena hasta ahora!",
     "contributors": "Contribuidores",
-    "language": "Language"
+    "language": "Idioma"
   }
 }
