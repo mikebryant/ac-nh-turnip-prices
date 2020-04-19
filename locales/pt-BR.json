@@ -64,7 +64,7 @@
     "maximum": "Potencial Máximo",
     "chart": {
       "input": "Preço de entrada",
-      "minimum": "ínimo Garantido",
+      "minimum": "Mínimo Garantido",
       "maximum": "Potencial Máximo"
     }
   },
