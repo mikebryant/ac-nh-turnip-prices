@@ -336,6 +336,9 @@ const update = function () {
   const buy_price = parseInt(buy_input.val());
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
   const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
+  
+  buy_input[0].disabled = first_buy;
+  buy_input[0].placeholder = first_buy ? '—' : '...'
 
   if (buy_price){
     if (buy_price < 90 || buy_price > 110){
@@ -346,9 +349,6 @@ const update = function () {
     }
   }
   
-  buy_input[0].disabled = first_buy;
-  buy_input[0].placeholder = first_buy ? '—' : '...'
-
   const permalink = generatePermalink(buy_price, sell_prices, first_buy, previous_pattern);
   if (permalink) {
     permalink_button.show();
