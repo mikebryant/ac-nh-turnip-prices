@@ -24,7 +24,7 @@ i18next
     ['ru', 'Русский'],
     ['zh-CN', '简体中文'],
     ['zh-TW', '繁體中文']
-  ],
+  ].sort(),
   languageSelector = $('#language');
   languages.map(([code, name]) => {
     languageSelector.append(`<option value="${code}"${code == i18next.language ? ' selected' : ''}>${name}</option>`);
