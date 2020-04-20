@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "Daisy Mae"
+  },
+  "welcome": {
+    "salutation": "Hello, and welcome to the <b>Turnip Prophet</b> app on your Nook Phone.",
+    "description": "This app lets you track your island's turnip prices daily, but you'll have to put the prices in yourself!",
+    "conclusion": "After that, the Turnip Prophet app will <b>magically</b> predict the turnip prices you'll have for the rest of the week."
+  },
+  "first-time": {
+    "title": "First-Time Buyer",
+    "description": "Is this your first time buying turnips from Daisy Mae on your island?<i>(This affects your pattern)</i>",
+    "yes": "Yes",
+    "no": "No"
+  },
+  "patterns": {
+    "title": "Previous Pattern",
+    "description": "What was last week's turnip price pattern?<i>(This affects your pattern)</i>",
+    "pattern": "Pattern",
+    "all": "All patterns",
+    "decreasing": "Decreasing",
+    "fluctuating": "Fluctuating",
+    "unknown": "I don't know",
+    "large-spike": "Large Spike",
+    "small-spike": "Small Spike"
+  },
+  "prices": {
+    "description": "What was the price of turnips this week on your island? <i>(If this is your first time buying turnips, this field will be disabled)</i>",
+    "open": {
+      "am": "AM - 8:00 am to 11:59 am",
+      "pm": "PM - 12:00 pm to 10:00 pm"
+    },
+    "copy-permalink": "Copy permalink",
+    "permalink-copied": "Permalink copied!",
+    "reset": "Reset Turnip Prophet",
+    "reset-warning": "Are you sure you want to reset all fields?\n\nThis cannot be undone!"
+  },
+  "weekdays": {
+    "monday": "Monday",
+    "tuesday": "Tuesday",
+    "wednesday": "Wednesday",
+    "thursday": "Thursday",
+    "friday": "Friday",
+    "saturday" : "Saturday",
+    "sunday": "Sunday",
+    "abr": {
+      "monday": "Mon",
+      "tuesday": "Tue",
+      "wednesday": "Wed",
+      "thursday": "Thu",
+      "friday": "Fri",
+      "saturday" : "Sat"
+    }
+  },
+  "times": {
+    "morning": "AM",
+    "afternoon": "PM"
+  },
+  "output": {
+    "title": "Output",
+    "chance": "% Chance",
+    "to": "to",
+    "minimum": "Guaranteed Minimum",
+    "maximum": "Potential Maximum",
+    "chart": {
+      "input": "Input Price",
+      "minimum": "Guaranteed Minimum",
+      "maximum": "Potential Maximum"
+    }
+  },
+  "textbox": {
+    "description": "After you've listed some turnip prices, the Turnip Prophet will run some numbers and display the different possible patterns that your island may experience.",
+    "development": "This app is still in development, but will improve over time!",
+    "thanks": "None of this would have been possible without <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji's work</a> figuring out just how Timmy and Tommy value their turnips.",
+    "support": "Support, comments and contributions are available through <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+    "contributors-text": "Oh! And let's not forget to thank those who have contributed so far!",
+    "contributors": "Contributors",
+    "language": "Language"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "曹卖"
+  },
+  "welcome": {
+    "salutation": "大家好，欢迎使用Nook手机上的<b>大头菜预测工具</b>。",
+    "description": "这个APP可以让你每天跟踪自己岛上大头菜的价格，但你得自己把价格填写进去！",
+    "conclusion": "之后，大头菜预测工具会<b>神奇地</b>预测出本周剩余时间的大头菜价格。"
+  },
+  "first-time": {
+    "title": "首次购买",
+    "description": "你是第一次在自己岛上购买大头菜吗？<i>（将影响预测趋势）</i>",
+    "yes": "是",
+    "no": "否"
+  },
+  "patterns": {
+    "title": "上周趋势",
+    "description": "上周大头菜的价格趋势是？<i>（将影响预测趋势）</i>",
+    "pattern": "趋势",
+    "all": "所有趋势",
+    "decreasing": "递减型",
+    "fluctuating": "波动型",
+    "unknown": "不知道",
+    "large-spike": "大幅上涨（三期型）",
+    "small-spike": "小幅上涨（四期型）"
+  },
+  "prices": {
+    "description": "本周你的岛上大头菜的购买价格是多少？<i>（如果你是第一次购买大头菜，这个字段不可用）</i>",
+    "open": {
+      "am": "上午 - 8:00 ~ 11:59",
+      "pm": "下午 - 12:00 ~ 22:00"
+    },
+    "copy-permalink": "复制价格分享链接",
+    "permalink-copied": "链接已复制！",
+    "reset": "重置大头菜预测工具",
+    "reset-warning": "你确定要重置所有字段吗？\n\n此操作不可撤销！"
+  },
+  "weekdays": {
+    "monday": "周一",
+    "tuesday": "周二",
+    "wednesday": "周三",
+    "thursday": "周四",
+    "friday": "周五",
+    "saturday" : "周六",
+    "sunday": "周日",
+    "abr": {
+      "monday": "周一",
+      "tuesday": "周二",
+      "wednesday": "周三",
+      "thursday": "周四",
+      "friday": "周五",
+      "saturday" : "周六"
+    }
+  },
+  "times": {
+    "morning": "上午",
+    "afternoon": "下午"
+  },
+  "output": {
+    "title": "结果",
+    "chance": "几率(%)",
+    "to": "~",
+    "minimum": "保底价格",
+    "maximum": "最高价格",
+    "chart": {
+      "input": "输入价格",
+      "minimum": "保底价格",
+      "maximum": "最高价格"
+    }
+  },
+  "textbox": {
+    "description": "在填写一些大头菜价格后，大头菜预测工具将预测大头菜的价格并显示本周可能的趋势。",
+    "development": "APP仍在开发中，但会随着时间的推移不断完善！",
+    "thanks": "如果不是<a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a>发现豆狸和粒狸如何给大头菜定价的，这一切将不可能实现。",
+    "support": "可以在<a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>获得支持，或讨论和贡献",
+    "contributors-text": "哦！别忘记感谢那些至今为止做出过贡献的人。",
+    "contributors": "贡献者",
+    "language": "语言"
+  }
+}
