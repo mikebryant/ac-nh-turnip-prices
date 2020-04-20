@@ -19,9 +19,9 @@ i18next
     ['es-ES', 'Español'],
     ['fr', 'Français'],
     ['it', 'Italiano'],
-    ['ru', 'Русский'],
     ['ja', '日本語'],
     ['pt-BR', 'Português'],
+    ['ru', 'Русский'],
     ['zh-CN', '简体中文'],
     ['zh-TW', '繁體中文']
   ],
