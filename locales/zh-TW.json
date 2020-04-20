@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "曹賣"
+  },
+  "welcome": {
+    "salutation": "你好，歡迎使用Nook手機上的 <b>大頭菜預測工具</b> 。",
+    "description": "這個程式可以讓你每天追蹤你島上的大頭菜價格，但你必須自己記錄價格！",
+    "conclusion": "接下來，大頭菜預測工具將 <b>神奇地</b> 預測本週剩餘時間的大頭菜價格。"
+  },
+  "first-time": {
+    "title": "首次購買",
+    "description": "這是您第一次從自己的島上和曹賣購買大頭菜嗎？<i>(將影響您這次的模型)</i>",
+    "yes": "是",
+    "no": "否"
+  },
+  "patterns": {
+    "title": "上次的模型",
+    "description": "上週的大頭菜價格模型如何？<i>(將影響您這次的模型)</i>",
+    "pattern": "模型",
+    "all": "所有模型",
+    "decreasing": "遞減型",
+    "fluctuating": "波型",
+    "unknown": "不知道",
+    "large-spike": "三期型",
+    "small-spike": "四期型"
+  },
+  "prices": {
+    "description": "本週大頭菜的購買價格是多少？<i>(如果這是您第一次購買大頭菜，則此欄位會被停用)</i>",
+    "open": {
+      "am": "上午 - 08:00 to 11:59",
+      "pm": "下午 - 12:00 to 22:00"
+    },
+    "copy-permalink": "複製價格分享網址",
+    "permalink-copied": "網址已複製！",
+    "reset": "清除資料",
+    "reset-warning": "是否確定要清除所有資料？\n\n此動作無法復原！"
+  },
+  "weekdays": {
+    "monday": "星期一",
+    "tuesday": "星期二",
+    "wednesday": "星期三",
+    "thursday": "星期四",
+    "friday": "星期五",
+    "saturday" : "星期六",
+    "sunday": "星期日",
+    "abr": {
+      "monday": "週一",
+      "tuesday": "週二",
+      "wednesday": "週三",
+      "thursday": "週四",
+      "friday": "週五",
+      "saturday" : "週六"
+    }
+  },
+  "times": {
+    "morning": "上午",
+    "afternoon": "下午"
+  },
+  "output": {
+    "title": "結果",
+    "chance": "機率(%)",
+    "to": "~",
+    "minimum": "保底價格",
+    "maximum": "最高價格",
+    "chart": {
+      "input": "輸入價格",
+      "minimum": "保底價格",
+      "maximum": "最高價格"
+    }
+  },
+  "textbox": {
+    "description": "在您紀錄了一些大頭菜價格後，大頭菜預測工具會預測，並顯示你島上可能出現的不同模型。",
+    "development": "此工具仍在開發中，但會隨著時間的推移而改善！",
+    "thanks": "如果沒有<a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji 的幫忙</a>來弄清楚豆狸和粒狸如何對他們的大頭菜的估價，這一切都是不可能實現的。",
+    "support": "可透過 <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>獲得支援、討論及貢獻",
+    "contributors-text": "哦！讓我們不要忘記感謝那些迄今為止作出貢獻的人！",
+    "contributors": "貢獻者",
+    "language": "語言"
+  }
+}

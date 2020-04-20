@@ -10,8 +10,20 @@
   <meta name="author" content="Mike Bryant">
   <meta name="theme-color" content="#def2d9">
 
+  <!-- generics -->
+  <link rel="icon" href="img/favicon-32.png" sizes="32x32">
+  <link rel="icon" href="img/favicon-128.png" sizes="128x128">
+  <link rel="icon" href="img/favicon-192.png" sizes="192x192">
+
+  <!-- Android -->
+  <link rel="shortcut icon" href="img/favicon-196.png" sizes="196x196">
+
+  <!-- iOS -->
+  <link rel="apple-touch-icon" href="img/favicon-152.png" sizes="152x152">
+  <link rel="apple-touch-icon" href="img/favicon-167.png" sizes="167x167">
+  <link rel="apple-touch-icon" href="img/favicon-180.png" sizes="180x180">
+
   <link rel="manifest" href="/manifest.json">
-  <link rel="apple-touch-icon" href="/img/192.png">
   <link rel="stylesheet" href="css/styles.css">
 
   <!-- Global site tag (gtag.js) - Google Analytics -->
@@ -33,13 +45,10 @@
 <body>
 
   <div class="dialog-box">
-    <h2 class="dialog-box__name">Daisy Mae</h2>
-    <p>Hello, and welcome to the <b>Turnip Prophet</b> app on your Nook Phone.</p>
-    <p>This app lets you track your island's turnip prices daily, but you'll have to put the prices in yourself!
-    </p>
-    <p>After that, the Turnip Prophet app will <b>magically</b> predict the turnip prices you'll have for the rest of
-      the week.
-    </p>
+    <h2 class="dialog-box__name" data-i18n="general.daisy-mae"></h2>
+    <p data-i18n="[html]welcome.salutation"></p>
+    <p data-i18n="welcome.description"></p>
+    <p data-i18n="[html]welcome.conclusion"></p>
   </div>
 
   <div class="nook-phone">
@@ -66,130 +75,133 @@
 
       <form class="input__form">
         <div class="form__row">
-          <h6>First-Time Buyer</h6>
+          <h6 data-i18n="first-time.title"></h6>
           <div class="input__group">
-            <label>Is this your first time buying turnips from Daisy Mae on your island?<i>(This affects your
-                pattern)</i></label>
+            <label data-i18n="[html]first-time.description"></label>
             <div class="input__radio-buttons">
               <input type="radio" id="first-time-radio-no" name="first-time" value="false" checked>
-              <label for="first-time-radio-no">No</label>
+              <label for="first-time-radio-no" data-i18n="first-time.no"></label>
               <input type="radio" id="first-time-radio-yes" name="first-time" value="true">
-              <label for="first-time-radio-yes">Yes</label>
+              <label for="first-time-radio-yes" data-i18n="first-time.yes"></label>
             </div>
           </div>
         </div>
 
         <div class="form__row">
-          <h6>Previous Pattern</h6>
+          <h6 data-i18n="patterns.title"></h6>
           <div class="input__group">
-            <label for="">What was last week's turnip price pattern?<i>(This affects your pattern)</i></label>
+            <label for="" data-i18n="[html]patterns.description"></label>
             <div class="input__radio-buttons">
               <input type="radio" id="pattern-radio-unknown" name="pattern" value="-1" checked>
-              <label for="pattern-radio-unknown">I don't know</label>
+              <label data-i18n="patterns.unknown" for="pattern-radio-unknown"></label>
               <input type="radio" id="pattern-radio-fluctuating" name="pattern" value="0">
-              <label for="pattern-radio-fluctuating">Fluctuating</label>
+              <label data-i18n="patterns.fluctuating" for="pattern-radio-fluctuating"></label>
               <input type="radio" id="pattern-radio-small-spike" name="pattern" value="3">
-              <label for="pattern-radio-small-spike">Small Spike</label>
+              <label data-i18n="patterns.small-spike" for="pattern-radio-small-spike"></label>
               <input type="radio" id="pattern-radio-large-spike" name="pattern" value="1">
-              <label for="pattern-radio-large-spike">Large Spike</label>
+              <label data-i18n="patterns.large-spike" for="pattern-radio-large-spike"></label>
               <input type="radio" id="pattern-radio-decreasing" name="pattern" value="2">
-              <label for="pattern-radio-decreasing">Decreasing</label>
+              <label data-i18n="patterns.decreasing" for="pattern-radio-decreasing"></label>
             </div>
           </div>
         </div>
 
         <div class="form__row">
-          <h6>Sunday</h6>
+          <h6 data-i18n="weekdays.sunday"></h6>
           <div class="input__group">
-            <label>What was the price of turnips this week on your island? <i>(If this is your first time buying turnips, this field
-                will be disabled)</i></label>
+            <label data-i18n="[html]prices.description"></label>
             <input type="number" id="buy" placeholder="..." />
 
           </div>
         </div>
-        <i>AM - 8:00 am to 11:59 am</i>
-        <i>PM - 12:00 pm to 10:00 pm</i>
+        <i data-i18n="prices.open.am"></i>
+        <i data-i18n="prices.open.pm"></i>
         <div class="form__flex-wrap">
           <div class="form__row">
-            <h6>Monday</h6>
+            <h6 data-i18n="weekdays.monday"></h6>
             <div class="input__group">
-              <label for="sell_2">AM</label>
+              <label data-i18n="times.morning" for="sell_2"></label>
               <input type="number" id="sell_2" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_3">PM</label>
+              <label data-i18n="times.afternoon" for="sell_3"></label>
               <input type="number" id="sell_3" placeholder="..." />
             </div>
           </div>
 
           <div class="form__row">
-            <h6>Tuesday</h6>
+            <h6 data-i18n="weekdays.tuesday"></h6>
             <div class="input__group">
-              <label for="sell_4">AM</label>
+              <label data-i18n="times.morning" for="sell_4"></label>
               <input type="number" id="sell_4" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_5">PM</label>
+              <label data-i18n="times.afternoon" for="sell_5"></label>
               <input type="number" id="sell_5" placeholder="..." />
             </div>
           </div>
 
           <div class="form__row">
-            <h6>Wednesday</h6>
+            <h6 data-i18n="weekdays.wednesday"></h6>
             <div class="input__group">
-              <label for="sell_6">AM</label>
+              <label data-i18n="times.morning" for="sell_6"></label>
               <input type="number" id="sell_6" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_7">PM</label>
+              <label data-i18n="times.afternoon" for="sell_7"></label>
               <input type="number" id="sell_7" placeholder="..." />
             </div>
           </div>
 
           <div class="form__row">
-            <h6>Thursday</h6>
+            <h6 data-i18n="weekdays.thursday"></h6>
             <div class="input__group">
-              <label for="sell_8">AM</label>
+              <label data-i18n="times.morning" for="sell_8"></label>
               <input type="number" id="sell_8" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_9">PM</label>
+              <label data-i18n="times.afternoon" for="sell_9"></label>
               <input type="number" id="sell_9" placeholder="..." />
             </div>
           </div>
 
           <div class="form__row">
-            <h6>Friday</h6>
+            <h6 data-i18n="weekdays.friday"></h6>
             <div class="input__group">
-              <label for="sell_10">AM</label>
+              <label data-i18n="times.morning" for="sell_10"></label>
               <input type="number" id="sell_10" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_11">PM</label>
+              <label data-i18n="times.afternoon" for="sell_11"></label>
               <input type="number" id="sell_11" placeholder="..." />
             </div>
           </div>
 
           <div class="form__row">
-            <h6>Saturday</h6>
+            <h6 data-i18n="weekdays.saturday"></h6>
             <div class="input__group">
-              <label for="sell_12">AM</label>
+              <label data-i18n="times.morning" for="sell_12"></label>
               <input type="number" id="sell_12" placeholder="..." />
             </div>
             <div class="input__group">
-              <label for="sell_13">PM</label>
+              <label data-i18n="times.afternoon" for="sell_13"></label>
               <input type="number" id="sell_13" placeholder="..." />
             </div>
           </div>
         </div>
-        <button type="button" id="reset" class="reset-button" name="action">
-          Reset Turnip Prophet
-        </button>
+        <input id="permalink-input" type="text" readOnly />
+        <div id="permalink-btn" class="button permalink">
+          <span data-i18n="prices.copy-permalink"></span>
+          <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="copy" class="svg-inline--fa fa-copy fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+            <path fill="currentColor" d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z"></path>
+          </svg>
+        </div>
+        <button type="button" id="reset" class="button button--reset" name="action" data-i18n="prices.reset"></button>
       </form>
 
 
 
-      <h2>Output</h2>
+      <h2 data-i18n="output.title"></h2>
 
       <div class="chart-wrapper">
         <canvas id="chart" width="100%" height="100"></canvas>
@@ -199,55 +211,55 @@
         <table id="turnipTable">
           <thead>
             <tr>
-              <th valign="bottom">Pattern</th>
-              <th valign="bottom">% Chance</th>
-              <th valign="bottom">Sunday</th>
+              <th valign="bottom" data-i18n="patterns.pattern"></th>
+              <th colspan="2" valign="bottom" data-i18n="output.chance"></th>
+              <th valign="bottom" data-i18n="weekdays.sunday"></th>
               <th colspan="2">
-                <div>Monday</div>
+                <div data-i18n="weekdays.monday"></div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
               <th colspan="2">
-                <div>Tuesday</div>
+                <div data-i18n="weekdays.tuesday"></div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
               <th colspan="2">
                 <div>
-                  <div>Wednesday</div>
+                  <div data-i18n="weekdays.wednesday"></div>
                   <div>
-                    <span>AM</span>
-                    <span>PM</span>
+                    <span data-i18n="times.morning"></span>
+                    <span data-i18n="times.afternoon"></span>
                   </div>
                 </div>
               </th>
               <th colspan="2">
-                <div>Thursday</div>
+                <div data-i18n="weekdays.thursday"></div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
               <th colspan="2">
-                <div>Friday</div>
+                <div data-i18n="weekdays.friday"></div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
               <th colspan="2">
-                <div>Saturday</div>
+                <div data-i18n="weekdays.saturday"></div>
                 <div>
-                  <span>AM</span>
-                  <span>PM</span>
+                  <span data-i18n="times.morning"></span>
+                  <span data-i18n="times.afternoon"></span>
                 </div>
               </th>
-              <th valign="bottom">Guaranteed Minimum</th>
-              <th valign="bottom">Potential Maximum</th>
+              <th valign="bottom" data-i18n="output.minimum"></th>
+              <th valign="bottom" data-i18n="output.maximum"></th>
             </tr>
           </thead>
           <tbody id="output"></tbody>
@@ -274,36 +286,36 @@
   </div>
 
   <div class="dialog-box">
-    <h2 class="dialog-box__name">Daisy Mae</h2>
-    <p>After you've listed some turnip prices, the Turnip Prophet will run some numbers and display the different
-      possible patterns that your island may experience.</p>
-    <p>This app is still in development, but will improve over time!</p>
+    <h2 class="dialog-box__name" data-i18n="general.daisy-mae"></h2>
+    <p data-i18n="textbox.description"></p>
+    <p data-i18n="textbox.development"></p>
   </div>
 
   <div class="dialog-box">
-    <h2 class="dialog-box__name">Daisy Mae</h2>
-    <p>
-      None of this would have been possible without <a
-        href="https://twitter.com/_Ninji/status/1244818665851289602?s=20">Ninji's work</a> figuring out just how Timmy
-      and Tommy value their turnips.
-    </p>
-    <p>
-      Support, comments and contributions are available through <a
-        href="https://github.com/mikebryant/ac-nh-turnip-prices/issues">Github</a>
-    </p>
-    <p>Oh! And let's not forget to thank those who have contributed so far!</p>
-    <p id="contributors">
-      Contributors:
-    </p>
+    <h2 class="dialog-box__name" data-i18n="general.daisy-mae"></h2>
+    <p data-i18n="[html]textbox.thanks"></p>
+    <p data-i18n="[html]textbox.support"></p>
+    <p data-i18n="textbox.contributors-text"></p>
+    <p id="contributors"><span data-i18n="textbox.contributors"></span>: </p>
+    <div class="dialog-box-lng">
+      <p data-i18n="textbox.language"></p>: <select id="language"></select>
+    </div>
   </div>
 
+  <div id="snackbar">Some text some message...</div>
+
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next/19.4.2/i18next.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-xhr-backend/3.2.2/i18nextXHRBackend.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/4.0.2/i18nextBrowserLanguageDetector.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js"></script>
   <script src="js/chart.js"></script>
   <script src="js/predictions.js"></script>
   <script src="js/scripts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
   <script> new Darkmode({label: '🌓', buttonColorDark: '#fff00'}).showWidget();</script>
+  <script src="js/translations.js"></script>
   <script src="js/contributors.js"></script>
   <script>
     // Check compatibility for the browser we're running this in
@@ -328,5 +340,4 @@
     }
   </script>
 </body>
-
 </html>
