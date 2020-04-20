@@ -337,6 +337,15 @@ const update = function () {
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
   const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
 
+  if (buy_price){
+    if (buy_price < 90 || buy_price > 110){
+      buy_input.css('color','#E45B5B');
+      return;
+    }else{
+      buy_input.css('color','#0AB5CD');
+    }
+  }
+  
   buy_input[0].disabled = first_buy;
   buy_input[0].placeholder = first_buy ? '—' : '...'
 
