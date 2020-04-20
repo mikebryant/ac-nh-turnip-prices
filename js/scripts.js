@@ -340,15 +340,6 @@ const update = function () {
   buy_input[0].disabled = first_buy;
   buy_input[0].placeholder = first_buy ? '—' : '...'
 
-  if (buy_price){
-    if (buy_price < 90 || buy_price > 110){
-      buy_input.css('color','#E45B5B');
-      return;
-    }else{
-      buy_input.css('color','#0AB5CD');
-    }
-  }
-  
   const permalink = generatePermalink(buy_price, sell_prices, first_buy, previous_pattern);
   if (permalink) {
     permalink_button.show();
@@ -361,6 +352,15 @@ const update = function () {
 
   if (!window.populated_from_query) {
     updateLocalStorage(prices, first_buy, previous_pattern);
+  }
+
+  if (buy_price){
+    if (buy_price < 90 || buy_price > 110){
+      buy_input.css('color','#E45B5B');
+      return;
+    }else{
+      buy_input.css('color','#0AB5CD');
+    }
   }
 
   calculateOutput(prices, first_buy, previous_pattern);
