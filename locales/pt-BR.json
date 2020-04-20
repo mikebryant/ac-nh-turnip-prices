@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "Daisy Mae"
+  },
+  "welcome": {
+    "salutation": "Olá, e bem-vindo ao aplicativo <b>Turnip Prophet</b> em seu Nook Phone.",
+    "description": "Este aplicativo lhe permite acompanhar os preços diários de nabo em sua ilha, porém você terá que colocar os preços você mesmo!",
+    "conclusion": "Depois disso, o aplicativo Turnip Prophet irá <b>magicamente</b> prever os preços dos nabos que você terá pelo resto da semana."
+  },
+  "first-time": {
+    "title": "Comprador de primeira viagem",
+    "description": "Esta é a primeira vez que você compra nabos de Daisy Mae em sua ilha? <i>(Isso afeta seu padrão)</i>",
+    "yes": "Sim",
+    "no": "Não"
+  },
+  "patterns": {
+    "title": "Padrão Anterior",
+    "description": "Qual foi o padrão de preços de nabo da semana passada? <i>(Isso afeta seu padrão)</i>",
+    "pattern": "Padrão",
+    "all": "Todos padrões",
+    "decreasing": "Diminuindo",
+    "fluctuating": "Flutuante",
+    "unknown": "Eu não sei",
+    "large-spike": "Grande Pico",
+    "small-spike": "Pequeno Pico"
+  },
+  "prices": {
+    "description": "Qual foi o preço dos nabos esta semana em sua ilha? <i>(Se esta é a primeira vez que compra nabos, este campo ficará desativado)</i>",
+    "open": {
+      "am": "AM - 8:00 am até 11:59 am",
+      "pm": "PM - 12:00 pm até 10:00 pm"
+    },
+    "copy-permalink": "Copiar permalink",
+    "permalink-copied": "Permalink copiado!",
+    "reset": "Redefinir Turnip Prophet",
+    "reset-warning": "Tem certeza de que deseja redefinir todos os campos?\n\nIsso não pode ser desfeito!"
+  },
+  "weekdays": {
+    "monday": "Segunda-feira",
+    "tuesday": "Terça-feira",
+    "wednesday": "Quarta-feira",
+    "thursday": "Quinta-feira",
+    "friday": "Sexta-feira",
+    "saturday" : "Sábado",
+    "sunday": "Domingo",
+    "abr": {
+      "monday": "Seg",
+      "tuesday": "Ter",
+      "wednesday": "Qua",
+      "thursday": "Qui",
+      "friday": "Sex",
+      "saturday" : "Sab"
+    }
+  },
+  "times": {
+    "morning": "AM",
+    "afternoon": "PM"
+  },
+  "output": {
+    "title": "Resultado",
+    "chance": "% Chance",
+    "to": "to",
+    "minimum": "Mínimo Garantido",
+    "maximum": "Potencial Máximo",
+    "chart": {
+      "input": "Preço de entrada",
+      "minimum": "Mínimo Garantido",
+      "maximum": "Potencial Máximo"
+    }
+  },
+  "textbox": {
+    "description": "Depois de listar alguns preços de nabo, o Turnip Prophet irá calcular alguns números e exibirá os diferentes padrões possíveis que sua ilha pode experienciar.",
+    "development": "Este aplicativo ainda está em desenvolvimento, mas melhorará com o tempo!",
+    "thanks": "Nada disso seria possível sem o <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">trabalho de Ninji's</a> descobrindo como Timmy e Tommy valorizam seus nabos.",
+    "support": "Suporte, comentários e contribuições estão disponíveis através do <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+    "contributors-text": "Oh! E não vamos nos esquecer de agradecer àqueles que contribuíram até agora!",
+    "contributors": "Contribuidores",
+    "language": "Linguagem"
+  }
+}

@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "Jorna"
+  },
+  "welcome": {
+    "salutation": "Hallo, und Willkommen bei der <b>Turnip Prophet</b> App auf deinem Nook Phone.",
+    "description": "Mit dieser App kannst du die Rübenpreise deiner Insel täglich verfolgen, aber du musst die Preise selbst eingeben!",
+    "conclusion": "Danach wird die Turnip Prophet App <b>magisch</b> deine Rübenpreise vorhersagen, welche du den Rest der Woche haben wirst."
+  },
+  "first-time": {
+    "title": "Erstmaliger Einkäufer",
+    "description": "Kaufst du zum ersten Mal Rüben von Jorna auf deiner Insel? <i>(Dies beeinflusst dein Verkaufsmuster)</i>",
+    "yes": "Ja",
+    "no": "Nein"
+  },
+  "patterns": {
+    "title": "Vorheriges Verkaufsmuster",
+    "description": "Wie war das Verkaufsmuster der letzten Woche? <i>(Dies beeinflusst dein Verkaufsmuster)</i>",
+    "pattern": "Verkaufsmuster",
+    "all": "Alle Verkaufsmuster",
+    "decreasing": "Absteigend",
+    "fluctuating": "Schwankend",
+    "unknown": "Ich weiß nicht",
+    "large-spike": "Stark Ansteigend",
+    "small-spike": "Leicht Ansteigend"
+  },
+  "prices": {
+    "description": "Wie hoch war der Preis für Rüben diese Woche auf deiner Insel? <i>(Wenn du zum ersten Mal Rüben kaufst, wird dieses Feld deaktiviert)</i>",
+    "open": {
+      "am": "Vorm. (Vormittag) - 8:00 Uhr bis 11:59 Uhr",
+      "pm": "Nachm. (Nachmittag) - 12:00 Uhr bis 22:00 Uhr"
+    },
+    "copy-permalink": "Seite teilen",
+    "permalink-copied": "Seitenlink kopiert!",
+    "reset": "Eingegebene Daten zurücksetzen",
+    "reset-warning": "Bist du sicher, dass du deine eingegebenen Daten zurücksetzen möchtest?\n\nDies kann nicht rückgängig gemacht werden!"
+  },
+  "weekdays": {
+    "monday": "Montag",
+    "tuesday": "Dienstag",
+    "wednesday": "Mittwoch",
+    "thursday": "Donnerstag",
+    "friday": "Freitag",
+    "saturday" : "Samstag",
+    "sunday": "Sonntag",
+    "abr": {
+      "monday": "Mo",
+      "tuesday": "Di",
+      "wednesday": "Mi",
+      "thursday": "Do",
+      "friday": "Fr",
+      "saturday" : "Sa"
+    }
+  },
+  "times": {
+    "morning": "Vorm.",
+    "afternoon": "Nachm."
+  },
+  "output": {
+    "title": "Berechnung",
+    "chance": "% Chance",
+    "to": "bis",
+    "minimum": "Garantiertes Minimum",
+    "maximum": "Potentielles Maximum",
+    "chart": {
+      "input": "Eingegebener Preis",
+      "minimum": "Garantiertes Minimum",
+      "maximum": "Potentielles Maximum"
+    }
+  },
+  "textbox": {
+    "description": "Nachdem du einige Rübenpreise eingegeben hast, macht der Turnip Prophet etwas Magie und zeigt dir die verschiedenen möglichen Verkaufsmuster an, die auf deiner Insel auftreten können.",
+    "development": "Diese App befindet sich noch in der Entwicklung, wird sich aber mit der Zeit verbessern!",
+    "thanks": "Nichts von all dem wäre möglich gewesen, ohne das <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> herausgefunden hätte, wie Nepp und Schlepp ihre Rübenpreise kalkulieren.",
+    "support": "Hilfe, Kommentare und Beiträge sind auffindbar über <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub.com</a> (nur in Englisch).",
+    "contributors-text": "Oh! Und vergessen wir nicht, denen zu danken, die bis jetzt dazu beigetragen haben!",
+    "contributors": "Mitwirkende",
+    "language": "Sprache"
+  }
+}

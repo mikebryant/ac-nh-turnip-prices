@@ -1,0 +1,79 @@
+{
+  "general": {
+    "daisy-mae": "ウリ"
+  },
+  "welcome": {
+    "salutation": "こんにちは！タヌキ開発特製スマホの最新アプリ <b>Turnip Prophet</b> へようこそ。",
+    "description": "このアプリは、無人島のカブ価を毎日予測することができます。そのためには、まず自分でデータを入力することが必要です！",
+    "conclusion": "そうすれば、Turnip Prophetは<b>魔法</b>のように、あなたのこの一週間のカブ価を予測します。"
+  },
+  "first-time": {
+    "title": "はじめての購入",
+    "description": "あなたが自分の島でカブを購入したのは今回が初めてですか？<i>（答えによってパターンが変化します）</i>",
+    "yes": "はい",
+    "no": "いいえ"
+  },
+  "patterns": {
+    "title": "先週のパターン",
+    "description": "先週のカブ価変化パターンを選んでください。<i>（答えによってパターンが変化します）</i>",
+    "pattern": "パターン",
+    "all": "全てのパターン",
+    "decreasing": "ジリ貧型",
+    "fluctuating": "波型",
+    "unknown": "わかりません",
+    "large-spike": "跳ね大型(3期型)",
+    "small-spike": "跳ね小型(4期型)"
+  },
+  "prices": {
+    "description": "今週のカブ価は？ <i>（初めてカブを購入した場合は、この入力欄は無効にされています）</i>",
+    "open": {
+      "am": "午前 - AM 8:00 ～ AM 11:59",
+      "pm": "午後 - PM 12:00 ～ PM 10:00"
+    },
+    "copy-permalink": "パーマリンクをコピー",
+    "permalink-copied": "パーマリンクがコピーされました！",
+    "reset": "Turnip Prophetをリセット",
+    "reset-warning": "本当に全てをリセットしますか？\n\nリセットしたら後戻りはできませんよ！"
+  },
+  "weekdays": {
+    "monday": "月曜日",
+    "tuesday": "火曜日",
+    "wednesday": "水曜日",
+    "thursday": "木曜日",
+    "friday": "金曜日",
+    "saturday" : "土曜日",
+    "sunday": "日曜日",
+    "abr": {
+      "monday": "月",
+      "tuesday": "火",
+      "wednesday": "水",
+      "thursday": "木",
+      "friday": "金",
+      "saturday" : "土"
+    }
+  },
+  "times": {
+    "morning": "午前",
+    "afternoon": "午後"
+  },
+  "output": {
+    "title": "結果",
+    "chance": "% チャンス",
+    "to": "～",
+    "minimum": "保証される最小の収入",
+    "maximum": "予測される限界の収入",
+    "chart": {
+      "input": "カブ価",
+      "minimum": "保証される最小の収入",
+      "maximum": "予測される限界の収入"
+    }
+  },
+  "textbox": {
+    "description": "複数のカブ価を入力すると、Turnip Prophetはそれをもとに、可能性のある変動パターンを計算して表示します。",
+    "development": "このアプリはまだ開発中ですが、より良いデータを提供できるようにがんばっています！",
+    "thanks": "このアプリが作成できたのは、タヌキ商店のカブ価パターンを解析した<a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji氏の成果</a>のおかげです。ありがとうございます！",
+    "support": "疑問·コメント·提案などは、<a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>までお願いします。",
+    "contributors-text": "そして、このアプリの作成を手伝っていただいた方々に感謝します！",
+    "contributors": "貢献者"
+  }
+}
