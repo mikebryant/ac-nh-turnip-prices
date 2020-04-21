@@ -1,7 +1,3 @@
-// The reverse-engineered code is not perfectly accurate, especially as it's not
-// 32-bit ARM floating point. So, be tolerant of slightly unexpected inputs
-const FUDGE_FACTOR = 5;
-
 const PATTERN = {
   FLUCTUATING: 0,
   LARGE_SPIKE: 1,
@@ -200,6 +196,9 @@ class PDF {
 class Predictor {
 
   constructor(prices, first_buy, previous_pattern) {
+    // The reverse-engineered code is not perfectly accurate, especially as it's not
+    // 32-bit ARM floating point. So, be tolerant of slightly unexpected inputs
+    this.fudge_factor = 0;
     this.prices = prices;
     this.first_buy = first_buy;
     this.previous_pattern = previous_pattern;
@@ -259,7 +258,7 @@ class Predictor {
       let min_pred = this.get_price(rate_min, buy_price);
       let max_pred = this.get_price(rate_max, buy_price);
       if (!isNaN(given_prices[i])) {
-        if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
+        if (given_prices[i] < min_pred - this.fudge_factor || given_prices[i] > max_pred + this.fudge_factor) {
           // Given price is out of predicted range, so this is the wrong pattern
           return 0;
         }
@@ -310,7 +309,7 @@ class Predictor {
       let min_pred = this.get_price(rate_pdf.min_value(), buy_price);
       let max_pred = this.get_price(rate_pdf.max_value(), buy_price);
       if (!isNaN(given_prices[i])) {
-        if (given_prices[i] < min_pred - FUDGE_FACTOR || given_prices[i] > max_pred + FUDGE_FACTOR) {
+        if (given_prices[i] < min_pred - this.fudge_factor || given_prices[i] > max_pred + this.fudge_factor) {
           // Given price is out of predicted range, so this is the wrong pattern
           return 0;
         }
@@ -363,7 +362,7 @@ class Predictor {
     if (!isNaN(middle_price)) {
       const min_pred = this.get_price(rate_min, buy_price);
       const max_pred = this.get_price(rate_max, buy_price);
-      if (middle_price < min_pred - FUDGE_FACTOR || middle_price > max_pred + FUDGE_FACTOR) {
+      if (middle_price < min_pred - this.fudge_factor || middle_price > max_pred + this.fudge_factor) {
         // Given price is out of predicted range, so this is the wrong pattern
         return 0;
       }
@@ -402,7 +401,7 @@ class Predictor {
       }
       const min_pred = this.get_price(rate_min, buy_price) - 1;
       const max_pred = this.get_price(rate_range[1], buy_price) - 1;
-      if (price < min_pred - FUDGE_FACTOR || price > max_pred + FUDGE_FACTOR) {
+      if (price < min_pred - this.fudge_factor || price > max_pred + this.fudge_factor) {
         // Given price is out of predicted range, so this is the wrong pattern
         return 0;
       }
@@ -825,8 +824,15 @@ class Predictor {
     const sell_prices = this.prices;
     const first_buy = this.first_buy;
     const previous_pattern = this.previous_pattern;
-    const generated_possibilities = Array.from(this.generate_possibilities(sell_prices, first_buy, previous_pattern));
-    console.log(generated_possibilities);
+    let generated_possibilities = []
+    for (let i = 0; i < 6; i++) {
+      this.fudge_factor = i;
+      generated_possibilities = Array.from(this.generate_possibilities(sell_prices, first_buy, previous_pattern));
+      if (generated_possibilities.length > 0) {
+        console.log("Generated possibilities using fudge factor %d: ", i, generated_possibilities);
+        break;
+      }
+    }
 
     const total_probability = generated_possibilities.reduce((acc, it) => acc + it.probability, 0);
     for (const it of generated_possibilities) {
