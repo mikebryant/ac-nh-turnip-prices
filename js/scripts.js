@@ -255,7 +255,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     return;
   }
   let output_possibilities = "";
-  let predictor = new Predictor(data, first_buy, previous_pattern);
+  let predictor = new Predictor(data, first_buy, previous_pattern, 5);
   let analyzed_possibilities = predictor.analyze_possibilities();
   previous_pattern_number = ""
   for (let poss of analyzed_possibilities) {
