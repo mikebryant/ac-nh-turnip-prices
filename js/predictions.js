@@ -195,10 +195,10 @@ class PDF {
 
 class Predictor {
 
-  constructor(prices, first_buy, previous_pattern, fudge_factor) {
+  constructor(prices, first_buy, previous_pattern) {
     // The reverse-engineered code is not perfectly accurate, especially as it's not
     // 32-bit ARM floating point. So, be tolerant of slightly unexpected inputs
-    this.fudge_factor = fudge_factor;
+    this.fudge_factor = 0;
     this.prices = prices;
     this.first_buy = first_buy;
     this.previous_pattern = previous_pattern;
@@ -824,8 +824,15 @@ class Predictor {
     const sell_prices = this.prices;
     const first_buy = this.first_buy;
     const previous_pattern = this.previous_pattern;
-    const generated_possibilities = Array.from(this.generate_possibilities(sell_prices, first_buy, previous_pattern));
-    console.log(generated_possibilities);
+    let generated_possibilities = []
+    for (let i = 0; i < 6; i++) {
+      this.fudge_factor = i;
+      generated_possibilities = Array.from(this.generate_possibilities(sell_prices, first_buy, previous_pattern));
+      if (generated_possibilities.length > 0) {
+        console.log("Generated possibilities using fudge factor %d: ", i, generated_possibilities);
+        break;
+      }
+    }
 
     const total_probability = generated_possibilities.reduce((acc, it) => acc + it.probability, 0);
     for (const it of generated_possibilities) {
