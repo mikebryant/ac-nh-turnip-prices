@@ -1,6 +1,9 @@
 # ac-nh-turnip-prices
+<a href="https://discord.gg/bRh74X8">
+    <img src="https://img.shields.io/badge/discord-join-7289DA.svg?logo=discord&longCache=true&style=flat" />
+  </a>
+  
 Price calculator/predictor for Turnip prices
-
 ## Scope
 
 This tool is:
