@@ -3,9 +3,9 @@
     "daisy-mae": "曹賣"
   },
   "welcome": {
-    "salutation": "你好，歡迎使用Nook手機上的 <b>大頭菜預測工具</b> 。",
+    "salutation": "你好，歡迎使用 Nook 手機上的 <b>Turnip Prophet</b>。",
     "description": "這個程式可以讓你每天追蹤你島上的大頭菜價格，但你必須自己記錄價格！",
-    "conclusion": "接下來，大頭菜預測工具將 <b>神奇地</b> 預測本週剩餘時間的大頭菜價格。"
+    "conclusion": "接下來，Turnip Prophet 將 <b>神奇地</b> 預測本週剩餘時間的大頭菜價格。"
   },
   "first-time": {
     "title": "首次購買",
@@ -25,10 +25,10 @@
     "small-spike": "四期型"
   },
   "prices": {
-    "description": "本週大頭菜的購買價格是多少？<i>(如果這是您第一次購買大頭菜，則此欄位會被停用)</i>",
+    "description": "本週自己島上的大頭菜買價？<i>(若這是您第一次購買大頭菜，則此欄位會被停用)</i>",
     "open": {
-      "am": "上午 - 08:00 to 11:59",
-      "pm": "下午 - 12:00 to 22:00"
+      "am": "上午 - 08:00 到 11:59",
+      "pm": "下午 - 12:00 到 22:00"
     },
     "copy-permalink": "複製價格分享網址",
     "permalink-copied": "網址已複製！",
@@ -71,9 +71,9 @@
   "textbox": {
     "description": "在您紀錄了一些大頭菜價格後，大頭菜預測工具會預測，並顯示你島上可能出現的不同模型。",
     "development": "此工具仍在開發中，但會隨著時間的推移而改善！",
-    "thanks": "如果沒有<a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji 的幫忙</a>來弄清楚豆狸和粒狸如何對他們的大頭菜的估價，這一切都是不可能實現的。",
-    "support": "可透過 <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>獲得支援、討論及貢獻",
-    "contributors-text": "哦！讓我們不要忘記感謝那些迄今為止作出貢獻的人！",
+    "thanks": "要不是 <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> 協助釐清豆狸和粒狸的大頭菜估價方式，這一切都不可能實現。",
+    "support": "可於 <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a> 取得支援、討論及貢獻。",
+    "contributors-text": "嘿！別忘了感謝那些迄今為止作出貢獻的人！",
     "contributors": "貢獻者",
     "language": "語言"
   }
