@@ -531,3 +531,59 @@ input[type=number] {
     min-height: 40px;
   }
 }
+
+/*Darkmodjs*/
+.darkmode-layer, .darkmode-toggle {
+  z-index: 1;
+}
+
+div.darkmode-background{
+  background: #fef0e3;
+  background-image:
+    radial-gradient(#fff 20%, transparent 0),
+    radial-gradient(#fff 20%, transparent 0);
+  position: inherit;
+}
+
+body.darkmode--activated{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Varela Round', sans-serif;
+  width: 100%;
+  margin: 0 0 0 0;
+  position: absolute
+}
+
+body.darkmode--activated div[class^="dialog-box"],
+body.darkmode--activated div[class^="nook-phone"],
+body.darkmode--activated form[class^="input__form"],
+{
+  background: #fee0c4;
+  color: #010F1D;
+}
+
+body.darkmode--activated svg[class^="waves"]{
+  background: #fef0e3;
+}
+
+body.darkmode--activated a,
+body.darkmode--activated b,
+body.darkmode--activated input[type=number]:not(:placeholder-shown){
+  color: #586472;
+  
+}
+
+body.darkmode--activated input[type="radio"]+label,
+body.darkmode--activated input[type=number]:placeholder-shown{
+  background: #bda284;
+}
+
+body.darkmode--activated input[type="radio"]:checked+label{
+  background: #7b6955;
+}
+
+body.darkmode--activated i{
+  color: #7b6955;
+}
