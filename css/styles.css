@@ -519,6 +519,23 @@ input[type=number] {
   z-index: 1;
 }
 
+.darkmode-toggle {
+  opacity: 0.7;
+  transition: opacity 0.15s;
+}
+.darkmode-toggle:hover {
+  opacity: 0.9;
+}
+
+.darkmode-toggle:active {
+  transition: opacity 0s;
+  opacity: 1;
+}
+
+.darkmode-toggle:focus {
+  outline: none;
+}
+
 div.darkmode-background{
   background: #fef0e3;
   background-image:
