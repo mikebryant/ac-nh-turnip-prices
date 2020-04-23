@@ -787,8 +787,12 @@ class Predictor {
 
   get_transition_probability(previous_pattern) {
     if (typeof previous_pattern === 'undefined' || Number.isNaN(previous_pattern) || previous_pattern === null || previous_pattern < 0 || previous_pattern > 3) {
-      // TODO: Fill the steady state pattern (https://github.com/mikebryant/ac-nh-turnip-prices/pull/90) here.
-      return [0.346278, 0.247363, 0.147607, 0.258752];
+      // Use the steady state probabilities of PROBABILITY_MATRIX if we don't
+      // know what the previous pattern was.
+      // See https://github.com/mikebryant/ac-nh-turnip-prices/issues/68
+      // and https://github.com/mikebryant/ac-nh-turnip-prices/pull/90
+      // for more information.
+      return [4530/13082, 3236/13082, 1931/13082, 3385/13082];
     }
 
     return PROBABILITY_MATRIX[previous_pattern];
