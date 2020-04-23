@@ -8,7 +8,7 @@ Turnip Prophet is a price calculator/price predictor for Animal Crossing New Hor
 
 ## Support
 
-If you have any questions feel free to join our Discord server ([discord.gg/bRh74X8](https://discord.gg/bRh74X8)) to ask or [open a new issue](https://github.com/mikebryant/ac-nh-turnip-prices/issues).
+If you have any questions feel free to join our ([discord.gg/bRh74X8](Discord server)) to ask or [open a new issue](https://github.com/mikebryant/ac-nh-turnip-prices/issues).
 
 Before opening a new issue, we would appreciate it if you would briefly use the search to avoid duplicate questions, because every duplicate question causes other functions to wait ;-)
 
