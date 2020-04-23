@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "무파니"
+  },
+  "welcome": {
+    "salutation": "안녕하세요, Nook Inc. 스마트폰의 <b>Turnip Prophet</b>앱을 사용해주셔서 감사합니다.",
+    "description": "이 앱은 당신의 섬의 매일의 무 가격을 추적 할 수 있게 도와줍니다. 하지만 가격은 직접 입력해야 합니다!",
+    "conclusion": "가격을 입력하고 나면, 이번 주 동안의 무 가격을 <b>마법처럼</b> 예측해줍니다."
+  },
+  "first-time": {
+    "title": "첫 구매",
+    "description": "당신의 섬에 방문한 무파니에게서 처음으로 무를 샀습니까?<i>(패턴에 영향을 끼칩니다)</i>",
+    "yes": "예",
+    "no": "아니오"
+  },
+  "patterns": {
+    "title": "이전 패턴",
+    "description": "저번 주의 무 가격 패턴이 어떻게 됩니까?<i>(패턴에 영향을 끼칩니다)</i>",
+    "pattern": "패턴",
+    "all": "모든 패턴",
+    "decreasing": "감소",
+    "fluctuating": "파동형",
+    "unknown": "모름",
+    "large-spike": "큰 급등",
+    "small-spike": "작은 급등"
+  },
+  "prices": {
+    "description": "이번 주에 당신의 섬에서 무를 샀을 때의 가격이 어떻게 됩니까? <i>(첫 구매인 경우에는 입력란이 비활성화됩니다)</i>",
+    "open": {
+      "am": "오전 - 오전 8:00 ~ 오전 11:59",
+      "pm": "오후 - 오후 12:00 ~ 오후 10:00"
+    },
+    "copy-permalink": "고유주소 복사",
+    "permalink-copied": "고유주소가 복사되었습니다!",
+    "reset": "Turnip Prophet 초기화",
+    "reset-warning": "정말로 모든 입력한 값을 지우겠습니까?\n\n되돌릴 수 없습니다!"
+  },
+  "weekdays": {
+    "monday": "월요일",
+    "tuesday": "화요일",
+    "wednesday": "수요일",
+    "thursday": "목요일",
+    "friday": "금요일",
+    "saturday" : "토요일",
+    "sunday": "일요일",
+    "abr": {
+      "monday": "월",
+      "tuesday": "화",
+      "wednesday": "수",
+      "thursday": "목",
+      "friday": "금",
+      "saturday" : "토"
+    }
+  },
+  "times": {
+    "morning": "오전",
+    "afternoon": "오후"
+  },
+  "output": {
+    "title": "결과",
+    "chance": "% 확률",
+    "to": "~",
+    "minimum": "최저 보장 가격",
+    "maximum": "가능한 최고 가격",
+    "chart": {
+      "input": "입력된 가격",
+      "minimum": "최저 보장 가격",
+      "maximum": "가능한 최고 가격"
+    }
+  },
+  "textbox": {
+    "description": "지금까지의 무 가격을 입력하고 나면, Turnip Prophet이 당신의 섬에서 일어날 수 있는 가격 패턴을 보여줍니다.",
+    "development": "이 앱은 아직 개발 중입니다. 앞으로도 계속해서 개선될 겁니다!",
+    "thanks": "콩돌이와 밤돌이가 무 가격을 어떻게 결정하는지 알아낸 <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji의 연구</a>가 있었기에 이 앱이 만들어질 수 있었습니다.",
+    "support": "<a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>을 통해서 문의, 의견 제시, 기여가 가능합니다",
+    "contributors-text": "그리고 기여를 해주신 분들에게 감사를 표합니다!",
+    "contributors": "기여해 주신 분들",
+    "language": "언어"
+  }
+}

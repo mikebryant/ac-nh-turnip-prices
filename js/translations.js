@@ -20,6 +20,7 @@ i18next
     ['fr', 'Français'],
     ['it', 'Italiano'],
     ['ja', '日本語'],
+    ['ko', '한국어'],
     ['pt-BR', 'Português'],
     ['ru', 'Русский'],
     ['zh-CN', '简体中文'],
