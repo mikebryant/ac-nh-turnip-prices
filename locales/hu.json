@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "Daisy Mae"
+  },
+  "welcome": {
+    "salutation": "Üdvözöllek a Nookfonod <b>Retekpróféta</b> alkalmazásában!",
+    "description": "Ezzel az alkalmazással követheted a szigeted naponta változó retekárait, viszont az árakat Neked kell megadnod!",
+    "conclusion": "Az árak megadása után a Retekpróféta <b>varázslatosan</b> megjósolja a hét elkövetkezendő árait."
+  },
+  "first-time": {
+    "title": "Első vásárlás",
+    "description": "Most vásárolsz retket Daisy Mae-től a szigeteden először?<i>(Ez hatással van a mintádra)</i>",
+    "yes": "Igen",
+    "no": "Nem"
+  },
+  "patterns": {
+    "title": "Előző minta",
+    "description": "Milyen volt az előző hét mintája?<i>(Ez hatással van a mintádra)</i>",
+    "pattern": "Minta",
+    "all": "Minden minta",
+    "decreasing": "Csökkenő",
+    "fluctuating": "Ingadozó",
+    "unknown": "Nem tudom",
+    "large-spike": "Nagy kiugrás",
+    "small-spike": "Kis kiugrás"
+  },
+  "prices": {
+    "description": "Mennyiért vettél ezen a héten retket? <i>(Ha most vásárolsz először, ez a mező le lesz tiltva)</i>",
+    "open": {
+      "am": "Délelőtt - 08:00-tól 11:59-ig",
+      "pm": "Délután - 12:00-tól 22:00-ig"
+    },
+    "copy-permalink": "Árak megosztása",
+    "permalink-copied": "Hivatkozás kimásolva!",
+    "reset": "Mezők kiürítése",
+    "reset-warning": "Biztosan ki akarsz üríteni minden mezőt?\n\nEz a művelet nem vonható vissza!"
+  },
+  "weekdays": {
+    "monday": "Hétfő",
+    "tuesday": "Kedd",
+    "wednesday": "Szerda",
+    "thursday": "Csütörtök",
+    "friday": "Péntek",
+    "saturday" : "Szombat",
+    "sunday": "Vasárnap",
+    "abr": {
+      "monday": "H",
+      "tuesday": "K",
+      "wednesday": "Sze",
+      "thursday": "Cs",
+      "friday": "P",
+      "saturday" : "Szo"
+    }
+  },
+  "times": {
+    "morning": "de.",
+    "afternoon": "du."
+  },
+  "output": {
+    "title": "Eredmény",
+    "chance": "% Esély",
+    "to": "-",
+    "minimum": "Garantált minimum",
+    "maximum": "Lehetséges maximum",
+    "chart": {
+      "input": "Megadott ár",
+      "minimum": "Garantált minimum",
+      "maximum": "Lehetséges maximum"
+    }
+  },
+  "textbox": {
+    "description": "Miután megadtál néhány árat, a Retekpróféta kiszámolja és megjeleníti az összes lehetséges mintát ami a héten megjelenhet.",
+    "development": "Ez az alkalmazás fejlesztés alatt áll, de idővel javulni fog!",
+    "thanks": "Ez nem lett volna lehetséges <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji munkája</a> nélkül, aki megfejtette, hogy Timmy és Tommy hogyan árazzák a retket.",
+    "support": "Minden hibajelentést, megjegyzést és hozzájárulást a <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github-on</a> várunk.",
+    "contributors-text": "Ó, és ne felejtsünk el köszönetet mondani az eddigi hozzájárulóknak!",
+    "contributors": "Hozzájárulók",
+    "language": "Nyelv"
+  }
+}
