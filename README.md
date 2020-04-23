@@ -7,7 +7,7 @@
 	<a href="https://github.com/mikebryant/ac-nh-turnip-prices/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/mikebryant/ac-nh-turnip-prices?style=for-the-badge" /></a>
 </p>
 
-# Animal Crossing: Turnip Prophet
+# Animal Crossing New Horizons: Turnip Prophet
 
 Turnip Prophet is a price calculator/price predictor for Animal Crossing turnip prices.
 
