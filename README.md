@@ -52,9 +52,12 @@ For python 3:
 
 ## Adding a new language
 
-Turnip Prophet is already available in some languages. If your local language is not listed you may go on to create a language file for it (requires basic git and development skills).
+Turnip Prophet is already available in some languages. If your local language is not listed you may go on to create a JSON file corresponding to your language in the folder [locales](https://github.com/mikebryant/ac-nh-turnip-prices/tree/master/locales). You may copy the [English localisation](https://github.com/mikebryant/ac-nh-turnip-prices/blob/master/locales/en.json) and translate it. 
 
-For details don't hesitate to talk to us, e.g. using our Discord server.
+Please make sure to **not translate** "Turnip Prophet" and include the new language in the selector inside [js/translations.js](https://github.com/mikebryant/ac-nh-turnip-prices/blob/master/js/scripts.js).
+
+If you have any remaining questions, feel free to stop by the Discord server and ask. 
+
 
 ## Final statement
 
