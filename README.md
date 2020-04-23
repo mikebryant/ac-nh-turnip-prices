@@ -14,13 +14,7 @@ Before opening a new issue, we would appreciate it if you would briefly use the 
 
 Please create issues in English language only.
 
-## Adding a new language
-
-Turnip Prophet is already available in some languages. If your local language is not listed you may go on to create a language file for it (requires basic git and development skills).
-
-For details don't hesitate to talk to us, e.g. using our Discord server.
-
-## What's about feature X?
+## What about feature X?
 
 At first please have a look at our current project scope:
 
@@ -32,6 +26,35 @@ At first please have a look at our current project scope:
 | A single page web-based app | Something with a backend |
 
 If your idea, suggestment or improvement is anything out of the above named, feel free to [open a new issue](https://github.com/mikebryant/ac-nh-turnip-prices/issues) or contribute by a [new pull request](https://github.com/mikebryant/ac-nh-turnip-prices/pulls).
+
+## How to run the project locally?
+
+To run the project locally you will have to clone it and then, from the folder your just cloned, you will have to execute a command. There are multiple options, listed below:
+
+### Using python
+
+For python 2.7: 
+
+```python -m SimpleHTTPServer```
+
+For python 3:
+
+```python3 -m http.server```
+
+### Using Nodejs
+
+```npx serve```
+
+### Using Chrome
+
+```google-chrome --allow-file-access-from-files```
+
+
+## Adding a new language
+
+Turnip Prophet is already available in some languages. If your local language is not listed you may go on to create a language file for it (requires basic git and development skills).
+
+For details don't hesitate to talk to us, e.g. using our Discord server.
 
 ## Final statement
 
