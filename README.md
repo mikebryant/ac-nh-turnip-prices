@@ -24,34 +24,12 @@ For details don't hesitate to talk to us, e.g. using our Discord server.
 
 At first please have a look at our current project scope:
 
-<table width="100%">
-	<thead>
-		<tr>
-			<th>Turnip Prophet is for</th>
-			<th>Turnip Prophet is <u>not</u> for</th>
-		</tr>
-	</thead>
-	<tbody>
-		<tr>
-			<td>
-				<ul>
-					<li>A predictor for future prices that week</li>
-					<li>Able to calculate probabilities for different futures</li>
-					<li>Able to show data from a query string</li>
-					<li>A single page web-based app</li>
-				</ul>
-			</td>
-			<td>
-				<ul>
-					<li>A calculator for how much money you'll make</li>
-					<li>A way to count your turnips</li>
-					<li>A way to store multiple people's islands</li>
-					<li>Something with a backend</li>
-				</ul>
-			</td>
-		</tr>
-	</tbody>
-</table>
+| Turnip Prophet is | Turnip Prophet is not |
+|----|----|
+| A predictor for future prices that week | A calculator for how much money you'll make |
+| Able to calculate probabilities for different futures | A way to count your turnips |
+| Able to show data from a query string | A way to store multiple people's islands |
+| A single page web-based app | Something with a backend |
 
 If your idea, suggestment or improvement is anything out of the above named, feel free to [open a new issue](https://github.com/mikebryant/ac-nh-turnip-prices/issues) or contribute by a [new pull request](https://github.com/mikebryant/ac-nh-turnip-prices/pulls).
 
