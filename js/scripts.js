@@ -249,6 +249,17 @@ const getSellPrices = function () {
   })
 }
 
+const getPriceClass = function(buy_price, max) {
+  const priceBrackets = [200, 30, 0, -30, -99];
+  let diff = max - buy_price;
+  for(var i=0; i<priceBrackets.length; i++) {
+    if(diff >= priceBrackets[i]) {
+      return "range" + i;
+    }
+  }
+  return "";
+}
+
 const calculateOutput = function (data, first_buy, previous_pattern) {
   if (isEmpty(data)) {
     $("#output").html("");
@@ -257,6 +268,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   let output_possibilities = "";
   let predictor = new Predictor(data, first_buy, previous_pattern);
   let analyzed_possibilities = predictor.analyze_possibilities();
+  let buy_price = parseInt(buy_input.val());
   previous_pattern_number = ""
   for (let poss of analyzed_possibilities) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
@@ -270,13 +282,17 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     }
     out_line += `<td>${percentage_display(poss.probability)}</td>`;
     for (let day of poss.prices.slice(1)) {
+      let price_class = getPriceClass(buy_price, day.max);
       if (day.min !== day.max) {
-        out_line += `<td>${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
+        out_line += `<td class='${price_class}'>${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
       } else {
-        out_line += `<td>${day.min}</td>`;
+        out_line += `<td class='${price_class}'>${day.min}</td>`;
       }
     }
-    out_line += `<td>${poss.weekGuaranteedMinimum}</td><td>${poss.weekMax}</td></tr>`;
+
+    var min_class = getPriceClass(buy_price, poss.weekGuaranteedMinimum);
+    var max_class = getPriceClass(buy_price, poss.weekMax);
+    out_line += `<td class='${min_class}'>${poss.weekGuaranteedMinimum}</td><td class='${max_class}'>${poss.weekMax}</td></tr>`;
     output_possibilities += out_line
   }
 

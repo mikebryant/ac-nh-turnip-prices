@@ -401,6 +401,46 @@ input[type=number] {
   white-space: nowrap;
 }
 
+#turnipTable td.range4 {
+  background-color: hsl(0, 80%, 85%);
+}
+
+#turnipTable td.range3{
+  background-color: hsl(30, 80%, 85%);
+}
+
+#turnipTable td.range2 {
+  background-color: hsl(60, 80%, 85%);
+}
+
+#turnipTable td.range1 {
+  background-color: hsl(90, 80%, 85%);
+}
+
+#turnipTable td.range0 {
+  background-color: hsl(140, 80%, 85%);
+}
+
+.darkmode--activated #turnipTable td.range0 {
+  background-color: hsl(0, 80%, 85%);
+}
+
+.darkmode--activated #turnipTable td.range1{
+  background-color: hsl(30, 80%, 85%);
+}
+
+.darkmode--activated #turnipTable td.range2 {
+  background-color: hsl(60, 80%, 85%);
+}
+
+.darkmode--activated #turnipTable td.range3 {
+  background-color: hsl(90, 80%, 85%);
+}
+
+.darkmode--activated #turnipTable td.range4 {
+  background-color: hsl(140, 80%, 85%);
+}
+
 .chart-wrapper {
   margin-top: 8px;
   display: flex;
