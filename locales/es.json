@@ -25,10 +25,10 @@
     "small-spike": "Pico moderado"
   },
   "prices": {
-    "description": "¿Cuál fue el precio más alto que alcanzaron los nabos en tu isla durante la semana? <i>(Si esta ha sido tu primera vez comprando nabos, este campo se desactivará)</i>",
+    "description": "¿Cuál fue el precio de los nabos en su isla esta semana? <i>(Si esta ha sido tu primera vez comprando nabos, este campo se desactivará)</i>",
     "open": {
       "am": "AM - De 8:00 a 11:59",
-      "pm": "PM - De 12:00 a 10:00"
+      "pm": "PM - De 12:00 a 22:00"
     },
     "copy-permalink": "Copiar permalink",
     "permalink-copied": "¡Permalink copiado!",
@@ -65,7 +65,7 @@
     "chart": {
       "input": "Precio de entrada",
       "minimum": "Mínimo garantizado",
-      "maximum": "´Máximo potencial"
+      "maximum": "Máximo potencial"
     }
   },
   "textbox": {

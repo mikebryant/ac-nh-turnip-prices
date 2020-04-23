@@ -19,12 +19,13 @@ i18next
     ['es-ES', 'Español'],
     ['fr', 'Français'],
     ['it', 'Italiano'],
-    ['ru', 'Русский'],
     ['ja', '日本語'],
+    ['ko', '한국어'],
     ['pt-BR', 'Português'],
+    ['ru', 'Русский'],
     ['zh-CN', '简体中文'],
     ['zh-TW', '繁體中文']
-  ],
+  ].sort(),
   languageSelector = $('#language');
   languages.map(([code, name]) => {
     languageSelector.append(`<option value="${code}"${code == i18next.language ? ' selected' : ''}>${name}</option>`);
