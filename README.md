@@ -1,15 +1,10 @@
-<p align="center"><a href="https://turnipprophet.io" target="_blank" rel="noopener noreferrer"><img src="https://raw.githubusercontent.com/mikebryant/ac-nh-turnip-prices/master/img/favicon-128.png" alt="Turnip Prophet logo"></a></p>
-
-<p align="center">
-	<a href="https://discord.gg/bRh74X8" target="_blank"><img src="https://img.shields.io/badge/discord-join-7289DA.svg?logo=discord&longCache=true&style=for-the-badge" /></a>
-	<a href="https://github.com/mikebryant/ac-nh-turnip-prices/issues" target="_blank"><img src="https://img.shields.io/github/issues/mikebryant/ac-nh-turnip-prices?style=for-the-badge" /></a>
-	<a href="https://github.com/mikebryant/ac-nh-turnip-prices/pulls" target="_blank"><img src="https://img.shields.io/github/issues-pr/mikebryant/ac-nh-turnip-prices?style=for-the-badge" /></a>
-	<a href="https://github.com/mikebryant/ac-nh-turnip-prices/graphs/contributors" target="_blank"><img src="https://img.shields.io/github/contributors/mikebryant/ac-nh-turnip-prices?style=for-the-badge" /></a>
-</p>
-
 # Animal Crossing New Horizons: Turnip Prophet
-
-Turnip Prophet is a price calculator/price predictor for Animal Crossing turnip prices.
+[![discord](https://img.shields.io/badge/discord-join-7289DA.svg?logo=discord&longCache=true&style=for-the-badge)](https://discord.gg/bRh74X8)
+[![issues](https://img.shields.io/github/issues/mikebryant/ac-nh-turnip-prices?style=for-the-badge)](https://github.com/mikebryant/ac-nh-turnip-prices/issues)
+[![pull requests](https://img.shields.io/github/issues-pr/mikebryant/ac-nh-turnip-prices?style=for-the-badge)](https://github.com/mikebryant/ac-nh-turnip-prices/pulls)
+[![contributors](https://img.shields.io/github/contributors/mikebryant/ac-nh-turnip-prices?style=for-the-badge)](https://github.com/mikebryant/ac-nh-turnip-prices/graphs/contributors)
+	
+Turnip Prophet is a price calculator/price predictor for Animal Crossing New Horizons turnip prices.
 
 ## Support
 
