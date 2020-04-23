@@ -3,9 +3,9 @@
     "daisy-mae": "Daisy Mae"
   },
   "welcome": {
-    "salutation": "Üdvözöllek a Nookfonod <b>Retekpróféta</b> alkalmazásában!",
+    "salutation": "Üdvözöllek a Nookfonod <b>Turnip Prophet</b> alkalmazásában!",
     "description": "Ezzel az alkalmazással követheted a szigeted naponta változó retekárait, viszont az árakat Neked kell megadnod!",
-    "conclusion": "Az árak megadása után a Retekpróféta <b>varázslatosan</b> megjósolja a hét elkövetkezendő árait."
+    "conclusion": "Az árak megadása után a Turnip Prophet <b>varázslatosan</b> megjósolja a hét elkövetkezendő árait."
   },
   "first-time": {
     "title": "Első vásárlás",
