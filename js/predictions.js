@@ -882,8 +882,8 @@ class Predictor {
     });
 
     let global_min_max = [];
-    for (var day = 0; day < 14; day++) {
-      prices = {
+    for (let day = 0; day < 14; day++) {
+      const prices = {
         min: 999,
         max: 0,
       }
