@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "Daisy Mae"
+  },
+  "welcome": {
+    "salutation": "Hallo, en welkom bij de <b>Turnip Prophet</b> app op je Nook Phone.",
+    "description": "Deze app laat je toe de knol-prijzen op je eiland dagelijks bij te houden, maar je moet ze zelf ingeven!",
+    "conclusion": "Daarna zal de Turnip Prophet app op <b>magische</b> wijze de knol-prijzen berekenen die je de rest van de week zal krijgen."
+  },
+  "first-time": {
+    "title": "Beginnende Koper",
+    "description": "Is dit de eerste keer dat je knollen koopt van Daisy Mae op je eiland?<i>(Dit beïnvloedt je patroon)</i>",
+    "yes": "Ja",
+    "no": "Nee"
+  },
+  "patterns": {
+    "title": "Vorige Patroon",
+    "description": "Wat was het patroon van je knol-prijzen vorige week?<i>(Dit beïnvloedt je patroon)</i>",
+    "pattern": "Patroon",
+    "all": "Alle patronen",
+    "decreasing": "Dalend",
+    "fluctuating": "Schommelend",
+    "unknown": "Ik weet het niet",
+    "large-spike": "Grote Piek",
+    "small-spike": "Kleine Piek"
+  },
+  "prices": {
+    "description": "Wat was de prijs van knollen op je eiland deze week? <i>(Als dit de eerste keer is dat je knollen koopt is dit veld uitgeschakeld)</i>",
+    "open": {
+      "am": "Voormiddag - 8:00 tot 11:59",
+      "pm": "Namiddag - 12:00 tot 22:00"
+    },
+    "copy-permalink": "Kopieer deelbare link",
+    "permalink-copied": "Deelbare link gekopieerd!",
+    "reset": "Maak Turnip Prophet leeg",
+    "reset-warning": "Ben je zeker dat je alle velden wil leegmaken?\n\nDit kan niet ongedaan gemaakt worden!"
+  },
+  "weekdays": {
+    "monday": "Maandag",
+    "tuesday": "Dinsdag",
+    "wednesday": "Woensdag",
+    "thursday": "Donderdag",
+    "friday": "Vrijdag",
+    "saturday" : "Zaterdag",
+    "sunday": "Zondag",
+    "abr": {
+      "monday": "Ma",
+      "tuesday": "Di",
+      "wednesday": "Woe",
+      "thursday": "Do",
+      "friday": "Vr",
+      "saturday" : "Za"
+    }
+  },
+  "times": {
+    "morning": "VM",
+    "afternoon": "NM"
+  },
+  "output": {
+    "title": "Resultaat",
+    "chance": "% Kans",
+    "to": "tot",
+    "minimum": "Gegarandeerd Minimum",
+    "maximum": "Potentieel Maximum",
+    "chart": {
+      "input": "Ingevoerde prijs",
+      "minimum": "Gegarandeerd Minimum",
+      "maximum": "Potentieel Maximum"
+    }
+  },
+  "textbox": {
+    "description": "Nadat je wat knol-prijzen hebt ingevoerd, zal de Turnip Prophet wat berekeningen doen en de verschillende mogelijke patronen voorstellen die je eiland kan vertonen.",
+    "development": "Deze applicatie is wordt nog ontwikkeld, maar zal met de tijd beter worden!",
+    "thanks": "Dit alles zou niet mogelijk zijn zonder het <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">werk van Ninji</a> om uit te zoeken hoe Timmy en Tommy de waarde van knollen bepalen.",
+    "support": "Ondersteuning, feedback en bijdrages zijn mogelijk via <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+    "contributors-text": "Oh! En laten we degenen die tot nu toe bijgedragen hebben niet vergeten te bedanken!",
+    "contributors": "Bijdragers",
+    "language": "Taal"
+  }
+}
