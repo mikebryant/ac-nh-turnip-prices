@@ -810,13 +810,14 @@ class Predictor {
   * generate_possibilities(sell_prices, first_buy, previous_pattern) {
     if (first_buy || isNaN(sell_prices[0])) {
       for (var buy_price = 90; buy_price <= 110; buy_price++) {
-        sell_prices[0] = sell_prices[1] = buy_price;
+        const temp_sell_prices= sell_prices.slice()
+        temp_sell_prices[0] = temp_sell_prices[1] = buy_price;
         if (first_buy) {
-          yield* this.generate_pattern_3(sell_prices);
+          yield* this.generate_pattern_3(temp_sell_prices);
         } else {
           // All buy prices are equal probability and we're at the outmost layer,
           // so don't need to multiply_generator_probability here.
-          yield* this.generate_all_patterns(sell_prices, previous_pattern)
+          yield* this.generate_all_patterns(temp_sell_prices, previous_pattern)
         }
       }
     } else {
