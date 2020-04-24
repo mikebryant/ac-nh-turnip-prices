@@ -69,7 +69,7 @@
     }
   },
   "textbox": {
-    "description": "Miután megadtál néhány árat, a Retekpróféta kiszámolja és megjeleníti az összes lehetséges mintát ami a héten megjelenhet.",
+    "description": "Miután megadtál néhány árat, a Turnip Prophet kiszámolja és megjeleníti az összes lehetséges mintát ami a héten megjelenhet.",
     "development": "Ez az alkalmazás fejlesztés alatt áll, de idővel javulni fog!",
     "thanks": "Ez nem lett volna lehetséges <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji munkája</a> nélkül, aki megfejtette, hogy Timmy és Tommy hogyan árazzák a retket.",
     "support": "Minden hibajelentést, megjegyzést és hozzájárulást a <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github-on</a> várunk.",
