@@ -382,7 +382,7 @@ input[type=number] {
 #turnipTable td {
   white-space: nowrap;
   max-width: 150px;
-  padding: 6px 4px;
+  padding: 6px 2px;
   text-align: center;
   border-right: 1px solid rgba(0, 0, 0, 0.03);
   border-bottom: 1px solid rgba(0, 0, 0, 0.15);
