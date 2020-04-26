@@ -682,6 +682,7 @@ body.darkmode--activated i{
   display: flex;
   align-items: flex-end;
   flex-direction: column-reverse;
+  height: auto;
 }
 
 .island-group .island-selector {
