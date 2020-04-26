@@ -304,7 +304,7 @@ input[type=number] {
   padding: 8px 16px;
   border-width: 0px;
   border-radius: 40px;
-  background: transparent;
+  background: #F3F3F3;
   font-size: 1.2rem;
   transition: 0.2s all;
   position: relative;
