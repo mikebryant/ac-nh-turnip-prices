@@ -56,10 +56,64 @@ function range_intersect_length(range1, range2) {
   return range_length(range_intersect(range1, range2));
 }
 
+/**
+ * Accurately sums a list of floating point numbers.
+ * See https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements
+ * for more information.
+ * @param {number[]} input
+ * @returns {number} The sum of the input.
+ */
+function float_sum(input) {
+  // Uses the improved Kahan–Babuska algorithm introduced by Neumaier.
+  let sum = 0;
+  // The "lost bits" of sum.
+  let c = 0;
+  for (let i = 0; i < input.length; i++) {
+    const cur = input[i];
+    const t = sum + cur;
+    if (Math.abs(sum) >= Math.abs(cur)) {
+      c += (sum - t) + cur;
+    } else {
+      c += (cur - t) + sum;
+    }
+    sum = t;
+  }
+  return sum + c;
+}
+
+/**
+ * Accurately returns the prefix sum of a list of floating point numbers.
+ * See https://en.wikipedia.org/wiki/Kahan_summation_algorithm#Further_enhancements
+ * for more information.
+ * @param {number[]} input
+ * @returns {[number, number][]} The prefix sum of the input, such that
+ * output[i] = [sum of first i integers, error of the sum].
+ * The "true" prefix sum is equal to the sum of the pair of numbers, but it is
+ * explicitly returned as a pair of numbers to ensure that the error portion
+ * isn't lost when subtracting prefix sums.
+ */
+function prefix_float_sum(input) {
+  const prefix_sum = [[0, 0]];
+  let sum = 0;
+  let c = 0;
+  for (let i = 0; i < input.length; i++) {
+    const cur = input[i];
+    const t = sum + cur;
+    if (Math.abs(sum) >= Math.abs(cur)) {
+      c += (sum - t) + cur;
+    } else {
+      c += (cur - t) + sum;
+    }
+    sum = t;
+    prefix_sum.push([sum, c]);
+  }
+  return prefix_sum;
+}
+
 /*
  * Probability Density Function of rates.
  * Since the PDF is continuous*, we approximate it by a discrete probability function:
- *   the value in range [(x - 0.5), (x + 0.5)) has a uniform probability
+ *   the value in range [x, x + 1) has a uniform probability
  *   prob[x - value_start];
  *
  * Note that we operate all rate on the (* RATE_MULTIPLIER) scale.
@@ -68,17 +122,24 @@ function range_intersect_length(range1, range2) {
  * space is too large to compute directly in JS.
  */
 class PDF {
-  /*
+  /**
    * Initialize a PDF in range [a, b], a and b can be non-integer.
    * if uniform is true, then initialize the probability to be uniform, else initialize to a
    * all-zero (invalid) PDF.
+   * @param {number} a - Left end-point.
+   * @param {number} b - Right end-point end-point.
+   * @param {boolean} uniform - If true, initialise with the uniform distribution.
    */
   constructor(a, b, uniform = true) {
-    this.value_start = Math.round(a);
-    this.value_end = Math.round(b);
+    // We need to ensure that [a, b] is fully contained in [value_start, value_end].
+    /** @type {number} */
+    this.value_start = Math.floor(a);
+    /** @type {number} */
+    this.value_end = Math.ceil(b);
     const range = [a, b];
     const total_length = range_length(range);
-    this.prob = Array(this.value_end - this.value_start + 1);
+    /** @type {number[]} */
+    this.prob = Array(this.value_end - this.value_start);
     if (uniform) {
       for (let i = 0; i < this.prob.length; i++) {
         this.prob[i] =
@@ -87,24 +148,35 @@ class PDF {
     }
   }
 
+  /**
+   * Calculates the interval represented by this.prob[idx]
+   * @param {number} idx - The index of this.prob
+   * @returns {[number, number]} The interval representing this.prob[idx].
+   */
   range_of(idx) {
-    // TODO: consider doing the "exclusive end" properly.
-    return [this.value_start + idx - 0.5, this.value_start + idx + 0.5 - 1e-9];
+    // We intentionally include the right end-point of the range.
+    // The probability of getting exactly an endpoint is zero, so we can assume
+    // the "probability ranges" are "touching".
+    return [this.value_start + idx, this.value_start + idx + 1];
   }
 
   min_value() {
-    return this.value_start - 0.5;
+    return this.value_start;
   }
 
   max_value() {
-    return this.value_end + 0.5 - 1e-9;
+    return this.value_end;
   }
 
+  /**
+   * @returns {number} The sum of probabilities before normalisation.
+   */
   normalize() {
-    const total_probability = this.prob.reduce((acc, it) => acc + it, 0);
+    const total_probability = float_sum(this.prob);
     for (let i = 0; i < this.prob.length; i++) {
       this.prob[i] /= total_probability;
     }
+    return total_probability;
   }
 
   /*
@@ -121,75 +193,95 @@ class PDF {
       this.prob = [];
       return 0;
     }
+    start = Math.floor(start);
+    end = Math.ceil(end);
 
-    let prob = 0;
-    const start_idx = Math.round(start) - this.value_start;
-    const end_idx = Math.round(end) - this.value_start;
-    for (let i = start_idx; i <= end_idx; i++) {
-      const bucket_prob = this.prob[i] * range_intersect_length(this.range_of(i), range);
-      this.prob[i] = bucket_prob;
-      prob += bucket_prob;
+    const start_idx = start - this.value_start;
+    const end_idx = end - this.value_start;
+    for (let i = start_idx; i < end_idx; i++) {
+      this.prob[i] *= range_intersect_length(this.range_of(i), range);
     }
 
-    this.prob = this.prob.slice(start_idx, end_idx + 1);
-    this.value_start = Math.round(start);
-    this.value_end = Math.round(end);
-    this.normalize();
+    this.prob = this.prob.slice(start_idx, end_idx);
+    this.value_start = start;
+    this.value_end = end;
 
-    return prob;
+    // The probability that the value was in this range is equal to the total
+    // sum of "un-normalised" values in the range.
+    return this.normalize();
   }
 
-  /*
+  /**
    * Subtract the PDF by a uniform distribution in [rate_decay_min, rate_decay_max]
    *
    * For simplicity, we assume that rate_decay_min and rate_decay_max are both integers.
+   * @param {number} rate_decay_min
+   * @param {number} rate_decay_max
+   * @returns {void}
    */
   decay(rate_decay_min, rate_decay_max) {
-    const ret = new PDF(
-        this.min_value() - rate_decay_max, this.max_value() - rate_decay_min, false);
-    /*
-    // O(n^2) naive algorithm for reference, which would be too slow.
-    for (let i = this.value_start; i <= this.value_end; i++) {
-      const unit_prob = this.prob[i - this.value_start] / (rate_decay_max - rate_decay_min) / 2;
-      for (let j = rate_decay_min; j < rate_decay_max; j++) {
-        // ([i - 0.5, i + 0.5] uniform) - ([j, j + 1] uniform)
-        // -> [i - j - 1.5, i + 0.5 - j] with a triangular PDF
-        // -> approximate by
-        //    [i - j - 1.5, i - j - 0.5] uniform &
-        //    [i - j - 0.5, i - j + 0.5] uniform
-        ret.prob[i - j - 1 - ret.value_start] += unit_prob; // Part A
-        ret.prob[i - j - ret.value_start] += unit_prob; // Part B
+    // In case the arguments aren't integers, round them to the nearest integer.
+    rate_decay_min = Math.round(rate_decay_min);
+    rate_decay_max = Math.round(rate_decay_max);
+    // The sum of this distribution with a uniform distribution.
+    // Let's assume that both distributions start at 0 and X = this dist,
+    // Y = uniform dist, and Z = X + Y.
+    // Let's also assume that X is a "piecewise uniform" distribution, so
+    // x(i) = this.prob[Math.floor(i)] - which matches our implementation.
+    // We also know that y(i) = 1 / max(Y) - as we assume that min(Y) = 0.
+    // In the end, we're interested in:
+    // Pr(i <= Z < i+1) where i is an integer
+    // = int. x(val) * Pr(i-val <= Y < i-val+1) dval from 0 to max(X)
+    // = int. x(floor(val)) * Pr(i-val <= Y < i-val+1) dval from 0 to max(X)
+    // = sum val from 0 to max(X)-1
+    //     x(val) * f_i(val) / max(Y)
+    // where f_i(val) =
+    // 0.5 if i-val = 0 or max(Y), so val = i-max(Y) or i
+    // 1.0 if 0 < i-val < max(Y), so i-max(Y) < val < i
+    // as x(val) is "constant" for each integer step, so we can consider the
+    // integral in integer steps.
+    // = sum val from max(0, i-max(Y)) to min(max(X)-1, i)
+    //     x(val) * f_i(val) / max(Y)
+    // for example, max(X)=1, max(Y)=10, i=5
+    // = sum val from max(0, 5-10)=0 to min(1-1, 5)=0
+    //     x(val) * f_i(val) / max(Y)
+    // = x(0) * 1 / 10
+
+    // Get a prefix sum / CDF of this so we can calculate sums in O(1).
+    const prefix = prefix_float_sum(this.prob);
+    const max_X = this.prob.length;
+    const max_Y = rate_decay_max - rate_decay_min;
+    const newProb = Array(this.prob.length + max_Y);
+    for (let i = 0; i < newProb.length; i++) {
+      // Note that left and right here are INCLUSIVE.
+      const left = Math.max(0, i - max_Y);
+      const right = Math.min(max_X - 1, i);
+      // We want to sum, in total, prefix[right+1], -prefix[left], and subtract
+      // the 0.5s if necessary.
+      // This may involve numbers of differing magnitudes, so use the float sum
+      // algorithm to sum these up.
+      const numbers_to_sum = [
+        prefix[right + 1][0], prefix[right + 1][1],
+        -prefix[left][0], -prefix[left][1],
+      ];
+      if (left === i-max_Y) {
+        // Need to halve the left endpoint.
+        numbers_to_sum.push(-this.prob[left] / 2);
       }
+      if (right === i) {
+        // Need to halve the right endpoint.
+        // It's guaranteed that we won't accidentally "halve" twice,
+        // as that would require i-max_Y = i, so max_Y = 0 - which is
+        // impossible.
+        numbers_to_sum.push(-this.prob[right] / 2);
+      }
+      newProb[i] = float_sum(numbers_to_sum) / max_Y;
     }
-    */
-    // Transform to "CDF"
-    for (let i = 1; i < this.prob.length; i++) {
-      this.prob[i] += this.prob[i - 1];
-    }
-    // Return this.prob[l - this.value_start] + ... + this.prob[r - 1 - this.value_start];
-    // This assume that this.prob is already transformed to "CDF".
-    const sum = (l, r) => {
-      l -= this.value_start;
-      r -= this.value_start;
-      if (l < 0) l = 0;
-      if (r > this.prob.length) r = this.prob.length;
-      if (l >= r) return 0;
-      return this.prob[r - 1] - (l == 0 ? 0 : this.prob[l - 1]);
-    };
 
-    for (let x = 0; x < ret.prob.length; x++) {
-      // i - j - 1 - ret.value_start == x  (Part A)
-      // -> i = x + j + 1 + ret.value_start, j in [rate_decay_min, rate_decay_max)
-      ret.prob[x] = sum(x + rate_decay_min + 1 + ret.value_start, x + rate_decay_max + 1 + ret.value_start);
-
-      // i - j - ret.value_start == x  (Part B)
-      // -> i = x + j + ret.value_start, j in [rate_decay_min, rate_decay_max)
-      ret.prob[x] += sum(x + rate_decay_min + ret.value_start, x + rate_decay_max + ret.value_start);
-    }
-    this.prob = ret.prob;
-    this.value_start = ret.value_start;
-    this.value_end = ret.value_end;
-    this.normalize();
+    this.prob = newProb;
+    this.value_start -= rate_decay_max;
+    this.value_end -= rate_decay_min;
+    // No need to normalise, as it is guaranteed that the sum of this.prob is 1.
   }
 }
 
