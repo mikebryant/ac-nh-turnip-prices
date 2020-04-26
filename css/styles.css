@@ -636,7 +636,7 @@ body.darkmode--activated i{
   position: fixed;
   bottom: 100px;
   right: 32px;
-  background-color: #F3F3F3;
+  background-color: rgba(243, 243, 243, 0.8);
   text-align: center;
   text-decoration: none;
 }
