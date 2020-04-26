@@ -634,7 +634,7 @@ body.darkmode--activated i{
   overflow: hidden;
   cursor: pointer;
   position: fixed;
-  bottom: 100px;
+  bottom: 85px;
   right: 32px;
   background-color: rgba(243, 243, 243, 0.8);
   text-align: center;
