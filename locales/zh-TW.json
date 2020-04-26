@@ -7,6 +7,12 @@
     "description": "這個工具可以讓你每天追蹤自己島上的大頭菜價格，但你必須自己輸入價格！",
     "conclusion": "接下來，Turnip Prophet 將 <b>神奇地</b> 預測本週剩餘時間的大頭菜價格。"
   },
+  "islands": {
+    "title": "島名",
+    "description": "如果你有多個無人島，請填冩這個欄位。<i>（不会影響模型）</i>",
+    "delete": "刪除無人島",
+    "delete-warning": "是否確定要刪除這個無人島的資料？\n\n此動作無法復原！"
+  },
   "first-time": {
     "title": "首次購買",
     "description": "這是你第一次從自己島上和曹賣購買大頭菜嗎？<i>(將影響這次的模型)</i>",

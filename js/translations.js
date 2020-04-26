@@ -50,6 +50,5 @@ i18next
   });
   // init set content
   $(document).ready(initialize);
-  $(document).on('input', updateContent);
-  $('input[type = radio]').on('change', updateContent);
+  $('input:not([type=text])').on('change', () => update());
 });

@@ -7,6 +7,12 @@
     "description": "This app lets you track your island's turnip prices daily, but you'll have to put the prices in yourself!",
     "conclusion": "After that, the Turnip Prophet app will <b>magically</b> predict the turnip prices you'll have for the rest of the week."
   },
+  "islands": {
+    "title": "Island Name",
+    "description": "If you have multiple islands, fill in this field to distinguish them.<i>(It doesn't affect your pattern.)</i>",
+    "delete": "Delete Island",
+    "delete-warning": "Are you sure you want to delete this island's data?\n\nThis cannot be undone!"
+  },
   "first-time": {
     "title": "First-Time Buyer",
     "description": "Is this your first time buying turnips from Daisy Mae on your island?<i>(This affects your pattern)</i>",

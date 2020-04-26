@@ -43,7 +43,10 @@
 
 
 <body>
-
+  <div class="island-menu">
+    <div class="island-toggle">🏝️</div>
+    <div class="island-group" style="display:none"></div>
+  </div>
   <div class="dialog-box">
     <h2 class="dialog-box__name" data-i18n="general.daisy-mae"></h2>
     <p data-i18n="[html]welcome.salutation"></p>
@@ -71,7 +74,14 @@
 
     <div class="nook-phone-center">
 
-
+      <form class="input__form">
+        <div class="form__row">
+          <h6 data-i18n="islands.title"></h6>
+          <div class="input__group">
+            <label data-i18n="[html]islands.description"></label>
+            <input type="text" id="island" placeholder="..." />
+          </div>
+        </div>
 
       <form class="input__form">
         <div class="form__row">
@@ -111,7 +121,6 @@
           <div class="input__group">
             <label data-i18n="[html]prices.description"></label>
             <input type="number" id="buy" placeholder="..." />
-
           </div>
         </div>
         <i data-i18n="prices.open.am"></i>
@@ -196,6 +205,7 @@
             <path fill="currentColor" d="M320 448v40c0 13.255-10.745 24-24 24H24c-13.255 0-24-10.745-24-24V120c0-13.255 10.745-24 24-24h72v296c0 30.879 25.121 56 56 56h168zm0-344V0H152c-13.255 0-24 10.745-24 24v368c0 13.255 10.745 24 24 24h272c13.255 0 24-10.745 24-24V128H344c-13.2 0-24-10.8-24-24zm120.971-31.029L375.029 7.029A24 24 0 0 0 358.059 0H352v96h96v-6.059a24 24 0 0 0-7.029-16.97z"></path>
           </svg>
         </div>
+        <button type="button" id="delete" class="button button--reset" name="action" data-i18n="islands.delete"></button>
         <button type="button" id="reset" class="button button--reset" name="action" data-i18n="prices.reset"></button>
       </form>
 
@@ -312,6 +322,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/i18next-browser-languagedetector/4.0.2/i18nextBrowserLanguageDetector.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-i18next/1.2.1/jquery-i18next.min.js"></script>
   <script src="js/chart.js"></script>
+  <script src="js/islands.js"></script>
   <script src="js/predictions.js"></script>
   <script src="js/scripts.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/darkmode-js@1.5.5/lib/darkmode-js.min.js"></script>
