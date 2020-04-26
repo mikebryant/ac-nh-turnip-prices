@@ -9,7 +9,7 @@
   },
   "first-time": {
     "title": "First-Time Buyer",
-    "description": "Is this your first time buying turnips from Daisy Mae on your island?<i>(This affects your pattern)</i>",
+    "description": "Is this the first time a resident is buying turnips from Daisy Mae on <b>your own</b> island?<i>(This affects your pattern)</i>",
     "yes": "Yes",
     "no": "No"
   },
