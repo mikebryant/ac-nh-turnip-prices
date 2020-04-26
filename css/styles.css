@@ -329,7 +329,6 @@ input[type=number] {
   margin: 0px auto;
   box-sizing: border-box;
   overflow-x: auto;
-  border-radius: 2px;
 }
 
 @media only screen and (max-width: 1440px) and (pointer: fine) {
@@ -363,7 +362,6 @@ input[type=number] {
   width: 5px;
   background: rgba(0, 0, 0, 0.2);
 }
-
 
 #turnipTable {
   border-collapse: collapse;
@@ -611,7 +609,6 @@ body.darkmode--activated a,
 body.darkmode--activated b,
 body.darkmode--activated input[type=number]:not(:placeholder-shown){
   color: #586472;
-  
 }
 
 body.darkmode--activated input[type="radio"]+label,
