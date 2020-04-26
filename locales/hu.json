@@ -9,7 +9,7 @@
   },
   "first-time": {
     "title": "Első vásárlás",
-    "description": "Most vásárolsz retket először Daisy Mae-től a szigeteden?<i>(Ez hatással van a mintádra)</i>",
+    "description": "Most vásárol valaki először retket Daisy Mae-től a <b>Te szigeteden</b>?<i>(Ez hatással van a mintádra)</i>",
     "yes": "Igen",
     "no": "Nem"
   },
@@ -28,7 +28,7 @@
     "description": "Mennyiért vettél ezen a héten retket? <i>(Ha most vásárolsz először, ez a mező le lesz tiltva)</i>",
     "open": {
       "am": "Délelőtt - 08:00-tól 11:59-ig",
-      "pm": "Délután - 12:00-tól 22:00-ig"
+      "pm": "Délután - 12:00-től 22:00-ig"
     },
     "copy-permalink": "Árak megosztása",
     "permalink-copied": "Hivatkozás kimásolva!",
