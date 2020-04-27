@@ -259,6 +259,21 @@ const getPriceClass = function(buy_price, max) {
   return "";
 }
 
+const displayPercentage = function(fraction) {
+  if (Number.isFinite(fraction)) {
+    let percent = fraction * 100;
+    if (percent >= 1) {
+      return percent.toPrecision(3) + '%';
+    } else if (percent >= 0.01) {
+      return percent.toFixed(2) + '%';
+    } else {
+      return '<0.01%';
+    }
+  } else {
+    return '—'
+  }
+}
+
 const calculateOutput = function (data, first_buy, previous_pattern) {
   if (isEmpty(data)) {
     $("#output").html("");
@@ -276,10 +291,9 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
       pattern_count = analyzed_possibilities
         .filter(val => val.pattern_number == poss.pattern_number)
         .length
-      percentage_display = percent => Number.isFinite(percent) ? ((percent * 100).toPrecision(3) + '%') : '—'
-      out_line += `<td rowspan=${pattern_count}>${percentage_display(poss.category_total_probability)}</td>`;
+      out_line += `<td rowspan=${pattern_count}>${displayPercentage(poss.category_total_probability)}</td>`;
     }
-    out_line += `<td>${percentage_display(poss.probability)}</td>`;
+    out_line += `<td>${displayPercentage(poss.probability)}</td>`;
     for (let day of poss.prices.slice(1)) {
       let price_class = getPriceClass(buy_price, day.max);
       if (day.min !== day.max) {
