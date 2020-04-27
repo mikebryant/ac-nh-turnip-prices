@@ -285,8 +285,9 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   let buy_price = parseInt(buy_input.val());
   previous_pattern_number = ""
   for (let poss of analyzed_possibilities) {
-    const style_price = first_buy ? poss.prices[0].min : buy_price;
+
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>";
+    const style_price = buy_price || poss.prices[0].min;
     if (previous_pattern_number != poss.pattern_number) {
       previous_pattern_number = poss.pattern_number
       pattern_count = analyzed_possibilities
@@ -295,8 +296,8 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
       out_line += `<td rowspan=${pattern_count}>${displayPercentage(poss.category_total_probability)}</td>`;
     }
     out_line += `<td>${displayPercentage(poss.probability)}</td>`;
-    
-    for (let day of poss.prices.slice(1)) {
+
+    for (let day of poss.prices.slice(2)) {
       let price_class = getPriceClass(style_price, day.max);
       if (day.min !== day.max) {
         out_line += `<td class='${price_class}'>${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
@@ -368,9 +369,6 @@ const update = function () {
   const buy_price = parseInt(buy_input.val());
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
   const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
-
-  buy_input[0].disabled = first_buy;
-  buy_input[0].placeholder = first_buy ? '—' : '...'
 
   const permalink = generatePermalink(buy_price, sell_prices, first_buy, previous_pattern);
   if (permalink) {

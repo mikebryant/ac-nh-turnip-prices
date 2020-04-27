@@ -14,6 +14,7 @@ i18next
   },
 }, (err, t) => {
   const languages = [
+    ['ca', 'Català'],
     ['de', 'Deutsch'],
     ['en', 'English'],
     ['es-ES', 'Español'],

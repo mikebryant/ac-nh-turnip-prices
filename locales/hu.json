@@ -25,7 +25,7 @@
     "small-spike": "Kis kiugrás"
   },
   "prices": {
-    "description": "Mennyiért vettél ezen a héten retket? <i>(Ha most vásárolsz először, ez a mező le lesz tiltva)</i>",
+    "description": "Mennyiért vettél ezen a héten retket?",
     "open": {
       "am": "Délelőtt - 08:00-tól 11:59-ig",
       "pm": "Délután - 12:00-től 22:00-ig"

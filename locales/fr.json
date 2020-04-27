@@ -25,7 +25,7 @@
     "small-spike": "Petit Pic"
   },
   "prices": {
-    "description": "À quel prix Porcelette vendait ses navets sur ton île cette semaine ?<i>(Si c'est la première fois que t'en achètes, ce champ sera desactivé)</i>",
+    "description": "À quel prix Porcelette vendait ses navets sur ton île cette semaine ?",
     "open": {
       "am": "Matin (AM) - de 8:00 à 11:59",
       "pm": "Après-midi (PM) - de 12:00 à 22:00"

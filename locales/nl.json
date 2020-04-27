@@ -25,7 +25,7 @@
     "small-spike": "Kleine Piek"
   },
   "prices": {
-    "description": "Wat was de prijs van knollen op je eiland deze week? <i>(Als dit de eerste keer is dat je knollen koopt is dit veld uitgeschakeld)</i>",
+    "description": "Wat was de prijs van knollen op je eiland deze week?",
     "open": {
       "am": "Voormiddag - 8:00 tot 11:59",
       "pm": "Namiddag - 12:00 tot 22:00"
