@@ -282,7 +282,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   let output_possibilities = "";
   let predictor = new Predictor(data, first_buy, previous_pattern);
   let analyzed_possibilities = predictor.analyze_possibilities();
-  let buy_price = parseInt(buy_input.val());
+  let buy_price = first_buy ? analyzed_possibilities.prices[0].min : parseInt(buy_input.val());
   previous_pattern_number = ""
   for (let poss of analyzed_possibilities) {
     var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>"
