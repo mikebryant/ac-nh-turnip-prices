@@ -25,7 +25,7 @@
     "small-spike": "Leicht Ansteigend"
   },
   "prices": {
-    "description": "Wie hoch war der Preis für Rüben diese Woche auf deiner Insel? <i>(Wenn du zum ersten Mal Rüben kaufst, wird dieses Feld deaktiviert)</i>",
+    "description": "Wie hoch war der Preis für Rüben diese Woche auf deiner Insel?",
     "open": {
       "am": "Vorm. (Vormittag) - 8:00 Uhr bis 11:59 Uhr",
       "pm": "Nachm. (Nachmittag) - 12:00 Uhr bis 22:00 Uhr"
