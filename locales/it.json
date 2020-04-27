@@ -26,7 +26,7 @@
     "small-spike": "Piccolo picco"
   },
   "prices": {
-    "description": "Qual era il prezzo di acquisto delle rape sulla tua isola questa settimana? <i>(Se è la prima volta che le compri questo campo è disabilitato)</i>",
+    "description": "Qual era il prezzo di acquisto delle rape sulla tua isola questa settimana?",
     "open": {
       "am": "Mattina - dalle 8:00 alle 11:59",
       "pm": "Pomeriggio - dalle 12:00 alle 22:00"

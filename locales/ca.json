@@ -25,7 +25,7 @@
     "small-spike": "Pic petit"
   },
   "prices": {
-    "description": "Quin ha sigut el preu de compra de naps a la teva illa aquesta setmana?<i>(Si no has comprat naps abans, aquest camp estarà desactivat)</i>",
+    "description": "Quin ha sigut el preu de compra de naps a la teva illa aquesta setmana?",
     "open": {
       "am": "AM - De les 8:00 am a les 11:59 am",
       "pm": "PM - De les 12:00 pm a les 10:00 pm"

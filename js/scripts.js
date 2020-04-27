@@ -294,7 +294,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
       out_line += `<td rowspan=${pattern_count}>${displayPercentage(poss.category_total_probability)}</td>`;
     }
     out_line += `<td>${displayPercentage(poss.probability)}</td>`;
-    for (let day of poss.prices.slice(1)) {
+    for (let day of poss.prices.slice(2)) {
       let price_class = getPriceClass(buy_price, day.max);
       if (day.min !== day.max) {
         out_line += `<td class='${price_class}'>${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
@@ -366,9 +366,6 @@ const update = function () {
   const buy_price = parseInt(buy_input.val());
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
   const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
-
-  buy_input[0].disabled = first_buy;
-  buy_input[0].placeholder = first_buy ? '—' : '...'
 
   const permalink = generatePermalink(buy_price, sell_prices, first_buy, previous_pattern);
   if (permalink) {
