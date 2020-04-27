@@ -282,7 +282,6 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   let output_possibilities = "";
   let predictor = new Predictor(data, first_buy, previous_pattern);
   let analyzed_possibilities = predictor.analyze_possibilities();
-  console.log(analyzed_possibilities);
   let buy_price = parseInt(buy_input.val());
   previous_pattern_number = ""
   for (let poss of analyzed_possibilities) {
