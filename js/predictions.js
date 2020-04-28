@@ -954,7 +954,7 @@ class Predictor {
         weekMins.push(poss.prices[poss.prices.length -1].min);
         weekMaxes.push(poss.prices[poss.prices.length -1].max);
       }
-      poss.weekGuaranteedMinimum = Math.max(...weekMins);
+      poss.weekGuaranteedMinimum = Math.min(...weekMins);
       poss.weekMax = Math.max(...weekMaxes);
     }
 
