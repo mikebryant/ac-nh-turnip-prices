@@ -58,6 +58,13 @@ Please make sure **not to translate** "Turnip Prophet" and include the new langu
 
 If you have any remaining questions, feel free to stop by the Discord server and ask. 
 
+## Contributing
+
+If you submit a PR and your account isn't listed in **contributors.json**, please add it in (alphabetically) as part of your PR! Your entry should look like this:
+
+```json
+["UsernameHere", "https://github.com/UsernameHere"]
+```
 
 ## Final statement
 
