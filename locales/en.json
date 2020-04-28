@@ -25,7 +25,7 @@
     "small-spike": "Small Spike"
   },
   "prices": {
-    "description": "What was the price of turnips this week on your island? <i>(If this is your first time buying turnips, this field will be disabled)</i>",
+    "description": "What was the price of turnips this week on your island?",
     "open": {
       "am": "AM - 8:00 am to 11:59 am",
       "pm": "PM - 12:00 pm to 10:00 pm"
