@@ -1,11 +1,11 @@
 function getContributors() {
   if (window.jQuery) {
     const container = $('#contributors');
-    jQuery.ajax('https://api.github.com/repos/mikebryant/ac-nh-turnip-prices/contributors', {})
+    jQuery.ajax('/contributors.json', {})
       .done(function (data) {
         const contributorList = [];
         data.forEach((contributor, idx) => {
-          contributorList.push(`<a href="${contributor.html_url}">${contributor.login}</a>`);
+          contributorList.push(`<a href="${contributor[1]}">${contributor[0]}</a>`);
           if (idx < data.length - 1) {
             contributorList.push(', ');
           }
