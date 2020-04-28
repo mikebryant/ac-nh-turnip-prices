@@ -60,10 +60,10 @@ If you have any remaining questions, feel free to stop by the Discord server and
 
 ## Contributing
 
-If you submit a PR and your account isn't listed in **contributors.json**, please add it in (alphabetically) as part of your PR! Your entry should look like this:
+If you submit a PR and your account isn't listed in [contributors.json](./contributors.json), please add it in (alphabetically) as part of your PR! Your entry should look like this:
 
 ```json
-["UsernameHere", "https://github.com/UsernameHere"]
+["UsernameHere", "https://github.com/UsernameHere"],
 ```
 
 ## Final statement
