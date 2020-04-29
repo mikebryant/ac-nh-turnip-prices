@@ -52,6 +52,15 @@ i18next
   });
   // init set content
   $(document).ready(initialize);
-  $(document).on('input', updateContent);
+
+  let delayTimer;
+  $(document).on('input', function() {
+    // adding short delay after input to help mitigate potential lag after keystrokes
+    clearTimeout(delayTimer);
+    delayTimer = setTimeout(function() {
+      updateContent();
+    }, 1000);
+  });
+
   $('input[type = radio]').on('change', updateContent);
 });
