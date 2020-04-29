@@ -29,6 +29,7 @@ i18next
     ['zh-CN', '简体中文'],
     ['zh-TW', '繁體中文'],
     ['th-TH', 'ไทย'],
+    ['pl', 'polski'],
   ].sort(),
   languageSelector = $('#language');
   languages.map(([code, name]) => {
