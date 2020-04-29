@@ -330,6 +330,7 @@ input[type=number] {
   box-sizing: border-box;
   overflow-x: auto;
   border-radius: 2px;
+  scrollbar-width: thin;
 }
 
 @media only screen and (max-width: 1440px) and (pointer: fine) {
