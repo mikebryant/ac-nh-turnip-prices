@@ -58,7 +58,7 @@ i18next
     clearTimeout(delayTimer);
     delayTimer = setTimeout(function() {
       updateContent();
-    }, 1000);
+    }, 500);
   });
 
   $('input[type = radio]').on('change', updateContent);
