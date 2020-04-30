@@ -1,6 +1,6 @@
 function getContributors(page) {
   if (window.jQuery) {
-    const container = $("#contributors");
+    const container = $('#contributors');
     jQuery.ajax(`https://api.github.com/repos/mikebryant/ac-nh-turnip-prices/contributors?page=${page}`, {})
       .done(function (data) {
         if (data.length === 0) {
@@ -13,10 +13,10 @@ function getContributors(page) {
             `<a href="${contributor.html_url}">${contributor.login}</a>`
           );
           if (idx < data.length - 1) {
-            contributorList.push(", ");
+            contributorList.push(', ');
           }
         });
-        container.append(contributorList.join(""));
+        container.append(contributorList.join(''));
         getContributors(page + 1);
       });
   }
