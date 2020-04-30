@@ -10,7 +10,7 @@ function getContributors(page) {
         const contributorList = [];
         data.forEach((contributor, idx) => {
           contributorList.push(`<a href="${contributor.html_url}">${contributor.login}</a>`);
-          if (idx < data.length - 1) {
+          if (idx < data.length - 1 || page > 1) {
             contributorList.push(', ');
           }
         });
