@@ -1,0 +1,81 @@
+{
+  "general": {
+    "daisy-mae": "Daisy Mae"
+  },
+  "welcome": {
+    "salutation": "Cześć, witam w aplikacji <b>Turnip Prophet</b> na Twoim Nook Phone.",
+    "description": "Ta aplikacja pozwoli Ci codziennie śledzić ceny rzep na twojej wyspie, jednak będziesz musiał uzupełniać je samodzielnie.",
+    "conclusion": "Następnie aplikacja Turnip Prophet <b>w magiczny sposób</b> przewidzi jakie ceny rzep będziesz mieć przez resztę tygodnia"
+  },
+  "first-time": {
+    "title": "Kupujący po raz pierwszy",
+    "description": "Czy jest to pierwszy raz gdy mieszkaniec kupuje rzepy od Daisy Mae na <b>własnej</b>wyspie?<i>(Ta opcja wpłynie na Twój wzór)</i>",
+    "yes": "Tak",
+    "no": "Nie"
+  },
+  "patterns": {
+    "title": "Poprzedni wzór",
+    "description": "Jaka była tendencja cen rzep w poprzednim tygodniu?<i>(Ta opcja wpłynie na Twój wzór)</i>",
+    "pattern": "Wzór",
+    "all": "Wszystkie wzory",
+    "decreasing": "Malejąca",
+    "fluctuating": "Zmienna",
+    "unknown": "Nie pamiętam",
+    "large-spike": "Duży wzrost",
+    "small-spike": "Mały wzrost"
+  },
+  "prices": {
+    "description": "Jakie ceny za rzepy były w tym tygodniu na Twojej wyspie?",
+    "open": {
+      "am": "Przed południem - 8:00  do 11:59 ",
+      "pm": "Po południu - 12:00  do 22:00 "
+    },
+    "copy-permalink": "Skopiuj permalink",
+    "permalink-copied": "Permalink skopiowany!",
+    "reset": "Wyzeruj Turnip Prophet",
+    "reset-warning": "Czy jesteś pewien, że chcesz wyzerować wszystkie pola?\n\nTej opcji nie można cofnąć!"
+  },
+  "weekdays": {
+    "monday": "Poniedziałek",
+    "tuesday": "Wtorek",
+    "wednesday": "Środa",
+    "thursday": "Czwartek",
+    "friday": "Piątek",
+    "saturday" : "Sobota",
+    "sunday": "Niedziela",
+    "abr": {
+      "monday": "Pon",
+      "tuesday": "Wt",
+      "wednesday": "Śr",
+      "thursday": "Czw",
+      "friday": "Pt",
+      "saturday" : "Sob"
+    }
+  },
+  "times": {
+    "morning": "Rano",
+    "afternoon": "Po południu"
+  },
+  "output": {
+    "title": "Wyniki",
+    "chance": "Szansa %",
+    "to": "do",
+    "minimum": "Gwarantowane Minimum",
+    "maximum": "Potencjalne Maximum",
+    "chart": {
+      "input": "Cena wejściowa",
+      "minimum": "Gwarantowane Minimum",
+      "maximum": "Potencjalne Maximum"
+    }
+  },
+  "textbox": {
+    "description": "Po tym jak wprowadzisz kilka cen rzep, Turnip Prophet dokona obliczeń i wyświetli różne prawdopodobne wzorce, które może doświadczyć Twoja wyspa",
+    "development": "Ta aplikacja wciąż jest w produkcji, lecz z czasem zostanie poprawiona!",
+    "thanks": "Nie udałoby nam się to bez <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">pracy Ninji</a>, który dowiedział się jak Timmy and Tommy wyceniają rzepy.",
+    "support": "Wsparcie, komentarze i wpłaty są możliwe pod adresem <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+    "sponsor": "Chcesz, wesprzeć twórców tego projektu? Wejdź na stronę <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> i wciśnij '❤ Sponsor'",
+    "contributors-text": "Oh! I nie zapominajmy o tych, którzy dotychczas nas wspierali!",
+    "contributors": "Fundatorzy",
+    "language": "Język"
+  }
+}
