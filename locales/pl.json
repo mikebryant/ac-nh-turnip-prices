@@ -9,7 +9,7 @@
   },
   "first-time": {
     "title": "Kupujący po raz pierwszy",
-    "description": "Czy jest to pierwszy raz gdy mieszkaniec kupuje rzepy od Daisy Mae na <b>własnej</b> wyspie?<i>(Ta opcja wpłynie na Twój wzór)</i>",
+    "description": "Czy jest to pierwszy raz gdy mieszkaniec kupuje rzepy od Daisy Mae na <b>własnej</b>wyspie?<i>(Ta opcja wpłynie na Twój wzór)</i>",
     "yes": "Tak",
     "no": "Nie"
   },
