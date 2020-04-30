@@ -3,10 +3,6 @@ function getContributors(page) {
     const container = $('#contributors');
     jQuery.ajax(`https://api.github.com/repos/mikebryant/ac-nh-turnip-prices/contributors?page=${page}&per_page=100`, {})
       .done(function (data) {
-        if (data.length === 0) {
-          return;
-        }
-
         const contributorList = [];
         data.forEach((contributor, idx) => {
           if (idx === 0 && page > 1) {
