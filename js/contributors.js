@@ -19,6 +19,8 @@ function getContributors(page) {
           }
         });
         container.append(contributorList.join(''));
+        // If the length of the data is < 100, we know we are processing the last page of data.
+        if (data.length < 100) return; 
         getContributors(page + 1);
       });
   }
