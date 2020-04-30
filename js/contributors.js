@@ -1,7 +1,7 @@
 function getContributors(page) {
   if (window.jQuery) {
     const container = $('#contributors');
-    jQuery.ajax(`https://api.github.com/repos/mikebryant/ac-nh-turnip-prices/contributors?page=${page}`, {})
+    jQuery.ajax(`https://api.github.com/repos/mikebryant/ac-nh-turnip-prices/contributors?page=${page}&per_page=100`, {})
       .done(function (data) {
         if (data.length === 0) {
           return;
