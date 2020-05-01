@@ -573,6 +573,10 @@ div.darkmode-background {
   background-image:
     radial-gradient(#fff 20%, transparent 0),
     radial-gradient(#fff 20%, transparent 0);
+  position: static;
+}
+
+.darkmode--activated .darkmode-background {
   position: fixed;
 }
 
