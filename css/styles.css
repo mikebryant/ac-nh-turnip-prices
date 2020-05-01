@@ -568,23 +568,12 @@ input[type=number] {
   outline: none;
 }
 
-div.darkmode-background{
+div.darkmode-background {
   background: #fef0e3;
   background-image:
     radial-gradient(#fff 20%, transparent 0),
     radial-gradient(#fff 20%, transparent 0);
-  position: inherit;
-}
-
-body.darkmode--activated{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Varela Round', sans-serif;
-  width: 100%;
-  margin: 0 0 0 0;
-  position: absolute;
+  position: fixed;
 }
 
 body.darkmode--activated div[class^="dialog-box"],
