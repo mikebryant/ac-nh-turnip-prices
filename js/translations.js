@@ -55,7 +55,9 @@ i18next
   $(document).ready(initialize);
 
   let delayTimer;
-  $(document).on('input', function() {
+  $(document).on('input', function(event) {
+    //prevent radio input from updating content twice per input change
+    if(event.target.type === 'radio'){ return }
     // adding short delay after input to help mitigate potential lag after keystrokes
     clearTimeout(delayTimer);
     delayTimer = setTimeout(function() {
