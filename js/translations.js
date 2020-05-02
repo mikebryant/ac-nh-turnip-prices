@@ -7,7 +7,7 @@ const LANGUAGES = {
   'ca': 'Català',
   'de': 'Deutsch',
   'en': 'English',
-  'es-ES': 'Español',
+  'es': 'Español',
   'fr': 'Français',
   'hu': 'magyar',
   'it': 'Italiano',
@@ -17,9 +17,9 @@ const LANGUAGES = {
   'pl': 'Polski',
   'pt-BR': 'Português',
   'ru': 'Русский',
-  'th-TH': 'ไทย',
+  'th': 'ไทย',
   'zh-CN': '简体中文',
-  'zh-TW': '繁體中文',
+  'zh-TW': '繁體中文'
 };
 i18next
 .use(i18nextXHRBackend)
