@@ -25,7 +25,7 @@
     "small-spike": "Pequeno Pico"
   },
   "prices": {
-    "description": "Qual foi o preço dos nabos esta semana em sua ilha? <i>(Se esta é a primeira vez que compra nabos, este campo ficará desativado)</i>",
+    "description": "Qual foi o preço dos nabos esta semana em sua ilha?",
     "open": {
       "am": "AM - 8:00 am até 11:59 am",
       "pm": "PM - 12:00 pm até 10:00 pm"

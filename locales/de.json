@@ -25,7 +25,7 @@
     "small-spike": "Leicht Ansteigend"
   },
   "prices": {
-    "description": "Wie hoch war der Preis für Rüben diese Woche auf deiner Insel? <i>(Wenn du zum ersten Mal Rüben kaufst, wird dieses Feld deaktiviert)</i>",
+    "description": "Wie hoch war der Preis für Rüben diese Woche auf deiner Insel?",
     "open": {
       "am": "Vorm. (Vormittag) - 8:00 Uhr bis 11:59 Uhr",
       "pm": "Nachm. (Nachmittag) - 12:00 Uhr bis 22:00 Uhr"
@@ -73,6 +73,7 @@
     "development": "Diese App befindet sich noch in der Entwicklung, wird sich aber mit der Zeit verbessern!",
     "thanks": "Nichts von all dem wäre möglich gewesen, ohne das <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> herausgefunden hätte, wie Nepp und Schlepp ihre Rübenpreise kalkulieren.",
     "support": "Hilfe, Kommentare und Beiträge sind auffindbar über <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub.com</a> (nur in Englisch).",
+    "sponsor": "Möchtest du die Entwickler hinter diesem Projekt unterstützen? Gehe zu <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub.com</a> und klicke auf den '❤ Sponsor' Button für mehr Informationen.",
     "contributors-text": "Oh! Und vergessen wir nicht, denen zu danken, die bis jetzt dazu beigetragen haben!",
     "contributors": "Mitwirkende",
     "language": "Sprache"

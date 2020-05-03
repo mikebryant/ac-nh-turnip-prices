@@ -25,7 +25,7 @@
     "small-spike": "Petit Pic"
   },
   "prices": {
-    "description": "À quel prix Porcelette vendait ses navets sur ton île cette semaine ?<i>(Si c'est la première fois que t'en achètes, ce champ sera desactivé)</i>",
+    "description": "À quel prix Porcelette vendait ses navets sur ton île cette semaine ?",
     "open": {
       "am": "Matin (AM) - de 8:00 à 11:59",
       "pm": "Après-midi (PM) - de 12:00 à 22:00"
@@ -73,6 +73,7 @@
     "development": "Cette appli est en développement, mais elle s'améliore jour après jour !",
     "thanks": "Rien de tout ça n'aurait pu être possible sans <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">le travail de Ninji</a> et son analyse sur comment Méli et Mélo déterminent la valeur des Navets.",
     "support": "Aide, commentaires et contributions sont disponibles via <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+    "sponsor": "T'aimerais sponsoriser les développeurs derrière ce projet ? Alors va sur la page <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> du projet et clique sur '❤ Sponsor'",
     "contributors-text": "Oh ! Et n'oublions pas de remercier toutes les personnes ayant contribué jusqu'à maintenant !",
     "contributors": "Contributeurs",
     "language": "Langue"

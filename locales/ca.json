@@ -1,0 +1,81 @@
+{
+  "general": {
+    "daisy-mae": "Juliana"
+  },
+  "welcome": {
+    "salutation": "Hola! Et donem la benvinguda a l'app <b>Turnip Prophet</b> pel teu Nookòfon.",
+    "description": "Aquesta app et permet predir els preus dels naps a la teva illa, però hauràs d'introduir-hi tu els preus passats!",
+    "conclusion": "Fet això, l'app Turnip Prophet <b>endevinarà</b> els preus que tindràs durant la resta de la setmana."
+  },
+  "first-time": {
+    "title": "Primer cop que compres",
+    "description": "És la primera vegada que li compres naps a la Juliana a la <b>teva</b> illa?<i>(Afecta al patró de preus)</i>",
+    "yes": "Sí",
+    "no": "No"
+  },
+  "patterns": {
+    "title": "Patró anterior",
+    "description": "Quin patró tenien els teus preus la setmana passada?<i>(Afecta al patró actual)</i>",
+    "pattern": "Patró",
+    "all": "Tots els patrons",
+    "decreasing": "Decreixent",
+    "fluctuating": "Fluctuant",
+    "unknown": "No ho sé",
+    "large-spike": "Pic gran",
+    "small-spike": "Pic petit"
+  },
+  "prices": {
+    "description": "Quin ha sigut el preu de compra de naps a la teva illa aquesta setmana?",
+    "open": {
+      "am": "AM - De les 8:00 am a les 11:59 am",
+      "pm": "PM - De les 12:00 pm a les 10:00 pm"
+    },
+    "copy-permalink": "Copiar permalink",
+    "permalink-copied": "Permalink copiat!",
+    "reset": "Reiniciar Turnip Prophet",
+    "reset-warning": "Segur que vols reiniciar tots els camps?\n\nNo pots desfer aquesta acció!"
+  },
+  "weekdays": {
+    "monday": "Dilluns",
+    "tuesday": "Dimarts",
+    "wednesday": "Dimecres",
+    "thursday": "Dijous",
+    "friday": "Divendres",
+    "saturday" : "Dissabte",
+    "sunday": "Diumenge",
+    "abr": {
+      "monday": "Dl",
+      "tuesday": "Dm",
+      "wednesday": "Dc",
+      "thursday": "Dj",
+      "friday": "Dv",
+      "saturday" : "Ds"
+    }
+  },
+  "times": {
+    "morning": "AM",
+    "afternoon": "PM"
+  },
+  "output": {
+    "title": "Resultat",
+    "chance": "Probabilitat (%)",
+    "to": "a",
+    "minimum": "Mínim garantit",
+    "maximum": "Màxim potencial",
+    "chart": {
+      "input": "Preu d'entrada",
+      "minimum": "Mínim garantit",
+      "maximum": "Màxim potencial"
+    }
+  },
+  "textbox": {
+    "description": "Quan hagis posat els preus dels naps, el Turnip Prophet farà comptes i et mostrarà els possibles patrons que puguin haver a la teva illa.",
+    "development": "L'app encara està en desenvolupament, però l'anirem millorant!",
+    "thanks": "Aquest projecte ha estat possible gràcies a en <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a>, que va descobrir com calculen en Tendo i en Nendo els preus dels naps.",
+    "support": "A <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a> hi trobaràs suport, comentaris, i contribucions.",
+    "sponsor": "Vols patrocinar als desenvolupadors del projecte? Ves a <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> i clica damunt de '❤ Sponsor'",
+    "contributors-text": "Ah! I no ens oblidem dels que ja han ajudat amb les seves contribucions!",
+    "contributors": "Contribuidors",
+    "language": "Llenguatge"
+  }
+}

@@ -9,7 +9,7 @@
   },
   "first-time": {
     "title": "First-Time Buyer",
-    "description": "Is this your first time buying turnips from Daisy Mae on your island?<i>(This affects your pattern)</i>",
+    "description": "Is this the first time a resident is buying turnips from Daisy Mae on <b>your own</b> island?<i>(This affects your pattern)</i>",
     "yes": "Yes",
     "no": "No"
   },
@@ -25,7 +25,7 @@
     "small-spike": "Small Spike"
   },
   "prices": {
-    "description": "What was the price of turnips this week on your island? <i>(If this is your first time buying turnips, this field will be disabled)</i>",
+    "description": "What was the price of turnips this week on your island?",
     "open": {
       "am": "AM - 8:00 am to 11:59 am",
       "pm": "PM - 12:00 pm to 10:00 pm"
@@ -73,6 +73,7 @@
     "development": "This app is still in development, but will improve over time!",
     "thanks": "None of this would have been possible without <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji's work</a> figuring out just how Timmy and Tommy value their turnips.",
     "support": "Support, comments and contributions are available through <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+    "sponsor": "Want to sponsor the developers behind this project? Go to the <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> page and click '❤ Sponsor'",
     "contributors-text": "Oh! And let's not forget to thank those who have contributed so far!",
     "contributors": "Contributors",
     "language": "Language"

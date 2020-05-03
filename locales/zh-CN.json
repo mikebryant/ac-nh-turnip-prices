@@ -25,7 +25,7 @@
     "small-spike": "小幅上涨（四期型）"
   },
   "prices": {
-    "description": "本周你的岛上大头菜的购买价格是多少？<i>（如果你是第一次购买大头菜，这个字段不可用）</i>",
+    "description": "本周你的岛上大头菜的购买价格是多少？",
     "open": {
       "am": "上午 - 8:00 ~ 11:59",
       "pm": "下午 - 12:00 ~ 22:00"
@@ -71,8 +71,9 @@
   "textbox": {
     "description": "在填写一些大头菜价格后，大头菜预测工具将预测大头菜的价格并显示本周可能的趋势。",
     "development": "APP仍在开发中，但会随着时间的推移不断完善！",
-    "thanks": "如果不是<a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a>发现豆狸和粒狸如何给大头菜定价的，这一切将不可能实现。",
-    "support": "可以在<a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>获得支持，或讨论和贡献",
+    "thanks": "如果不是 <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> 发现豆狸和粒狸如何给大头菜定价的，这一切将不可能实现。",
+    "support": "可以在 <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a> 获得支持，或讨论和贡献",
+    "sponsor": "想要赞助这个项目的开发者？进入 <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> 并点击 ❤ Sponsor",
     "contributors-text": "哦！别忘记感谢那些至今为止做出过贡献的人。",
     "contributors": "贡献者",
     "language": "语言"

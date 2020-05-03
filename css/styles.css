@@ -304,7 +304,7 @@ input[type=number] {
   padding: 8px 16px;
   border-width: 0px;
   border-radius: 40px;
-  background: transparent;
+  background: #F3F3F3;
   font-size: 1.2rem;
   transition: 0.2s all;
   position: relative;
@@ -329,6 +329,7 @@ input[type=number] {
   margin: 0px auto;
   box-sizing: border-box;
   overflow-x: auto;
+  scrollbar-width: thin;
 }
 
 @media only screen and (max-width: 1440px) and (pointer: fine) {
@@ -557,17 +558,8 @@ input[type=number] {
   z-index: 1;
 }
 
-.darkmode-toggle {
-  opacity: 0.7;
-  transition: opacity 0.15s;
-}
 .darkmode-toggle:hover {
-  opacity: 0.9;
-}
-
-.darkmode-toggle:active {
-  transition: opacity 0s;
-  opacity: 1;
+  filter: brightness(0.9);
 }
 
 .darkmode-toggle:focus {
@@ -590,36 +582,35 @@ body.darkmode--activated{
   font-family: 'Varela Round', sans-serif;
   width: 100%;
   margin: 0 0 0 0;
-  position: absolute
+  position: absolute;
 }
 
 body.darkmode--activated div[class^="dialog-box"],
 body.darkmode--activated div[class^="nook-phone"],
-body.darkmode--activated form[class^="input__form"],
-{
+body.darkmode--activated form[class^="input__form"] {
   background: #fee0c4;
   color: #010F1D;
 }
 
-body.darkmode--activated svg[class^="waves"]{
+body.darkmode--activated svg[class^="waves"] {
   background: #fef0e3;
 }
 
 body.darkmode--activated a,
 body.darkmode--activated b,
-body.darkmode--activated input[type=number]:not(:placeholder-shown){
+body.darkmode--activated input[type=number]:not(:placeholder-shown) {
   color: #586472;
 }
 
 body.darkmode--activated input[type="radio"]+label,
-body.darkmode--activated input[type=number]:placeholder-shown{
+body.darkmode--activated input[type=number]:placeholder-shown {
   background: #bda284;
 }
 
-body.darkmode--activated input[type="radio"]:checked+label{
+body.darkmode--activated input[type="radio"]:checked+label {
   background: #7b6955;
 }
 
-body.darkmode--activated i{
+body.darkmode--activated i {
   color: #7b6955;
 }

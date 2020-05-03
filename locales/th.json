@@ -1,0 +1,81 @@
+{
+    "general": {
+      "daisy-mae": "Daisy Mae"
+    },
+    "welcome": {
+      "salutation": "สวัสดีจ้า ยินดีต้อนรับสู่โปรแกรม <b>Turnip Prophet</b> บน Nook Phone ของคุณ",
+      "description": "โปรแกรมนี้จะช่วยให้คุณสามารถจดบันทึกราคาหัวผักกาดรายวันบนเกาะของคุณ แต่ต้องจดเองนะ!",
+      "conclusion": "หลังจากนั้น Turnip Prophet จะทำการ<b>พยากรณ์</b>ราคาหัวผักกาดตลอดทั้งสัปดาห์ที่เป็นไปได้ให้คุณ"
+    },
+    "first-time": {
+      "title": "ซื้อครั้งแรก",
+      "description": "นี่เป็นครั้งแรกที่คุณซื้อหัวผักกาดจากน้องหมูอู๊ดๆ Daisy Mae บนเกาะ<b>ของคุณรีเปล่า</b>?<i>(มีผลกับการคำนวณรูปแบบราคา)</i>",
+      "yes": "ใช่",
+      "no": "ไม่"
+    },
+    "patterns": {
+      "title": "รูปแบบก่อนหน้า",
+      "description": "รูปแบบของราคาสัปดาห์ที่แล้ว?<i>(มีผลกับการคำนวณรูปแบบราคา)</i>",
+      "pattern": "รูปแบบ",
+      "all": "รูปแบบทั้งหมด",
+      "decreasing": "ลดลง",
+      "fluctuating": "ผันผวน",
+      "unknown": "ไม่รู้สิ!",
+      "large-spike": "พุ่งขึ้นสูงมาก",
+      "small-spike": "พุ่งขึ้นเล็กน้อย"
+    },
+    "prices": {
+      "description": "ราคาหัวผักกาดบนเกาะของคุณสัปดาห์นี้?",
+      "open": {
+        "am": "เช้า - 08.00 นาฬิกา ถึง 11.59 นาฬิกา",
+        "pm": "บ่าย - 12:00 นาฬิกา to 22:00 นาฬิกา"
+      },
+      "copy-permalink": "คัดลอก Permalink",
+      "permalink-copied": "Permalink คัดลอกแล้วจ้า!",
+      "reset": "รีเซ็ต Turnip Prophet",
+      "reset-warning": "แน่ใจนะว่าจะล้างข้อมูลทั้งหมด?\n\nแก้ไขอีกไม่ได้แล้วนา!"
+    },
+    "weekdays": {
+      "monday": "วันจันทร์",
+      "tuesday": "วันอังคาร",
+      "wednesday": "วันพุธ",
+      "thursday": "วันพฤหัสบดี",
+      "friday": "วันศุกร์",
+      "saturday" : "วันเสาร์",
+      "sunday": "วันอาทิตย์",
+      "abr": {
+        "monday": "จันทร์",
+        "tuesday": "อังคาร",
+        "wednesday": "พุธ",
+        "thursday": "พฤหัส",
+        "friday": "ศุกร์",
+        "saturday" : "เสาร์"
+      }
+    },
+    "times": {
+      "morning": "เช้า",
+      "afternoon": "บ่าย"
+    },
+    "output": {
+      "title": "ผลลัพธ์",
+      "chance": "โอกาส %",
+      "to": "ถึง",
+      "minimum": "การันตีต่ำสุด",
+      "maximum": "เป็นไปได้สูงสุด",
+      "chart": {
+        "input": "ราคา",
+        "minimum": "การันตีต่ำสุด",
+        "maximum": "เป็นไปได้สูงสุด"
+      }
+    },
+    "textbox": {
+      "description": "หลังจากใส่ราคาหัวผักกาดไปได้บางส่วน โปรแกรม Turnip Prophet จะทำการแสดงตัวเลขราคาและความเป็นไปได้ของรูปแบบต่าง ๆ ที่เกาะของคุณจะเจอ",
+      "development": "โปรแกรมนี้ยังอยู่ในขั้นตอนพัฒนา แต่จะค่อยๆปรับปรุงขึ้นเรื่อยๆ!",
+      "thanks": "ทั้งหมดนี้ไม่อาจเกิดขึ้นได้เลยถ้าปราศจากผลงานของ <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> ที่ค้นพบวิธีการให้ราคาหัวผักกาดของทานุกิน้อย Timmy และ Tommy",
+      "support": "สนับสนุน, แสดงความเห็นและช่วยพัฒนาได้ที่ <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+      "sponsor": "ต้องการเป็นสปอนเซอร์แก่นักพัฒนา? ไปที่ <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> และเลือก '❤ Sponsor'",
+      "contributors-text": "อ้อ! และต้องไม่ลืมที่จะขอบคุณผู้ที่ช่วยร่วมพัฒนามาจนถึงตอนนี้!",
+      "contributors": "ผู้ร่วมพัฒนา",
+      "language": "ภาษา"
+    }
+  }
