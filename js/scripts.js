@@ -92,6 +92,15 @@ const initialize = function () {
       update();
     }
   });
+  
+  $("#new-week").on("click", function() {
+    if (window.confirm(i18next.t("prices.week-warning"))) {
+      var prev = $("#new-week").attr("nextPattern")
+      sell_inputs.forEach(input => input.value = '')
+      fillFields([], false, prev)
+      update()
+    }
+  });
 };
 
 const updateLocalStorage = function (prices, first_buy, previous_pattern) {
@@ -294,6 +303,13 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
         .filter(val => val.pattern_number == poss.pattern_number)
         .length;
       out_line += `<td rowspan=${pattern_count}>${displayPercentage(poss.category_total_probability)}</td>`;
+      if(poss.category_total_probability >= .9995) {
+        $("#new-week").show();
+        $("#new-week").attr("nextPattern", poss.pattern_number);
+      } else {
+        $("#new-week").hide();
+        $("#new-week").attr("nextPattern", -1);
+      }
     }
     out_line += `<td>${displayPercentage(poss.probability)}</td>`;
     for (let day of poss.prices.slice(2)) {

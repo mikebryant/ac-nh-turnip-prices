@@ -33,7 +33,9 @@
     "copy-permalink": "Copy permalink",
     "permalink-copied": "Permalink copied!",
     "reset": "Reset Turnip Prophet",
-    "reset-warning": "Are you sure you want to reset all fields?\n\nThis cannot be undone!"
+    "reset-warning": "Are you sure you want to reset all fields?\n\nThis cannot be undone!",
+    "new-week": "Start New Week",
+    "week-warning": "Are you sure you want to reset prices?\nThis will also automatically set the input for the Previous Pattern\nThis cannot be undone!"
   },
   "weekdays": {
     "monday": "Monday",

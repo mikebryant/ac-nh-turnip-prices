@@ -322,6 +322,11 @@ input[type=number] {
   color: #E45B5B;
 }
 
+.button.button--newweek {
+  color: #49b87f;
+  display: none;
+}
+
 .table-wrapper {
   display: inline-block;
   max-width: 98%;
