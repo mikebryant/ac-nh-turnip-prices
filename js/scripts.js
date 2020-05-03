@@ -98,6 +98,7 @@ const initialize = function () {
       var prev = $("#new-week").attr("nextPattern")
       sell_inputs.forEach(input => input.value = '')
       fillFields([], false, prev)
+      $("#new-week").hide();
       update()
     }
   });

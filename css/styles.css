@@ -318,13 +318,20 @@ input[type=number] {
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.05), 0 3px 6px rgba(0, 0, 0, 0.09);
 }
 
+#reset-btns {
+  display: flex;
+  padding: 10px;
+}
+
 .button.button--reset {
   color: #E45B5B;
+  margin: 10px;
 }
 
 .button.button--newweek {
   color: #49b87f;
   display: none;
+  margin: 10px;
 }
 
 .table-wrapper {
