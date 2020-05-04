@@ -19,9 +19,15 @@
   --shadow-16: rgba(0, 0, 0, 0.16);
   --shadow-20: rgba(0, 0, 0, 0.20);
 
+  --center-bg-color: #FFF;
+
+  --wave-1: rgba(255, 255, 255, 0);
+  --wave-2: rgba(255, 255, 255, 0.2);
+  --wave-3: rgba(255, 255, 255, 0.4);
+  --wave-4: rgba(255, 255, 255, 0.6);
+
   --nook-phone-bg-color: #F5F8FF;
   --nook-phone-text-color: #686868;
-  --nook-phone-center-bg-color: white;
 
   --dialog-bg-color: #FFFAE5;
   --dialog-text-color: #837865;
@@ -29,19 +35,20 @@
   --dialog-name-bg-color: #FF9A40;
   --dialog-name-text-color: #BA3B1F;
 
+  --lng-select-text-color: var(--dialog-text-color);
   --lng-select-border-color: var(--bg-color);
   --lng-select-bg-color-hover: #EBFEFD;
 
   --italic-color: #AAA;
 
-  --form-bg-color: white;
   --form-h6-text-color: #845E44;
-
-  --input-bg-color: #F3F3F3;
-  --input-focus-bg-color: white;
 
   --radio-hover-bg-color: var(--nook-phone-bg-color);
   --radio-checked-text-color: #FFF;
+
+  --input-bg-color: #F3F3F3;
+  --input-focus-bg-color: white;
+  --input-focus-text-color: var(--color-blue);
 
   --button-text-color: var(--nook-phone-text-color);
   --button-reset-text-color: #E45B5B;
@@ -51,6 +58,66 @@
   --table-range2: hsl(60, 80%, 85%);
   --table-range3: hsl(30, 80%, 85%);
   --table-range4: hsl(0, 80%, 85%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-blue: #0AB5CD;
+    --color-light-blue: #5ECEDB;
+
+    --bg-color: #1A1A1A;
+    --bg-dot-color: #222;
+
+    --shadow-3: rgba(0, 0, 0, 0.03);
+    --shadow-5: rgba(0, 0, 0, 0.05);
+    --shadow-6: rgba(0, 0, 0, 0.06);
+    --shadow-8: rgba(0, 0, 0, 0.08);
+    --shadow-9: rgba(0, 0, 0, 0.09);
+    --shadow-10: rgba(0, 0, 0, 0.10);
+    --shadow-15: rgba(0, 0, 0, 0.16);
+    --shadow-16: rgba(0, 0, 0, 0.16);
+    --shadow-20: rgba(0, 0, 0, 0.20);
+
+    --center-bg-color: #101010;
+
+    --wave-1: rgba(16, 16, 16, 0);
+    --wave-2: rgba(16, 16, 16, 0.2);
+    --wave-3: rgba(16, 16, 16, 0.4);
+    --wave-4: rgba(16, 16, 16, 0.6);
+
+    --nook-phone-bg-color: #000C29;
+    --nook-phone-text-color: #CCC;
+
+    --dialog-bg-color: #252422;
+    --dialog-text-color: #BCB5A9;
+
+    --dialog-name-bg-color: #BA3B1F;
+    --dialog-name-text-color: #FF9A40;
+
+    --lng-select-text-color: #837865;
+    --lng-select-border-color: var(--bg-color);
+    --lng-select-bg-color-hover: #EBFEFD;
+
+    --italic-color: #666;
+
+    --form-h6-text-color: #E18B51;
+
+    --radio-hover-bg-color: #00174D;
+    --radio-checked-text-color: #FFF;
+
+    --input-bg-color: #333;
+    --input-focus-bg-color: #999;
+    --input-focus-text-color: var(--radio-hover-bg-color);
+
+    --button-text-color: var(--nook-phone-text-color);
+    --button-reset-text-color: #E45B5B;
+
+    --table-range0: hsl(140, 80%, 85%);
+    --table-range1: hsl(90, 80%, 85%);
+    --table-range2: hsl(60, 80%, 85%);
+    --table-range3: hsl(30, 80%, 85%);
+    --table-range4: hsl(0, 80%, 85%);
+  }
 }
 
 /* - Global Styles - */
@@ -98,12 +165,11 @@ h2 {
 }
 
 .nook-phone-center {
-  background: var(--nook-phone-center-bg-color);
+  background: var(--center-bg-color);
   display: flex;
   flex-direction: column;
   align-items: center;
 }
-
 
 .dialog-box {
   background: var(--dialog-bg-color);
@@ -131,7 +197,7 @@ h2 {
   font-weight: bold;
   border-radius: 4px;
   border-color: var(--lng-select-border-color);
-  color: var(--dialog-text-color);
+  color: var(--lng-select-text-color);
   cursor: pointer;
   transition: 0.2s all;
 }
@@ -182,7 +248,7 @@ h2 {
 }
 
 .input__form {
-  background: var(--form-bg-color);
+  background: var(--center-bg-color);
   display: flex;
   flex-direction: column;
   padding: 16px;
@@ -279,6 +345,7 @@ input[type=number]:placeholder-shown:hover {
 input[type=number]:focus {
   outline: none;
   transform: scale(1.1);
+  color: var(--input-focus-text-color);
   background: var(--input-focus-bg-color);
   box-shadow: 0 1px 6px var(--shadow-5), 0 3px 6px var(--shadow-9);
 }
@@ -584,18 +651,22 @@ input[type=number] {
 /* Cloud SVG placement */
 .parallax>use:nth-child(1) {
   transform: translate3d(-30px, 0, 0);
+  fill: var(--wave-4);
 }
 
 .parallax>use:nth-child(2) {
   transform: translate3d(-90px, 0, 0);
+  fill: var(--wave-3);
 }
 
 .parallax>use:nth-child(3) {
   transform: translate3d(45px, 0, 0);
+  fill: var(--wave-2);
 }
 
 .parallax>use:nth-child(4) {
   transform: translate3d(20px, 0, 0);
+  fill: var(--wave-1);
 }
 
 /*Shrinking for mobile*/
@@ -604,67 +675,4 @@ input[type=number] {
     height: 40px;
     min-height: 40px;
   }
-}
-
-/*Darkmodjs*/
-.darkmode-layer, .darkmode-toggle {
-  z-index: 1;
-}
-
-.darkmode-toggle:hover {
-  filter: brightness(0.9);
-}
-
-.darkmode-toggle:focus {
-  outline: none;
-}
-
-div.darkmode-background{
-  background: #fef0e3;
-  background-image:
-    radial-gradient(var(--bg-dot-color) 20%, transparent 0),
-    radial-gradient(var(--bg-dot-color) 20%, transparent 0);
-  position: inherit;
-}
-
-body.darkmode--activated{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Varela Round', sans-serif;
-  width: 100%;
-  margin: 0 0 0 0;
-  position: absolute;
-}
-
-body.darkmode--activated div[class^="dialog-box"],
-body.darkmode--activated div[class^="nook-phone"],
-body.darkmode--activated form[class^="input__form"] {
-  background: #fee0c4;
-  color: #010F1D;
-}
-
-body.darkmode--activated svg[class^="waves"] {
-  background: #fef0e3;
-}
-
-body.darkmode--activated a,
-body.darkmode--activated b,
-body.darkmode--activated input[type=number]:not(:placeholder-shown) {
-  color: #586472;
-
-}
-
-body.darkmode--activated input[type="radio"]+label,
-body.darkmode--activated input[type=number]:placeholder-shown {
-  background: #bda284;
-}
-
-body.darkmode--activated input[type="radio"]:checked+label {
-  background: #7b6955;
-}
-
-body.darkmode--activated i {
-  color: #7b6955;
 }
