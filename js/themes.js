@@ -50,5 +50,3 @@ function setupTheming() {
     }
   });
 }
-
-$(document).ready(setupTheming);
