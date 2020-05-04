@@ -35,6 +35,10 @@
   --dialog-name-bg-color: #FF9A40;
   --dialog-name-text-color: #BA3B1F;
 
+  --chart-fill-color: var(--bg-color);
+  --chart-line-color: rgba(0, 0, 0, 0.1);
+  --chart-point-color: rgba(0, 0, 0, 0.1);
+
   --lng-select-text-color: var(--dialog-text-color);
   --lng-select-border-color: var(--bg-color);
   --lng-select-bg-color-hover: #EBFEFD;
@@ -83,6 +87,10 @@
 
     --dialog-name-bg-color: #BA3B1F;
     --dialog-name-text-color: #FF9A40;
+
+    --chart-fill-color: #2D5F21;
+    --chart-line-color: rgba(200, 200, 200, 0.4);
+    --chart-point-color: rgba(200, 200, 200, 0.6);
 
     --lng-select-text-color: #837865;
     --lng-select-border-color: var(--bg-color);
