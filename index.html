@@ -39,6 +39,18 @@
     gtag('config', 'UA-162470902-1');
   </script>
 
+
+  <script>
+    function detectTheme() {
+      let systemTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+      let preferredTheme = localStorage.getItem("theme");
+      
+      if (preferredTheme == "dark" || (systemTheme == "dark" && preferredTheme != "light")) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      }
+    }
+    detectTheme();
+  </script>
 </head>
 
 
@@ -295,8 +307,11 @@
     <p data-i18n="textbox.contributors-text"></p>
     <p id="contributors"><span data-i18n="textbox.contributors"></span>: </p>
     <p data-i18n="[html]textbox.sponsor"></p>
-    <div class="dialog-box-lng">
-      <p data-i18n="textbox.language"></p>: <select id="language"></select>
+    <div class="dialog-box-option">
+      <p data-i18n="textbox.language"></p><p>:</p> <select id="language"></select>
+    </div>
+    <div class="dialog-box-option">
+      <p data-i18n="textbox.theme.title"></p><p>:</p> <select id="theme"></select>
     </div>
   </div>
 
@@ -313,6 +328,7 @@
   <script src="js/scripts.js"></script>
   <script src="js/translations.js"></script>
   <script src="js/contributors.js"></script>
+  <script src="js/themes.js"></script>
   <script>
     // Check compatibility for the browser we're running this in
     if ("serviceWorker" in navigator) {

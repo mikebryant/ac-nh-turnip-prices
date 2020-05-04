@@ -67,10 +67,3 @@ function update_chart(input_data, possibilities) {
     });
   }
 }
-
-window.matchMedia("(prefers-color-scheme: dark)").addListener(() => {
-  if (chart_instance) {
-    chart_instance.options = chart_options;
-    chart_instance.update();
-  }
-});

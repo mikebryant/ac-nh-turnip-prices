@@ -64,58 +64,56 @@
   --table-range4: hsl(0, 80%, 85%);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg-color: #1A1A1A;
-    --bg-dot-color: #222;
+[data-theme="dark"] {
+  --bg-color: #1A1A1A;
+  --bg-dot-color: #222;
 
-    --shadow-3: rgba(255, 255, 255, 0.03);
-    --shadow-15: rgba(255, 255, 255, 0.03);
+  --shadow-3: rgba(255, 255, 255, 0.03);
+  --shadow-15: rgba(255, 255, 255, 0.03);
 
-    --center-bg-color: #101010;
+  --center-bg-color: #101010;
 
-    --wave-1: rgba(16, 16, 16, 0);
-    --wave-2: rgba(16, 16, 16, 0.2);
-    --wave-3: rgba(16, 16, 16, 0.4);
-    --wave-4: rgba(16, 16, 16, 0.6);
+  --wave-1: rgba(16, 16, 16, 0);
+  --wave-2: rgba(16, 16, 16, 0.2);
+  --wave-3: rgba(16, 16, 16, 0.4);
+  --wave-4: rgba(16, 16, 16, 0.6);
 
-    --nook-phone-bg-color: #000F33;
-    --nook-phone-text-color: #CCC;
+  --nook-phone-bg-color: #000F33;
+  --nook-phone-text-color: #CCC;
 
-    --dialog-bg-color: #252422;
-    --dialog-text-color: #BCB5A9;
+  --dialog-bg-color: #252422;
+  --dialog-text-color: #BCB5A9;
 
-    --dialog-name-bg-color: #BA3B1F;
-    --dialog-name-text-color: #FF9A40;
+  --dialog-name-bg-color: #BA3B1F;
+  --dialog-name-text-color: #FF9A40;
 
-    --chart-fill-color: #2D5F21;
-    --chart-line-color: rgba(200, 200, 200, 0.4);
-    --chart-point-color: rgba(200, 200, 200, 0.6);
+  --chart-fill-color: #2D5F21;
+  --chart-line-color: rgba(200, 200, 200, 0.4);
+  --chart-point-color: rgba(200, 200, 200, 0.6);
 
-    --lng-select-text-color: #837865;
-    --lng-select-border-color: var(--bg-color);
-    --lng-select-bg-color-hover: #EBFEFD;
+  --lng-select-text-color: #837865;
+  --lng-select-border-color: var(--bg-color);
+  --lng-select-bg-color-hover: #EBFEFD;
 
-    --italic-color: #666;
+  --italic-color: #666;
 
-    --form-h6-text-color: #E18B51;
+  --form-h6-text-color: #E18B51;
 
-    --radio-hover-bg-color: #00174D;
-    --radio-checked-text-color: #FFF;
+  --radio-hover-bg-color: #00174D;
+  --radio-checked-text-color: #FFF;
 
-    --input-bg-color: #333;
-    --input-focus-bg-color: #999;
-    --input-focus-text-color: var(--radio-hover-bg-color);
+  --input-bg-color: #333;
+  --input-focus-bg-color: #999;
+  --input-focus-text-color: var(--radio-hover-bg-color);
 
-    --button-text-color: var(--nook-phone-text-color);
-    --button-reset-text-color: #E45B5B;
+  --button-text-color: var(--nook-phone-text-color);
+  --button-reset-text-color: #E45B5B;
 
-    --table-range0: hsl(140, 80%, 27%);
-    --table-range1: hsl(90, 80%, 20%);
-    --table-range2: hsl(60, 80%, 20%);
-    --table-range3: hsl(30, 80%, 20%);
-    --table-range4: hsl(0, 80%, 22%);
-  }
+  --table-range0: hsl(140, 80%, 27%);
+  --table-range1: hsl(90, 80%, 20%);
+  --table-range2: hsl(60, 80%, 20%);
+  --table-range3: hsl(30, 80%, 20%);
+  --table-range4: hsl(0, 80%, 22%);
 }
 
 /* - Global Styles - */
@@ -180,16 +178,16 @@ h2 {
   box-shadow: 0 1px 3px var(--shadow-6), 0 1px 2px var(--shadow-8);
 }
 
-.dialog-box-lng {
+.dialog-box-option {
   text-align: center;
 }
 
-.dialog-box-lng p,
-.dialog-box-lng select {
+.dialog-box-option p,
+.dialog-box-option select {
   display: inline;
 }
 
-.dialog-box-lng select {
+.dialog-box-option select {
   font-size: 1rem;
   padding: 4px;
   font-weight: bold;
@@ -200,13 +198,13 @@ h2 {
   transition: 0.2s all;
 }
 
-.dialog-box-lng select:hover {
+.dialog-box-option select:hover {
   background-color: var(--lng-select-bg-color-hover);
   border-color: var(--color-light-blue);
   box-shadow: 0 2px 4px var(--shadow-16);
 }
 
-.dialog-box-lng select:focus {
+.dialog-box-option select:focus {
   outline: none;
 }
 
