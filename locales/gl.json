@@ -1,0 +1,80 @@
+{
+  "general": {
+    "daisy-mae": "Juliana"
+  },
+  "welcome": {
+    "salutation": "Ola, estás no aplicativo <b>Turnip Prophet</b> no teu Nookófono.",
+    "description": "Este aplicativo permíteche facer un seguemento do prezo dos nabos na túa illa. Porén, tes que introducir os prezos manualmente.",
+    "conclusion": "Depois, o aplicativo predirá <b>maxicamente</b> os prezos dos nabos na túa illa para o resto da semana."
+  },
+  "first-time": {
+    "title": "Primeira compra",
+    "description": "É a primeira vez que compras nabos a Juliana na túa illa? <i>(Isto afecta aos prezos)</i>",
+    "yes": "Si",
+    "no": "Non"
+  },
+  "patterns": {
+    "title": "Tendencia anterior",
+    "description": "Cal foi a tendencia de prezos na túa illa a semana pasada? <i>(Isto afecta aos prezos)</i>",
+    "pattern": "Tendencia",
+    "all": "Todas as tendencias",
+    "decreasing": "Decrecente",
+    "fluctuating": "Fluctuante",
+    "unknown": "Descoñecido",
+    "large-spike": "Pico grande",
+    "small-spike": "Pico pequeno"
+  },
+  "prices": {
+    "description": "Que prezos tiveron os nabos esta semana na túa illa?",
+    "open": {
+      "am": "Mañá - 8:00 a 11:59",
+      "pm": "Tarde - 12:00 a 22:00"
+    },
+    "copy-permalink": "Copiar ligazón permanente",
+    "permalink-copied": "Ligazón permanente copiada!",
+    "reset": "Restablecer Turnip Prophet",
+    "reset-warning": "Seguro que desexas restablecer todos os campos?\n\nIsto non se pode desfacer!"
+  },
+  "weekdays": {
+    "monday": "Luns",
+    "tuesday": "Martes",
+    "wednesday": "Mércores",
+    "thursday": "Xoves",
+    "friday": "Venres",
+    "saturday" : "Sábado",
+    "sunday": "Domingo",
+    "abr": {
+      "monday": "Lun",
+      "tuesday": "Mar",
+      "wednesday": "Mér",
+      "thursday": "Xov",
+      "friday": "Venr",
+      "saturday" : "Sáb"
+    }
+  },
+  "times": {
+    "morning": "Mañá",
+    "afternoon": "Tarde"
+  },
+  "output": {
+    "title": "Resultado",
+    "chance": "% Probabilidade",
+    "to": "a",
+    "minimum": "Mínimo garantido",
+    "maximum": "Máximo potencial",
+    "chart": {
+      "input": "Prezo introducido",
+      "minimum": "Mínimo garantido",
+      "maximum": "Máximo potencial"
+    }
+  },
+  "textbox": {
+    "description": "Despois de introducir algúns prezos, o Turnip Prophet calculará que prezos poden ter no futuro.",
+    "development": "Este aplicativo aínda está en desenvolvemento, mais mellorará co tempo!",
+    "thanks": "Nada disto sería posible sen o traballo de <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> achando como se calculan os prezos.",
+    "support": "Soporte, comentarios e contribucións están dispoñibles en <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+    "contributors-text": "Oh! E non esqueceremos dar as grazas aos que xa contribuíron.",
+    "contributors": "Contribuidores",
+    "language": "Lingua"
+  }
+}
