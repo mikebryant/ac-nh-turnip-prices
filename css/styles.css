@@ -62,21 +62,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --color-blue: #0AB5CD;
-    --color-light-blue: #5ECEDB;
-
     --bg-color: #1A1A1A;
     --bg-dot-color: #222;
 
-    --shadow-3: rgba(0, 0, 0, 0.03);
-    --shadow-5: rgba(0, 0, 0, 0.05);
-    --shadow-6: rgba(0, 0, 0, 0.06);
-    --shadow-8: rgba(0, 0, 0, 0.08);
-    --shadow-9: rgba(0, 0, 0, 0.09);
-    --shadow-10: rgba(0, 0, 0, 0.10);
-    --shadow-15: rgba(0, 0, 0, 0.16);
-    --shadow-16: rgba(0, 0, 0, 0.16);
-    --shadow-20: rgba(0, 0, 0, 0.20);
+    --shadow-3: rgba(255, 255, 255, 0.03);
+    --shadow-15: rgba(255, 255, 255, 0.03);
 
     --center-bg-color: #101010;
 
@@ -85,7 +75,7 @@
     --wave-3: rgba(16, 16, 16, 0.4);
     --wave-4: rgba(16, 16, 16, 0.6);
 
-    --nook-phone-bg-color: #000C29;
+    --nook-phone-bg-color: #000F33;
     --nook-phone-text-color: #CCC;
 
     --dialog-bg-color: #252422;
@@ -112,11 +102,11 @@
     --button-text-color: var(--nook-phone-text-color);
     --button-reset-text-color: #E45B5B;
 
-    --table-range0: hsl(140, 80%, 85%);
-    --table-range1: hsl(90, 80%, 85%);
-    --table-range2: hsl(60, 80%, 85%);
-    --table-range3: hsl(30, 80%, 85%);
-    --table-range4: hsl(0, 80%, 85%);
+    --table-range0: hsl(140, 80%, 27%);
+    --table-range1: hsl(90, 80%, 20%);
+    --table-range2: hsl(60, 80%, 20%);
+    --table-range3: hsl(30, 80%, 20%);
+    --table-range4: hsl(0, 80%, 22%);
   }
 }
 
