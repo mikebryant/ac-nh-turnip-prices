@@ -443,7 +443,6 @@ input[type=number] {
   margin: 0px auto;
   box-sizing: border-box;
   overflow-x: auto;
-  border-radius: 2px;
   scrollbar-width: thin;
 }
 
@@ -478,7 +477,6 @@ input[type=number] {
   width: 5px;
   background: var(--shadow-20);
 }
-
 
 #turnipTable {
   border-collapse: collapse;

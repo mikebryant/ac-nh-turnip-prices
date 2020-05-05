@@ -9,6 +9,7 @@ const LANGUAGES = {
   'en': 'English',
   'es': 'Español',
   'fr': 'Français',
+  'gl': 'Galego',
   'hu': 'magyar',
   'it': 'Italiano',
   'ja': '日本語',
