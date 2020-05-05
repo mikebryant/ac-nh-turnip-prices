@@ -50,3 +50,9 @@ function setupTheming() {
     }
   });
 }
+
+$(document).ready(function() {
+  i18next.init((err, t) => {
+    setupTheming();
+  });
+});

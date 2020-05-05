@@ -53,7 +53,6 @@ i18next
   });
   // init set content
   $(document).ready(initialize);
-  $(document).ready(setupTheming);
 
   let delayTimer;
   $(document).on('input', function(event) {
