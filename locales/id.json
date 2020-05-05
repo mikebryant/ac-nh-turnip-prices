@@ -61,11 +61,11 @@
     "chance": "% Peluang",
     "to": "-",
     "minimum": "Terjamin Minimal",
-    "maximum": "Terjamin Maksimal",
+    "maximum": "Potensi Maksimal",
     "chart": {
       "input": "Input Harga",
       "minimum": "Terjamin Minimal",
-      "maximum": "Terjamin Maksimal"
+      "maximum": "Potensi Maksimal"
     }
   },
   "textbox": {
