@@ -33,7 +33,7 @@ function setupTheming() {
 
   // Listen to system changes in theme
   window.matchMedia("(prefers-color-scheme: dark)").addListener(() => {
-    if (preferredTheme != "auto") { return; }
+    if (preferredTheme && preferredTheme != "auto") { return; }
     updateTheme("auto");
   });
 
