@@ -39,9 +39,9 @@
   --chart-line-color: rgba(0, 0, 0, 0.1);
   --chart-point-color: rgba(0, 0, 0, 0.1);
 
-  --lng-select-text-color: var(--dialog-text-color);
-  --lng-select-border-color: var(--bg-color);
-  --lng-select-bg-color-hover: #EBFEFD;
+  --select-text-color: var(--dialog-text-color);
+  --select-border-color: var(--bg-color);
+  --select-bg-color-hover: #EBFEFD;
 
   --italic-color: #AAA;
 
@@ -91,9 +91,9 @@
   --chart-line-color: rgba(200, 200, 200, 0.4);
   --chart-point-color: rgba(200, 200, 200, 0.6);
 
-  --lng-select-text-color: #837865;
-  --lng-select-border-color: var(--bg-color);
-  --lng-select-bg-color-hover: #EBFEFD;
+  --select-text-color: #837865;
+  --select-border-color: var(--bg-color);
+  --select-bg-color-hover: #EBFEFD;
 
   --italic-color: #666;
 
@@ -192,14 +192,14 @@ h2 {
   padding: 4px;
   font-weight: bold;
   border-radius: 4px;
-  border-color: var(--lng-select-border-color);
-  color: var(--lng-select-text-color);
+  border-color: var(--select-border-color);
+  color: var(--select-text-color);
   cursor: pointer;
   transition: 0.2s all;
 }
 
 .dialog-box-option select:hover {
-  background-color: var(--lng-select-bg-color-hover);
+  background-color: var(--select-bg-color-hover);
   border-color: var(--color-light-blue);
   box-shadow: 0 2px 4px var(--shadow-16);
 }
