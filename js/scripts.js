@@ -308,7 +308,7 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
 
     var min_class = getPriceClass(style_price, poss.weekGuaranteedMinimum);
     var max_class = getPriceClass(style_price, poss.weekMax);
-    out_line += `<td class='${min_class}'>${poss.weekGuaranteedMinimum}</td><td class='${max_class}'>${poss.weekMax}</td></tr>`;
+    out_line += `<td class='${min_class}'>${poss.weekGuaranteedMinimum || "—"}</td><td class='${max_class}'>${poss.weekMax || "—"}</td></tr>`;
     output_possibilities += out_line
   }
 
