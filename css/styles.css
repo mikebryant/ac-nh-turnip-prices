@@ -269,7 +269,8 @@ input[type=number] {
 }
 
 .input__radio-buttons input[type=radio] {
-  display: none;
+  display: fixed;
+  opacity: 0;
 }
 
 .input__radio-buttons input[type="radio"]+label {
@@ -285,6 +286,7 @@ input[type=number] {
   margin: 8px;
 }
 
+.input__radio-buttons input[type="radio"]:focus+label,
 .input__radio-buttons input[type="radio"]:not(:checked)+label:hover {
   cursor: pointer;
   background: #F5F8FF;
