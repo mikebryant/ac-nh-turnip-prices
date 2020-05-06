@@ -299,8 +299,10 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
       let price_class = getPriceClass(style_price, day.max);
       if (day.min !== day.max) {
         out_line += `<td class='${price_class}'>${day.min} ${i18next.t("output.to")} ${day.max}</td>`;
-      } else {
+      } else if (day.min % 1 === 0) {
         out_line += `<td class='${price_class}'>${day.min}</td>`;
+      } else {
+        out_line += `<td class='${price_class}'>~${day.min.toFixed(1)}</td>`;
       }
     }
 
