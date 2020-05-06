@@ -23,7 +23,8 @@
     "fluctuating": "Oscillante",
     "unknown": "Non lo so!",
     "large-spike": "Grande picco",
-    "small-spike": "Piccolo picco"
+    "small-spike": "Piccolo picco",
+    "expected-value": "Valore atteso"
   },
   "prices": {
     "description": "Qual era il prezzo di acquisto delle rape sulla tua isola questa settimana?",
@@ -66,7 +67,8 @@
     "chart": {
       "input": "Prezzo Iniziale",
       "minimum": "Minimo Garantito",
-      "maximum": "Massimo Potenziale"
+      "maximum": "Massimo Potenziale",
+      "expected-value": "Valore atteso"
     }
   },
   "textbox": {

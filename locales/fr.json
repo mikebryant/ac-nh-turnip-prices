@@ -22,7 +22,8 @@
     "fluctuating": "Variable",
     "unknown": "Je ne sais pas",
     "large-spike": "Grand Pic",
-    "small-spike": "Petit Pic"
+    "small-spike": "Petit Pic",
+    "expected-value": "Valeur attendue"
   },
   "prices": {
     "description": "À quel prix Porcelette vendait ses navets sur ton île cette semaine ?",
@@ -65,7 +66,8 @@
     "chart": {
       "input": "Prix renseigné",
       "minimum": "Minimum Garanti",
-      "maximum": "Maximum Potentiel"
+      "maximum": "Maximum Potentiel",
+      "expected-value": "Valeur Attendue"
     }
   },
   "textbox": {

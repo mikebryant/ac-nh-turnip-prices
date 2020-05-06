@@ -22,7 +22,8 @@
     "fluctuating": "파동형",
     "unknown": "모름",
     "large-spike": "큰 급등",
-    "small-spike": "작은 급등"
+    "small-spike": "작은 급등",
+    "expected-value": "기대 값"
   },
   "prices": {
     "description": "이번 주에 당신의 섬에서 무를 샀을 때의 가격이 어떻게 됩니까?",
@@ -65,7 +66,8 @@
     "chart": {
       "input": "입력된 가격",
       "minimum": "최저 보장 가격",
-      "maximum": "가능한 최고 가격"
+      "maximum": "가능한 최고 가격",
+      "expected-value": "기대 값"
     }
   },
   "textbox": {

@@ -22,7 +22,8 @@
     "fluctuating": "波型",
     "unknown": "わかりません",
     "large-spike": "跳ね大型(3期型)",
-    "small-spike": "跳ね小型(4期型)"
+    "small-spike": "跳ね小型(4期型)",
+    "expected-value": "期待値"
   },
   "prices": {
     "description": "今週のカブ価は？",
@@ -65,7 +66,8 @@
     "chart": {
       "input": "カブ価",
       "minimum": "保証される最小の収入",
-      "maximum": "予測される限界の収入"
+      "maximum": "予測される限界の収入",
+      "expected-value": "期待値"
     }
   },
   "textbox": {

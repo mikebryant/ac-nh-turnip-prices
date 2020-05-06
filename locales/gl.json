@@ -22,7 +22,8 @@
     "fluctuating": "Fluctuante",
     "unknown": "Descoñecido",
     "large-spike": "Pico grande",
-    "small-spike": "Pico pequeno"
+    "small-spike": "Pico pequeno",
+    "expected-value": "Esperanza"
   },
   "prices": {
     "description": "Que prezos tiveron os nabos esta semana na túa illa?",
@@ -65,7 +66,8 @@
     "chart": {
       "input": "Prezo introducido",
       "minimum": "Mínimo garantido",
-      "maximum": "Máximo potencial"
+      "maximum": "Máximo potencial",
+      "expected-value": "Esperanza"
     }
   },
   "textbox": {

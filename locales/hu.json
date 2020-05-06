@@ -22,7 +22,8 @@
     "fluctuating": "Ingadozó",
     "unknown": "Nem tudom",
     "large-spike": "Nagy kiugrás",
-    "small-spike": "Kis kiugrás"
+    "small-spike": "Kis kiugrás",
+    "expected-value": "Várható érték"
   },
   "prices": {
     "description": "Mennyiért vettél ezen a héten retket?",
@@ -65,7 +66,8 @@
     "chart": {
       "input": "Megadott ár",
       "minimum": "Garantált minimum",
-      "maximum": "Lehetséges maximum"
+      "maximum": "Lehetséges maximum",
+      "expected-value": "Várható érték"
     }
   },
   "textbox": {

@@ -22,7 +22,8 @@
     "fluctuating": "Fluctuating",
     "unknown": "I don't know",
     "large-spike": "Large Spike",
-    "small-spike": "Small Spike"
+    "small-spike": "Small Spike",
+    "expected-value": "Expected value"
   },
   "prices": {
     "description": "What was the price of turnips this week on your island?",
@@ -65,7 +66,8 @@
     "chart": {
       "input": "Input Price",
       "minimum": "Guaranteed Minimum",
-      "maximum": "Potential Maximum"
+      "maximum": "Potential Maximum",
+      "expected-value": "Expected Value"
     }
   },
   "textbox": {

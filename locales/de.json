@@ -22,7 +22,8 @@
     "fluctuating": "Schwankend",
     "unknown": "Ich weiß nicht",
     "large-spike": "Stark Ansteigend",
-    "small-spike": "Leicht Ansteigend"
+    "small-spike": "Leicht Ansteigend",
+    "expected-value": "Erwartungswert"
   },
   "prices": {
     "description": "Wie hoch war der Preis für Rüben diese Woche auf deiner Insel?",
@@ -65,7 +66,8 @@
     "chart": {
       "input": "Eingegebener Preis",
       "minimum": "Garantiertes Minimum",
-      "maximum": "Potentielles Maximum"
+      "maximum": "Potentielles Maximum",
+      "expected-value": "Erwartungswert"
     }
   },
   "textbox": {

@@ -22,7 +22,8 @@
     "fluctuating": "Fluctuant",
     "unknown": "No ho sé",
     "large-spike": "Pic gran",
-    "small-spike": "Pic petit"
+    "small-spike": "Pic petit",
+    "expected-value": "Valor esperat"
   },
   "prices": {
     "description": "Quin ha sigut el preu de compra de naps a la teva illa aquesta setmana?",
@@ -65,7 +66,8 @@
     "chart": {
       "input": "Preu d'entrada",
       "minimum": "Mínim garantit",
-      "maximum": "Màxim potencial"
+      "maximum": "Màxim potencial",
+      "expected-value": "Valor esperat"
     }
   },
   "textbox": {
