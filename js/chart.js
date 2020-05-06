@@ -28,10 +28,14 @@ function update_chart(input_data, possibilities) {
       data: possibilities[0].prices.slice(1).map(day => day.min),
       fill: false,
     }, {
+      label: i18next.t("output.chart.expected-value"),
+      data: possibilities[possibilities.length - 1].prices.slice(1).map(day => day.min),
+      fill: false,
+    }, {
       label: i18next.t("output.chart.maximum"),
       data: possibilities[0].prices.slice(1).map(day => day.max),
-      fill: "-1",
-    },
+      fill: "-2",
+    }
   ],
   labels = [i18next.t("weekdays.sunday")].concat(...[i18next.t("weekdays.abr.monday"), i18next.t("weekdays.abr.tuesday"), i18next.t("weekdays.abr.wednesday"), i18next.t("weekdays.abr.thursday"), i18next.t("weekdays.abr.friday"), i18next.t("weekdays.abr.saturday")].map(
       day => [i18next.t("times.morning"),

@@ -975,11 +975,13 @@ class Predictor {
     });
 
     let global_min_max = [];
+    let expected_values = [];
     for (let day = 0; day < 14; day++) {
       const prices = {
         min: 999,
         max: 0,
       }
+      const weighted_expected_values = [];
       for (let poss of generated_possibilities) {
         if (poss.prices[day].min < prices.min) {
           prices.min = poss.prices[day].min;
@@ -987,8 +989,16 @@ class Predictor {
         if (poss.prices[day].max > prices.max) {
           prices.max = poss.prices[day].max;
         }
+        const expected_value = (poss.prices[day].min + poss.prices[day].max) / 2;
+        weighted_expected_values.push(poss.probability * expected_value);
       }
       global_min_max.push(prices);
+
+      let expected_value = Number(float_sum(weighted_expected_values).toFixed(3));
+      expected_values.push({
+        min: expected_value,
+        max: expected_value
+      });
     }
 
     generated_possibilities.unshift({
@@ -997,6 +1007,12 @@ class Predictor {
       prices: global_min_max,
       weekGuaranteedMinimum: Math.min(...generated_possibilities.map(poss => poss.weekGuaranteedMinimum)),
       weekMax: Math.max(...generated_possibilities.map(poss => poss.weekMax))
+    });
+
+    generated_possibilities.push({
+      pattern_description: i18next.t("patterns.expected-value"),
+      pattern_number: 5,
+      prices: expected_values,
     });
 
     return generated_possibilities;
