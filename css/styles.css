@@ -391,7 +391,8 @@ input[type=number] {
   opacity: 0.8;
 }
 
-#turnipTable tbody tr:hover {
+#turnipTable tbody tr:hover,
+#turnipTable tbody tr.selected {
   cursor: default;
   opacity: 1;
 }
