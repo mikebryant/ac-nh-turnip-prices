@@ -269,8 +269,8 @@ input[type=number] {
 }
 
 .input__radio-buttons input[type=radio] {
-  display: fixed;
-  opacity: 0;
+  position: fixed;
+  top: -100px;
 }
 
 .input__radio-buttons input[type="radio"]+label {
