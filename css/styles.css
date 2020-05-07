@@ -130,6 +130,10 @@ h2 {
   border-radius: 40px;
 }
 
+.dialog-box.error {
+  display: none;
+}
+
 .input__form {
   background: white;
   display: flex;

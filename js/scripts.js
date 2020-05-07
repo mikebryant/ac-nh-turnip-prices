@@ -274,14 +274,26 @@ const displayPercentage = function(fraction) {
   }
 }
 
+const hideChart = function() {
+  $("#output").html("");
+  $(".chart-wrapper").hide()
+}
+
 const calculateOutput = function (data, first_buy, previous_pattern) {
   if (isEmpty(data)) {
-    $("#output").html("");
+    hideChart()
     return;
   }
   let output_possibilities = "";
   let predictor = new Predictor(data, first_buy, previous_pattern);
   let analyzed_possibilities = predictor.analyze_possibilities();
+  if (analyzed_possibilities[0].weekGuaranteedMinimum === Number.POSITIVE_INFINITY) {
+    hideChart()
+    $(".error:hidden").show()
+    return;
+  }
+  $(".error:visible").hide()
+  $(".chart-wrapper:hidden").show()
   let buy_price = parseInt(buy_input.val());
   previous_pattern_number = ""
   for (let poss of analyzed_possibilities) {
