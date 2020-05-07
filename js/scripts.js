@@ -279,13 +279,14 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
     $("#output").html("");
     return;
   }
+  let pat_desc = {0:"fluctuating", 1:"large-spike", 2:"decreasing", 3:"small-spike", 4:"all"};
   let output_possibilities = "";
   let predictor = new Predictor(data, first_buy, previous_pattern);
   let analyzed_possibilities = predictor.analyze_possibilities();
   let buy_price = parseInt(buy_input.val());
   previous_pattern_number = "";
   for (let poss of analyzed_possibilities) {
-    var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>";
+    var out_line = "<tr><td class='table-pattern'>" + i18next.t("patterns." + pat_desc[poss.pattern_number])  + "</td>";
     const style_price = buy_price || poss.prices[0].min;
     if (previous_pattern_number != poss.pattern_number) {
       previous_pattern_number = poss.pattern_number;
