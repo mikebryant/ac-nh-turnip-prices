@@ -69,7 +69,7 @@
     }
   },
   "textbox": {
-    "description": "在你紀錄了一些大頭菜價格後，Turnip Prophet 會預測，並顯示自己島上可能出現的不同模型。",
+    "description": "在你記錄了一些大頭菜價格後，Turnip Prophet 會預測，並顯示自己島上可能出現的不同模型。",
     "development": "此工具仍在開發中，但會隨著時間的推移而改善！",
     "thanks": "要不是 <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> 協助釐清豆狸和粒狸的大頭菜估價方式，這一切都不可能實現。",
     "support": "可於 <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a> 取得支援、討論及貢獻。",
