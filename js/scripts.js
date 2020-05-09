@@ -274,18 +274,28 @@ const displayPercentage = function(fraction) {
   }
 }
 
+const clickRow = function(data, analyzed_possibilities, poss) {
+  update_chart(data, analyzed_possibilities, poss);
+}
+
 const calculateOutput = function (data, first_buy, previous_pattern) {
   if (isEmpty(data)) {
     $("#output").html("");
     return;
   }
+  let first_row = true;
   let output_possibilities = "";
   let predictor = new Predictor(data, first_buy, previous_pattern);
   let analyzed_possibilities = predictor.analyze_possibilities();
   let buy_price = parseInt(buy_input.val());
-  previous_pattern_number = ""
+  previous_pattern_number = "";
   for (let poss of analyzed_possibilities) {
-    var out_line = "<tr><td class='table-pattern'>" + poss.pattern_description + "</td>";
+    const row = {
+      el: document.createElement('tr'),
+      first: first_row
+    };
+
+    let out_line = "<td class='table-pattern'>" + poss.pattern_description + "</td>";
     const style_price = buy_price || poss.prices[0].min;
     if (previous_pattern_number != poss.pattern_number) {
       previous_pattern_number = poss.pattern_number
@@ -306,11 +316,26 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
 
     var min_class = getPriceClass(style_price, poss.weekGuaranteedMinimum);
     var max_class = getPriceClass(style_price, poss.weekMax);
-    out_line += `<td class='${min_class}'>${poss.weekGuaranteedMinimum}</td><td class='${max_class}'>${poss.weekMax}</td></tr>`;
-    output_possibilities += out_line
-  }
+    out_line += `<td class='${min_class}'>${poss.weekGuaranteedMinimum}</td><td class='${max_class}'>${poss.weekMax}</td>`;
+    row.el.innerHTML = out_line;
 
-  $("#output").html(output_possibilities)
+    row.el.addEventListener('click', () => {
+      $('.selected').each((i, el) => {
+        $(el).removeClass('selected');
+      });
+      $(row.el).addClass('selected');
+      if (row.first) {
+        clickRow(data, analyzed_possibilities);
+        return;
+      }
+
+      clickRow(data, analyzed_possibilities, poss);
+    });
+    $("#output")[0].appendChild(row.el);
+    output_possibilities += out_line
+
+    first_row = false;
+  }
 
   update_chart(data, analyzed_possibilities);
 }

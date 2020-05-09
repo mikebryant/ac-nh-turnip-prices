@@ -66,6 +66,10 @@
       "input": "Input Price",
       "minimum": "Guaranteed Minimum",
       "maximum": "Potential Maximum"
+    },
+    "row": {
+      "minimum": "Selected Guaranteed Minimum",
+      "maximum": "Selected Potential Maximum"
     }
   },
   "textbox": {
