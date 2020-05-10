@@ -325,16 +325,16 @@ input[type=number] {
 .table-wrapper {
   display: inline-block;
   max-width: 98%;
-  padding: 16px;
-  margin: 0px auto;
+  margin: 16px auto;
   box-sizing: border-box;
   overflow-x: auto;
   scrollbar-width: thin;
+  max-height: calc(75vh - 40px);
 }
 
-@media only screen and (max-width: 1440px) and (pointer: fine) {
+@media only screen and (min-width: 1440px) {
   .table-wrapper {
-    max-height: calc(75vh - 40px);
+    overflow-x: hidden;
   }
 }
 
@@ -366,6 +366,18 @@ input[type=number] {
 
 #turnipTable {
   border-collapse: collapse;
+}
+
+#turnipTable th {
+  position: sticky;
+  position: -webkit-sticky;
+  top: -1px;
+  z-index: 1;
+  background-color: #ffffff;
+}
+
+.darkmode--activated #turnipTable th {
+  background-color: #fee0c4;
 }
 
 #turnipTable th div:nth-of-type(1) {
@@ -555,7 +567,7 @@ input[type=number] {
 
 /*Darkmodjs*/
 .darkmode-layer, .darkmode-toggle {
-  z-index: 1;
+  z-index: 2;
 }
 
 .darkmode-toggle:hover {
