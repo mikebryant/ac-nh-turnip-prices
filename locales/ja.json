@@ -58,7 +58,7 @@
   },
   "output": {
     "title": "結果",
-    "chance": "% チャンス",
+    "chance": "% 確率",
     "to": "～",
     "minimum": "保証される最小の収入",
     "maximum": "予測される限界の収入",
