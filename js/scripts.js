@@ -375,7 +375,9 @@ const update = function () {
   } else {
     permalink_button.hide();
   }
-  permalink && window.history.replaceState && window.history.replaceState({}, null, permalink);
+  if (permalink && window.history.replaceState) {
+    window.history.replaceState({}, null, permalink);
+  }
   permalink_input.val(permalink);
 
   const prices = [buy_price, buy_price, ...sell_prices];
