@@ -11,6 +11,7 @@ const LANGUAGES = {
   'fr': 'Français',
   'gl': 'Galego',
   'hu': 'magyar',
+  'id': 'Bahasa Indonesia',
   'it': 'Italiano',
   'ja': '日本語',
   'ko': '한국어',
