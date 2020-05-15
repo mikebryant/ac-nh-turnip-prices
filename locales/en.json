@@ -78,6 +78,12 @@
     "sponsor": "Want to sponsor the developers behind this project? Go to the <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> page and click '❤ Sponsor'",
     "contributors-text": "Oh! And let's not forget to thank those who have contributed so far!",
     "contributors": "Contributors",
-    "language": "Language"
+    "language": "Language",
+    "theme": {
+      "title": "Theme",
+      "auto": "Automatic",
+      "light": "Light",
+      "dark": "Dark"
+    }
   }
 }
