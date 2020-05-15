@@ -21,8 +21,11 @@ function update_chart(input_data, possibilities) {
   let ctx = $("#chart"),
   datasets = [{
       label: i18next.t("output.chart.input"),
-      data: input_data.slice(1),
+      data: Array(input_data.length).fill(input_data[0]),
       fill: false,
+      borderColor: '#F7BABA',
+      borderDash: [20,20],
+      pointRadius: 0,
     }, {
       label: i18next.t("output.chart.minimum"),
       data: possibilities[0].prices.slice(1).map(day => day.min),
