@@ -56,6 +56,7 @@
 
   --button-text-color: var(--nook-phone-text-color);
   --button-reset-text-color: #E45B5B;
+  --button-newweek-text-color: #49b87f;
 
   --table-range0: hsl(140, 80%, 85%);
   --table-range1: hsl(90, 80%, 85%);
@@ -108,6 +109,7 @@
 
   --button-text-color: var(--nook-phone-text-color);
   --button-reset-text-color: #E45B5B;
+  --button-newweek-text-color: #49b87f;
 
   --table-range0: hsl(140, 80%, 27%);
   --table-range1: hsl(90, 80%, 20%);
@@ -444,7 +446,7 @@ input[type=number] {
 }
 
 .button.button--newweek {
-  color: #49b87f;
+  color: var(--button-newweek-text-color);
   display: none;
   margin: 10px;
 }
