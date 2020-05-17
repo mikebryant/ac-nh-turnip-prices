@@ -40,6 +40,7 @@ i18next
   for (let code of i18next.languages) {
     if (code in LANGUAGES) {
       languageSelector.val(code);
+      $('html').attr('lang', code);
       break;
     }
   }
