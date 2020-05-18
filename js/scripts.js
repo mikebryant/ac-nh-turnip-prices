@@ -68,7 +68,15 @@ const fillFields = function (prices, first_buy, previous_pattern) {
 
 const initialize = function () {
   try {
-    const previous = getPrevious();
+    // Check if URL contains parameters. 
+    // If so, cache parsed query into local memory and reload to origin URL.
+    let previousQuery = getPreviousFromQuery();
+    if (previousQuery) {
+      updateLocalStorage(previousQuery[2],previousQuery[0],previousQuery[1]);
+      window.location.href = window.location.origin;
+      return;
+    }
+    const previous = getPreviousFromLocalstorage();
     const first_buy = previous[0];
     const previous_pattern = previous[1];
     const prices = previous[2];
@@ -207,6 +215,10 @@ const getPricesFromQuery = function (param) {
   }
 };
 
+/**
+ * Gets previous values. Tries to parse parameters.
+ * @return {[first time, previous pattern, prices]}
+ */
 const getPreviousFromQuery = function () {
   /* Check if valid prices are entered. Exit immediately if not. */
   const prices = getPricesFromQuery("prices");
@@ -223,22 +235,16 @@ const getPreviousFromQuery = function () {
   ];
 };
 
+/**
+ * Gets previous values from in local storage.
+ * @return {[first time, previous pattern, prices]}
+ */
 const getPreviousFromLocalstorage = function () {
   return [
     getFirstBuyStateFromLocalstorage(),
     getPreviousPatternStateFromLocalstorage(),
     getPricesFromLocalstorage()
   ];
-};
-
-
-/**
- * Gets previous values. First tries to parse parameters,
- * if none of them match then it looks in local storage.
- * @return {[first time, previous pattern, prices]}
- */
-const getPrevious = function () {
-  return getPreviousFromQuery() || getPreviousFromLocalstorage();
 };
 
 const getSellPrices = function () {
