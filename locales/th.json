@@ -72,7 +72,7 @@
       "description": "หลังจากใส่ราคาหัวผักกาดไปได้บางส่วน โปรแกรม Turnip Prophet จะทำการแสดงตัวเลขราคาและความเป็นไปได้ของรูปแบบต่าง ๆ ที่เกาะของคุณจะเจอ",
       "development": "โปรแกรมนี้ยังอยู่ในขั้นตอนพัฒนา แต่จะค่อยๆปรับปรุงขึ้นเรื่อยๆ!",
       "thanks": "ทั้งหมดนี้ไม่อาจเกิดขึ้นได้เลยถ้าปราศจากผลงานของ <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> ที่ค้นพบวิธีการให้ราคาหัวผักกาดของทานุกิน้อย Timmy และ Tommy",
-      "support": "สนับสนุน, แสดงความเห็นและช่วยพัฒนาได้ที่ <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">Github</a>",
+      "support": "สนับสนุน, แสดงความเห็นและช่วยพัฒนาได้ที่ <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a>",
       "sponsor": "ต้องการเป็นสปอนเซอร์แก่นักพัฒนา? ไปที่ <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> และเลือก '❤ Sponsor'",
       "contributors-text": "อ้อ! และต้องไม่ลืมที่จะขอบคุณผู้ที่ช่วยร่วมพัฒนามาจนถึงตอนนี้!",
       "contributors": "ผู้ร่วมพัฒนา",
