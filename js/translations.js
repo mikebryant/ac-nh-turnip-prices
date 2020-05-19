@@ -19,6 +19,7 @@ const LANGUAGES = {
   'pl': 'Polski',
   'pt-BR': 'Português',
   'ru': 'Русский',
+  'ua': 'Українська',
   'th': 'ไทย',
   'zh-CN': '简体中文',
   'zh-TW': '繁體中文'
