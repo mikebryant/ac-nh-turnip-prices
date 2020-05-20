@@ -42,11 +42,14 @@
 
   <script>
     function detectTheme() {
+      let supportsAutoTheming = (window.matchMedia && window.matchMedia("(prefers-color-scheme)").matches);
       let systemTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       let preferredTheme = localStorage.getItem("theme");
       
-      if (preferredTheme == "dark" || (systemTheme == "dark" && preferredTheme != "light")) {
+      if (supportsAutoTheming && systemTheme == "dark" && preferredTheme === null) {
         document.documentElement.setAttribute("data-theme", "dark");
+      } else if (preferredTheme != "light") {
+        document.documentElement.setAttribute("data-theme", preferredTheme);
       }
     }
     detectTheme();
