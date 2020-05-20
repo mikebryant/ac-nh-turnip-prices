@@ -926,6 +926,10 @@ class Predictor {
         break;
       }
     }
+    if(generated_possibilities.length ===0){
+      //No pattern could be found for the prices given
+      window.alert( i18next.t("textbox.invalid-prices"))
+    }
 
     const total_probability = generated_possibilities.reduce((acc, it) => acc + it.probability, 0);
     for (const it of generated_possibilities) {

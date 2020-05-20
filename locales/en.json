@@ -82,6 +82,7 @@
       "auto": "Automatic",
       "light": "Light",
       "dark": "Dark"
-    }
+    },
+    "invalid-prices": "You have entered prices that our Turnip Prophet couldn't find a pattern for. Please check your most recent input again."
   }
 }
