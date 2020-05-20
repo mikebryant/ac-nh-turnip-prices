@@ -28,6 +28,8 @@ function setupTheming() {
   }
   themeSelector.append(`<option value="light">${i18next.t('textbox.theme.light')}</option>`);
   themeSelector.append(`<option value="dark">${i18next.t('textbox.theme.dark')}</option>`);
+  themeSelector.append(`<option value="high-color-contrast">${i18next.t('textbox.theme.high-color-contrast')}</option>`);
+
 
   themeSelector.val(selectorVal);
 

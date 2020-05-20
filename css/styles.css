@@ -116,6 +116,47 @@
   --table-range4: hsl(0, 80%, 22%);
 }
 
+[data-theme="high-color-contrast"] {
+  --color-blue: #0A74CC;
+  --color-light-blue: #32A3FF;
+
+  --bg-color: #D3E5CE;
+
+  --nook-phone-text-color: #4C4C4C;
+  --dialog-text-color: #665D4E;
+
+  --dialog-name-text-color: #AD1F1D;
+  
+  --nook-phone-bg-color: #F5F8FF;
+  --nook-phone-text-color: #333;
+
+  --dialog-bg-color: #FFFAE5;
+  --dialog-text-color: #837865;
+
+  --dialog-name-bg-color: #FF9A40;
+  --dialog-name-text-color: #BA3B1F;
+
+  --italic-color: #888;
+
+  --form-h6-text-color: #72513B;
+
+  --radio-hover-bg-color: var(--nook-phone-bg-color);
+  --radio-checked-text-color: #FFF;
+
+  --input-bg-color: #F3F3F3;
+  --input-focus-bg-color: white;
+  --input-focus-text-color: var(--color-blue);
+
+  --button-text-color: var(--nook-phone-text-color);
+  --button-reset-text-color: #E45B5B;
+
+  --table-range0: hsl(200, 100%, 50%);
+  --table-range1: hsl(190, 100%, 60%);
+  --table-range2: hsl(30, 100%, 75%);
+  --table-range3: hsl(30, 100%, 85%);
+  --table-range4: hsl(0, 100%, 98%);
+}
+
 /* - Global Styles - */
 
 html {

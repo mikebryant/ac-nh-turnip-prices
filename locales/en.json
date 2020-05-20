@@ -81,7 +81,8 @@
       "title": "Theme",
       "auto": "Automatic",
       "light": "Light",
-      "dark": "Dark"
+      "dark": "Dark",
+      "high-color-contrast": "High Color Contrast"
     }
   }
 }
