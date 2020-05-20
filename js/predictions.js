@@ -321,7 +321,7 @@ class Predictor {
 
   * multiply_generator_probability(generator, probability) {
     for (const it of generator) {
-      yield {...it, probability: it.probability * probability};
+      yield Object.assign({probability: it.probability * probability}, it);
     }
   }
 
