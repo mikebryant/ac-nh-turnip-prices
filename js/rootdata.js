@@ -15,7 +15,7 @@ let RootData = (() => {
         const prices = [_buyPrice, _buyPrice, ..._sellPrices];
         try {
             if (prices.length !== 14) {
-                throw "The data array needs exactly 14 elements to be valid"
+                throw "The data array needs exactly 14 elements to be valid."
             }
             localStorage.setItem("sell_prices", JSON.stringify(prices));
             localStorage.setItem("first_buy", JSON.stringify(first_buy));
@@ -27,7 +27,7 @@ let RootData = (() => {
             // Update failed
             return true;
         }
-    });    
+    });
 
     // Shared function, attempt to parse integer value, throw error on failure.
     let tryParseInt = ((intToParse)=>{
@@ -163,14 +163,56 @@ let RootData = (() => {
     })();
     
     let _previousPattern = (() => {
+        let previousPatternEnum = {
+            'unknown': -1,
+            'fluctuating': 0,
+            'large-spike': 1,
+            'decreasing': 2,
+            'small-spike': 3
+        };
+
         let value = NaN;
 
         let get = (() =>{
             return value;
         });
+
         let set = ((newPreviousPattern)=>{
-            let parsed = tryParseInt(newPreviousPattern);
+            // Check if value is defined int the enum
+            let parsed = previousPatternEnum[newPreviousPattern];
+            // If not try to parse the value
+            parsed = parsed ? parsed : tryParseInt(newPreviousPattern);
             if (parsed) {
+                value = parsed;
+                _needsUpdate = true;
+            }
+        });
+    
+        return {
+            get: get,
+            set: set
+        };
+    })();
+
+    let _firstBuy = (() => {
+        let firstTimeEnum = {
+            no: false,
+            yes: true
+        };
+
+        let value = false;
+
+        let get = (() =>{
+            return value;
+        });
+
+        let set = ((newFirstTimeBuy)=>{
+            // Check if value is defined int the enum
+            let parsed = firstTimeEnum[newFirstTimeBuy];
+            // If not try to parse the value
+            parsed = parsed ? parsed : tryParseInt(newPreviousPattern);
+            // Check that the value can be cast as true or false
+            if (parsed == true || parsed == false) {
                 value = parsed;
                 _needsUpdate = true;
             }
@@ -185,12 +227,27 @@ let RootData = (() => {
     // Update value from a triggered jquery input event.
     let eventUpdateValue = ((name, val) => {
         if (typeof(name) === "string") {
-            if (name.match(/^sell_\d+$/g)) {
+            console.log("in the func");
+            console.log({name, val});
+            if (name.match(/^sell_\d+$/)) {
                 _sellPrices.updateValue(name, val);
-            } else if (name.match(/^buy$/g)) {
+            } else if (name.match(/^buy$/)) {
                 _buyPrice.set(val);
+            } else {
+                let nameSplit = name.match(/^([a-z\-]*)-radio-([a-z\-]+)$/);
+                console.log({nameSplit});
+                if (nameSplit === 2) {
+                    if (nameSplit[0] === 'first-time') {
+                        _firstBuy.set(nameSplit[1]);
+                        console.log(`firstBuy set to ${_firstBuy.get()}`);
+                    } else if (nameSplit[0] === 'pattern') {
+                        _previousPattern.set(nameSplit[1]);
+                        console.log(`previousPattern set to ${_previousPattern.get()}`);
+                    }
+                }
             }
         }
+        console.log("done updating stuff");
     });
 
     let interface = {};
