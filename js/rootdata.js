@@ -1,4 +1,34 @@
+/**
+ * Stores and manages user input changes until updates are called.
+ * Revealing Module Pattern to manage localStorage and DOM interactions.
+*/
 let RootData = (() => {
+    // Identify if data has been changed and storage needs updated
+    let _needsUpdate = false;
+
+    let update = (() => {
+        if (!_needsUpdate) {
+            // Update not needed
+            return false;
+        }
+
+        const prices = [_buyPrice, _buyPrice, ..._sellPrices];
+        try {
+            if (prices.length !== 14) {
+                throw "The data array needs exactly 14 elements to be valid"
+            }
+            localStorage.setItem("sell_prices", JSON.stringify(prices));
+            localStorage.setItem("first_buy", JSON.stringify(first_buy));
+            localStorage.setItem("previous_pattern", JSON.stringify(previous_pattern));
+            // Update successful
+            return false;
+        } catch (e) {
+            console.error(e);
+            // Update failed
+            return true;
+        }
+    });    
+
     // Shared function, attempt to parse integer value, throw error on failure.
     let tryParseInt = ((intToParse)=>{
         let parsed;
@@ -14,8 +44,10 @@ let RootData = (() => {
     });
 
     let _sellPrices = (() => {
-        // Store sell prices as object for easy updating from the jquery input event.
-        let value = {
+        /**
+        * @type {Object} Store sell prices as object for easy updating from the jquery input event.
+        */
+        let sell_values = {
             sell_2: NaN,
             sell_3: NaN,
             sell_4: NaN,
@@ -30,38 +62,74 @@ let RootData = (() => {
             sell_13: NaN
         };
 
-        // Lookup value by name, cast to integer.
-        let updateValue = ((name, val) => {
-            value[name] = tryParseInt(val);
+        /**
+         * Update value of object by key, cast value to integer.
+         * @param {string} key Object-entry key
+         * @param {var} val Object-entry value which can be cast as an integer
+         * @return {} Returns nothing
+        */
+        let updateValue = ((key, val) => {
+            let parsed = tryParseInt(val);
+            if (parsed) {
+                sell_values[key] = parsed;
+                _needsUpdate = true;
+            }
         });
 
-        // Return values of object as array.
+        /**
+         * Return values of object as array.
+         * @param {Object} obj Object to be mapped to an array
+         * @return {Array} Array mapped from object
+        */
         let toArray = ((obj) => {
             let arr = Object.values(obj).map(x => x);
             return arr;
         });
 
-        // Map array to object.
+        /**
+         * Map array to object. 
+         * If input is not an array or array it too long, don't update.
+         * @param {Array} arr Array to be mapped to object `sell_values`
+         * @return {Object} `sell_values`
+        */
         let toObj = ((arr) => {
-            let keys = Object.keys(value);
+            let keys = Object.keys(sell_values);
             if (arr.length > 0 && arr.length <= keys.length) {
-                arr.forEach((x,i) => value[keys[i]] = x);
+                // Attempt to parse all values in array.
+                let parsedArr = arr.map(x => tryParseInt(x));
+                if (parsedArr) {
+                    parsedArr.forEach((x,i) => sell_values[keys[i]] = x);
+                    _needsUpdate = true;
+                } else {
+                    throw 'Could not parse all array values into integers.';
+                }
             }
-            return value;
+            return sell_values;
         });
 
-        // Check input array for proper length.
+        /**
+         * Check input array for proper length.
+         * @param {Array} arr Array to be mapped to object `sell_values`
+         * @throws Will throw an error if array length is not 12
+         * @return {} Returns nothing
+        */
         let checkPrices = ((arr)=>{
             if (arr.length !== 12) {
                 throw 'The data array needs exactly 12 elements to be valid.';
             }
         });
     
-        // Return value object as array.
+        /**
+         * @return {Array} Return `sell_values` object as array
+        */
         let get = (() =>{
-            return toArray(value);
+            return toArray(sell_values);
         });
     
+        /**
+         * Set `sell_values` using an integer array
+         * @param {Array} newSellPrices Integer array of length 12
+        */
         let set = ((newSellPrices)=>{
             checkPrices(newSellPrices);
             toObj(newSellPrices);
@@ -81,7 +149,11 @@ let RootData = (() => {
             return value;
         });
         let set = ((newBuyPrice)=>{
-            value = tryParseInt(newBuyPrice);
+            let parsed = tryParseInt(newBuyPrice);
+            if (parsed) {
+                value = parsed;
+                _needsUpdate = true;
+            }
         });
     
         return {
@@ -97,7 +169,11 @@ let RootData = (() => {
             return value;
         });
         let set = ((newPreviousPattern)=>{
-            value = tryParseInt(newPreviousPattern);
+            let parsed = tryParseInt(newPreviousPattern);
+            if (parsed) {
+                value = parsed;
+                _needsUpdate = true;
+            }
         });
     
         return {
@@ -117,8 +193,8 @@ let RootData = (() => {
         }
     });
 
-    let _dataInterface = {};
-    Object.defineProperties(_dataInterface, {
+    let interface = {};
+    Object.defineProperties(interface, {
         sellPrices: {
             get() {return _sellPrices.get()},
             set(x) {_sellPrices.set(x);}
@@ -138,8 +214,15 @@ let RootData = (() => {
         },
         eventUpdateValue: {
             value: (name, val) => eventUpdateValue(name, val)
-        }
+        },
+        update: {
+            value: (()=>{_needsUpdate = update()})
+        },
+        // Locks away the _needsUpdate boolean so only the internal functions can change it
+        needsUpdate: {
+            get() {return _needsUpdate},
+            set(x) {}
+         }
     });
-
-    return _dataInterface;
+    return interface;
 })();
