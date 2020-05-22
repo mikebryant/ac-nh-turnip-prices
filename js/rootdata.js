@@ -8,7 +8,6 @@ let RootData = (() => {
 
     // Shared function, attempt to parse integer value, throw error on failure.
     let tryParseInt = ((intToParse)=>{
-        console.log(intToParse);
         if (intToParse === '' || intToParse === null || intToParse === NaN) {
             return NaN;
         }
