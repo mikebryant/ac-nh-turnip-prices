@@ -6,20 +6,46 @@ let RootData = (() => {
     // Identify if data has been changed and storage needs updated
     let _needsUpdate = false;
 
+    // Shared function, attempt to parse integer value, throw error on failure.
+    let tryParseInt = ((intToParse)=>{
+        if (intToParse === '' || intToParse === null) {
+            return null;
+        }
+
+        let parsed;
+        parsed = parseInt(intToParse);
+
+        if (isNaN(parsed)) {
+            throw `The value '${intToParse}' could not be parsed into an integer.`;
+        }
+
+        return parsed;
+    });
+
+    /**
+     * @link https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
+     * @param {Object} obj Object to search
+     * @param {String} val Value to search
+     * @return {String} Key of Value in Object
+     */
+    let getKeyByValue = ((obj, val) => {
+        return Object.keys(obj).find(key => obj[key] === val);
+    });
+
     let update = (() => {
         if (!_needsUpdate) {
             // Update not needed
             return false;
         }
 
-        const prices = [_buyPrice, _buyPrice, ..._sellPrices];
+        const prices = [_buyPrice.get(), _buyPrice.get(), ..._sellPrices.get()];
         try {
             if (prices.length !== 14) {
                 throw "The data array needs exactly 14 elements to be valid."
             }
             localStorage.setItem("sell_prices", JSON.stringify(prices));
-            localStorage.setItem("first_buy", JSON.stringify(first_buy));
-            localStorage.setItem("previous_pattern", JSON.stringify(previous_pattern));
+            localStorage.setItem("first_buy", JSON.stringify(_firstBuy.get()));
+            localStorage.setItem("previous_pattern", JSON.stringify(_previousPattern.get()));
             // Update successful
             return false;
         } catch (e) {
@@ -29,37 +55,34 @@ let RootData = (() => {
         }
     });
 
-    // Shared function, attempt to parse integer value, throw error on failure.
-    let tryParseInt = ((intToParse)=>{
-        let parsed;
-        if (intToParse !== null) {
-            parsed = parseInt(intToParse);
-        }
-
-        if (isNaN(parsed)) {
-            throw `The value '${intToParse}' could not be parsed into an integer.`;
-        }
-
-        return parsed;
+    let reset = (() => {
+        _sellPrices.reset();
+        _buyPrice.reset();
+        _previousPattern.reset();
+        _firstBuy.reset();
+        _needsUpdate = true;
     });
 
     let _sellPrices = (() => {
         /**
         * @type {Object} Store sell prices as object for easy updating from the jquery input event.
         */
+
+        const defaultValue = (new Array(12)).fill(null,0,12);
+
         let sell_values = {
-            sell_2: NaN,
-            sell_3: NaN,
-            sell_4: NaN,
-            sell_5: NaN,
-            sell_6: NaN,
-            sell_7: NaN,
-            sell_8: NaN,
-            sell_9: NaN,
-            sell_10: NaN,
-            sell_11: NaN,
-            sell_12: NaN,
-            sell_13: NaN
+            sell_2: null,
+            sell_3: null,
+            sell_4: null,
+            sell_5: null,
+            sell_6: null,
+            sell_7: null,
+            sell_8: null,
+            sell_9: null,
+            sell_10: null,
+            sell_11: null,
+            sell_12: null,
+            sell_13: null
         };
 
         /**
@@ -70,7 +93,7 @@ let RootData = (() => {
         */
         let updateValue = ((key, val) => {
             let parsed = tryParseInt(val);
-            if (parsed) {
+            if (typeof(parsed) !== 'undefined') {
                 sell_values[key] = parsed;
                 _needsUpdate = true;
             }
@@ -96,7 +119,7 @@ let RootData = (() => {
             let keys = Object.keys(sell_values);
             if (arr.length > 0 && arr.length <= keys.length) {
                 // Attempt to parse all values in array.
-                let parsedArr = arr.map(x => tryParseInt(x));
+                let parsedArr = arr.map(x => x ? tryParseInt(x) : null);
                 if (parsedArr) {
                     parsedArr.forEach((x,i) => sell_values[keys[i]] = x);
                     _needsUpdate = true;
@@ -138,12 +161,14 @@ let RootData = (() => {
         return {
             get: get,
             set: set,
-            updateValue: updateValue
+            updateValue: updateValue,
+            reset: (()=>{set(defaultValue)})
         };
     })();
     
     let _buyPrice = (() => {
-        let value = NaN;
+        const defaultValue = null;
+        let value = defaultValue;
 
         let get = (() =>{
             return value;
@@ -158,96 +183,83 @@ let RootData = (() => {
     
         return {
             get: get,
-            set: set
+            set: set,
+            reset: (()=>{value = defaultValue})
         };
     })();
     
     let _previousPattern = (() => {
         let previousPatternEnum = {
-            'unknown': -1,
-            'fluctuating': 0,
-            'large-spike': 1,
-            'decreasing': 2,
-            'small-spike': 3
+            '-1': 'unknown',
+            '0': 'fluctuating',
+            '1': 'large-spike',
+            '2': 'decreasing',
+            '3': 'small-spike'
         };
 
-        let value = NaN;
+        const defaultValue = null;
+        let value = defaultValue;
 
         let get = (() =>{
             return value;
         });
 
         let set = ((newPreviousPattern)=>{
-            // Check if value is defined int the enum
-            let parsed = previousPatternEnum[newPreviousPattern];
-            // If not try to parse the value
-            parsed = parsed ? parsed : tryParseInt(newPreviousPattern);
-            if (parsed) {
-                value = parsed;
+            if (previousPatternEnum[newPreviousPattern]) {
+                value = newPreviousPattern;
                 _needsUpdate = true;
             }
         });
     
         return {
             get: get,
-            set: set
+            set: set,
+            reset: (()=>{value = defaultValue}),
+            enum: previousPatternEnum
         };
     })();
 
     let _firstBuy = (() => {
         let firstTimeEnum = {
-            no: false,
-            yes: true
+            'false': 'no',
+            'true': 'yes'
         };
 
-        let value = false;
+        let defaultValue = false;
+        let value = defaultValue;
 
         let get = (() =>{
             return value;
         });
 
         let set = ((newFirstTimeBuy)=>{
-            // Check if value is defined int the enum
-            let parsed = firstTimeEnum[newFirstTimeBuy];
-            // If not try to parse the value
-            parsed = parsed ? parsed : tryParseInt(newPreviousPattern);
-            // Check that the value can be cast as true or false
-            if (parsed == true || parsed == false) {
-                value = parsed;
+            if (firstTimeEnum[newFirstTimeBuy]) {
+                value = newFirstTimeBuy;
                 _needsUpdate = true;
             }
         });
     
         return {
             get: get,
-            set: set
+            set: set,
+            reset: (()=>{value = defaultValue}),
+            enum: firstTimeEnum
         };
     })();
 
     // Update value from a triggered jquery input event.
-    let eventUpdateValue = ((name, val) => {
-        if (typeof(name) === "string") {
-            console.log("in the func");
-            console.log({name, val});
-            if (name.match(/^sell_\d+$/)) {
-                _sellPrices.updateValue(name, val);
-            } else if (name.match(/^buy$/)) {
+    let eventUpdateValue = ((id, val, name) => {
+        if (typeof(id) === "string") {
+            if (id.match(/^sell_\d+$/)) {
+                _sellPrices.updateValue(id, val);
+            } else if (id.match(/^buy$/)) {
                 _buyPrice.set(val);
-            } else {
-                let nameSplit = name.match(/^([a-z\-]*)-radio-([a-z\-]+)$/);
-                console.log({nameSplit});
-                if (nameSplit === 2) {
-                    if (nameSplit[0] === 'first-time') {
-                        _firstBuy.set(nameSplit[1]);
-                        console.log(`firstBuy set to ${_firstBuy.get()}`);
-                    } else if (nameSplit[0] === 'pattern') {
-                        _previousPattern.set(nameSplit[1]);
-                        console.log(`previousPattern set to ${_previousPattern.get()}`);
-                    }
-                }
+            } else if (name === 'first-time') {
+                _firstBuy.set(val);
+            } else if (name === 'pattern') {
+                _previousPattern.set(val);
             }
         }
-        console.log("done updating stuff");
     });
 
     let interface = {};
@@ -258,27 +270,40 @@ let RootData = (() => {
         },
         buyPrice: {
             get() {return _buyPrice.get()},
-            set(x) {_buyPrice.set(x);}
+            set(x) {_buyPrice.set(x);},
+        },
+        prices: {
+            get() {return [_buyPrice.get(), _buyPrice.get(), ..._sellPrices.get()]}
         },
         previousPattern: {
             get() {return _previousPattern.get()},
-            set(x) {_previousPattern.set(x);}
+            set(x) {_previousPattern.set(x);},
+        },
+        previousPatternEnum: {
+            value: _previousPattern.enum
+        },
+        firstBuy: {
+            get() {return _firstBuy.get()},
+            set(x) {_firstBuy.set(x);},
+        },
+        firstBuyEnum: {
+            value: _firstBuy.enum
         },
         clearLocalStorage: {
-            value: () => {
-                console.log("ok");
-            }
+            value: reset
         },
         eventUpdateValue: {
-            value: (name, val) => eventUpdateValue(name, val)
+            value: (id, val, name) => eventUpdateValue(id, val, name)
         },
+        // Locks away the _needsUpdate boolean so only the internal functions can change it
         update: {
             value: (()=>{_needsUpdate = update()})
         },
-        // Locks away the _needsUpdate boolean so only the internal functions can change it
         needsUpdate: {
-            get() {return _needsUpdate},
-            set(x) {}
+            value: _needsUpdate
+         },
+         getKeyByValue: {
+             value: getKeyByValue
          }
     });
     return interface;

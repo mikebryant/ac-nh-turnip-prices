@@ -87,6 +87,7 @@ const initialize = function () {
 
   $("#reset").on("click", function () {
     if (window.confirm(i18next.t("prices.reset-warning"))) {
+      RootData.clearLocalStorage();
       sell_inputs.forEach(input => input.value = '');
       fillFields([], false, -1);
       update();
@@ -119,14 +120,17 @@ const getFirstBuyStateFromQuery = function (param) {
       return null;
     }
 
-    firstbuy = null;
-    if (firstbuy_str == "1" || firstbuy_str == "yes" || firstbuy_str == "true") {
-      firstbuy = true;
-    } else if (firstbuy_str == "0" || firstbuy_str == "no" || firstbuy_str == "false") {
-      firstbuy = false;
+    let firstBuyType = RootData.firstBuyEnum[firstbuy_str];
+    // If firstbuy_str wasn't a value in the enum, search the enum by value
+    if (firstBuyType) {
+      // Set the data as an integer
+      RootData.firstBuy.set(firstbuy_str);
+    } else {
+      // If firstbuy_str wasn't an integer, search the enum by name to get the integer. Default is 'false'.
+      let firstBuyValue = RootData.getKeyByValue(RootData.firstBuyEnum, firstbuy_str);
+      RootData.firstBuy = (firstBuyValue || 'false');
     }
-
-    return firstbuy;
+    return RootData.firstBuy;
 
   } catch (e) {
     return null;
@@ -134,11 +138,21 @@ const getFirstBuyStateFromQuery = function (param) {
 };
 
 const getFirstBuyStateFromLocalstorage = function () {
-  return JSON.parse(localStorage.getItem('first_buy'));
+  try {
+    RootData.firstBuy = JSON.parse(localStorage.getItem('first_buy'));
+    return RootData.firstBuy;
+  } catch (e) {
+    return null;
+  }
 };
 
 const getPreviousPatternStateFromLocalstorage = function () {
-  return JSON.parse(localStorage.getItem('previous_pattern'));
+  try {
+  RootData.previousPattern = JSON.parse(localStorage.getItem('previous_pattern'));
+  return RootData.previousPattern;
+  } catch (e) {
+    return null;
+  }
 };
 
 const getPreviousPatternStateFromQuery = function (param) {
@@ -150,19 +164,17 @@ const getPreviousPatternStateFromQuery = function (param) {
       return null;
     }
 
-    if (pattern_str == "0" || pattern_str == "fluctuating") {
-      pattern = 0;
-    } else if (pattern_str == "1" || pattern_str == "large-spike") {
-      pattern = 1;
-    } else if (pattern_str == "2" || pattern_str == "decreasing") {
-      pattern = 2;
-    } else if (pattern_str == "3" || pattern_str == "small-spike") {
-      pattern = 3;
+    // Check if the pattern state from previous query is an integer
+    let patternType = RootData.previousPatternEnum[pattern_str];
+    if (patternType) {
+      RootData.previousPattern = pattern_str;
     } else {
-      pattern = -1;
+      // If pattern_str wasn't an integer, search the enum by value. Default is 'unknown': -1
+      let patternValue = RootData.getKeyByValue(RootData.previousPatternEnum, pattern_str);
+      RootData.previousPattern = (patternValue || -1);
     }
-
-    return pattern;
+    
+    return RootData.previousPattern;
 
   } catch (e) {
     return null;
@@ -177,7 +189,10 @@ const getPricesFromLocalstorage = function () {
       return null;
     }
 
+    RootData.buyPrice = sell_prices[0];
+    RootData.sellPrices = sell_prices.slice(2,14);
     return sell_prices;
+
   } catch (e) {
     return null;
   }
@@ -192,7 +207,7 @@ const getPricesFromQuery = function (param) {
       return null;
     }
 
-    // Parse the array which is formatted like: [price, M-AM, M-PM, T-AM, T-PM, W-AM, W-PM, Th-AM, Th-PM, F-AM, F-PM, S-AM, S-PM, Su-AM, Su-PM]
+    // Parse the array which is formatted like: [price, M-AM, M-PM, T-AM, T-PM, W-AM, W-PM, Th-AM, Th-PM, F-AM, F-PM, S-AM, S-PM]
     // due to the format of local storage we need to double up the price at the start of the array.
     sell_prices.unshift(sell_prices[0]);
 
@@ -200,6 +215,9 @@ const getPricesFromQuery = function (param) {
     for (let i = sell_prices.length; i < 14; i++) {
       sell_prices.push(0);
     }
+
+    RootData.buy_price = sell_prices[0];
+    RootData.sellPrices = sell_prices.slice(2,14);
 
     return sell_prices;
   } catch (e) {
@@ -239,13 +257,6 @@ const getPreviousFromLocalstorage = function () {
  */
 const getPrevious = function () {
   return getPreviousFromQuery() || getPreviousFromLocalstorage();
-};
-
-const getSellPrices = function () {
-  //Checks all sell inputs and returns an array with their values
-  return res = sell_inputs.map(function (input) {
-    return parseInt(input.value || '');
-  });
 };
 
 const getPriceClass = function(buy_price, max) {
@@ -364,10 +375,10 @@ const flashMessage = function(message) {
 };
 
 const update = function () {
-  const sell_prices = getSellPrices();
-  const buy_price = parseInt(buy_input.val());
-  const first_buy = getCheckedRadio(first_buy_radios) == 'true';
-  const previous_pattern = parseInt(getCheckedRadio(previous_pattern_radios));
+  const sell_prices = RootData.sellPrices;
+  const buy_price = RootData.buyPrice;
+  const first_buy = RootData.firstBuy;
+  const previous_pattern = RootData.previousPattern;
 
   const permalink = generatePermalink(buy_price, sell_prices, first_buy, previous_pattern);
   if (permalink) {
@@ -377,11 +388,9 @@ const update = function () {
   }
   permalink_input.val(permalink);
 
-  const prices = [buy_price, buy_price, ...sell_prices];
-
   if (!window.populated_from_query) {
-    updateLocalStorage(prices, first_buy, previous_pattern);
+    RootData.update();
   }
 
-  calculateOutput(prices, first_buy, previous_pattern);
+  calculateOutput(RootData.prices, first_buy, previous_pattern);
 };
