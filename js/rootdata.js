@@ -1,12 +1,31 @@
 /**
  * Stores and manages user input changes until updates are called.
  * Revealing Module Pattern to manage localStorage and DOM interactions.
+ * @property {Array} sellPrices Array of integer or NaN values of length 12: [M-AM, M-PM, T-AM, T-PM, W-AM, W-PM, Th-AM, Th-PM, F-AM, F-PM, S-AM, S-PM]
+ * @property {Integer} buyPrice Integer or NaN
+ * @property {Array} prices Combines buyPrice and sellPrices: [buyPrice, buyPrice, M-AM, M-PM, T-AM, T-PM, W-AM, W-PM, Th-AM, Th-PM, F-AM, F-PM, S-AM, S-PM]
+ * @property {Integer} previousPattern Integer or NaN: ∈ {-1,0,1,2,3}
+ * @property {Object} previousPatternEnum Enumerates expected previousPattern values and their meaning
+ * @property {Boolean} firstBuy
+ * @property {Object} firstBuyEnum Enumerates expected firstBuy values and their meaning
+ * @property {function} clearLocalStorage Sets `sellPrices`, `buyPrice`, `previousPattern`, and `firstBuy` to their default values
+ * @property {function} eventUpdateValue Update function for use in jquery input event function
+ * @property {function} updateLocalStorage Saves `sellPrices`, `buyPrice`, `previousPattern`, and `firstBuy` values to localStorage 
+ * @property {function} needsUpdate Indicates if the localStorage needs to be updated. Locks away the `_needsUpdate` boolean so only the internal functions can change it.
+ * @property {function} getKeyByValue Helper function, search object by value, returns object key if it exists
 */
 let RootData = (() => {
-    // Identify if data has been changed and storage needs updated
+    /**
+     * Notify if data has been changed and UI needs updated.
+     * @type {Boolean}
+    */
     let _needsUpdate = false;
 
-    // Shared function, attempt to parse integer value, throw error on failure.
+    /**
+     * Attempt to parse integer value, throw error on failure. Default for nulls and empty strings is NaN.
+     * @param {var} intToParse
+     * @returns {Integer|NaN|undefined} Returns integer on successful parse, undefined on unsuccessful parse, and NaN when passed null, empty string, or NaN.
+     */
     let tryParseInt = ((intToParse)=>{
         if (intToParse === '' || intToParse === null || intToParse === NaN) {
             return NaN;
@@ -26,13 +45,20 @@ let RootData = (() => {
      * @link https://stackoverflow.com/questions/9907419/how-to-get-a-key-in-a-javascript-object-by-its-value
      * @param {Object} obj Object to search
      * @param {String} val Value to search
-     * @return {String} Key of Value in Object
-     */
+     * @returns {String} Key of Value in Object
+    */
     let getKeyByValue = ((obj, val) => {
         return Object.keys(obj).find(key => obj[key] === val);
     });
 
-    let update = (() => {
+    /**
+     * Update local storage with expected values. 
+     * @property {Array} `sell_prices` length 14 array: [buy_price, buy_price, M-AM, M-PM, T-AM, T-PM, W-AM, W-PM, Th-AM, Th-PM, F-AM, F-PM, S-AM, S-PM]
+     * @property {Boolean} `first_buy`
+     * @property {Integer} `previous_pattern`: ∈ {-1,0,1,2,3}
+     * @returns {Boolean} Returns status for `_needsUpdate`. If successful, returns false.
+     */
+    let updateLocalStorage = (() => {
         if (!_needsUpdate) {
             // Update not needed
             return false;
@@ -55,6 +81,11 @@ let RootData = (() => {
         }
     });
 
+
+    /**
+     * Reset all structures to default values.
+     * @returns {} Returns nothing
+     */
     let reset = (() => {
         _sellPrices.reset();
         _buyPrice.reset();
@@ -63,13 +94,20 @@ let RootData = (() => {
         _needsUpdate = true;
     });
 
+    /**
+     * Container for sell prices. Validates data, handles updates, and resets.
+     * @returns {Object} Returns the interface for this container: get, set (consumes an array), reset,
+     * and update function for jquery (consumes single value)
+     */
     let _sellPrices = (() => {
+        /**
+         * @type {Array} Default array containing NaN of length 12. Used for data reset.
+         */
+        const defaultValue = (new Array(12)).fill(NaN,0,12);
+
         /**
         * @type {Object} Store sell prices as object for easy updating from the jquery input event.
         */
-
-        const defaultValue = (new Array(12)).fill(NaN,0,12);
-
         let sell_values = {
             sell_2: NaN,
             sell_3: NaN,
@@ -86,11 +124,12 @@ let RootData = (() => {
         };
 
         /**
-         * Update value of object by key, cast value to integer.
+         * Update value of object by key, cast value to integer. 
+         * Intended to be used by jquery event functions.
          * @param {string} key Object-entry key
          * @param {var} val Object-entry value which can be cast as an integer
-         * @return {} Returns nothing
-        */
+         * @returns {} Returns nothing
+         */
         let updateValue = ((key, val) => {
             let parsed = tryParseInt(val);
             if (typeof(parsed) !== 'undefined') {
@@ -102,8 +141,8 @@ let RootData = (() => {
         /**
          * Return values of object as array.
          * @param {Object} obj Object to be mapped to an array
-         * @return {Array} Array mapped from object
-        */
+         * @returns {Array} Array mapped from object
+         */
         let toArray = ((obj) => {
             let arr = Object.values(obj).map(x => x ?  x : NaN);
             return arr;
@@ -112,9 +151,10 @@ let RootData = (() => {
         /**
          * Map array to object. 
          * If input is not an array or array it too long, don't update.
+         * Sets `_needsUpdate` to true if successful.
          * @param {Array} arr Array to be mapped to object `sell_values`
-         * @return {Object} `sell_values`
-        */
+         * @returns {Object} `sell_values`
+         */
         let toObj = ((arr) => {
             let keys = Object.keys(sell_values);
             if (arr.length > 0 && arr.length <= keys.length) {
@@ -134,8 +174,8 @@ let RootData = (() => {
          * Check input array for proper length.
          * @param {Array} arr Array to be mapped to object `sell_values`
          * @throws Will throw an error if array length is not 12
-         * @return {} Returns nothing
-        */
+         * @returns {} Returns nothing
+         */
         let checkPrices = ((arr)=>{
             if (arr.length !== 12) {
                 throw 'The data array needs exactly 12 elements to be valid.';
@@ -143,8 +183,8 @@ let RootData = (() => {
         });
     
         /**
-         * @return {Array} Return `sell_values` object as array
-        */
+         * @returns {Array} Return `sell_values` object as array
+         */
         let get = (() =>{
             return toArray(sell_values);
         });
@@ -152,7 +192,7 @@ let RootData = (() => {
         /**
          * Set `sell_values` using an integer array
          * @param {Array} newSellPrices Integer array of length 12
-        */
+         */
         let set = ((newSellPrices)=>{
             checkPrices(newSellPrices);
             toObj(newSellPrices);
@@ -166,13 +206,34 @@ let RootData = (() => {
         };
     })();
     
+    /**
+     * Container for buy price. Validates data, handles updates, and resets.
+     * @returns {Object} Returns the interface for this container: get, set, and reset.
+     */
     let _buyPrice = (() => {
-        const defaultValue = null;
+        /**
+         * @type {Number} Default value of NaN. Used for initialization and data reset.
+         */
+        const defaultValue = NaN;
+
+        /**
+         * @type {Integer}
+         */
         let value = defaultValue;
 
+        /**
+         * @returns {Integer} Returns value of buyPrice.
+         */
         let get = (() =>{
             return value;
         });
+
+        /**
+         * Attempts to parse integer before setting the value.
+         * Sets `_needsUpdate` to true if successful.
+         * @param {var} newBuyPrice 
+         * @returns {} Returns nothing
+         */
         let set = ((newBuyPrice)=>{
             let parsed = tryParseInt(newBuyPrice);
             if (parsed) {
@@ -188,7 +249,24 @@ let RootData = (() => {
         };
     })();
     
+    /**
+     * Container for previous pattern. Validates data, handles updates, and resets.
+     * @returns {Object} Returns the interface for this container: get, set, reset,
+     * and previous pattern enumerator for external data validation.
+     */
     let _previousPattern = (() => {
+        /**
+         * Enumerates expected values of previous pattern.
+         * Most common use will be to validate using integer values
+         * which is why the keys are said integers.
+         * @type {Object}
+         * @example 
+         * if (previousPatternEnum[x]) {
+         *      //value was not undefined then x is a valid integer.
+         * } else {
+         *      //value was undefined, x is an invalid integer.
+         * }
+         */
         let previousPatternEnum = {
             '-1': 'unknown',
             '0': 'fluctuating',
@@ -197,13 +275,29 @@ let RootData = (() => {
             '3': 'small-spike'
         };
 
-        const defaultValue = null;
+        /**
+         * @type {Number} Default value of NaN. Used for initialization and data reset.
+         */
+        const defaultValue = NaN;
+
+        /**
+         * @type {Integer}
+         */
         let value = defaultValue;
 
+        /**
+         * @returns {Integer} Returns value of previousPattern.
+         */
         let get = (() =>{
             return value;
         });
 
+        /**
+         * Attempts to parse integer before setting the value.
+         * Sets `_needsUpdate` to true if successful.
+         * @param {var} newPreviousPattern 
+         * @returns {} Returns nothing
+        */
         let set = ((newPreviousPattern)=>{
             if (previousPatternEnum[newPreviousPattern]) {
                 value = tryParseInt(newPreviousPattern);
@@ -219,19 +313,47 @@ let RootData = (() => {
         };
     })();
 
+    /**
+     * Container for first buy. Validates data, handles updates, and resets.
+     * @returns {Object} Returns the interface for this container: get, set, reset,
+     * and first buy enumerator for external data validation.
+     */
     let _firstBuy = (() => {
+        /**
+         * Enumerates expected values of first buy.
+         * Most common use will be to validate using 'true' 'false' strings.
+         * @type {Object}
+         * @example 
+         * if (firstTimeEnum[x]) {
+         *      //value was not undefined then x is a valid boolean.
+         * } else {
+         *      //value was undefined, x is an invalid boolean.
+         * }
+         */
         let firstTimeEnum = {
             'false': 'no',
             'true': 'yes'
         };
 
+        /**
+         * @type {Boolean} Default value of false. Used for initialization and data reset.
+         */
         let defaultValue = false;
         let value = defaultValue;
 
+        /**
+         * @returns {Boolean} Returns value of firstBuy.
+         */
         let get = (() =>{
             return value;
         });
 
+        /**
+         * Verifies input is a boolean before update.
+         * Sets `_needsUpdate` to true if successful.
+         * @param {var} newPreviousPattern 
+         * @returns {} Returns nothing
+        */
         let set = ((newFirstTimeBuy)=>{
             if (firstTimeEnum[newFirstTimeBuy]) {
                 value = newFirstTimeBuy;
@@ -247,12 +369,19 @@ let RootData = (() => {
         };
     })();
 
-    // Update value from a triggered jquery input event.
+    /**
+     * Update value from a triggered jquery input event.
+     * @param {String} id Jquery event target id
+     * @param {String} val Jquery event target value
+     * @param {String} name Jquery event target name
+     */
     let eventUpdateValue = ((id, val, name) => {
+        // Ensure id is a string before trying to do regex match.
         if (typeof(id) === "string") {
+            // Check if id is of the form 'sell_#'
             if (id.match(/^sell_\d+$/)) {
                 _sellPrices.updateValue(id, val);
-            } else if (id.match(/^buy$/)) {
+            }else if (id === 'buy') {
                 _buyPrice.set(val);
             } else if (name === 'first-time') {
                 _firstBuy.set(val);
@@ -295,9 +424,8 @@ let RootData = (() => {
         eventUpdateValue: {
             value: (id, val, name) => eventUpdateValue(id, val, name)
         },
-        // Locks away the _needsUpdate boolean so only the internal functions can change it
-        update: {
-            value: (()=>{_needsUpdate = update()})
+        updateLocalStorage: {
+            value: (()=>{_needsUpdate = updateLocalStorage()})
         },
         needsUpdate: {
             value: _needsUpdate

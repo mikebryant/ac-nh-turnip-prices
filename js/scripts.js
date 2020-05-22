@@ -216,7 +216,7 @@ const getPricesFromQuery = function (param) {
       sell_prices.push(0);
     }
 
-    RootData.buy_price = sell_prices[0];
+    RootData.buyPrice = sell_prices[0];
     RootData.sellPrices = sell_prices.slice(2,14);
 
     return sell_prices;
@@ -389,7 +389,7 @@ const update = function () {
   permalink_input.val(permalink);
 
   if (!window.populated_from_query) {
-    RootData.update();
+    RootData.updateLocalStorage();
   }
 
   calculateOutput(RootData.prices, first_buy, previous_pattern);
