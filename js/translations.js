@@ -5,6 +5,7 @@ function updateContent() {
 const defaultLanguage = 'en';
 const LANGUAGES = {
   'ca': 'Català',
+  'cs': 'Česky',
   'de': 'Deutsch',
   'en': 'English',
   'es': 'Español',
