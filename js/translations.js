@@ -58,12 +58,13 @@ i18next
   let delayTimer;
   $(document).on('input', function(event) {
     RootData.eventUpdateValue(event.target.id, event.target.value, event.target.name);
-    
     // adding short delay after input to help mitigate potential lag after keystrokes
     clearTimeout(delayTimer);
-    delayTimer = setTimeout(function() {
-      updateContent();
-    }, 500);
+    if (event.target.type !== 'radio') {
+      delayTimer = setTimeout(function() {
+          updateContent();
+      }, 500);
+    }
   });
 
   $('input[type = radio]').on('change', updateContent);

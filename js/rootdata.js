@@ -8,8 +8,9 @@ let RootData = (() => {
 
     // Shared function, attempt to parse integer value, throw error on failure.
     let tryParseInt = ((intToParse)=>{
-        if (intToParse === '' || intToParse === null) {
-            return null;
+        console.log(intToParse);
+        if (intToParse === '' || intToParse === null || intToParse === NaN) {
+            return NaN;
         }
 
         let parsed;
@@ -68,21 +69,21 @@ let RootData = (() => {
         * @type {Object} Store sell prices as object for easy updating from the jquery input event.
         */
 
-        const defaultValue = (new Array(12)).fill(null,0,12);
+        const defaultValue = (new Array(12)).fill(NaN,0,12);
 
         let sell_values = {
-            sell_2: null,
-            sell_3: null,
-            sell_4: null,
-            sell_5: null,
-            sell_6: null,
-            sell_7: null,
-            sell_8: null,
-            sell_9: null,
-            sell_10: null,
-            sell_11: null,
-            sell_12: null,
-            sell_13: null
+            sell_2: NaN,
+            sell_3: NaN,
+            sell_4: NaN,
+            sell_5: NaN,
+            sell_6: NaN,
+            sell_7: NaN,
+            sell_8: NaN,
+            sell_9: NaN,
+            sell_10: NaN,
+            sell_11: NaN,
+            sell_12: NaN,
+            sell_13: NaN
         };
 
         /**
@@ -105,7 +106,7 @@ let RootData = (() => {
          * @return {Array} Array mapped from object
         */
         let toArray = ((obj) => {
-            let arr = Object.values(obj).map(x => x);
+            let arr = Object.values(obj).map(x => x ?  x : NaN);
             return arr;
         });
 
@@ -119,7 +120,7 @@ let RootData = (() => {
             let keys = Object.keys(sell_values);
             if (arr.length > 0 && arr.length <= keys.length) {
                 // Attempt to parse all values in array.
-                let parsedArr = arr.map(x => x ? tryParseInt(x) : null);
+                let parsedArr = arr.map(x => x ? tryParseInt(x) : NaN);
                 if (parsedArr) {
                     parsedArr.forEach((x,i) => sell_values[keys[i]] = x);
                     _needsUpdate = true;
@@ -206,7 +207,7 @@ let RootData = (() => {
 
         let set = ((newPreviousPattern)=>{
             if (previousPatternEnum[newPreviousPattern]) {
-                value = newPreviousPattern;
+                value = tryParseInt(newPreviousPattern);
                 _needsUpdate = true;
             }
         });
