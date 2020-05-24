@@ -73,7 +73,15 @@
     "development": "このアプリはまだ開発中ですが、より良いデータを提供できるようにがんばっています！",
     "thanks": "このアプリが作成できたのは、タヌキ商店のカブ価パターンを解析した<a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji氏の成果</a>のおかげです。ありがとうございます！",
     "support": "疑問·コメント·提案などは、<a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a>までお願いします。",
+    "sponsor": "このプロジェクトに関わったソフトウェア開発者をスポンサーしたい場合、<a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a>のページで「❤ Sponsor」をクリックしてください！",
     "contributors-text": "そして、このアプリの作成を手伝っていただいた方々に感謝します！",
-    "contributors": "貢献者"
+    "contributors": "貢献者",
+    "language": "言語",
+    "theme": {
+      "title": "テーマ",
+      "auto": "自動",
+      "light": "ライト",
+      "dark": "ダーク"
+    }
   }
 }
