@@ -76,6 +76,12 @@
     "sponsor": "Szeretnéd szponzorálni a projekt fejlesztőit? Menj a <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> oldalra és nyomd meg a „❤ Sponsor” gombot!",
     "contributors-text": "Ó, és ne felejtsünk el köszönetet mondani az eddigi hozzájárulóknak!",
     "contributors": "Hozzájárulók",
-    "language": "Nyelv"
+    "language": "Nyelv",
+    "theme": {
+      "title": "Téma",
+      "auto": "Automatikus",
+      "light": "Világos",
+      "dark": "Sötét"
+    }
   }
 }
