@@ -1,0 +1,87 @@
+{
+  "general": {
+    "daisy-mae": "Daisy Mae"
+  },
+  "welcome": {
+    "salutation": "Ahoj, vítej v aplikaci <b>Turnip Prophet</b> tvého Nook Phone.",
+    "description": "Tahle aplikace by ti měla pomoct sledovat vývoj cen tuřínů na tvém ostrově. Musíš si ale sám zadávat ceny, které už znáš!",
+    "conclusion": "Po zadání Turnip Prophet <b>kouzelným způsobem</b> předpoví, jak by se ceny měly vyvíjet v průběhu týdne."
+  },
+  "first-time": {
+    "title": "Poprvé kupující",
+    "description": "Je to poprvé, co kupuješ tuříny od Daisy <b>na vlastním</b> ostrově?<i>(Ovlivňuje model vývoje cen)</i>",
+    "yes": "Ano",
+    "no": "Ne"
+  },
+  "patterns": {
+    "title": "Předchozí model",
+    "description": "Jaký byl model vývoje cen tuřínů na tvém ostrově minulý týden?<i>(Ovlivňuje model vývoje cen)</i>",
+    "pattern": "Model",
+    "all": "Všechny modely",
+    "decreasing": "Klesající",
+    "fluctuating": "Kolísavý",
+    "unknown": "Nevím",
+    "large-spike": "S velkou špicí",
+    "small-spike": "S malou špicí"
+  },
+  "prices": {
+    "description": "Jaké byly ceny tuřínů v průběhu tohoto týdne?",
+    "open": {
+      "am": "dop. - od 8:00 do 11:59",
+      "pm": "odp. - od 12:00 do 22:00"
+    },
+    "copy-permalink": "Kopírovat permalink",
+    "permalink-copied": "Permalink zkopírován!",
+    "reset": "Resetovat Turnip Prophet",
+    "reset-warning": "Opravdu chceš resetovat všechny pole?\n\nNejde to vrátit zpět!"
+  },
+  "weekdays": {
+    "monday": "Pondělí",
+    "tuesday": "Úterý",
+    "wednesday": "Středa",
+    "thursday": "Čtvrtek",
+    "friday": "Pátek",
+    "saturday" : "Sobota",
+    "sunday": "Neděle",
+    "abr": {
+      "monday": "Po",
+      "tuesday": "Út",
+      "wednesday": "St",
+      "thursday": "Čt",
+      "friday": "Pá",
+      "saturday" : "So"
+    }
+  },
+  "times": {
+    "morning": "dop.",
+    "afternoon": "odp."
+  },
+  "output": {
+    "title": "Výstup",
+    "chance": "Šance %",
+    "to": "až",
+    "minimum": "Jisté Minimum",
+    "maximum": "Možné Maximum",
+    "chart": {
+      "input": "Vstupní cena",
+      "minimum": "Jisté Minimum",
+      "maximum": "Možné Maximum"
+    }
+  },
+  "textbox": {
+    "description": "Po zadání několika cen tuřínů, Turnip Prophet provede nějaké výpočty a zobrazí všechny možné modely vývoje cen, které mohou na tvém ostrově nastat.",
+    "development": "Aplikace je pořád ve vývoji, časem se stále zlepšuje!",
+    "thanks": "Nic z toho by nebylo možné bez <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninjiho výzkumu</a>, jak vlastně Timmy a Tommy hodnotí cenu tuřínů.",
+    "support": "Podpora, komentáře a příspěvky jsou možné přes <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a>",
+    "sponsor": "Chceš podpořit vývojáře stojící za tímto projektem? Jdi na <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> a klikni na tlačítko '❤ Sponsor'",
+    "contributors-text": "Jo! A nesmíme zapomínat poděkovat těm, kteří se na vývoji tohoto projektu zatím podíleli!",
+    "contributors": "Na projektu se podílí",
+    "language": "Jazyk",
+    "theme": {
+      "title": "Barevné schéma",
+      "auto": "Automaticky",
+      "light": "Světlé",
+      "dark": "Tmavé"
+    }
+  }
+}
