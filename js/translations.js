@@ -17,6 +17,7 @@ const LANGUAGES = {
   'ja': '日本語',
   'ko': '한국어',
   'nl': 'Nederlands',
+  'ph': 'Filipino',
   'pl': 'Polski',
   'pt-BR': 'Português',
   'ru': 'Русский',
