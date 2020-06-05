@@ -61,11 +61,11 @@
     "chance": "% ng Tiyansa",
     "to": "-",
     "minimum": "Garantisadong Minimum",
-    "maximum": "Potensyal na maximum",
+    "maximum": "Potensyal na Maximum",
     "chart": {
       "input": "Na-input na Presyo",
-      "minimum": "Guaranteed Minimum",
-      "maximum": "Potential Maximum"
+      "minimum": "Garantisadong Minimum",
+      "maximum": "Potensyal na Maximum"
     }
   },
   "textbox": {
