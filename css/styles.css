@@ -488,11 +488,7 @@ input[type=number] {
   position: -webkit-sticky;
   top: -1px;
   z-index: 1;
-  background-color: #ffffff;
-}
-
-.darkmode--activated #turnipTable th {
-  background-color: #fee0c4;
+  background-color: var(--center-bg-color);
 }
 
 #turnipTable th div:nth-of-type(1) {
