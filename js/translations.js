@@ -5,12 +5,14 @@ function updateContent() {
 const defaultLanguage = 'en';
 const LANGUAGES = {
   'ca': 'Català',
+  'cs': 'Česky',
   'de': 'Deutsch',
   'en': 'English',
   'es': 'Español',
   'fr': 'Français',
   'gl': 'Galego',
   'hu': 'magyar',
+  'id': 'Bahasa Indonesia',
   'it': 'Italiano',
   'ja': '日本語',
   'ko': '한국어',
@@ -18,6 +20,7 @@ const LANGUAGES = {
   'pl': 'Polski',
   'pt-BR': 'Português',
   'ru': 'Русский',
+  'ua': 'Українська',
   'th': 'ไทย',
   'zh-CN': '简体中文',
   'zh-TW': '繁體中文'

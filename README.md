@@ -3,12 +3,12 @@
 [![issues](https://img.shields.io/github/issues/mikebryant/ac-nh-turnip-prices?style=for-the-badge)](https://github.com/mikebryant/ac-nh-turnip-prices/issues)
 [![pull requests](https://img.shields.io/github/issues-pr/mikebryant/ac-nh-turnip-prices?style=for-the-badge)](https://github.com/mikebryant/ac-nh-turnip-prices/pulls)
 [![contributors](https://img.shields.io/github/contributors/mikebryant/ac-nh-turnip-prices?style=for-the-badge)](https://github.com/mikebryant/ac-nh-turnip-prices/graphs/contributors)
-	
-Turnip Prophet is a price calculator/price predictor for Animal Crossing New Horizons turnip prices.
+
+Turnip Prophet is a price calculator/price predictor for Animal Crossing: New Horizons turnip prices.
 
 ## Support
 
-If you have any questions feel free to join our [Discord server](https://discord.gg/bRh74X8) to ask or [open a new issue](https://github.com/mikebryant/ac-nh-turnip-prices/issues).
+If you have any questions, feel free to join our [Discord server](https://discord.gg/bRh74X8) to ask or [open a new issue](https://github.com/mikebryant/ac-nh-turnip-prices/issues).
 
 If you have a prediction issue, please open an issue describing your problem and give the permalink to your prediction. Otherwise, please search the issues before opening a new one to make sure you are not opening a duplicate issue.
 
@@ -25,23 +25,23 @@ At first please have a look at our current project scope:
 | Able to show data from a query string | A way to store multiple people's islands |
 | A single page web-based app | Something with a backend |
 
-If your idea, suggestment or improvement is anything out of the above named, feel free to [open a new issue](https://github.com/mikebryant/ac-nh-turnip-prices/issues) or contribute by a [new pull request](https://github.com/mikebryant/ac-nh-turnip-prices/pulls).
+If your idea, suggestion or improvement is anything out of the above named, feel free to [open a new issue](https://github.com/mikebryant/ac-nh-turnip-prices/issues) or contribute by a [new pull request](https://github.com/mikebryant/ac-nh-turnip-prices/pulls).
 
 ## How to run the project locally?
 
-To run the project locally you will have to clone it and then, from the folder your just cloned, you will have to execute a command. There are multiple options, listed below:
+To run the project locally you will have to clone it and then, from the folder you just cloned, you will have to execute a command. There are multiple options, listed below:
 
-### Using python
+### Using Python
 
-For python 2.7: 
+For Python 2.7: 
 
 ```python -m SimpleHTTPServer```
 
-For python 3:
+For Python 3:
 
 ```python3 -m http.server```
 
-### Using Nodejs
+### Using Node.js
 
 ```npx serve```
 
@@ -61,6 +61,6 @@ If you have any remaining questions, feel free to stop by the Discord server and
 
 ## Final statement
 
-A special thanks to all who [contribute](https://github.com/mikebryant/ac-nh-turnip-prices/graphs/contributors) to this project, helping improve it and spend their time.
+A special thanks to all who [contribute](https://github.com/mikebryant/ac-nh-turnip-prices/graphs/contributors) to this project, helping to improve it and spend their time.
 
 Stay awesome guys.

@@ -36,6 +36,10 @@ const checkRadioByValue = function (radio_array, value) {
   radio_array.find(radio => radio.value == value).checked = true;
 };
 
+const state = {
+  initialized: false,
+};
+
 const sell_inputs = getSellFields();
 const buy_input = $("#buy");
 const first_buy_radios = getFirstBuyRadios();
@@ -92,6 +96,9 @@ const initialize = function () {
       update();
     }
   });
+
+  console.log('finished initializing');
+  state.initialized = true;
 };
 
 const updateLocalStorage = function (prices, first_buy, previous_pattern) {
@@ -364,6 +371,11 @@ const flashMessage = function(message) {
 };
 
 const update = function () {
+  if(!state.initialized){
+    console.log('update function called before initial data load');
+    // calls to update before the previous data has been initialized / loaded will reset the data.
+    return;
+  }
   const sell_prices = getSellPrices();
   const buy_price = parseInt(buy_input.val());
   const first_buy = getCheckedRadio(first_buy_radios) == 'true';
