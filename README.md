@@ -54,7 +54,7 @@ For Python 3:
 
 Turnip Prophet is already available in some languages. If your local language is not listed you may go on to create a JSON file corresponding to your language in the folder [locales](https://github.com/mikebryant/ac-nh-turnip-prices/tree/master/locales). You may copy the [English localisation](https://github.com/mikebryant/ac-nh-turnip-prices/blob/master/locales/en.json) and translate it. 
 
-Please make sure **not to translate** "Turnip Prophet" and include the new language in the selector inside [js/translations.js](https://github.com/mikebryant/ac-nh-turnip-prices/blob/master/js/scripts.js).
+Please make sure **not to translate** "Turnip Prophet" and include the new language in the selector inside [js/translations.js](https://github.com/mikebryant/ac-nh-turnip-prices/blob/master/js/translations.js).
 
 If you have any remaining questions, feel free to stop by the Discord server and ask. 
 
