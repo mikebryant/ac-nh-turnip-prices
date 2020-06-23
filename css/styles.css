@@ -54,6 +54,9 @@
   --input-focus-bg-color: white;
   --input-focus-text-color: var(--color-blue);
 
+  --input-now-bg-color: var(--dialog-name-bg-color);
+  --input-now-text-color: var(--dialog-name-text-color);
+
   --button-text-color: var(--nook-phone-text-color);
   --button-reset-text-color: #E45B5B;
 
@@ -410,6 +413,14 @@ input[type=number] {
 .input__radio-buttons input[type="radio"]:checked+label {
   background: var(--color-blue);
   color: var(--radio-checked-text-color);
+}
+
+input[class=now]:placeholder-shown {
+  background: var(--input-now-bg-color);
+}
+
+input[class=now]:placeholder-shown::placeholder {
+  color: var(--input-now-text-color);
 }
 
 .button {
