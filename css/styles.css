@@ -444,7 +444,6 @@ input[type=number] {
   margin: 0px auto;
   box-sizing: border-box;
   overflow-x: auto;
-  scrollbar-width: thin;
 }
 
 @media only screen and (max-width: 1440px) and (pointer: fine) {
