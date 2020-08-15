@@ -335,6 +335,7 @@ input[type=number]:not(:placeholder-shown) {
 
 input[type=number]:placeholder-shown:hover {
   cursor: pointer;
+  background: var(--radio-hover-bg-color);
   transform: scale(1.1);
   box-shadow: 0 1px 6px var(--shadow-5), 0 3px 6px var(--shadow-9);
 }
@@ -429,6 +430,7 @@ input[type=number] {
 .button:hover {
   transform: scale(1.1);
   cursor: pointer;
+  background: var(--radio-hover-bg-color);
   opacity: 1;
   box-shadow: 0 1px 6px var(--shadow-5), 0 3px 6px var(--shadow-9);
 }
