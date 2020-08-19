@@ -321,6 +321,52 @@ const calculateOutput = function (data, first_buy, previous_pattern) {
   $("#output").html(output_possibilities);
 
   update_chart(data, analyzed_possibilities);
+
+  update_sellnow(data, analyzed_possibilities);
+
+};
+
+const update_sellnow = function(prices, patterns) {
+
+  // get today info
+  let now = new Date();
+  let now_index = now.getDay() * 2 + (now.getHours() >= 12 ? 1 : 0); // this is today's index
+
+  let label = '';
+
+  if (now_index <= 1) {
+    // sunday
+    label = i18next.t("output.better.cant")
+  } else if (isNaN(prices[now_index])) {
+    // no today's price
+    label = i18next.t("output.better.no-data")
+  } else {
+    // calculate
+    let now_price = prices[now_index]; // this is the base price
+    var prob = 1 - patterns // probability of better is 1 minus probability of worst
+      .slice(1) // discard the combined pattern (first in the list)
+      .map(pattern => { // calculate probability of each pattern
+        return pattern.probability * pattern.prices // as the probability of this pattern times probability of all worst values
+          .slice(now_index + 1) // starting from tomorrow
+          .map(day => { // calculate probability of each day
+            if (day.min >= now_price) return 0; // if the minimum possible is already greater than now, we will always have a greater value
+            else if (day.max < now_price) return 1; // if the maximum possible is already lower than now, we will always have a lower value
+            else return (now_price - day.min) / (day.max - day.min + 1); // otherwise, the probability is the percentage of the low interval
+          }).reduce((acc, e) => acc * e, 1); // the probability of a pattern is the multiplications of each day
+      }).reduce((acc, e) => acc + e, 0); // the total probability is the addition of each pattern (already normalized)
+
+    // generate label
+    let probNumber = prob == 0 ? "0%" : displayPercentage(prob);
+    let probLabel = i18next.t(
+      prob >= 0.9 ? "output.better.no" :
+      prob >= 0.5 ? "output.better.prob-no" :
+      prob >= 0.1 ? "output.better.prob-yes" :
+      "output.better.yes"
+    );
+    label = `${probLabel} - ${i18next.t("output.better.details")} ${probNumber}`
+  }
+  // update
+  $("#betterLabel").html(label);
 };
 
 const generatePermalink = function (buy_price, sell_prices, first_buy, previous_pattern) {
