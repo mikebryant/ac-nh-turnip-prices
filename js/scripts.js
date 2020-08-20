@@ -335,7 +335,10 @@ const update_sellnow = function(prices, patterns) {
 
   let label = '';
 
-  if (now_index <= 1) {
+  if (patterns.length == 1) {
+    // invalid data
+    label = "---"
+  } else if (now_index <= 1) {
     // sunday
     label = i18next.t("output.better.cant")
   } else if (isNaN(prices[now_index])) {
@@ -343,6 +346,7 @@ const update_sellnow = function(prices, patterns) {
     label = i18next.t("output.better.no-data")
   } else {
     // calculate
+
     let now_price = prices[now_index]; // this is the base price
     var prob = 1 - patterns // probability of better is 1 minus probability of worst
       .slice(1) // discard the combined pattern (first in the list)
@@ -366,6 +370,7 @@ const update_sellnow = function(prices, patterns) {
     );
     label = `${probLabel} - ${i18next.t("output.better.details")} ${probNumber}`
   }
+
   // update
   $("#betterLabel").html(label);
 };
