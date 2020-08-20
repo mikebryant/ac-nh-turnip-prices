@@ -284,6 +284,7 @@ const displayPercentage = function(fraction) {
 const calculateOutput = function (data, first_buy, previous_pattern) {
   if (isEmpty(data)) {
     $("#output").html("");
+    $("#betterLabel").html("");
     return;
   }
   let pat_desc = {0:"fluctuating", 1:"large-spike", 2:"decreasing", 3:"small-spike", 4:"all"};
