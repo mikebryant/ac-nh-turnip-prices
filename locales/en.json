@@ -66,6 +66,16 @@
       "input": "Input Price",
       "minimum": "Guaranteed Minimum",
       "maximum": "Potential Maximum"
+    },
+    "better": {
+      "title": "Should I sell now?",
+      "cant": "Can't sell now",
+      "no-data": "Need today's price",
+      "yes": "Yes",
+      "prob-yes": "Probably yes",
+      "no": "No",
+      "prob-no": "Probably no",
+      "details": "Probability of better price is"
     }
   },
   "textbox": {
