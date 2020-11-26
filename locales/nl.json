@@ -70,8 +70,8 @@
   },
   "textbox": {
     "description": "Nadat je wat knol-prijzen hebt ingevoerd, zal de Turnip Prophet wat berekeningen doen en de verschillende mogelijke patronen voorstellen die je eiland kan vertonen.",
-    "development": "Deze applicatie is wordt nog ontwikkeld, maar zal met de tijd beter worden!",
-    "thanks": "Dit alles zou niet mogelijk zijn zonder het <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">werk van Ninji</a> om uit te zoeken hoe Timmy en Tommy de waarde van knollen bepalen.",
+    "development": "Deze applicatie is nog in ontwikkeling, en zal met de tijd beter worden!",
+    "thanks": "Dit alles zou niet mogelijk zijn zonder het <a href=\"https://twitter.com/_Ninji/status/1244818665851289602\">werk van Ninji</a> om uit te zoeken hoe Timmy en Tommy de waarde van knollen bepalen.",
     "support": "Ondersteuning, feedback en bijdrages zijn mogelijk via <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a>",
     "sponsor": "Wil je de ontwikkelaars van dit project sponsoren? Ga naar de <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> pagina en klik op '❤ Sponsor'",
     "contributors-text": "Oh! En laten we degenen die tot nu toe bijgedragen hebben niet vergeten te bedanken!",
