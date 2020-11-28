@@ -1,8 +1,15 @@
 //Reusable Fields
 const getSellFields = function () {
   let fields = [];
+  var now = new Date();
   for (var i = 2; i < 14; i++) {
     fields.push($("#sell_" + i)[0]);
+    if (i == now.getDay() * 2 + (now.getHours() >= 12 ? 1 : 0)) {
+      fields[fields.length - 1].classList.add("now");
+    }
+  }
+  if (now.getDay() == 0) {
+    buy_input[0].classList.add("now");
   }
   return fields;
 };
@@ -40,8 +47,8 @@ const state = {
   initialized: false,
 };
 
-const sell_inputs = getSellFields();
 const buy_input = $("#buy");
+const sell_inputs = getSellFields();
 const first_buy_radios = getFirstBuyRadios();
 const previous_pattern_radios = getPreviousPatternRadios();
 const permalink_input = $('#permalink-input');
