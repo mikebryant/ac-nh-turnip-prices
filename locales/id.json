@@ -1,0 +1,81 @@
+{
+  "general": {
+    "daisy-mae": "Daisy Mae"
+  },
+  "welcome": {
+    "salutation": "Halo, dan selamat datang di aplikasi <b>Turnip Prophet</b> pada Nook Phone kalian.",
+    "description": "Aplikasi ini dapat digunakan untuk mencatat harga turnip harian di pulau kalian, tapi kalian harus memasukkan harganya sendiri!",
+    "conclusion": "Setelah itu, aplikasi Turnip Prophet akan <b>secara ajaib</b> memprediksi harga turnip kalian selama satu minggu ke depan."
+  },
+  "first-time": {
+    "title": "Pertama Kali Beli",
+    "description": "Apakah ini pertama kalinya seorang penduduk membeli turnip dari Daisy Mae di pulau <b>kalian sendiri</b>?<i>(Akan memengaruhi pola harga)</i>",
+    "yes": "Iya",
+    "no": "Tidak"
+  },
+  "patterns": {
+    "title": "Pola Sebelumnya",
+    "description": "Bagaimana bentuk pola harga turnip pada minggu sebelumnya?<i>(Akan memengaruhi pola harga)</i>",
+    "pattern": "Pola",
+    "all": "Semua pola",
+    "decreasing": "Menurun",
+    "fluctuating": "Fluktuatif",
+    "unknown": "Tidak tahu",
+    "large-spike": "Peningkatan Tajam",
+    "small-spike": "Peningkatan Kecil"
+  },
+  "prices": {
+    "description": "Berapa harga turnip di pulau kalian minggu ini?",
+    "open": {
+      "am": "AM - 8.00 pagi sampai 11:59 siang",
+      "pm": "PM - 12.00 siang sampai 22.00 malam"
+    },
+    "copy-permalink": "Salin tautan",
+    "permalink-copied": "Tautan telah disalin!",
+    "reset": "Reset Turnip Prophet",
+    "reset-warning": "Apakah kamu yakin ingin me-reset semua kolom?\n\nSetelah di-reset, tidak dapat dikembalikan lagi!"
+  },
+  "weekdays": {
+    "monday": "Senin",
+    "tuesday": "Selasa",
+    "wednesday": "Rabu",
+    "thursday": "Kamis",
+    "friday": "Jumat",
+    "saturday" : "Sabtu",
+    "sunday": "Minggu",
+    "abr": {
+      "monday": "Sen",
+      "tuesday": "Sel",
+      "wednesday": "Rab",
+      "thursday": "Kam",
+      "friday": "Jum",
+      "saturday" : "Sab"
+    }
+  },
+  "times": {
+    "morning": "AM",
+    "afternoon": "PM"
+  },
+  "output": {
+    "title": "Output",
+    "chance": "% Peluang",
+    "to": "-",
+    "minimum": "Jaminan Minimal",
+    "maximum": "Potensi Maksimal",
+    "chart": {
+      "input": "Input Harga",
+      "minimum": "Jaminan Minimal",
+      "maximum": "Potensi Maksimal"
+    }
+  },
+  "textbox": {
+    "description": "Setelah kalian mendaftarkan harga turnip-nya, Turnip Prophet akan melakukan perhitungan dan menampilkan beberapa kemungkinan dengan pola yang berbeda yang mungkin terjadi di pulau kalian.",
+    "development": "Aplikasi ini masih dalam tahap pengembangan, tapi akan selalu bertambah baik seiring dengan berjalannya waktu!",
+    "thanks": "Aplikasi ini tidak akan terwujud tanpa adanya <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">hasil kerja Ninji</a> yang menemukan cara bagaimana Timmy dan Tommy menentukan harga turnip.",
+    "support": "Dukungan, komentar, dan kontribusi dapat dilakukan melalui <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a>",
+    "sponsor": "Ingin mensponsori pengembang di balik proyek ini? Silakan menuju halaman <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> dan klik '❤ Sponsor'",
+    "contributors-text": "Oh! Jangan lupa juga untuk berterima kasih pada semuanya yang telah berkontribusi sejauh ini!",
+    "contributors": "Kontributor",
+    "language": "Bahasa"
+  }
+}

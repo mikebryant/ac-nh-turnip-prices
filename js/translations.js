@@ -5,19 +5,23 @@ function updateContent() {
 const defaultLanguage = 'en';
 const LANGUAGES = {
   'ca': 'Català',
+  'cs': 'Česky',
   'de': 'Deutsch',
   'en': 'English',
   'es': 'Español',
   'fr': 'Français',
   'gl': 'Galego',
   'hu': 'magyar',
+  'id': 'Bahasa Indonesia',
   'it': 'Italiano',
   'ja': '日本語',
   'ko': '한국어',
   'nl': 'Nederlands',
+  'ph': 'Filipino',
   'pl': 'Polski',
   'pt-BR': 'Português',
   'ru': 'Русский',
+  'ua': 'Українська',
   'th': 'ไทย',
   'zh-CN': '简体中文',
   'zh-TW': '繁體中文'
@@ -39,6 +43,7 @@ i18next
   for (let code of i18next.languages) {
     if (code in LANGUAGES) {
       languageSelector.val(code);
+      $('html').attr('lang', code);
       break;
     }
   }
@@ -46,6 +51,7 @@ i18next
     if (this.value == i18next.language)
       return;
     i18next.changeLanguage(this.value);
+    $('html').attr('lang', this.value);
   });
   jqueryI18next.init(i18next, $);
   i18next.on('languageChanged', lng => {

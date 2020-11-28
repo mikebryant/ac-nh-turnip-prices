@@ -1,0 +1,87 @@
+{
+  "general": {
+    "daisy-mae": "Daisy Mae"
+  },
+  "welcome": {
+    "salutation": "Kumusta, at maligayang pagdating sa <b>Turnip Prophet</b> app sa iyong Nook Phone.",
+    "description": "Sa pamamagitan ng app na ito, puwede mo na subaybayan ang mga presyo ng turnip ng iyong isla araw-araw, ngunit kailangan mong ilagay ang mga presyo sa iyong sarili!",
+    "conclusion": "Pagkatapos nito, ang Turnip Prophet app ay huhulaan ang magiging presyo ng singil sa iyo para sa natitirang linggo, sa pamamagitan ng <b>mahika</b>!"
+  },
+  "first-time": {
+    "title": "Unang beses na Mamimili",
+    "description": "Ito ba ang unang pagkakataon na ang isang residente ay namimili ng mga turnip mula kay Daisy Mae <b>sa iyong sariling</b> isla?<i>(Nakakaapekto ito sa iyong pattern)</i>",
+    "yes": "Oo",
+    "no": "Hindi"
+  },
+  "patterns": {
+    "title": "Nakaraang Pattern",
+    "description": "Ano ang pattern ng presyo ng turnip noong nakaraang linggo?<i>(Nakakaapekto ito sa iyong pattern)</i>",
+    "pattern": "Pattern",
+    "all": "Lahat ng mga pattern",
+    "decreasing": "Pababa",
+    "fluctuating": "Taas-Baba",
+    "unknown": "Hindi ko alam",
+    "large-spike": "Malaki na Pag-taas",
+    "small-spike": "Maliit na Pag-taas"
+  },
+  "prices": {
+    "description": "Ano ang presyo ng mga turnip sa linggong ito sa iyong isla?",
+    "open": {
+      "am": "AM - 8:00 am - 11:59 am",
+      "pm": "PM - 12:00 pm - 10:00 pm"
+    },
+    "copy-permalink": "Kopyahin ang permalink",
+    "permalink-copied": "Nakopya ang permalink!",
+    "reset": "I-reset ang Turnip Prophet",
+    "reset-warning": "Sigurado ka bang nais mong i-reset ang lahat ng mga patlang?\n\nHindi na ito maibabalik sa dati!"
+  },
+  "weekdays": {
+    "monday": "Lunes",
+    "tuesday": "Martes",
+    "wednesday": "Miyerkules",
+    "thursday": "Huwebes",
+    "friday": "Biyernes",
+    "saturday" : "Sabado",
+    "sunday": "Linggo",
+    "abr": {
+      "monday": "Lunes",
+      "tuesday": "Martes",
+      "wednesday": "Miyerkules",
+      "thursday": "Huwebes",
+      "friday": "Biyernes",
+      "saturday" : "Sabado"
+    }
+  },
+  "times": {
+    "morning": "AM",
+    "afternoon": "PM"
+  },
+  "output": {
+    "title": "Resulta",
+    "chance": "% ng Tiyansa",
+    "to": "-",
+    "minimum": "Garantisadong Minimum",
+    "maximum": "Potensyal na Maximum",
+    "chart": {
+      "input": "Na-input na Presyo",
+      "minimum": "Garantisadong Minimum",
+      "maximum": "Potensyal na Maximum"
+    }
+  },
+  "textbox": {
+    "description": "Pagkatapos mong mailista ang ilang mga presyo ng turnip, kakalkulahin ng Turnip Prophet ang mga numero at lilitaw ang iba't ibang mga posibleng pattern na maaaring maranasan ng iyong isla.",
+    "development": "Ang app na ito ay nasa pag-unlad pa rin, ngunit mapapabuti sa paglipas ng panahon!",
+    "thanks": "Lahat nang ito ay hindi posible kung wala ang tulong ni <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> sa pag-alam kung paano pinepresyuhan ni Timmy at Tommy ang kanilang mga turnip.",
+    "support": "Pumunta lamang sa <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a> para sa suporta, puna, at kontribusyon.",
+    "sponsor": "Nais mo ba i-sponsor ang mga developer sa likod ng proyektong ito? Pumunta lamang sa <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> page at i-click ang '❤ Sponsor'",
+    "contributors-text": "Siya nga pala! Huwag din natin kalimutan na pasalamatan ang mga nag-bigay ng kanilang kontribusyon sa ngayon!",
+    "contributors": "Contributors",
+    "language": "Wika",
+    "theme": {
+      "title": "Tema",
+      "auto": "Automatic",
+      "light": "Light",
+      "dark": "Dark"
+    }
+  }
+}
