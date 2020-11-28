@@ -43,6 +43,7 @@ i18next
   for (let code of i18next.languages) {
     if (code in LANGUAGES) {
       languageSelector.val(code);
+      $('html').attr('lang', code);
       break;
     }
   }
@@ -50,6 +51,7 @@ i18next
     if (this.value == i18next.language)
       return;
     i18next.changeLanguage(this.value);
+    $('html').attr('lang', this.value);
   });
   jqueryI18next.init(i18next, $);
   i18next.on('languageChanged', lng => {
