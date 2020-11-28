@@ -76,6 +76,12 @@
     "sponsor": "想要贊助這個專案的開發者？進入 <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> 並按下 ❤ Sponsor",
     "contributors-text": "嘿！別忘了感謝那些迄今為止作出貢獻的人！",
     "contributors": "貢獻者",
-    "language": "語言"
+    "language": "語言",
+    "theme": {
+      "title": "主題",
+      "auto": "自動",
+      "light": "亮色",
+      "dark": "暗色"
+    }
   }
 }
