@@ -59,6 +59,7 @@
 
   --button-text-color: var(--nook-phone-text-color);
   --button-reset-text-color: #E45B5B;
+  --button-newweek-text-color: #49b87f;
 
   --table-range0: hsl(140, 80%, 85%);
   --table-range1: hsl(90, 80%, 85%);
@@ -111,6 +112,7 @@
 
   --button-text-color: var(--nook-phone-text-color);
   --button-reset-text-color: #E45B5B;
+  --button-newweek-text-color: #49b87f;
 
   --table-range0: hsl(140, 80%, 27%);
   --table-range1: hsl(90, 80%, 20%);
@@ -450,8 +452,20 @@ input[class=now]:placeholder-shown::placeholder {
   box-shadow: 0 1px 6px var(--shadow-5), 0 3px 6px var(--shadow-9);
 }
 
+#reset-btns {
+  display: flex;
+  padding: 10px;
+}
+
 .button.button--reset {
   color: var(--button-reset-text-color);
+  margin: 10px;
+}
+
+.button.button--newweek {
+  color: var(--button-newweek-text-color);
+  display: none;
+  margin: 10px;
 }
 
 .table-wrapper {
