@@ -83,5 +83,9 @@
       "light": "Világos",
       "dark": "Sötét"
     }
+  },
+  "errors": {
+    "impossible-values": "Hoppá! Valami nem stimmel a jóslatokkal. Ellenőrizd a bevitt adatokat.",
+    "github": "Ha az árak megfelelőek és nem időutaztál, kérjük <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">jelezd a hibát.</a>"
   }
 }
