@@ -457,16 +457,16 @@ input[class=now]:placeholder-shown::placeholder {
 .table-wrapper {
   display: inline-block;
   max-width: 98%;
-  padding: 16px;
-  margin: 0px auto;
+  margin: 16px auto;
   box-sizing: border-box;
   overflow-x: auto;
   scrollbar-width: thin;
+  max-height: calc(75vh - 40px);
 }
 
-@media only screen and (max-width: 1440px) and (pointer: fine) {
+@media only screen and (min-width: 1440px) {
   .table-wrapper {
-    max-height: calc(75vh - 40px);
+    overflow-x: hidden;
   }
 }
 
@@ -498,6 +498,14 @@ input[class=now]:placeholder-shown::placeholder {
 
 #turnipTable {
   border-collapse: collapse;
+}
+
+#turnipTable th {
+  position: sticky;
+  position: -webkit-sticky;
+  top: -1px;
+  z-index: 1;
+  background-color: var(--center-bg-color);
 }
 
 #turnipTable th div:nth-of-type(1) {
