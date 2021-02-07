@@ -42,11 +42,19 @@
 
   <script>
     function detectTheme() {
+      let supportsAutoTheming = (window.matchMedia && window.matchMedia("(prefers-color-scheme)").matches);
       let systemTheme = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
       let preferredTheme = localStorage.getItem("theme");
+      let highColorContrast = localStorage.getItem("highColorContrast");
       
-      if (preferredTheme == "dark" || (systemTheme == "dark" && preferredTheme != "light")) {
+      if (highColorContrast !== null) {
+        preferredTheme = preferredTheme === null ? "light-high-color-contrast" : preferredTheme + "-high-color-contrast"
+      }
+      
+      if (supportsAutoTheming && systemTheme == "dark" && preferredTheme === null) {
         document.documentElement.setAttribute("data-theme", "dark");
+      } else if (preferredTheme != "light") {
+        document.documentElement.setAttribute("data-theme", preferredTheme);
       }
     }
     detectTheme();
@@ -318,6 +326,10 @@
     </div>
     <div class="dialog-box-option">
       <p><label for='theme' data-i18n="textbox.theme.title"></label>:</p> <select id="theme"></select>
+    </div>
+    <div class="dialog-box-option">
+      <p><label for="high-color-contrast" data-i18n="textbox.theme.high-color-contrast"></label>:</p>
+      <input type="checkbox" id="high-color-contrast">
     </div>
   </div>
 

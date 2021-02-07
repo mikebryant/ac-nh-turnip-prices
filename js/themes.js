@@ -1,6 +1,10 @@
-function updateTheme(theme) {
+function updateTheme(theme, highColorContrast = false) {
   if (theme == "auto") {
     theme = (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) ? "dark" : "light";
+  }
+  
+  if (highColorContrast) {
+    theme = theme + "-high-color-contrast"
   }
 
   if (theme != "light") {
@@ -17,6 +21,7 @@ function updateTheme(theme) {
 
 function setupTheming() {
   const themeSelector = $("#theme");
+  const highColorContrastCheckbox = $("#high-color-contrast");
   const supportsAutoTheming = (window.matchMedia && window.matchMedia("(prefers-color-scheme)").matches);
   let preferredTheme = localStorage.getItem("theme");
   let selectorVal = preferredTheme ? preferredTheme :
@@ -30,23 +35,36 @@ function setupTheming() {
   themeSelector.append(`<option value="dark">${i18next.t('textbox.theme.dark')}</option>`);
 
   themeSelector.val(selectorVal);
+  if (localStorage.getItem("highColorContrast") !== null) {
+    highColorContrastCheckbox.prop('checked', true);
+  }
 
   // Listen to system changes in theme
   window.matchMedia("(prefers-color-scheme: dark)").addListener(() => {
     if (preferredTheme && preferredTheme != "auto") { return; }
-    updateTheme("auto");
+    updateTheme("auto", highColorContrastCheckbox.is(":checked"));
   });
 
-  // Preference listener
+  // Preference listeners
   themeSelector.on('change', function () {
     preferredTheme = this.value;
-    updateTheme(preferredTheme);
+    updateTheme(preferredTheme, highColorContrastCheckbox.is(":checked"));
 
     if ((preferredTheme != "light" && !supportsAutoTheming) ||
         (preferredTheme != "auto" && supportsAutoTheming)) {
       localStorage.setItem("theme", preferredTheme);
     } else {
       localStorage.removeItem("theme");
+    }
+  });
+  
+  highColorContrastCheckbox.on('change', function () {
+    updateTheme(themeSelector.val(), this.checked);
+    
+    if (this.checked) {
+      localStorage.setItem("highColorContrast", true);
+    } else {
+      localStorage.removeItem("highColorContrast");
     }
   });
 }
