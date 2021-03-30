@@ -73,8 +73,19 @@
     "development": "Este aplicativo ainda está em desenvolvimento, mas melhorará com o tempo!",
     "thanks": "Nada disso seria possível sem o <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">trabalho de Ninji's</a> descobrindo como Timmy e Tommy valorizam seus nabos.",
     "support": "Suporte, comentários e contribuições estão disponíveis através do <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a>",
+    "sponsor": "Quer patrocinar os desenvolvedores por trás deste projeto? Vá para a página de <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> e clique em '❤ Sponsor'.",
     "contributors-text": "Oh! E não vamos nos esquecer de agradecer àqueles que contribuíram até agora!",
     "contributors": "Contribuidores",
-    "language": "Linguagem"
+    "language": "Linguagem",
+    "theme": {
+      "title": "Tema",
+      "auto": "Automático",
+      "light": "Claro",
+      "dark": "Escuro"
+    }
+  },
+  "errors": {
+    "impossible-values": "Opa! Parece haver um erro com suas previsões. Por favor, verifique os valores introduzidos.",
+    "github": "Se seus preços dos nabos estão corretos e você não viajou no tempo, por favor, <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">relate o problema.</a>"
   }
 }
