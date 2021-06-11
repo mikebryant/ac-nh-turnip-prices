@@ -3,7 +3,7 @@
     "daisy-mae": "Jorna"
   },
   "welcome": {
-    "salutation": "Hallo, und Willkommen bei der <b>Turnip Prophet</b> App auf deinem Nook Phone.",
+    "salutation": "Hallo und Willkommen bei der <b>Turnip Prophet</b> App auf deinem Nook Phone.",
     "description": "Mit dieser App kannst du die Rübenpreise deiner Insel täglich verfolgen, aber du musst die Preise selbst eingeben!",
     "conclusion": "Danach wird die Turnip Prophet App <b>magisch</b> deine Rübenpreise vorhersagen, welche du den Rest der Woche haben wirst."
   },
@@ -33,7 +33,7 @@
     "copy-permalink": "Seite teilen",
     "permalink-copied": "Seitenlink kopiert!",
     "reset": "Eingegebene Daten zurücksetzen",
-    "reset-warning": "Bist du sicher, dass du deine eingegebenen Daten zurücksetzen möchtest?\n\nDies kann nicht rückgängig gemacht werden!"
+    "reset-warning": "Bist du dir sicher, dass du deine eingegebenen Daten zurücksetzen möchtest?\n\nDies kann nicht rückgängig gemacht werden!"
   },
   "weekdays": {
     "monday": "Montag",
@@ -69,9 +69,9 @@
     }
   },
   "textbox": {
-    "description": "Nachdem du einige Rübenpreise eingegeben hast, macht der Turnip Prophet etwas Magie und zeigt dir die verschiedenen möglichen Verkaufsmuster an, die auf deiner Insel auftreten können.",
+    "description": "Nachdem du einige Rübenpreise eingegeben hast, benutzt der Turnip Prophet etwas Magie und zeigt dir die verschiedenen möglichen Verkaufsmuster an, die auf deiner Insel auftreten können.",
     "development": "Diese App befindet sich noch in der Entwicklung, wird sich aber mit der Zeit verbessern!",
-    "thanks": "Nichts von all dem wäre möglich gewesen, ohne das <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> herausgefunden hätte, wie Nepp und Schlepp ihre Rübenpreise kalkulieren.",
+    "thanks": "Nichts von all dem wäre möglich gewesen, ohne dass <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">Ninji</a> herausgefunden hätte, wie Nepp und Schlepp ihre Rübenpreise kalkulieren.",
     "support": "Hilfe, Kommentare und Beiträge sind auffindbar über <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub.com</a> (nur in Englisch).",
     "sponsor": "Möchtest du die Entwickler hinter diesem Projekt unterstützen? Gehe zu <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub.com</a> und klicke auf den '❤ Sponsor' Button für mehr Informationen.",
     "contributors-text": "Oh! Und vergessen wir nicht, denen zu danken, die bis jetzt dazu beigetragen haben!",
