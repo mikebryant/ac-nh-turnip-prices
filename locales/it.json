@@ -72,7 +72,7 @@
   "textbox": {
     "description": "Dopo aver inserito alcuni prezzi, Turnip Prophet calcolerà e mostrerà i possibili comportamenti del prezzo delle rape nella tua isola.",
     "development": "Quest'applicazione è in ancora in sviluppo ma migliorerà col tempo!",
-    "thanks": "Niente di questo sarebbe possibile senza <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">il lavoro di Ninji</a> nello scoprire come Mirko e Marco valutano le rape.",
+    "thanks": "Niente di questo sarebbe possibile senza <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">il lavoro di Ninji</a> nello scoprire come Mirco e Marco valutano le rape.",
     "support": "Chiedi supporto o lascia commenti e contributi su <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a>",
     "sponsor": "Vuoi sponsorizzare gli sviluppatori di questo progetto? Vai nella pagina <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> e clicca '❤ Sponsor'",
     "contributors-text": "Oh! Non dimentichiamoci di ringraziare chi ha contribuito fin'ora!",
