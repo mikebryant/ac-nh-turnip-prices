@@ -19,10 +19,10 @@
     "pattern": "模型",
     "all": "所有模型",
     "decreasing": "遞減型",
-    "fluctuating": "波型",
+    "fluctuating": "波動型",
     "unknown": "不知道",
-    "large-spike": "三期型",
-    "small-spike": "四期型"
+    "large-spike": "大幅上漲三次",
+    "small-spike": "小幅上漲四次"
   },
   "prices": {
     "description": "本週自己島上的大頭菜買價？",
@@ -41,7 +41,7 @@
     "wednesday": "星期三",
     "thursday": "星期四",
     "friday": "星期五",
-    "saturday" : "星期六",
+    "saturday": "星期六",
     "sunday": "星期日",
     "abr": {
       "monday": "週一",
@@ -49,7 +49,7 @@
       "wednesday": "週三",
       "thursday": "週四",
       "friday": "週五",
-      "saturday" : "週六"
+      "saturday": "週六"
     }
   },
   "times": {
