@@ -24,7 +24,8 @@ const LANGUAGES = {
   'ua': 'Українська',
   'th': 'ไทย',
   'zh-CN': '简体中文',
-  'zh-TW': '繁體中文'
+  'zh-TW': '繁體中文',
+  'vi': 'Tiếng Việt'
 };
 i18next
 .use(i18nextXHRBackend)
