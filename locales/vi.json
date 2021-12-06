@@ -30,8 +30,8 @@
       "am": "Sáng - 8:00 sáng to 11:59 trưa",
       "pm": "Chiều - 12:00 trưa to 10:00 tối"
     },
-    "copy-permalink": "Sao chép đường link này",
-    "permalink-copied": "Permalink copied!",
+    "copy-permalink": "Sao chép đường dẫn này",
+    "permalink-copied": "Đường dẫn đã được sao chép!",
     "reset": "Reset toàn bộ dữ liệu",
     "reset-warning": "Bạn chắc chắn muốn reset tất cả dữ liệu?\n\nĐiều này không thể phục hồi lại được!"
   },
