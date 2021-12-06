@@ -33,7 +33,7 @@
     "copy-permalink": "Sao chép đường link này",
     "permalink-copied": "Permalink copied!",
     "reset": "Reset toàn bộ dữ liệu",
-    "reset-warning": "Are you sure you want to reset all fields?\n\nThis cannot be undone!"
+    "reset-warning": "Bạn chắc chắn muốn reset tất cả dữ liệu?\n\nĐiều này không thể phục hồi lại được!"
   },
   "weekdays": {
     "monday": "Thứ 2",
