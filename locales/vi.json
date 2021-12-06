@@ -1,0 +1,91 @@
+{
+  "general": {
+    "daisy-mae": "Daisy Mae"
+  },
+  "welcome": {
+    "salutation": "Chào mừng đến với ứng dụng <b>Turnip Prophet</b> trên Nook Phone của bạn.",
+    "description": "Ứng dụng cho phép bạn nhập giá củ cải hàng ngày trên đảo của bạn để theo dõi chúng!",
+    "conclusion": "Sau đó, bằng một cách <b>thần kỳ</b> ứng dụng <b>Turnip Prophet</b> sẽ dự đoán giá củ cải trong các ngày còn lại của tuần."
+  },
+  "first-time": {
+    "title": "Lần đầu mua củ cải?",
+    "description": "Đây có phải là lần đầu tiên một cư dân mua củ cải từ Daisy Mae trên đảo của bạn?<i>(Điều này ảnh hưởng đến mẫu hình của bạn)</i>",
+    "yes": "Đúng vậy",
+    "no": "Không"
+  },
+  "patterns": {
+    "title": "Mẫu hình trước đó",
+    "description": "Mẫu hình giá củ cải trên đảo của bạn vào tuần trước?<i>(Điều này ảnh hưởng đến mẫu hình của bạn)</i>",
+    "pattern": "Mẫu hình",
+    "all": "Tất cả mẫu hình",
+    "decreasing": "Giảm dần",
+    "fluctuating": "Dao động",
+    "unknown": "Tôi không biết",
+    "large-spike": "Mũi nhọn lớn",
+    "small-spike": "Mũi nhọn nhỏ"
+  },
+  "prices": {
+    "description": "Giá củ cải Daisy Mae bán vào sáng chủ nhật là bao nhiêu?",
+    "open": {
+      "am": "Sáng - 8:00 sáng to 11:59 trưa",
+      "pm": "Chiều - 12:00 trưa to 10:00 tối"
+    },
+    "copy-permalink": "Sao chép đường dẫn này",
+    "permalink-copied": "Đường dẫn đã được sao chép!",
+    "reset": "Reset toàn bộ dữ liệu",
+    "reset-warning": "Bạn chắc chắn muốn reset tất cả dữ liệu?\n\nĐiều này không thể phục hồi lại được!"
+  },
+  "weekdays": {
+    "monday": "Thứ 2",
+    "tuesday": "Thứ 3",
+    "wednesday": "Thứ 4",
+    "thursday": "Thứ 5",
+    "friday": "Thứ 6",
+    "saturday" : "Thứ 7",
+    "sunday": "Chủ nhật",
+    "abr": {
+      "monday": "T2",
+      "tuesday": "T3",
+      "wednesday": "T4",
+      "thursday": "T5",
+      "friday": "T6",
+      "saturday" : "CN"
+    }
+  },
+  "times": {
+    "morning": "Sáng",
+    "afternoon": "Chiều"
+  },
+  "output": {
+    "title": "Kết quả",
+    "chance": "% cơ hội",
+    "to": "đến",
+    "minimum": "Chắc chắn ít nhất",
+    "maximum": "Có thể nhiều nhất",
+    "chart": {
+      "input": "Giá nhập vào",
+      "minimum": "Chắc chắn ít nhất",
+      "maximum": "Có thể nhiều nhất"
+    }
+  },
+  "textbox": {
+    "description": "Sau khi bạn đã nhập một vài giá củ cải, app Turnip Prophet sẽ tính toán và đưa ra dự đoán các mẫu hình giá củ cải khác nhau có thể xảy ra trên đảo của bạn.",
+    "development": "Ứng dụng này vẫn đang được phát triển, nhưng sẽ cải thiện theo thời gian!",
+    "thanks": "Điều kỳ diệu này sẽ không thể thành hiện thực nếu không có <a href=\"https://twitter.com/_Ninji/status/1244818665851289602?s=20\">công trình của Ninji</a> tìm ra cách Timmy và Tommy định giá củ cải của họ.",
+    "support": "Hỗ trợ, nhận xét và đóng góp trực tiếp thông qua <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">GitHub</a>",
+    "sponsor": "Muốn tài trợ cho các nhà phát triển đằng sau dự án này? Đi đến page <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices#sponsor-button-repo\">GitHub</a> và nhấn '❤ Sponsor'",
+    "contributors-text": "Oh! Và chúng ta đừng quên cảm ơn những người đã đóng góp cho đến nay!",
+    "contributors": "Được đóng góp bởi",
+    "language": "Ngôn ngữ",
+    "theme": {
+      "title": "Giao diện",
+      "auto": "Tự động",
+      "light": "Sáng",
+      "dark": "Tối"
+    }
+  },
+  "errors": {
+    "impossible-values": "Oops! Dường như có lỗi trong quá trình dự đoán giá củ cải của bạn. Vui lòng kiểm tra lại thông tin bạn nhập vào.",
+    "github": "Nếu giá củ cải mà bạn nhập là chính xác và bạn không có <b>du hành thời gian</b>, vui lòng <a href=\"https://github.com/mikebryant/ac-nh-turnip-prices/issues\">gửi báo cáo.</a>"
+  }
+}
