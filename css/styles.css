@@ -65,9 +65,56 @@
   --table-range2: hsl(60, 80%, 85%);
   --table-range3: hsl(30, 80%, 85%);
   --table-range4: hsl(0, 80%, 85%);
+  
+  --table-range0-text: var(--nook-phone-text-color);
+  --table-range1-text: hsl(--nook-phone-text-color);
+  --table-range2-text: hsl(--nook-phone-text-color);
+  --table-range3-text: hsl(--nook-phone-text-color);
+  --table-range4-text: hsl(--nook-phone-text-color);
 }
 
-[data-theme="dark"] {
+[data-theme="light-high-color-contrast"] {
+  --color-blue: #0A74CC;
+  --color-light-blue: #32A3FF;
+
+  --bg-color: #D3E5CE;
+
+  --nook-phone-text-color: #4C4C4C;
+  --dialog-text-color: #665D4E;
+
+  --dialog-name-text-color: #AD1F1D;
+  
+  --nook-phone-bg-color: #F5F8FF;
+  --nook-phone-text-color: #333;
+
+  --dialog-bg-color: #FFFAE5;
+  --dialog-text-color: #837865;
+
+  --dialog-name-bg-color: #FF9A40;
+  --dialog-name-text-color: #BA3B1F;
+
+  --italic-color: #888;
+
+  --form-h6-text-color: #72513B;
+
+  --radio-hover-bg-color: var(--nook-phone-bg-color);
+  --radio-checked-text-color: #FFF;
+
+  --input-bg-color: #F3F3F3;
+  --input-focus-bg-color: white;
+  --input-focus-text-color: var(--color-blue);
+
+  --button-text-color: var(--nook-phone-text-color);
+  --button-reset-text-color: #E45B5B;
+
+  --table-range0: hsl(200, 100%, 50%);
+  --table-range1: hsl(190, 100%, 60%);
+  --table-range2: hsl(30, 100%, 75%);
+  --table-range3: hsl(30, 100%, 85%);
+  --table-range4: hsl(0, 100%, 98%);
+}
+
+[data-theme="dark"], [data-theme="dark-high-color-contrast"] {
   --bg-color: #1A1A1A;
   --bg-dot-color: #222;
 
@@ -117,6 +164,21 @@
   --table-range2: hsl(60, 80%, 20%);
   --table-range3: hsl(30, 80%, 20%);
   --table-range4: hsl(0, 80%, 22%);
+}
+
+[data-theme="dark-high-color-contrast"] {
+  --color-blue: #0A74CC;
+  --color-light-blue: #32A3FF;
+
+
+  --table-range0: hsl(200, 100%, 70%);
+  --table-range1: hsl(190, 100%, 40%);
+  --table-range2: hsl(180, 50%, 35%);
+  --table-range3: hsl(30, 50%, 22%);
+  --table-range4: hsl(0, 100%, 17%);
+  
+  --table-range0-text: #000;
+  --table-range1-text: #000;
 }
 
 /* - Global Styles - */
@@ -534,22 +596,27 @@ input[class=now]:placeholder-shown::placeholder {
 
 #turnipTable td.range4 {
   background-color: var(--table-range4);
+  color: var(--table-range4-text);
 }
 
 #turnipTable td.range3{
   background-color: var(--table-range3);
+  color: var(--table-range3-text);
 }
 
 #turnipTable td.range2 {
   background-color: var(--table-range2);
+  color: var(--table-range2-text);
 }
 
 #turnipTable td.range1 {
   background-color: var(--table-range1);
+  color: var(--table-range1-text);
 }
 
 #turnipTable td.range0 {
   background-color: var(--table-range0);
+  color: var(--table-range0-text);
 }
 
 .chart-wrapper {
